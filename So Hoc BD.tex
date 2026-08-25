@@ -166,7 +166,7 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 	Tại mỗi lượt quét $x \in A$, cả vị trí $A^2$ và $-3A$ đều đồng nhất nhận cùng một giá trị $x$.
 \end{example}
 \begin{definition}[Không gian số học Minkowski]
-	Cho $ \mathbb{K}$ là một trường, với * là một phép toán hai ngôi bất kỳ trên $\mathbb{K}$, ta định nghĩa phép toán hai ngôi * trên $\tsbd{K}$:
+	Cho $ \mathbb{K}$ là một trường, với * là một phép toán hai ngôi bất kỳ trên $\mathbb{K}$, ta định nghĩa phép toán hai ngôi số học * trên $\tsbd{K}$:
 	Với $A,B$ thuộc $\tsbd{K}$ thì $$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
 	\noindent Nếu $A * B =\emptyset$ thì ta nói $A * B$ không xác định. Trong trình bày ta viết tắt $(A*B)_m$ là $A*B$ và ta gọi phép toán nằm trong $(\circ)_m$ là phép toán thực hiện trên không gian số học Minkowski.
 \end{definition}
@@ -180,7 +180,7 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 \begin{example}
 	\begin{enumerate}
 		\item Nếu * là phép toán cộng trên tập số bất định thì ta có $$A^n_+ = A+A+... \text{(n lần)}$$
-		\item Nếu * là phép toán nhân trên tập số bất định thì ta có $$A^n_\times = A.A ....  \text{(n lần)}$$
+		\item Nếu * là phép toán nhân trên tập số bất định thì ta có $$A^n_* = A.A ....  \text{(n lần)}$$
 		\item Nếu * là phép toán min trên tập số bất định thì ta có
 		$$A^n_{\min} =  \begin{cases}
 			\min(A,A)                          & n=2   \\
@@ -320,8 +320,8 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 \end{md}
 \begin{theorem}
 	Cho $A \in \tsbd{K}$ ta đặt \begin{enumerate}
-		\item $Id_+=\set{F= X-X: X \in \tsbd{K}}$
-		\item $Id_*=\set{F= X/X: X \in \tsbd{K}}$
+		\item $Id_+=\set{X-X: X \in \tsbd{K}}$
+		\item $Id_*=\set{X/X: X \in \tsbd{K}}$
 	\end{enumerate}
 	Từ đó ta có: 
 	\begin{align*}
