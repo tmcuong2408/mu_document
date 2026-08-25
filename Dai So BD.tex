@@ -1,0 +1,132 @@
+\section{Một số khái niệm}
+\begin{definition}[Hàm bất định]
+	Cho $\mathcal{X},\mathcal{Y}$ là các tập con của $\tsbd{K}$,  một ánh xạ $f : \mathcal{X} \to \mathcal{Y}$ được gọi là một hàm bất định.
+\end{definition}
+\begin{definition}[Hàm bất định đơn điểm]
+	Cho tập bất định $A \in \tsbd{K}$. Ta gọi \textbf{hàm bất định đơn điểm} là một ánh xạ $f$ tác động lên biến $A$, sao cho tại mỗi lượt ánh xạ, biến $A$ chỉ nhận duy nhất một giá trị điểm $x \in A$ đại diện tại tất cả các vị trí xuất hiện của $A$ trong biểu thức $f$.
+	
+	Tập giá trị của hàm bất định theo điểm tương ứng, ký hiệu là $\kgdd{f}$, được xác định bởi:
+	\[
+	\kgdd{f}(A) := \s{f(x) \;:\; x \in A}
+	\]
+	Và gọi các phép toán nằm trong $(\circ)_1$ là các phép toán trên không gian số học số 1.
+\end{definition}
+\begin{example}
+	Ví dụ này để độc giả tránh nhầm lẫn các không gian số học trong nghiên cứu này, ta nêu các bài toán sau:
+	\begin{enumerate}
+		\item Anh $A$ định xây một cái sân hình vuông, chiều dài cạnh thuộc tập $\set{1,2}$. Vì sau khi chọn được 1 cạnh thì cạnh còn lại có chiều dài cũng phải bằng với con số đã chọn đó nên ta có diện tích cái sân là: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
+		\item Anh $B$ định xây một cái sân nhưng $B$ giao hai người quyết định chiều dài các cạnh, mỗi người có sự lựa chọn chiều dài một cạnh thuộc tập $\set{1,2}$, khi đó diện tích sân của anh $B$ là:
+		\[S_2 = \kgdt{\s{1,2}^2} =\s{1,2,4}\]
+	\end{enumerate}
+	Vậy tổng diện tích sân nhà anh $A$ và anh $B$ là:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
+	Gọi $X \in \tsbd{K}$ là số bất định chỉ lựa chọn khả dĩ để xây sân của nhà anh $A$ và anh $B$, hàm tổng diện tích sân nhà anh $A$ và anh $B$ sẽ bằng:
+	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
+\end{example}
+\begin{example}
+	Cho $f : \tsbd{K} \to \tsbd{K}$ được cho bởi:
+	\[f(X) = (X^2+5X+6)_1\] là một hàm bất định đơn điểm.
+\end{example}
+\begin{remark}
+	Định nghĩa này đảm bảo tính nhất quán về mặt đại số nhờ hai cơ chế cốt lõi:
+	\begin{itemize}
+		\item \textbf{Tính đồng nhất điểm nội bộ:} Mọi ký hiệu biến $A$ xuất hiện trong biểu thức $f$ (dù ở các vị trí hay phép toán khác nhau) đều bị ràng buộc nhận chung một giá trị $x \in A$ trong cùng một lượt ánh xạ.
+		\item \textbf{Triệt tiêu hiện tượng phình đại lượng:} Nhờ cơ chế gán điểm đồng nhất, các tính chất đại số cổ điển được bảo toàn trọn vẹn, chẳng hạn như $\kgdd{x - x}(A) = \s{0}$ và $\kgdd{x + x}(A) = 2A$.
+	\end{itemize}
+\end{remark}
+
+\begin{example}
+	Xét hàm một biến $f(A) = A^2 - 3A + 2$ với $A \in \tsbd{\mathbb{R}}$. Tập giá trị của hàm bất định đơn điểm này được xác định bởi:
+	\[
+	\kgdd{f}(A) = \s{x^2 - 3x + 2 \;:\; x \in A}
+	\]
+	Tại mỗi lượt quét $x \in A$, cả vị trí $A^2$ và $-3A$ đều đồng nhất nhận cùng một giá trị $x$.
+\end{example}
+\begin{definition}
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học 1, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học 1 mở rộng, ký hiệu là $\kgddmr{\circ}$:
+	\[
+		\kgddmr{f^{-1}(X)} := \bd{\bigcup_{x \in X}{f^{-1}(x)}}
+	\]
+	Khi đó trên không gian số học 1 ta luôn có: \begin{enumerate}
+		\item $f(f^{-1}(X)) \subseteq X$.
+		\item Nếu với mọi $x \in X$ ta luôn có $f^{-1}(x) \neq \emptyset$ thì $f(f^{-1}(X)) = X$.
+	\end{enumerate} 
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item 	Cho $f(X)=\kgdd{X^2}$, ta định nghĩa: \[\kgddmr{\sqrt{X}} = \bd{\bigcup_{x \in X}{\set{a \in K : a^2 = x}}}\]
+		Dễ thấy nếu mọi $x \in X$ đều tồn tại $a \in \mathbb{K}$ thỏa $a^2=x$ thì ta có: \[\kgdd{\left(\sqrt{X}\right)^2} = X \]
+		\item Cho $f(X)=\kgdd{\sin{X}}$, ta định nghĩa: \[\kgddmr{\arcsin{X}} = \bd{\bigcup_{x \in X}{\set{a \in \mathbb{K} : sin(a) = x}}}\]
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học Minkowski mở rộng,ký hiệu là $\kgdtmr{\circ}$, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học Minkowski mở rộng:
+	\[
+	\kgdtmr{f^{-1}(X)} := \s{A \in \tsbd{K}: f(A) = X}
+	\]
+	Khi đó ta có : $\left[f\left(\kgdtmr{f^{-1}(X)}\right)\right]_1\subseteq X$
+\end{definition}
+\begin{example}
+Cho $f(X)=\kgdt{X^2}$, ta định nghĩa: \[\kgdtmr{\sqrt{X}} = \s{A \in \tsbd{K}: A^2 = X}\]
+Chẳng hạn \[\kgdtmr{\sqrt{\s{1,2,4}}} = \s{\s{1,2},\s{-1,-2}}\]
+\end{example}
+\begin{definition}[Đồ thị của hàm bất định tại một điểm]
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $A \in \mathcal{X}$ ta định nghĩa đồ thị của hàm bất định $f$ tại điểm $A$ là:
+	\[pgr_f(A):= A \times f(A)\]
+\end{definition}
+\begin{definition}[Đồ thị của hàm bất định]
+	Cho $\mathcal{X} ,\mathcal{Y}$ là các tập con của $\tsbd{K}$ với $\mathbb{K}$ là một trường tùy ý.
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $A \in \mathcal{X}$ ta định nghĩa đồ thị của hàm bất định $f$ tại điểm $A$ là:
+	\[\gr{f}:= \{A \times f(A) : A, f(A) \in \tsbd{K}\}\]
+\end{definition}
+\begin{example}
+	Cho $f = X+X$ ta có \[\pgr_f{\s{1,2}} = \s{(1,2),(1,3),(1,4),(2,2),(2,3),(2,4)}\]
+\end{example}
+\begin{example}
+	Cho $$X = \dfrac{1}{10}\s{10..20} $$ và hàm số $$m(X) =  X^{\s{2,3}}+5X $$ ta có kết quả là $m(X)$ bằng
+	$\{$6, 6.21, 6.331, 6.44, 6.5, 6.69, 6.71, 6.728, 6.831, 6.94, 6.96, 7, 7.19, 7.197, 7.21, 7.228, 7.25, 7.331, 7.44, 7.46, 7.5, 7.56, 7.69, 7.697, 7.71, 7.728, 7.744, 7.75, 7.831, 7.89, 7.94, 7.96, 8, 8.06, 8.19, 8.197, 8.21, 8.228, 8.24, 8.244, 8.25, 8.331, 8.375, 8.39, 8.44, 8.46, 8.5, 8.56, 8.61, 8.69, 8.697, 8.71, 8.728, 8.74, 8.744, 8.75, 8.831, 8.875, 8.89, 8.94, 8.96, 9, 9.06, 9.096, 9.11, 9.19, 9.197, 9.21, 9.228, 9.24, 9.244, 9.25, 9.331, 9.375, 9.39, 9.44, 9.46, 9.5, 9.56, 9.596, 9.61, 9.69, 9.697, 9.71, 9.728, 9.74, 9.744, 9.75, 9.831, 9.875, 9.89, 9.913, 9.94, 9.96, 1E+1, 10.06, 10.096, 10.11, 10.19, 10.197, 10.21, 10.228, 10.24, 10.244, 10.25, 10.331, 10.375, 10.39, 10.413, 10.44, 10.46, 10.5, 10.56, 10.596, 10.61, 10.69, 10.697, 10.71, 10.728, 10.74, 10.744, 10.75, 10.831, 10.832, 10.875, 10.89, 10.913, 10.94, 10.96, 11, 11.06, 11.096, 11.11, 11.19, 11.197, 11.21, 11.228, 11.24, 11.244, 11.25, 11.331, 11.332, 11.375, 11.39, 11.413, 11.44, 11.46, 11.5, 11.56, 11.596, 11.61, 11.69, 11.697, 11.728, 11.74, 11.744, 11.75, 11.832, 11.859, 11.875, 11.89, 11.913, 11.96, 12, 12.06, 12.096, 12.11, 12.197, 12.24, 12.244, 12.25, 12.332, 12.359, 12.375, 12.39, 12.413, 12.5, 12.56, 12.596, 12.61, 12.74, 12.744, 12.832, 12.859, 12.875, 12.89, 12.913, 13, 13.096, 13.11, 13.24, 13.332, 13.359, 13.375, 13.413, 13.5, 13.596, 13.61, 13.832, 13.859, 13.913, 14, 14.096, 14.332, 14.359, 14.413, 14.5, 14.832, 14.859, 14.913, 15, 15.332, 15.359, 15.5, 15.832, 15.859, 16, 16.359, 16.5, 16.859, 17, 17.5, 18$\}_u$
+	\newline \noindent Số lượng phần tử: 223 và tập này có cấu trúc mà ta thấy tương đồng với tập $[6,18]$
+	\newline \noindent Nếu ta lấy $X = \kbd{[1,2]}$ thì ta có $m(X) = \kbd{[6,18]}$
+\end{example}
+\begin{example}
+	Cho $X \in \tsbd{R}$ mà mọi phần tử đều nguyên dương ta có :
+	$$X^3 \mod 3 = \s{0,1,2}$$
+	$$X^3 \mod 3 = \s{0,1,3}$$
+	$$X^3 \mod \s{3,4} = \s{0,1,2,3}$$
+	Đây là các hàm hằng bất định.
+\end{example}
+\begin{definition}[Vết]
+	Cho $f$ là một hàm bất định từ $\mathcal{X}$ vào $\mathcal{Y}$ biến $X  \mapsto Y = f(X)$.
+	\newline \noindent
+	Xét $y \in  Y = f(X)$ ta định nghĩa vết của $y$ trong biểu thức của $f(X)$ là $\Tr(y \in f(X))$ là tập tất cả các biểu thức hình thức mà kết quả là bằng $y$ có được bằng cách tính $f(X)$.
+\end{definition}
+\begin{definition}[Phương trình bất định]
+	Cho $f : \mathcal{X}\to  \mathcal{Y}$ là một hàm bất định, $C$ là một hằng số bất định, phương trình bất định ẩn $X$ là phương trình: \[f(X) = C\]
+\end{definition}
+\begin{example}
+	Cho phương trình bất định \[\kgdd{X^2+5X+6}  = 0 \]
+	Dễ thấy $X = \s{-2,-3}$ là một nghiệm của phương trình này. \\
+	Nhưng $X = \s{-2,-3}$ không phải là nghiệm của phương trình:
+	\[X^2+5X+6  = 0 \]
+	Phương trình $X^2+5X+6  = 0$ có nghiệm là $X=-2$ và $X=-3$
+\end{example}
+\begin{definition}[Nghiệm yếu của phương trình bất định]
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $C \in \tsbd{K}$. 
+	Nghiệm $X_0 \in \tsbd{K}$  được gọi là nghiệm yếu của phương trình bất định $f(X) = C$ nếu như $f(X_0)$ xác định và $f(X_0) \subsetneq C$. Nếu $f(X_0)$ và $C$ là số bất định hữu hạn phần tử thì ta đặt: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\] và ta viết $(f(X_0) = C)_\gamma$ với quan hệ bằng ở đây là quan hệ bằng yếu. Chẳng hạn nếu như $\gamma = 0.5$ thì ta viết $\gtcl{f(X_0) = C}{0.5}$.
+\end{definition}
+\begin{theorem}
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $C \in \tsbd{K}$. Nếu phương trình bất định $f(X) = C$ có nghiệm thì tồn tại  $A,B \in \tsbd{K} $ sao cho $\gtcl{f(A) = C}{\gamma} $ và $B$ là nghiệm của $f(X)=C$  và  $A \subseteq B$.
+\end{theorem}
+\par{Ta gọi phép toán được nằm trong ký hiệu $\kgdtmr{\circ}$ là các phép toán trên không gian số học số Minkowski mở rộng. Một trong số chúng được định nghĩa như sau:}
+\begin{definition}
+	Cho $p,q \in \mathbb{N}^*$
+	Ta định nghĩa \[\kgdtmr{\frac{p}{q}A} := \s{X: \kgdt{X^q_+} = \kgdt{A^p_+}} \]
+		Nếu $q = 1$ thì ta đặt:  \[\kgdtmr{pA}:= \kgdtmr{\frac{p}{1} A} \]
+\end{definition}
+\begin{example}
+	$\kgdtmr{\frac{1}{2} \s{2,3,4}} = \s{\s{1,2}} = \s{1,2}$
+\end{example}
+\begin{definition}
+	Cho $p,q \in \mathbb{N}$
+	Ta định nghĩa \[\kgdtmr{A^{\frac{p}{q}}} := \s{X: \kgdt{X^q_*} = \kgdt{A^p_*}} \]
+	Nếu $p = 1$  thì ta đặt: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
+\end{definition}

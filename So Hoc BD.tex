@@ -1,0 +1,349 @@
+\section{Giới thiệu}
+Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầu vào không phải là một giá trị chắc chắn, mà chỉ biết thuộc về một tập hợp kịch bản khả dĩ nào đó. Ta xét hai ví dụ dẫn nhập sau đây:
+
+\begin{example}
+	Một quán cà phê $A$ mỗi ngày đón một lượng khách thuộc tập $K = \set{10, 15, 30}$ (khách). Mức chi tiêu trung bình của mỗi khách thuộc tập $C = \set{10, 20, 50}$ (nghìn đồng). Tập hợp tất cả các mức doanh thu khả dĩ mỗi ngày của quán cà phê $A$ được xác định bởi:
+	\[
+	D = \set{kc : k \in K, \, c \in C} = \set{100, 150, 200, 300, 500, 600, 750, 1500} \text{ (nghìn đồng)}
+	\]
+\end{example}
+
+\begin{example}
+	Anh $A$ dự định di chuyển từ Hà Nội đến TP. Hồ Chí Minh qua 2 chặng đường:
+	\begin{itemize}
+		\item Chặng $A_1$: Quãng đường khả dĩ $S_1 \in \set{200, 240, 300}$ (km), vận tốc di chuyển $V_1 \in \set{40, 50}$ (km/h).
+		\item Chặng $A_2$: Quãng đường khả dĩ $S_2 \in \set{400, 500, 600}$ (km), vận tốc di chuyển $V_2 \in \set{80, 100, 120}$ (km/h).
+	\end{itemize}
+	Thời gian di chuyển khả dĩ trên từng chặng lần lượt là các tập hợp:
+	\[
+	T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} = \set{4; \, 4.8; \, 5; \, 6; \, 7.5} \text{ (giờ)}
+	\]
+	\[
+	T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2} = \set{3.33; \, 4; \, 4.17; \, 5; \, 6; \, 6.25; \, 7.5} \text{ (giờ)}
+	\]
+	Vậy tổng thời gian di chuyển khả dĩ cho toàn bộ hành trình thuộc tập hợp:
+	\[
+	T = \set{t_1 + t_2 : t_1 \in T_1, \, t_2 \in T_2} \text{ (giờ)}
+	\]
+	Từ đó, ta có thể rút ra các quy luật đặc trưng của tập kết quả $T$ như giá trị nhỏ nhất $\min(T)$, giá trị lớn nhất $\max(T)$, trung bình của $T$, hoặc xác định xem $T$ có thỏa mãn một hàm điều kiện hay tiêu chuẩn $f(T)$ nào đó hay không. Việc nắm bắt toàn bộ dải cấu trúc này chính là nền tảng cốt lõi giúp giải quyết bài toán ra quyết định (decision-making) trong điều kiện dữ liệu bất định.
+\end{example}
+
+Để tự động hóa và hệ thống hóa việc tính toán trực tiếp trên các tập hợp kịch bản khả dĩ này, chúng ta xây dựng \textbf{Số học bất định} — một công cụ mở rộng số học cổ điển cho các đại lượng mang tính bất định.
+\section{Số bất định}
+\begin{definition}[Số bất định trên trường $\mathbb{K}$]
+	Cho $\mathbb{K}$ là một trường, một số bất định $A$ là một đại lượng mà giá trị của nó thuộc về tập hợp $A \subseteq \mathbb{K}$. Tập tất cả các số bất định trên trường $\mathbb{K}$ được ký hiệu là $\tsbd{K}$. Nếu $A =\s{a}$ thì ta đồng nhất $A$ với phần tử $a$. Nếu $ A =\emptyset $ thì ta nói $A$ không xác định. Số $\emptyset \in \tsbd{K}$ được gọi là số hư vô.
+\end{definition}
+\begin{definition}[Toán tử chuyển]
+	Để giải quyết sự nhập nhằng ký hiệu giữa tập hợp và số bất định trong một số trường hợp, ta định nghĩa hai toán tử chuyển sau:
+	\begin{enumerate}
+		\item Cho $A \in \tsbd{K}$, ta ký hiệu $A_s$ là tập hợp chứa tất cả các giá trị khả dĩ của $A$.
+		\item Cho $A$ là một tập hợp, toán tử biến $A$ thành một số bất định được ký hiệu là $A_u \in \tsbd{K}$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	Trong phần sau của tập tài liệu ta sẽ chứng minh $f(A_s) \neq f(A)$ với $A$ là số bất định. Đó là lý do tại sao số bất định lại ký hiệu là $\{\circ\}_u$ chứ không phải dùng ký hiệu tập hợp chuẩn.
+\end{remark}
+\begin{remark}
+	Trong suốt tập tài liệu này ta quy ước:
+	\begin{enumerate}[leftmargin=*]
+		\item Các số đơn trị ta sẽ ký hiệu bằng các chữ cái viết thường như $x, y, \dots$.
+		\item Các số bất định ta sẽ ký hiệu bằng các chữ cái viết hoa như $X, Y, \dots$.
+		\item Tập hợp các số bất định ta sẽ ký hiệu bằng các chữ cái viết hoa có định kiểu như $\mathcal{X}, \mathcal{Y}, \dots$.
+		\item Các không gian số học là cách ký hiệu để tránh phải xây dựng nhiều ký hiệu khác nhau cho cùng một phép toán trong mỗi không gian số học. Sau đây là danh sách ký hiệu các không gian số học:
+		\begin{enumerate}
+			\item $\kgdd{\circ}$: không gian số học đơn điểm.
+			\item $\kgddmr{\circ}$: không gian số học đơn điểm mở rộng.
+			\item $\kgdt{\circ}$: không gian số học Minkowski.
+			\item $\kgdtmr{\circ}$: không gian số học Minkowski mở rộng.
+		\end{enumerate}
+	\end{enumerate}
+\end{remark}
+\begin{definition}[Số chiều]
+	Số chiều hữu hạn của số bất định hữu hạn phần tử $A \in \tsbd{K}$ là bằng số phần tử của $A$ và ta ký hiệu là $\dimU(A)$. Nếu $A$ có vô hạn phần tử thì ta nói số chiều của $A$ là vô hạn và ta viết $\dimU(A) = \infty$.
+\end{definition}
+\begin{definition}[Dạng chuẩn tắc]
+	Cho $A \in \tsbd{K}$. Ta gọi $f_A : d_A \to \mathbb{K}$ là một hàm sinh số bất định $A$ nếu tồn tại tập chỉ số $d_A \subseteq \mathbb{K}$ thỏa mãn: \[d_A = \begin{cases*}
+		\set{1..n} \subseteq \mathbb{N^*} \text{ nếu } \dimU(A)=n \\
+		\mathbb{N^*} \text{ nếu } A_s \text{ là tập vô hạn đếm được  }\\
+		[0,1] \text{ nếu } A_s \text{ là tập vô hạn không đếm được.}
+	\end{cases*}\]  thì ta có $\bd{f_A(d_A)}= A$.
+	Khi đó ta gọi $(f_A,d_A)$ là một dạng chuẩn tắc của $A$ và ký hiệu là  $ A \sim (f_A,d_A) $.
+\end{definition}
+\begin{theorem}[Dạng chuẩn tắc tương đương]
+	Cho $A \in \tsbd{K}$, $(f_A,d_A)$ là một dạng chuẩn tắc của $A$. Khi đó tồn tại $(f'_A,d_A)$ cũng là một dạng chuẩn tắc của $A$.
+\end{theorem}
+\par{Sau đây, liên quan đến việc giải phương trình bất định ta đi đến định nghĩa này:}
+\begin{definition}[Số bất định cấp $n$]
+	Cho $A \in \tsbd{K}$, $n$ là số nguyên dương, ta ký hiệu $\tsbdcapn{K}{n}$ là tập số bất định cấp $n$ trên trường $\mathbb{K}$ và ta có: 
+	\begin{enumerate}
+		\item Với $n = 2$, tập số bất định cấp $2$ cho bởi biểu thức:
+		\[
+		\tsbdcapn{K}{2} := \s{A : A \in \tsbd{K}}
+		\]
+		\item Với mọi $n > 2$, tập số bất định cấp $n$ được định nghĩa lũy tiến:
+		\[
+		\tsbdcapn{K}{n} := \s{A : (\exists p \in \set{1, \dots, n-1})(A \in \tsbdcapn{K}{p})}
+		\]
+		trong đó quy ước $\tsbdcapn{K}{1} \equiv \tsbd{K}$.
+		\item Với mọi $n \geq 2$ và $\s{B} \in \tsbdcapn{K}{n}$, quy ước đồng nhất phân cấp được xác định bởi:
+		\[
+		\s{B} \equiv \begin{cases}
+			B & \text{với } B \in \tsbdcapn{K}{n-1} \quad (\text{nếu } n > 2) \\
+			B & \text{với } B \in \tsbd{K} \quad (\text{nếu } n = 2)
+		\end{cases}
+		\]
+	\end{enumerate}
+\end{definition}
+\begin{definition}[Bán kính bất định]
+	Cho $A$ là một số bất định, bán kính bất định của $A$ được ký hiệu là $\rad(A)$ và $$\rad(A) = \frac{1}{2} \cdot \sup \set{x_1 - x_2 : x_1, x_2 \in A}$$
+\end{definition}
+\begin{corollary}
+	Số bất định $A = \s{a}$ với $a \in \mathbb{K}$ có bán kính bất định $\rad(A) = 0$.
+\end{corollary}
+\begin{definition}[Khoảng cách]
+	Cho $\mathbb{K}$ là một trường định chuẩn, $A$ và $B \in \tsbd{K}$. Khoảng cách giữa hai số bất định $A$ và $B$ ký hiệu là $d_H(A,B)$ và ta có
+	$$
+	d_H(A,B) := \max\left\{\sup_{a \in A}{d(a,B),\sup_{b \in B}{d(b,A)}}\right\}
+	$$ Trong đó
+	$$d(a,A) := \inf_{b\in A}{|a-b|}$$
+\end{definition}
+\begin{definition}[Quan hệ hai ngôi yếu]
+	Xét $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$, $A$ và $B$ thuộc $\tsbd{K}$, ta định nghĩa quan hệ hai ngôi yếu $\mathcal{R}$ giữa $A$ và $B$ và ký hiệu $A \mathcal{R} B$. Ta có $$\ddclmd(A \mathcal{R} B ) := \ddclmd( a \mathcal{R} b : a \in A , b \in B)$$
+	Khi đó ta nói $A \mathcal{R} B$ với chân lý là $\ddclmd(A \mathcal{R} B)$
+\end{definition}
+\begin{example}
+	Cho $A = \s{1,2}$ là một số bất định, ta có $$\gtcl{A\leq A}{0.75}$$ $$\gtcl{A>A}{0.25}$$
+	Ta nhận xét: $\ddclmd(A\leq A) + \ddclmd(A>A) = 1$. Mặc dù $A=A$ nhưng về độ lớn thì khác nhau.
+\end{example}
+\begin{example}
+	Cho $A = \s{1,2}$ và $B = \s{3} = 3$ thì $A \leq B$.
+\end{example}
+\begin{theorem}[Cân bằng]
+	Áp dụng định nghĩa quan hệ hai ngôi yếu với $\mathcal{R}$ bằng $\leq$ ta có định lý sau:
+	với $X \in \tsbd{R}$ mà $\dimU(X) = \infty$ thì: 
+	$$\ddclmd(X\leq X) = \frac{1}{2}$$
+\end{theorem}
+\begin{proof}
+	Giả sử $\taphop(X)$ có $n$ phần tử phân biệt. Tổng số cặp $(a,b)$ có thể có là $n^2$.	Số cặp mà $a<b$ là $n(n-1)/2$.	Số cặp mà $a=b$ là $n$.	Do đó, số cặp $a\leq b$ là $$\frac{n(n-1)}{2} + n = \frac{n^2+n}{2}$$	
+	Vậy chân lý sẽ là $$\ddclmd(X\leq X ) = \frac{n^2+n}{2n^2} = \frac{1}{2} + \frac{1}{2n}$$
+	Cho $n \rightarrow \infty$ ta được điều phải chứng minh.
+\end{proof}
+\begin{definition}[Phép toán số học tập hợp]
+	Cho $*$ là một phép toán tùy ý trên tập hợp, $A$ và $B$ thuộc $\mathbf{U}(\mathbb{K})$, ta định nghĩa:
+	\[
+	A * B := (A_s * B_s)_u
+	\]
+	Trong đó $A_s * B_s$ ở vế phải đại diện cho phép toán trên tập hợp.
+\end{definition}
+\begin{example}
+	Bài toán đặt ra là: Anh $A$ có một số táo là số bất định $A=\s{1,2}$, $A$ định chia số táo cho phòng $B$, phòng $B$ có số người là bất định và $B = \s{1,0}$. Sau khi $A$ chia táo thì mỗi người trong phòng $B$ nhận được số táo là \[\frac{A}{B} = \s{1,2}\] Tại sao $\frac{1}{0}$ không xuất hiện trong tập kết quả? Bởi vì nếu $A$ thấy phòng không có người thì $A$ không tiến hành chia táo và cũng không thể chia táo cho mỗi người trong căn phòng $B$ với số lượng táo là $+\infty$. Phép chia này không xảy ra chứ không phải là không có kết quả hợp lệ. Từ đó ta đi đến định nghĩa phép toán hai ngôi trên tập số bất định như sau:
+\end{example}
+\begin{definition}[Phép toán hai ngôi]
+	Cho $ \mathbb{K}$ là một trường, với * là một phép toán hai ngôi bất kỳ trên $\mathbb{K}$, ta định nghĩa phép toán hai ngôi * trên $\tsbd{K}$:
+	Với $A,B$ thuộc $\tsbd{K}$ thì $$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
+	\noindent Nếu $A * B =\emptyset$ thì ta nói $A * B$ không xác định. Trong trình bày ta viết tắt $(A*B)_m$ là $A*B$ và ta gọi phép toán nằm trong $(\circ)_m$ là phép toán thực hiện trên không gian số học Minkowski.
+\end{definition}
+\begin{theorem}[Dạng chuẩn tắc trên không gian số học Minkowski]
+	Cho $A,B \in \tsbd{K}, *$ là một phép toán hai ngôi bất kỳ thuộc không gian số học Minkowski và $ (f_A,d_A), (f_B,d_B)$ lần lượt là dạng chuẩn tắc của $A$ và $B$. Khi đó dạng chuẩn tắc của $\kgdt{A * B}$ được xác định bởi hàm sinh:
+	\[f_{A*B} : d_A \times d_B \to  \mathbb{K}\]
+	Với \[f_{A*B}(x_1,x_2) = f_A(x_1) * f_B(x_2)\]
+	Do đó: \[\kgdt{A*B} = \s{f_A(x_1)*f_B(x_2) : (x_1,x_2) \in d_A \times d_B}\]
+\end{theorem}
+\par{\noindent Sau đây ta đi đến ví dụ tính toán với số cực lớn như sau:}
+\begin{example}
+	Xét hai số bất định $A = \{1, 3\}_u$ và $B = \{10, 20\}_u$ trên trường $\mathbb{R}$.
+	
+	Chọn các tập chỉ số $d_A = d_B = \{1, 2\}$. Bằng phương pháp nội suy Lagrange, ta xây dựng các hàm sinh dạng đa thức $f_A: d_A \to \mathbb{R}$ và $f_B: d_B \to \mathbb{R}$ như sau:
+	$$f_A(x_1) = 1 \cdot \frac{x_1 - 2}{1 - 2} + 3 \cdot \frac{x_1 - 1}{2 - 1} = 2x_1 - 1$$
+	$$f_B(x_2) = 10 \cdot \frac{x_2 - 2}{1 - 2} + 20 \cdot \frac{x_2 - 1}{2 - 1} = 10x_2$$
+	
+	Khi đó, $(f_A, d_A)$ và $(f_B, d_B)$ lần lượt là các dạng chuẩn tắc đa thức của $A$ và $B$.
+	
+	Theo Định lý 2.3, hàm sinh của $(A + B)_m$ trên miền $d_A \times d_B$ được xác định bởi đa thức hai biến:
+	$$f_{A+B}(x_1, x_2) = f_A(x_1) + f_B(x_2) = 2x_1 + 10x_2 - 1$$
+	
+	Tính giá trị của đa thức $f_{A+B}$ trên từng điểm thuộc $d_A \times d_B$:
+	\begin{align*}
+		f_{A+B}(1, 1) &= 2(1) + 10(1) - 1 = 11, \quad f_{A+B}(1, 2) = 2(1) + 10(2) - 1 = 21 \\
+		f_{A+B}(2, 1) &= 2(2) + 10(1) - 1 = 13, \quad f_{A+B}(2, 2) = 2(2) + 10(2) - 1 = 23
+	\end{align*}
+	
+	Do đó:
+	$$(A + B)_m = \{11, 13, 21, 23\}_u$$
+	Từ đó ta tính được \[\kgdtmr{\kgdt{A+B}^{100}} = \s{\prod_{i=1}^{100}{(2x_i + 10 y_i  - 1)}: (x_i,y_i) \in d_A \times d_B, i \in \{1..100\}}
+	\]
+\end{example}
+\begin{proposition}
+	Cho $A \sim (f_A,d_A), B \sim (f_B,d_B)$ thuộc $\tsbd{K}$, xét $a \in A$ khi đó $a \in B$ khi và chỉ khi \[
+	\exists (x,y) \in d_A \times d_B : a=f_A(x)=f_B(y)
+	\]
+\end{proposition}
+\begin{remark}
+	Mệnh đề này chuyển đổi bản chất của bài toán kiểm tra phần tử $a \in B$ (hoặc quan hệ tập con $A \subseteq B$) từ thao tác tra cứu dữ liệu cồng kềnh thành bài toán tìm nghiệm của phương trình đại số $f_B(y) = f_A(x)$ trên miền chỉ số $d_A \times d_B$. Điều này giúp loại bỏ hoàn toàn sự phụ thuộc vào kích thước dữ liệu khi các tập hợp phình to.
+\end{remark}
+\begin{proposition}[Dạng chuẩn tắc của phép giao]
+	\label{prop:dang_chuan_tac_phep_giao}
+	Cho $ A\sim (f_A,d_A), B \sim (f_B,d_B)$ thuộc $\tsbd{K}$. Khi đó \[
+		C = A \cap B
+	\]
+	là số bất định với dạng chuẩn tắc $(f_{A\cap B},d_{A\cap B})$ cho bởi:
+	\begin{align*}
+		d_{A\cap B} &= \set{(x,y) \in d_A \times d_B : f_A(x) = f_B(y)}  \\
+		f_{A\cap B}(z) &= f_A(x) = f_B(y), z=(x,y) \in d_{A\cap B}
+	\end{align*}
+\end{proposition}
+\begin{example}
+	Xét hai số bất định $A, B \in \mathbf{U}(\mathbb{R})$ có dạng chuẩn tắc cho bởi:
+	\begin{itemize}
+		\item $A \sim (f_A, d_A)$ với $f_A(x) = 2x + 1$ trên $d_A = \{1, 2, 3, 4\} \Rightarrow A = \{3, 5, 7, 9\}_u$.
+		\item $B \sim (f_B, d_B)$ với $f_B(y) = 3y - 1$ trên $d_B = \{1, 2, 3, 4\} \Rightarrow B = \{2, 5, 8, 11\}_u$.
+	\end{itemize}
+	
+	Theo Mệnh đề \ref{prop:dang_chuan_tac_phep_giao}, ta tìm miền chỉ số $d_{A \cap B}$ bằng cách giải phương trình đại số trên $d_A \times d_B$:
+	\[
+	f_A(x) = f_B(y) \iff 2x + 1 = 3y - 1 \iff 2x - 3y = -2
+	\]
+	Thử các cặp $(x, y) \in \{1, 2, 3, 4\} \times \{1, 2, 3, 4\}$, phương trình chỉ có nghiệm duy nhất $x = 2, y = 2$. Do đó:
+	\[
+	d_{A \cap B} = \{(2, 2)\}
+	\]
+	Hàm sinh tương ứng đạt giá trị:
+	\[
+	f_{A \cap B}(2, 2) = f_A(2) = 2(2) + 1 = 5
+	\]
+	Vậy dạng chuẩn tắc $(f_{A \cap B}, d_{A \cap B})$ xác định chính xác $A \cap B = \{5\}_u$.
+\end{example}
+\begin{proposition}[Dạng chuẩn tắc của phép hợp]
+	Cho $A \sim (f_A, d_A)$ và $B \sim (f_B, d_B)$ thuộc $\mathbf{U}(\mathbb{K})$. Dạng chuẩn tắc $(f_{A \cup B}, d_{A \cup B})$ của số bất định $A \cup B$ được xác định bởi:
+	\[
+	\begin{cases}
+		d_{A \cup B} = (d_A \times \{0\}) \cup (d_B \times \{1\}) \\[1ex]
+		f_{A \cup B}(z) = \begin{cases} 
+			f_A(x), & \text{nếu } z = (x, 0) \in d_A \times \{0\} \\[1ex]
+			f_B(y), & \text{nếu } z = (y, 1) \in d_B \times \{1\}
+		\end{cases}
+	\end{cases}
+	\]
+\end{proposition}
+\begin{theorem}[Không xác định]
+	Cho $*$ là một phép toán hai ngôi bất kỳ trên $\tsbd{K}$, $A \in \tsbd{K}$ . Khi đó ta có \[A * \emptyset = \emptyset * A= \emptyset\]
+	Nghĩa là mọi phép toán hai ngôi số học bất định với số hư vô đều cho ra kết quả là số hư vô (không xác định)
+\end{theorem}
+\begin{example}
+	Với phép toán * là + ta có định nghĩa phép toán cộng trên $\tsbd{K}$.
+	$$A + B = \s{a+b : a \in A , b \in B}, \text{ với } A,B \in \tsbd{K}.$$
+\end{example}
+\begin{example}
+	$$\frac{\s{1,2,3}}{\s{2,3}} = \s{1,\frac{1}{3},\frac{1}{2},\frac{2}{3},\frac{3}{2}}$$
+	$$\frac{\s{1,2,3}}{\s{1,0}} = \s{1,2,3}$$
+	$$\frac{\s{1,2,0}}{0} \text{ không xác định}$$
+	$$\frac{0}{0} \text{ không xác định}$$
+\end{example}
+\begin{md}[Tính chất phân phối của phép toán $*$ với phép toán hợp]
+	Cho $*$ là một phép toán hai ngôi trên tập số bất định, $A$ và $B$ là các số bất định, ta có
+	\[A*B = \bigcup_{b \in B} {A * b} \]
+\end{md}
+\begin{definition}[Phép toán lặp]
+	Cho $*$ là một phép toán hai ngôi bất kỳ trên tập số bất định, $A$ là một số bất định, $n$ là số tự nhiên lớn hơn 1. Ta định nghĩa: $$A^{n}_{*} := \begin{cases}
+		A*A                         & n=2   \\
+		\left(A^{n-1}_*\right)  * A & n > 2
+	\end{cases}
+	$$\
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item Nếu * là phép toán cộng trên tập số bất định thì ta có $$A^n_+ = A+A+... \text{(n lần)}$$
+		\item Nếu * là phép toán nhân trên tập số bất định thì ta có $$A^n_\times = A.A ....  \text{(n lần)}$$
+		\item Nếu * là phép toán min trên tập số bất định thì ta có
+		$$A^n_{\min} =  \begin{cases}
+			\min(A,A)                          & n=2   \\
+			\min\left(A^{n-1}_{\min}, A\right) & n > 2
+		\end{cases} $$
+		Dễ thấy $A^n_{\min} = A, \forall n \geq 2$
+	\end{enumerate}
+\end{example}
+\begin{example}
+	Cho $2_*$ là một phép toán lặp với $*$ là một phép toán hai ngôi tùy ý trên tập số thực, $A$ là một số bất định, ta có:
+	\[A^2_* = \bigcup_{a \in A} A * a \]
+\end{example}
+\begin{theorem}
+	Cho $A \in \tsbd{K}$ ta đặt \begin{enumerate}
+		\item $Id_+=\set{F= X-X: X \in \tsbd{K}}$
+		\item $Id_*=\set{F= X/X: X \in \tsbd{K}}$
+	\end{enumerate}
+	Từ đó ta có: 
+	\begin{align*}
+		(\forall e_+ \in Id_+)(A + e_+ &= A - e_+)  \\
+		(\forall e_* \in Id_*)(A \cdot e_* &= A / e_*)
+	\end{align*}
+\end{theorem}
+\begin{theorem}[Nghịch đảo]
+	Xét $A \in \tsbd{K}, \dimU(A) > 1$ thì:
+	\begin{enumerate}
+		\item Không tồn tại số bất định B sao cho $A+B = 0$
+		\item Không tồn tại số bất định B sao cho $AB = 1$
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}
+	Cho $A$ và $B$ là hai số bất định, ta có $$\rad(A+B) \leq \rad(A) +\rad(B)$$
+\end{theorem}
+\begin{theorem}
+	Cho $A$ là một số bất định, $b$ là một hằng số đơn trị. Ta có $$\rad(A+b) = \rad(A)$$
+	Định lý cho phép một vật có vị trí bất định có bảo toàn bán kính bất định qua một phép dời hình.
+\end{theorem}
+\begin{theorem}[Sự đồng dạng thực tại]
+	Cho $A$ là một số bất định và $k$ là một hằng số đơn trị, ta có : $\rad(k  A) = |k|  \rad(A)$
+\end{theorem}
+
+\begin{theorem}[Định lý đồng nhất với số học cổ điển]
+	Cho $A = \s{a} , B = \s{b}$  và * là một phép toán hai ngôi trên tập $\mathbb{R}$ và $a*b$ là xác định thì $$A * B = \s{a*b} = a*b$$
+\end{theorem}
+\begin{theorem}[Giao hoán ]
+	Cho $A,B$ là hai số bất định và * là một phép toán hai ngôi giao hoán trên $\mathbb{R}$ ta có
+	$$A*B  = B*A$$
+\end{theorem}
+\begin{theorem}[Kết hợp]
+	Cho $A,B,C$ là các số bất định và * là một phép toán hai ngôi kết hợp trên $\mathbb{R}$ thì :
+	\[A*(B*C) = (A*B)*C\]
+\end{theorem}
+\begin{theorem}[Phân phối]
+	Cho $K,A,B$ là các số bất định, ta có:
+	\[K(A+B)\ = \bigcup_{k \in K} [k(A+B)] = \bigcup_{k \in K} (kA+kB)\]
+	\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right)  \]
+\end{theorem}
+\begin{theorem}[Định lý liên không gian số học]
+Cho $a,c \in \mathbb{K}, X \in \tsbd{K}$. Ta có:
+\begin{enumerate}
+	\item $\kgdd{aX} = \kgdt{aX}$
+\end{enumerate}
+\end{theorem}
+\section{Số bất định có trọng số}
+\begin{definition}[Trọng số]
+	Cho $A$ là một tập hợp, một hàm số $\ts{A}$ từ $A$ vào $[0,1]$ thỏa mãn những tính chất sau thì được gọi là một trọng số của A: 
+	\begin{enumerate}
+		\item $$\sum_{a \in A}{\ts{A}(a) } = 1$$
+		\item Với mọi $a \in A$ thì $\ts{A}(a) > 0 $
+	\end{enumerate}
+\end{definition}
+\begin{definition}[Số bất định có trọng số trên trường  $\mathbb{K}$]
+	Một bộ $(A,\ts{A})$ với $A \in \tsbd{K}$ và $\ts{A}$ là một trọng số của $A$ được gọi là một số bất định có trọng số trên trường $\mathbb{K}$. Tập tất cả các số bất định có trọng số trên trường $\mathbb{K}$ được ký hiệu là $\tsbdts{K}$.
+\end{definition}
+\begin{example}
+	Cho $A \in \tsbd{R}$ và $A = \s{a} = a  $ với trọng số $\ts{A}$ tùy ý ta đều có $A = a$ với $\ts{A}(a) =1$. Số $A$ như vậy là số thực.
+\end{example}
+\begin{example}
+	Tập $A=\s{2k : k \in \mathbb{N}}$ cùng với trọng số là $\ts{A}(2k) = \frac{1}{2^{k+1}}$ là một số bất định trên trường số thực với trọng số  $\ts{A}$.
+\end{example}
+\begin{theorem}[Trọng số của phép toán]
+	Gọi * là một phép toán hai ngôi trên $\tsbd{K}$, ta định nghĩa hàm $$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$ với $c = a  * b \in A * B $, $\ts{A}$ là một trọng số của $A$ và $\ts{B}$ là một trọng số của $B$ thì $\ts{A*B}$ cũng là một trọng số của $A *B $
+\end{theorem}
+\begin{definition}[Quan hệ hai ngôi yếu có trọng số trên trường $\mathbb{K}$]
+	Cho $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. Ta định nghĩa quan hệ hai ngôi yếu có trọng số trên trường $\mathbb{K}$ như sau:
+	\[\ddclmd(A\mathcal{R}B) := \sum_{(a,b) \in A \times B}{\left[\ts{A}(a)\ts{B}(b)I(a,b)\right]}\]
+	Trong đó I(a,b) cho bởi \[
+	I(a,b) := \begin{cases}
+		1 \text{ nếu } (a,b) \in \mathcal{R} \\
+		0 \text{ nếu } (a,b) \notin \mathcal{R}
+	\end{cases}
+	\]
+\end{definition}

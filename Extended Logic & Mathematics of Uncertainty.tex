@@ -1,0 +1,111 @@
+\RequirePackage{silence}
+\WarningsOff % Tắt toàn bộ cảnh báo từ tất cả các gói
+\ErrorsOff   % (Cẩn thận) Chỉ dùng nếu bạn chắc chắn code không có lỗi logic nặng
+\documentclass[a4paper,14pt, twoside]{memoir}
+\usepackage[utf8x]{inputenc}
+\usepackage[vietnamese]{babel}    
+%\usepackage{showframe}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsthm}         % Cung cấp môi trường proof
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{autobreak}
+\hypersetup{
+   colorlinks=true,
+   linkcolor=blue,
+   filecolor=magenta,
+   urlcolor=cyan
+}
+\newtheorem{definition}{Định nghĩa}[chapter]
+\newtheorem{md}{Mệnh đề}[chapter]
+\newtheorem{theorem}{Định lý}[chapter]
+\newtheorem{proposition}{Mệnh đề}[chapter]
+\newtheorem{corollary}{Hệ quả}[chapter]
+\newtheorem{remark}{Chú ý}
+\newtheorem*{chungminh}{Chứng minh}
+\newtheorem{example}{Ví dụ}[chapter]
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\taphop}{s}
+\DeclareMathOperator{\dimU}{\dim_U}
+\DeclareMathOperator{\w}{w}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\pgr}{pgr}
+\DeclareMathOperator{\scale}{scale}
+\DeclareMathOperator{\rad}{rad}
+\title{Logic Mở Rộng Và Toán Học Bất Định
+	(Extended Logic and Mathematics of Uncertainty)
+}
+\author{
+	Trần Mạnh Cường\thanks{Email: \href{mailto:tmcuong2408@gmail.com}{tmcuong2408@gmail.com} | SĐT: 0353237140} \\[0.5em]
+	\small Cựu sinh viên Khoa Toán - Tin (Khóa 11), Trường Đại học Khoa học -- ĐH Thái Nguyên \\
+	\small Địa chỉ: Đường DJ7, Thới Hòa, TP. Hồ Chí Minh, Việt Nam \\
+	\small \textit{Lĩnh vực nghiên cứu: Toán học bất định}
+}
+\date{Cập nhật lần cuối: \today}
+\usepackage{mathtools} % Bao gồm amsmath nhưng tối ưu và nhiều tính năng hơn
+\usepackage{amssymb}   % Cần thiết để gọi font chữ mathbb
+% Tạo command mới
+\newcommand{\set}[1]{\left\{#1\right\}} % tập hợp
+\newcommand{\tbd}[1]{\mathcal{#1}} % tập bất định
+\newcommand{\s}[1]{\set{#1}_\mathrm{u}} % số bất định
+\newcommand{\kbd}[1]{{#1}_\mathrm{u}} % khoảng bất định
+\newcommand{\bd}[1]{\left(#1\right)_\mathrm{u}} % biểu thức bất định
+\newcommand{\tsbd}[1]{\mathbf{U}(\mathbb{#1})}
+\newcommand{\tsbdcapn}[2]{\mathbf{U^{#2}}(\mathbb{#1})}
+\newcommand{\tsbdts}[1]{\mathbf{U}_{\w}(\mathbb{#1})} % tập số bất định
+\newcommand{\ddclmd}{\mu} % độ đo chân lý của mệnh đề
+\newcommand{\ts}[1]{\w_{#1}} % Trọng số
+\newcommand{\gtcl}[2]{\left(#1\right)_{#2}} % độ đo chân lý
+\newcommand{\gr}[1]{gr(#1)} % đồ thị của hàm
+\newcommand{\hpw}[2]{#1_1\left(#2\right)} % hàm point-wise
+\newcommand{\hbd}[2]{#1_m\left(#2\right)} % hàm bất định
+\newcommand{\eq}[1]{\left[#1\right]_{eq}} % toán tử eqs
+\newcommand{\kgdd}[1]{\left(#1\right)_1} % toán tử thực hiện trên pointwise
+\newcommand{\kgddmr}[1]{\left(#1\right)_{1'}} % toán tử thực
+\newcommand{\kgdt}[1]{\left(#1\right)_m} % toán tử thực hiện trên pointwise
+\newcommand{\kgdtmr}[1]{\left(#1\right)_{m'}} % toán tử thực hiện trên pointwise
+\begin{document}
+\maketitle
+\begin{abstract}
+	Trong khoa học tính toán và kỹ thuật hiện đại, việc xử lý dữ liệu bất định là một thách thức cốt lõi. Các công cụ truyền thống như Giải tích khoảng cổ điển (\textit{Interval Arithmetic}) thường gặp phải hiện tượng "phình khoảng" (\textit{Dependency Problem}) nghiêm trọng --- nơi việc lặp lại các biến đại số sinh ra vô số "rác số học" và làm bùng nổ biên độ tính toán. Tương tự, các phương pháp Xác suất hay Tập mờ đòi hỏi thông tin tiên nghiệm khắt khe và gánh chịu chi phí tính toán cực cao khi kích thước kịch bản phình to.
+	
+	Công trình này đề xuất một hệ hình toán học toàn diện mang tên \textbf{Logic Mở Rộng và Toán Học Bất Định} nhằm giải quyết triệt để các điểm nghẽn trên:
+	\begin{itemize}
+		\item \textbf{Dạng Chuẩn Tắc \& Cơ Chế \textit{Lazy Evaluation}:} Biểu diễn số bất định thông qua hàm sinh trên miền chỉ số. Cấu trúc này lưu trữ lịch sử tương quan đại số để triệt tiêu tận gốc rác số học, đồng thời áp dụng cơ chế đánh giá lười (\textit{lazy evaluation}) giúp biểu diễn và lưu trữ các số bất định vô hạn phần tử mà không gây tốn bộ nhớ RAM, chỉ tiến hành tính toán thực tế khi có yêu cầu truy xuất kết quả.
+		
+		\item \textbf{Hệ Thống Bốn Không Gian Số Học:}
+		\begin{itemize}
+			\item \textit{Không gian Đơn điểm $(\circ)_1$ \& Đơn điểm Mở rộng $(\circ)_{1'}$:} Bảo toàn tính nhất quán đại số, tương quan nội bộ và mở rộng khả năng xử lý các phép toán ngược/cấu trúc phân cấp.
+			\item \textit{Không gian Minkowski $(\circ)_m$ \& Minkowski Mở rộng $(\circ)_{m'}$:} Mô hình hóa sự tương tác, lan truyền nhiễu độc lập giữa các nguồn bất định và mở rộng toán tử giải phương trình số học.
+		\end{itemize}
+		
+		\item \textbf{Số Học, Đại Số \& Giải Tích Bất Định:}
+		\begin{itemize}
+			\item \textit{Số học \& Đại số Bất định:} Xây dựng phép toán hai ngôi, quan hệ yếu, trọng số, phương trình đại số bất định và nén các thao tác giao/hợp/kiểm tra phần tử phức tạp về bài toán tìm nghiệm trên miền chỉ số với độ phức tạp $\mathcal{O}(1)$.
+			\item \textit{Giải tích Bất định:} Xây dựng trọn vẹn lý thuyết Giới hạn, Tính liên tục, Tỷ sai phân, Đạo hàm và Tích phân Bất định trên tập hợp kịch bản.
+		\end{itemize}
+	\end{itemize}
+	
+	Công trình mở ra một công cụ tính toán mạnh mẽ, phục vụ trực tiếp cho các bài toán xử lý dữ liệu nhiễu, mô phỏng hệ thống bất định, bài toán ngược trong địa vật lý và ra quyết định tối ưu.
+	
+	\paragraph{Từ khóa (Keywords):} Số học bất định, Đại số bất định, Dạng chuẩn tắc, Lazy evaluation, Không gian đơn điểm, Không gian Minkowski, Giải tích bất định, Triệt tiêu rác số học.
+\end{abstract}
+\newpage
+\tableofcontents
+\chapter{Logic Mở Rộng}
+\include{Extended Logic}
+\chapter{Số Học Bất Định}
+
+\include{So Hoc BD}
+\chapter{Đại Số Bất Định}
+\par{\noindent Kể từ chương này trở về sau ta quy ước trường $\mathbb{K}$ là trường số thực hoặc số phức, tập $\mathcal{X}, \mathcal{Y}$ là các tập con của $\tsbd{K}$.}
+\include{Dai So BD}
+\chapter{Giải tích Bất Định}
+\include{Giai Tich BD}
+\end{document}

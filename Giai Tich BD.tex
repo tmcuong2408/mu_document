@@ -1,0 +1,119 @@
+
+
+
+
+\begin{example}
+	Dựa trên các phép toán cộng, trừ, nhân, chia và lũy thừa được định nghĩa ở trên ta cho một ví dụ hàm bất định:
+
+	$$\hbd{\exp}{X} := \sum_{n=0}^{\infty} \kgdd{\frac{X^n}{n!}}  = \kgdd{1} + \kgdd{X} + \kgdd{\frac{X^2}{2!}} + \kgdd{\frac{X^3}{3!}} + \cdots
+	$$
+	Và ta tính được một ví dụ cụ thể $$\hbd{\exp}{\s{0,1}} \subset [e^0,e^1]$$
+	Chẳng hạn với $n=8$, và độ chính xác đến 5 chữ số sau dấu phẩy ta tính được $\exp_m\left(\{0,1\}\right)$ xấp xỉ bằng
+	$\{$1.00000, 1.00002, 1.00020, 1.00022, 1.00139, 1.00141, 1.00159, 1.00161, 1.00833, 1.00836, 1.00853, 1.00856, 1.00972, 1.00975, 1.00992, 1.00995, 1.04167, 1.04169, 1.04187, 1.04189, 1.04306, 1.04308, 1.04325, 1.04328, 1.05000, 1.05002, 1.05020, 1.05022, 1.05139, 1.05141, 1.05159, 1.05161, 1.16667, 1.16669, 1.16687, 1.16689, 1.16806, 1.16808, 1.16825, 1.16828, 1.17500, 1.17502, 1.17520, 1.17522, 1.17639, 1.17641, 1.17659, 1.17661, 1.20833, 1.20836, 1.20853, 1.20856, 1.20972, 1.20975, 1.20992, 1.20995, 1.21667, 1.21669, 1.21687, 1.21689, 1.21806, 1.21808, 1.21825, 1.21828, 1.50000, 1.50002, 1.50020, 1.50022, 1.50139, 1.50141, 1.50159, 1.50161, 1.50833, 1.50836, 1.50853, 1.50856, 1.50972, 1.50975, 1.50992, 1.50995, 1.54167, 1.54169, 1.54187, 1.54189, 1.54306, 1.54308, 1.54325, 1.54328, 1.55000, 1.55002, 1.55020, 1.55022, 1.55139, 1.55141, 1.55159, 1.55161, 1.66667, 1.66669, 1.66687, 1.66689, 1.66806, 1.66808, 1.66825, 1.66828, 1.67500, 1.67502, 1.67520, 1.67522, 1.67639, 1.67641, 1.67659, 1.67661, 1.70833, 1.70836, 1.70853, 1.70856, 1.70972, 1.70975, 1.70992, 1.70995, 1.71667, 1.71669, 1.71687, 1.71689, 1.71806, 1.71808, 1.71825, 1.71828, 2.00000, 2.00002, 2.00020, 2.00022, 2.00139, 2.00141, 2.00159, 2.00161, 2.00833, 2.00836, 2.00853, 2.00856, 2.00972, 2.00975, 2.00992, 2.00995, 2.04167, 2.04169, 2.04187, 2.04189, 2.04306, 2.04308, 2.04325, 2.04328, 2.05000, 2.05002, 2.05020, 2.05022, 2.05139, 2.05141, 2.05159, 2.05161, 2.16667, 2.16669, 2.16687, 2.16689, 2.16806, 2.16808, 2.16825, 2.16828, 2.17500, 2.17502, 2.17520, 2.17522, 2.17639, 2.17641, 2.17659, 2.17661, 2.20833, 2.20836, 2.20853, 2.20856, 2.20972, 2.20975, 2.20992, 2.20995, 2.21667, 2.21669, 2.21687, 2.21689, 2.21806, 2.21808, 2.21825, 2.21828, 2.50000, 2.50002, 2.50020, 2.50022, 2.50139, 2.50141, 2.50159, 2.50161, 2.50833, 2.50836, 2.50853, 2.50856, 2.50972, 2.50975, 2.50992, 2.50995, 2.54167, 2.54169, 2.54187, 2.54189, 2.54306, 2.54308, 2.54325, 2.54328, 2.55000, 2.55002, 2.55020, 2.55022, 2.55139, 2.55141, 2.55159, 2.55161, 2.66667, 2.66669, 2.66687, 2.66689, 2.66806, 2.66808, 2.66825, 2.66828, 2.67500, 2.67502, 2.67520, 2.67522, 2.67639, 2.67641, 2.67659, 2.67661, 2.70833, 2.70836, 2.70853, 2.70856, 2.70972, 2.70975, 2.70992, 2.70995, 2.71667, 2.71669, 2.71687, 2.71689, 2.71806, 2.71808, 2.71825, 2.71828$\}_u$
+
+	\noindent Chứa $2^8 = 256$ phần tử.
+\end{example}
+\begin{example}
+	Quay lại ví dụ $\exp_m\s{0,1} \subseteq [e^0,e]$ dễ thấy
+	$$\Tr(e \in \exp_m\s{0,1}) = \left\{\sum_{n=0}^{\infty}\frac{1}{n!}\right\} $$
+	Những số siêu việt khác nằm trong khoảng $[1,e]$ cũng có một vết duy nhất, là công thức hình thức của số đó.
+\end{example}
+\begin{example}
+	$$\hbd{c}{X} = \sum_{k=1}^{\infty} \frac{X}{2^k}  \quad$$
+	Với $X=\s{a,b}$ ta có $\hbd{c}{\s{a,b}} = \kbd{[a,b]}$
+\end{example}
+\begin{definition}[Giới hạn của một dãy số]
+	Cho $(X_n)_{n \in \mathbb{N}}$ là một dãy các số bất định.
+	Ta nói dãy số bất định $(X_n)$ hội tụ về số bất định $L$ nếu:
+	Với mọi số thực $\epsilon > 0$, tồn tại số tự nhiên $n_0$ sao cho với mọi $n > n_0$, ta luôn có:$$d_H(X_n, L) < \epsilon$$
+	Khi đó ta viết \[\lim_{n \to \infty} X_n = L\]
+\end{definition}
+\begin{definition}[Giới hạn của hàm số tại một điểm]
+	Cho $f$ là một hàm bất định từ $\mathcal{X} \rightarrow \mathcal{Y}$ biến $X \mapsto f(X)$. Hàm bất định $f(X)$ được gọi là có giới hạn $L$ khi $X \rightarrow X_0$, ký hiệu là $$\lim\limits_{X \rightarrow X_0}f(X) = L$$
+	Nếu với $$(\forall \epsilon >0)(\exists \delta >0)(\forall X \in \mathcal{X}) : $$ $$  d_H(X,X_0)<\delta \Rightarrow d_H(f(X),L) < \epsilon$$
+\end{definition}
+\begin{definition}[Hàm bất định liên tục]
+	Hàm bất định $f : \mathcal{X} \to \mathcal{Y}$ được gọi là liên tục tại điểm $X_0 \in \mathcal{X}$ nếu như $$\lim\limits_{X \rightarrow X_0}f(X) = f(X_0)$$
+\end{definition}
+\begin{definition}[Tỷ sai phân]
+	Cho $f$ là một hàm bất định từ $\mathcal{X} \rightarrow \mathcal{Y}$ biến $X \mapsto f(X)$, $h \in \mathbb{K}$.
+	Tỷ sai phân của hàm bất định $f(X)$ tại $X_0$ là  \[\Delta_f(X_0)= \frac{f(X_0 + h) - f(X_0)}{h}\]
+\end{definition}
+\begin{definition}[Đạo hàm]
+	Cho $f$ là một hàm bất định từ $\mathcal{X} \rightarrow \mathcal{Y}$ biến $X \mapsto f(X)$.
+	Đạo hàm của hàm bất định của $f(X)$ tại $X_0$ là một số bất định: $$f'(X_0) := \s{\lim_{h\rightarrow 0}{a: a \in \Delta_f(X_0) , \lim_{h\rightarrow 0}a \in \mathbb{K}}}$$
+\end{definition}
+\begin{example}
+	Cho $f(X) = C \in \tsbd{K}$ ta có: $$f'(X) = 0$$
+\end{example}
+\begin{example}
+	Cho $f(X) = X^2_\times = XX $ ta có $f'(X) = X^2_+ = X+X$, cụ thể chẳng hạn cho $X = \s{1,2}$ thì ta có:
+	$$f'(X) = X^2_+ = X+X = \s{1,2} + \s{1,2} = \s{2,3,4}$$
+\end{example}
+
+\begin{example}
+	Cho $f(X) = (X^2)_1 = X^2 $ ta có $f'(X) = 2X$, cụ thể chẳng hạn cho $X = \{1,2\}$ thì ta có:
+	$$f'(X) = 2X = 2 \s{1,2} = \s{2,4}$$
+\end{example}
+\begin{example}
+	Cho $f(X)= (X^2)_1\cdot (X+X)$ ta có \[f'(X) = \s{2x_1x_3+2x_2x_3+2x_3x_3 : x_1,x_2,x_3 \in X}\]
+	Chẳng hạn cho $X=\s{1,2}$ thì $f'(X) = \s{6, 8, 10, 16, 20, 24}$.
+\end{example}
+\begin{theorem}[Đạo hàm của một tổng]
+	Cho $f : \mathcal{X} \to \mathcal{Y}, g : \mathcal{X} \to \mathcal{Y}$ là những hàm bất định và có đạo hàm tại $X_0 \in \tsbd{K}$. Ta có \[
+		((f+g)'(X_0))_\alpha = (f'(X_0) + g'(X_0))_\alpha, \forall \alpha \in \set{1,1',m,m'}.
+	\]
+\end{theorem}
+\begin{definition}[Tích phân bất định riêng phần]
+	Cho $A,B \in \tsbd{K}, f: \mathcal{X} \to \mathcal{Y}$ là một hàm số có nguyên hàm, $F$ là một nguyên hàm của $f$. Tích phân bất định riêng phần cận từ $A$ đến $B$ của $f(X)$ tại hàm $F$ cho bởi:
+	\[
+		\int_{A}^{B}{f(X)|F} := \s{k = \int_{a}^{b}f(x)dx : a \in F(H_A), b \in F(H_B), k \in \mathbb{K}}
+	\]
+	Trong đó:
+	\begin{align*}
+		H_A &:= \left(\bigcup_{x \in A}{F^{-1}(x)}\right)_u \\
+		H_B &:= \left(\bigcup_{x \in B}{F^{-1}(x)}\right)_u
+	\end{align*}
+\end{definition}
+\begin{definition}[Tích phân bất định]
+	Cho $A,B \in \tsbd{K}, f: \tsbd{K} \to \tsbd{K}$ là một hàm số có nguyên hàm. Gọi $\mathcal{F}$ là tập tất cả các nguyên hàm của $f$. Khi đó tích phân bất định cận từ $A$ đến $B$ của $f$ cho bởi\[
+	\int_{A}^{B}{f(X)} := \s{\int_{A}^{B}f(X)|F_i : F_i \in \mathcal{F}}
+	\]
+\end{definition}
+\begin{example}
+	Tính: \[I = \int_{\s{1,2}}^{\s{3,4}}{(X+X)|(X^2)_2}\]
+	Ta có $F(X) = X*X$ là một nguyên hàm của $f(X)$. Ta tính:
+	\begin{align*}
+		F^{-1}(\s{1,2}) &= \s{-1,1,\sqrt{2},-\sqrt{2}} \\
+		F^{-1}(\s{3,4}) &= \s{-2,2,\sqrt{3},-\sqrt{3}}
+	\end{align*}
+	Vậy ta có: 
+	\begin{align*}
+		F(F^{-1}(\s{1,2})) &= \s{-1,1,\sqrt{2},-\sqrt{2}} * \s{-1,1,\sqrt{2},-\sqrt{2}} \\
+		F(F^{-1}(\s{3,4})) &= \s{-2,2,\sqrt{3},-\sqrt{3}} * \s{-2,2,\sqrt{3},-\sqrt{3}}
+	\end{align*}
+	Rút gọn ta được:
+	\begin{align*}
+		F(F^{-1}(\s{1,2})) &= \s{\pm 1, \pm 2, \pm \sqrt{2}} \\
+		F(F^{-1}(\s{3,4})) &= \s{\pm 4, \pm 2\sqrt{3}, \pm 3}
+	\end{align*}
+	Từ đó ta tính được $I$ bằng:
+	$$
+		 \s{k = \int_{a}^{b}{2xdx}: a \in \s{\pm 1, \pm 2, \pm \sqrt{2}}, b \in  \s{\pm 4, \pm 2\sqrt{3}, \pm 3}, k \in \mathbb{K}}
+	$$
+	Rút gọn ta được:
+	\[I = \s{5, 7, 8, 10, 11, 12, 14, 15}\]
+\end{example}
+\begin{theorem}
+	Cho $A, B \in U(\mathbb{K})$ có dạng chuẩn tắc $A \sim (f_A, d_A)$ và $B \sim (f_B, d_B)$. Cho $g(X)$ là hàm bất định có nguyên hàm cấu trúc $F \in \mathcal{F}$ biểu diễn bởi hàm sinh $k$-biến $f_F(f_{X_1}, \dots, f_{X_k})$.
+	
+	Xét $k$ đường tham số hóa vi phân $f_{X_i}(t_i) = f_A(x_i) + t_i\big(f_B(y_i) - f_A(x_i)\big)$ với $t_i \in [0, 1]$. Dạng vi phân toàn phần của nguyên hàm $F$ là:
+	\[
+	d f_F = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} \cdot \big(f_B(y_i) - f_A(x_i)\big) dt_i
+	\]
+	Tích phân bất định dạng vi phân cận từ $A$ đến $B$ của hàm $g(X)$ ứng với nguyên hàm $F$, ký hiệu $\int_A^B g(X)dX \Big| F$, có hàm sinh dạng chuẩn tắc xác định bởi tích phân đường $k$-lớp:
+	\[
+	f_{I_F}(\mathbf{x}, \mathbf{y}) := \int_{[0, 1]^k} d f_F = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
+	\]
+	với mọi $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$.
+\end{theorem}
