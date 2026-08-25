@@ -1,11 +1,7 @@
-
-
-
-
 \begin{example}
 	Dựa trên các phép toán cộng, trừ, nhân, chia và lũy thừa được định nghĩa ở trên ta cho một ví dụ hàm bất định:
 
-	$$\hbd{\exp}{X} := \sum_{n=0}^{\infty} \kgdd{\frac{X^n}{n!}}  = \kgdd{1} + \kgdd{X} + \kgdd{\frac{X^2}{2!}} + \kgdd{\frac{X^3}{3!}} + \cdots
+	$$\hbd{\exp}{X} := \sum_{n=0}^{\infty} \left(\frac{X^n}{n!}\right) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \cdots
 	$$
 	Và ta tính được một ví dụ cụ thể $$\hbd{\exp}{\s{0,1}} \subset [e^0,e^1]$$
 	Chẳng hạn với $n=8$, và độ chính xác đến 5 chữ số sau dấu phẩy ta tính được $\exp_m\left(\{0,1\}\right)$ xấp xỉ bằng
@@ -116,4 +112,14 @@
 	f_{I_F}(\mathbf{x}, \mathbf{y}) := \int_{[0, 1]^k} d f_F = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
 	\]
 	với mọi $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$.
+\end{theorem}
+
+\begin{theorem}
+	Cho hai hàm bất định $f,g : \mathcal{X} \to \mathcal{Y}$ khải vi tại điểm bất định $X_0 \in \mathcal{X}$. Giả sử hàm sinh đại diện của $f(X_0)$ và $g(X_0)$ trên dang chuẩn tắc lần lượt là $f_{f(X_0)(t)}$ và $f_{g(X_0)}(t)$ với $ t \in [0,1]^k$.
+	\newline
+	Khi đó dạng vi phân của hàm tổng:
+	$h(x) = (f+g)(X)$ tại $X_0$ được xác định bởi toán tử vi phân tuyến tính toàn phần:
+	\[df_{f+g}(t) = df_{f(X_0)}(t) + df_{g(X_0)}(t)\]
+	Biểu diễn chi tiết theo các đạo hàm riêng phần trên khối tham số $[0,1]^k:$
+	\[df_{\left(f+g\right)}(t) = \sum_{i=1}^{k}\left[ \left(\frac{\partial f_{f(X_0)}(t)}{\partial t_i} + \frac{\partial f_{g(X_0)}(t)}{\partial t_i}\right) dt_i\right]\]
 \end{theorem}
