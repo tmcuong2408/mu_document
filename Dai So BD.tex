@@ -23,7 +23,7 @@
 	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
 \end{example}
 \begin{example}
-	Cho $f : \tsbd{K} \to \tsbd{K}$ được cho bởi:
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ được cho bởi:
 	\[f(X) = (X^2+5X+6)_1\] là một hàm bất định đơn điểm.
 \end{example}
 \begin{remark}
@@ -42,32 +42,24 @@
 	Tại mỗi lượt quét $x \in A$, cả vị trí $A^2$ và $-3A$ đều đồng nhất nhận cùng một giá trị $x$.
 \end{example}
 \begin{definition}
-	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học 1, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học 1 mở rộng, ký hiệu là $\kgddmr{\circ}$:
+	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học $\alpha$ với $\alpha \in \set{1,m,m'}$, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học $\alpha$:
 	\[
-		\kgddmr{f^{-1}(X)} := \bd{\bigcup_{x \in X}{f^{-1}(x)}}
+		(f^{-1}(X))_{\alpha} := \s{A \in \tsbd{K}: (f(A))_\alpha = X}
 	\]
-	Khi đó trên không gian số học 1 ta luôn có: \begin{enumerate}
-		\item $f(f^{-1}(X)) \subseteq X$.
-		\item Nếu với mọi $x \in X$ ta luôn có $f^{-1}(x) \neq \emptyset$ thì $f(f^{-1}(X)) = X$.
-	\end{enumerate} 
 \end{definition}
 \begin{example}
 	\begin{enumerate}
-		\item 	Cho $f(X)=\kgdd{X^2}$, ta định nghĩa: \[\kgddmr{\sqrt{X}} = \bd{\bigcup_{x \in X}{\set{a \in K : a^2 = x}}}\]
-		Dễ thấy nếu mọi $x \in X$ đều tồn tại $a \in \mathbb{K}$ thỏa $a^2=x$ thì ta có: \[\kgdd{\left(\sqrt{X}\right)^2} = X \]
-		\item Cho $f(X)=\kgdd{\sin{X}}$, ta định nghĩa: \[\kgddmr{\arcsin{X}} = \bd{\bigcup_{x \in X}{\set{a \in \mathbb{K} : sin(a) = x}}}\]
+		\item 	Cho $f(X)=\kgdd{X^2}$, ta định nghĩa: \[\kgdd{\sqrt{X}} = \s{A \in \tsbd{K} : \kgdd{X^2} = X}\]
+		\item Cho $f(X)=\kgdd{\sin{X}}$, ta định nghĩa: \[\kgdd{\arcsin{X}} = \s{A \in \tsbd{K} : \kgdd{sin(A)} = X}\]
 	\end{enumerate}
 \end{example}
-\begin{definition}
-	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học Minkowski mở rộng,ký hiệu là $\kgdtmr{\circ}$, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học Minkowski mở rộng:
-	\[
-	\kgdtmr{f^{-1}(X)} := \s{A \in \tsbd{K}: f(A) = X}
-	\]
-	Khi đó ta có : $\left[f\left(\kgdtmr{f^{-1}(X)}\right)\right]_1\subseteq X$
-\end{definition}
 \begin{example}
-Cho $f(X)=\kgdt{X^2}$, ta định nghĩa: \[\kgdtmr{\sqrt{X}} = \s{A \in \tsbd{K}: A^2 = X}\]
-Chẳng hạn \[\kgdtmr{\sqrt{\s{1,2,4}}} = \s{\s{1,2},\s{-1,-2}}\]
+Cho $f(X)=X^{\s{1,2,5}}$, ta định nghĩa: \[\sqrt[\s{1,2,5}]{X} = \s{A \in \tsbd{K} : A^{\s{1,2,5}} = X}\]
+Chẳng hạn \[\sqrt[\s{1,2,5}]{\s{1, 2, 3, 4, 9, 32, 243}} = \s{1,2,3}\]
+\end{example}
+\begin{example}
+	Cho $f(X)=\kgdtmr{X^2}$, ta định nghĩa: \[\kgdtmr{\sqrt{X}} = \s{A \in \tsbd{K} : \kgdtmr{A^2} = X}\]
+	Chẳng hạn \[\kgdtmr{\sqrt{\s{1, 2, 4}}} = \s{\s{1,2},\s{-1,-2}}\]
 \end{example}
 \begin{definition}[Đồ thị của hàm bất định tại một điểm]
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $A \in \mathcal{X}$ ta định nghĩa đồ thị của hàm bất định $f$ tại điểm $A$ là:
@@ -76,7 +68,7 @@ Chẳng hạn \[\kgdtmr{\sqrt{\s{1,2,4}}} = \s{\s{1,2},\s{-1,-2}}\]
 \begin{definition}[Đồ thị của hàm bất định]
 	Cho $\mathcal{X} ,\mathcal{Y}$ là các tập con của $\tsbd{K}$ với $\mathbb{K}$ là một trường tùy ý.
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $A \in \mathcal{X}$ ta định nghĩa đồ thị của hàm bất định $f$ tại điểm $A$ là:
-	\[\gr{f}:= \{A \times f(A) : A, f(A) \in \tsbd{K}\}\]
+	\[\gr{f}:= \set{\pgr_f(X) : X \in \mathcal{X}}\]
 \end{definition}
 \begin{example}
 	Cho $f = X+X$ ta có \[\pgr_f{\s{1,2}} = \s{(1,2),(1,3),(1,4),(2,2),(2,3),(2,4)}\]
