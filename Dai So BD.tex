@@ -2,45 +2,6 @@
 \begin{definition}[Hàm bất định]
 	Cho $\mathcal{X},\mathcal{Y}$ là các tập con của $\tsbd{K}$,  một ánh xạ $f : \mathcal{X} \to \mathcal{Y}$ được gọi là một hàm bất định.
 \end{definition}
-\begin{definition}[Hàm bất định đơn điểm]
-	Cho tập bất định $A \in \tsbd{K}$. Ta gọi \textbf{hàm bất định đơn điểm} là một ánh xạ $f$ tác động lên biến $A$, sao cho tại mỗi lượt ánh xạ, biến $A$ chỉ nhận duy nhất một giá trị điểm $x \in A$ đại diện tại tất cả các vị trí xuất hiện của $A$ trong biểu thức $f$.
-	
-	Tập giá trị của hàm bất định theo điểm tương ứng, ký hiệu là $\kgdd{f}$, được xác định bởi:
-	\[
-	\kgdd{f}(A) := \s{f(x) \;:\; x \in A}
-	\]
-	Và gọi các phép toán nằm trong $(\circ)_1$ là các phép toán trên không gian số học số 1.
-\end{definition}
-\begin{example}
-	Ví dụ này để độc giả tránh nhầm lẫn các không gian số học trong nghiên cứu này, ta nêu các bài toán sau:
-	\begin{enumerate}
-		\item Anh $A$ định xây một cái sân hình vuông, chiều dài cạnh thuộc tập $\set{1,2}$. Vì sau khi chọn được 1 cạnh thì cạnh còn lại có chiều dài cũng phải bằng với con số đã chọn đó nên ta có diện tích cái sân là: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
-		\item Anh $B$ định xây một cái sân nhưng $B$ giao hai người quyết định chiều dài các cạnh, mỗi người có sự lựa chọn chiều dài một cạnh thuộc tập $\set{1,2}$, khi đó diện tích sân của anh $B$ là:
-		\[S_2 = \kgdt{\s{1,2}^2} =\s{1,2,4}\]
-	\end{enumerate}
-	Vậy tổng diện tích sân nhà anh $A$ và anh $B$ là:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
-	Gọi $X \in \tsbd{K}$ là số bất định chỉ lựa chọn khả dĩ để xây sân của nhà anh $A$ và anh $B$, hàm tổng diện tích sân nhà anh $A$ và anh $B$ sẽ bằng:
-	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
-\end{example}
-\begin{example}
-	Cho $f : \mathcal{X} \to \mathcal{Y}$ được cho bởi:
-	\[f(X) = (X^2+5X+6)_1\] là một hàm bất định đơn điểm.
-\end{example}
-\begin{remark}
-	Định nghĩa này đảm bảo tính nhất quán về mặt đại số nhờ hai cơ chế cốt lõi:
-	\begin{itemize}
-		\item \textbf{Tính đồng nhất điểm nội bộ:} Mọi ký hiệu biến $A$ xuất hiện trong biểu thức $f$ (dù ở các vị trí hay phép toán khác nhau) đều bị ràng buộc nhận chung một giá trị $x \in A$ trong cùng một lượt ánh xạ.
-		\item \textbf{Triệt tiêu hiện tượng phình đại lượng:} Nhờ cơ chế gán điểm đồng nhất, các tính chất đại số cổ điển được bảo toàn trọn vẹn, chẳng hạn như $\kgdd{x - x}(A) = \s{0}$ và $\kgdd{x + x}(A) = 2A$.
-	\end{itemize}
-\end{remark}
-
-\begin{example}
-	Xét hàm một biến $f(A) = A^2 - 3A + 2$ với $A \in \tsbd{\mathbb{R}}$. Tập giá trị của hàm bất định đơn điểm này được xác định bởi:
-	\[
-	\kgdd{f}(A) = \s{x^2 - 3x + 2 \;:\; x \in A}
-	\]
-	Tại mỗi lượt quét $x \in A$, cả vị trí $A^2$ và $-3A$ đều đồng nhất nhận cùng một giá trị $x$.
-\end{example}
 \begin{definition}
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định trên không gian số học $\alpha$ với $\alpha \in \set{1,m,m'}$, $X \in \mathcal{X}$. Ta định nghĩa phép toán ngược của $f$ trên không gian số học $\alpha$:
 	\[
@@ -108,17 +69,3 @@ Chẳng hạn \[\sqrt[\s{1,2,5}]{\s{1, 2, 3, 4, 9, 32, 243}} = \s{1,2,3}\]
 \begin{theorem}
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $C \in \tsbd{K}$. Nếu phương trình bất định $f(X) = C$ có nghiệm thì tồn tại  $A,B \in \tsbd{K} $ sao cho $\gtcl{f(A) = C}{\gamma} $ và $B$ là nghiệm của $f(X)=C$  và  $A \subseteq B$.
 \end{theorem}
-\par{Ta gọi phép toán được nằm trong ký hiệu $\kgdtmr{\circ}$ là các phép toán trên không gian số học số Minkowski mở rộng. Một trong số chúng được định nghĩa như sau:}
-\begin{definition}
-	Cho $p,q \in \mathbb{N}^*$
-	Ta định nghĩa \[\kgdtmr{\frac{p}{q}A} := \s{X: \kgdt{X^q_+} = \kgdt{A^p_+}} \]
-		Nếu $q = 1$ thì ta đặt:  \[\kgdtmr{pA}:= \kgdtmr{\frac{p}{1} A} \]
-\end{definition}
-\begin{example}
-	$\kgdtmr{\frac{1}{2} \s{2,3,4}} = \s{\s{1,2}} = \s{1,2}$
-\end{example}
-\begin{definition}
-	Cho $p,q \in \mathbb{N}$
-	Ta định nghĩa \[\kgdtmr{A^{\frac{p}{q}}} := \s{X: \kgdt{X^q_*} = \kgdt{A^p_*}} \]
-	Nếu $p = 1$  thì ta đặt: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
-\end{definition}
