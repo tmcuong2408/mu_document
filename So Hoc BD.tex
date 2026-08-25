@@ -147,17 +147,6 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 	Và gọi các phép toán nằm trong $(\circ)_1$ là các phép toán trên không gian số học số đơn điểm.
 \end{definition}
 \begin{example}
-	Ví dụ này để độc giả tránh nhầm lẫn các không gian số học trong nghiên cứu này, ta nêu các bài toán sau:
-	\begin{enumerate}
-		\item Anh $A$ định xây một cái sân hình vuông, chiều dài cạnh thuộc tập $\set{1,2}$. Vì sau khi chọn được 1 cạnh thì cạnh còn lại có chiều dài cũng phải bằng với con số đã chọn đó nên ta có diện tích cái sân là: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
-		\item Anh $B$ định xây một cái sân nhưng $B$ giao hai người quyết định chiều dài các cạnh, mỗi người có sự lựa chọn chiều dài một cạnh thuộc tập $\set{1,2}$, khi đó diện tích sân của anh $B$ là:
-		\[S_2 = \kgdt{\s{1,2}^2} =\s{1,2,4}\]
-	\end{enumerate}
-	Vậy tổng diện tích sân nhà anh $A$ và anh $B$ là:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
-	Gọi $X \in \tsbd{K}$ là số bất định chỉ lựa chọn khả dĩ để xây sân của nhà anh $A$ và anh $B$, hàm tổng diện tích sân nhà anh $A$ và anh $B$ sẽ bằng:
-	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
-\end{example}
-\begin{example}
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ được cho bởi:
 	\[f(X) = (X^2+5X+6)_1\] là một hàm bất định đơn điểm.
 \end{example}
@@ -218,6 +207,17 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 	Ta định nghĩa \[\kgdtmr{A^{\frac{p}{q}}} := \s{X \in \tsbd{K}: X^q_* = A^p_*} \]
 	Nếu $p = 1$  thì ta đặt: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
 \end{definition}
+\begin{example}
+	Ví dụ này để độc giả tránh nhầm lẫn các không gian số học trong nghiên cứu này, ta nêu các bài toán sau:
+	\begin{enumerate}
+		\item Anh $A$ định xây một cái sân hình vuông, chiều dài cạnh thuộc tập $\set{1,2}$. Vì sau khi chọn được 1 cạnh thì cạnh còn lại có chiều dài cũng phải bằng với con số đã chọn đó nên ta có diện tích cái sân là: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
+		\item Anh $B$ định xây một cái sân nhưng $B$ giao hai người quyết định chiều dài các cạnh, mỗi người có sự lựa chọn chiều dài một cạnh thuộc tập $\set{1,2}$, khi đó diện tích sân của anh $B$ là:
+		\[S_2 = \kgdtmr{\s{1,2}^2} =\s{1,2,4}\]
+	\end{enumerate}
+	Vậy tổng diện tích sân nhà anh $A$ và anh $B$ là:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
+	Gọi $X \in \tsbd{K}$ là số bất định chỉ lựa chọn khả dĩ để xây sân của nhà anh $A$ và anh $B$, hàm tổng diện tích sân nhà anh $A$ và anh $B$ sẽ bằng:
+	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
+\end{example}
 \begin{theorem}[Dạng chuẩn tắc trên không gian số học Minkowski]
 	Cho $A,B \in \tsbd{K}, *$ là một phép toán hai ngôi bất kỳ thuộc không gian số học Minkowski và $ (f_A,d_A), (f_B,d_B)$ lần lượt là dạng chuẩn tắc của $A$ và $B$. Khi đó dạng chuẩn tắc của $\kgdt{A * B}$ được xác định bởi hàm sinh:
 	\[f_{A*B} : d_A \times d_B \to  \mathbb{K}\]
