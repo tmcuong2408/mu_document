@@ -1,2 +1,41 @@
+\section{Không gian trạng thái và Mệnh đề nguyên tử}
+Cho $(\Omega, \mathcal{F}, \lambda)$ là một không gian độ đo xác định đại diện cho tập hợp các kịch bản (hoặc trạng thái khả dĩ) của hệ thống. 
 
-
+\begin{definition}[Mệnh đề nguyên tử]
+	Một mệnh đề nguyên tử $P$ trong hệ Logic Mở Rộng được định nghĩa gắn liền với một hàm chân lý kịch bản $v(P, \cdot) : \Omega \to \{0, 1\}$, trong đó:
+	\[
+	v(P, \omega) = \begin{cases} 
+		1 & \text{nếu } P \text{ đúng tại trạng thái } \omega, \\
+		0 & \text{nếu } P \text{ sai tại trạng thái } \omega.
+	\end{cases}
+	\]
+	\end{definition}
+		
+		\begin{definition}[Toán tử lượng giá chân lý]
+			Toán tử lượng giá chân lý $V$ là một ánh xạ từ tập hợp các mệnh đề vào đoạn $[0, 1]$, xác định bởi độ đo của tập các trạng thái làm cho mệnh đề nghiệm đúng:
+			\[
+			V(P) := \frac{\lambda(\{\omega \in \Omega : v(P, \omega) = 1\})}{\lambda(\Omega)}
+			\]
+		\end{definition}
+		
+		\section{Đại số mệnh đề phức hợp và Tính bảo toàn tương quan}
+		Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyển $\lor$, Kéo theo $\Rightarrow$) được mở rộng lên không gian trạng thái thông qua đại số Boole trên từng điểm $\omega \in \Omega$.
+		
+		\begin{definition}[Lượng giá mệnh đề phức hợp]
+			Cho $P_1, P_2, \dots, P_n$ là các mệnh đề nguyên tử và $\Phi$ là một dạng mệnh đề phức hợp cấu thành từ các phép nối logic cổ điển. Giá trị chân lý tại trạng thái $\omega \in \Omega$ của $\Phi$ được xác định bởi:
+			\[
+			v(\Phi(P_1, \dots, P_n), \omega) = \Phi\big(v(P_1, \omega), v(P_2, \omega), \dots, v(P_n, \omega)\big) \in \{0, 1\}
+			\]
+			Khi đó, giá trị chân lý toàn cục $V(\Phi) \in [0, 1]$ của mệnh đề phức hợp $\Phi$ được tính bởi:
+			\[
+			V(\Phi) := \frac{\lambda(\{\omega \in \Omega : v(\Phi(P_1, \dots, P_n), \omega) = 1\})}{\lambda(\Omega)}
+			\]
+			\end{definition}
+			
+				\begin{theorem}[Bảo toàn quy luật Logic cổ điển]
+					Hệ thống lượng giá $V$ bảo toàn toàn bộ các hằng đúng (tautologies) của Logic mệnh đề cổ điển. Nghĩa là, nếu $\Phi$ là một hằng đúng cổ điển thì $V(\Phi) = 1$.
+				\end{theorem}
+				
+				\begin{remark}
+					Khác với Fuzzy Logic (vốn tính $V(P \land Q) = \min(V(P), V(Q))$ làm mất đi thông tin phụ thuộc), toán tử lượng giá $V$ thực hiện phép tính nối logic trực tiếp trên không gian trạng thái $\Omega$ trước khi đo đạc. Nhờ đó, các tính chất đại số cơ bản như $V(P \land \neg P) = 0$ hay $V(P \lor \neg P) = 1$ luôn được bảo toàn tuyệt đối.
+				\end{remark}
