@@ -16,7 +16,7 @@ Cho $(\Omega, \mathcal{F}, \lambda)$ là một không gian độ đo xác địn
 \begin{definition}[Toán tử lượng giá chân lý]
 	Toán tử lượng giá chân lý $V$ là một ánh xạ từ tập hợp các mệnh đề vào đoạn $[0, 1]$, xác định bởi độ đo của tập các trạng thái làm cho mệnh đề nghiệm đúng:
 	\[
-	V(P) := \frac{\lambda(\{\omega \in \Omega : v(P, \omega) = 1\})}{\lambda(\Omega)}
+	\ddclmd(P) := \frac{\lambda(\{\omega \in \Omega : v(P, \omega) = 1\})}{\lambda(\Omega)}
 	\]
 \end{definition}
 
@@ -28,17 +28,18 @@ Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyể
 	\[
 	v(\Phi(P_1, \dots, P_n), \omega) = \Phi\big(v(P_1, \omega), v(P_2, \omega), \dots, v(P_n, \omega)\big) \in \{0, 1\}
 	\]
-	Khi đó, giá trị chân lý toàn cục $V(\Phi) \in [0, 1]$ được tính bởi:
+	Khi đó, giá trị chân lý toàn cục $\ddclmd(\Phi) \in [0, 1]$ được tính bởi:
 	\[
-	V(\Phi) := \frac{\lambda(\{\omega \in \Omega : v(\Phi(P_1, \dots, P_n), \omega) = 1\})}{\lambda(\Omega)}
+	\ddclmd(\Phi) := \frac{\lambda(\{\omega \in \Omega : v(\Phi(P_1, \dots, P_n), \omega) = 1\})}{\lambda(\Omega)}
 	\]
+	và ta ký hiệu mệnh đề gắn kèm chân lý là $(\Phi)_{V(\Phi)}$.
 \end{definition}
 
 \begin{theorem}[Bảo toàn hằng đúng Logic cổ điển]
-	Nếu $\Phi$ là một hằng đúng (tautology) của Logic mệnh đề cổ điển, thì $V(\Phi) = 1$. Đặc biệt, các quy luật nền tảng luôn được bảo toàn tuyệt đối:
+	Nếu $\Phi$ là một hằng đúng (tautology) của Logic mệnh đề cổ điển, thì $\ddclmd(\Phi) = 1$. Đặc biệt, các quy luật nền tảng luôn được bảo toàn tuyệt đối:
 	\begin{enumerate}
-		\item Quy luật mâu thuẫn: $V(P \land \neg P) = 0$.
-		\item Quy luật bài trung: $V(P \lor \neg P) = 1$.
+		\item Quy luật mâu thuẫn: $\ddclmd(P \land \neg P) = 0$.
+		\item Quy luật bài trung: $\ddclmd(P \lor \neg P) = 1$.
 	\end{enumerate}
 \end{theorem}
 
@@ -46,7 +47,7 @@ Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyể
 	Vì $\Phi$ là hằng đúng cổ điển, với mọi phối hợp giá trị nhị phân của các mệnh đề nguyên tử, ta luôn có $\Phi\big(v(P_1, \omega), \dots, v(P_n, \omega)\big) = 1$ với mọi $\omega \in \Omega$.
 	Do đó, $\{\omega \in \Omega : v(\Phi, \omega) = 1\} = \Omega$. Suy ra:
 	\[
-	V(\Phi) = \frac{\lambda(\Omega)}{\lambda(\Omega)} = 1
+	\ddclmd(\Phi) = \frac{\lambda(\Omega)}{\lambda(\Omega)} = 1
 	\]
 \end{proof}
 
@@ -55,14 +56,14 @@ Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyể
 \begin{definition}[Phép kéo theo và Mức độ suy luận]
 	Cho hai mệnh đề $P$ và $Q$. Phép kéo theo $P \Rightarrow Q$ tại trạng thái $\omega$ được xác định theo logic cổ điển $v(P \Rightarrow Q, \omega) = v(\neg P \lor Q, \omega)$. Giá trị chân lý toàn cục của phép kéo theo là:
 	\[
-	V(P \Rightarrow Q) = \frac{\lambda(\{\omega \in \Omega : v(P, \omega) \le v(Q, \omega)\})}{\lambda(\Omega)}
+	\ddclmd(P \Rightarrow Q) = \frac{\lambda(\{\omega \in \Omega : v(P, \omega) \le v(Q, \omega)\})}{\lambda(\Omega)}
 	\]
 \end{definition}
 
 \begin{theorem}[Bổ đề Modus Ponens Mở rộng]
 	Với hai mệnh đề $P$ và $Q$ bất kỳ, ta luôn có bất đẳng thức suy luận:
 	\[
-	V(Q) \ge V(P) + V(P \Rightarrow Q) - 1
+	\ddclmd(Q) \ge \ddclmd(P) + \ddclmd(P \Rightarrow Q) - 1
 	\]
 \end{theorem}
 
@@ -70,12 +71,12 @@ Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyể
 \begin{example}
 	Xét không gian trạng thái $\Omega = \{1, 2, 3, 4\}$ với độ đo đếm $\lambda(A) = |A|$. Xét hai mệnh đề nguyên tử $P$ và $Q$ có hàm chân lý kịch bản:
 	\begin{itemize}
-		\item $P$ đúng tại $\Omega_P = \{1, 2\} \implies V(P) = 2/4 = 0.5$.
-		\item $Q$ đúng tại $\Omega_Q = \{2, 3\} \implies V(Q) = 2/4 = 0.5$.
+		\item $P$ đúng tại $\Omega_P = \{1, 2\} \implies \ddclmd(P) = 2/4 = 0.5$.
+		\item $Q$ đúng tại $\Omega_Q = \{2, 3\} \implies \ddclmd(Q) = 2/4 = 0.5$.
 	\end{itemize}
 	Tập trạng thái làm cho mệnh đề phức hợp $P \land Q$ đúng là $\Omega_P \cap \Omega_Q = \{2\}$. Do đó:
 	\[
-	V(P \land Q) = \frac{|\{2\}|}{4} = 0.25
+	\ddclmd(P \land Q) = \frac{|\{2\}|}{4} = 0.25
 	\]
-	\textit{Nhận xét:} Nếu dùng toán tử Fuzzy cổ điển $\min(V(P), V(Q)) = \min(0.5, 0.5) = 0.5$, kết quả sẽ bị sai lệch do bỏ qua sự lệch kịch bản giữa $P$ và $Q$. Việc lượng giá trực tiếp trên không gian trạng thái $\Omega$ giúp giữ nguyên bản chất tương quan logic.
+	\textit{Nhận xét:} Nếu dùng toán tử Fuzzy cổ điển $\min(\ddclmd(P), \ddclmd(Q)) = \min(0.5, 0.5) = 0.5$, kết quả sẽ bị sai lệch do bỏ qua sự lệch kịch bản giữa $P$ và $Q$. Việc lượng giá trực tiếp trên không gian trạng thái $\Omega$ giúp giữ nguyên bản chất tương quan logic.
 \end{example}

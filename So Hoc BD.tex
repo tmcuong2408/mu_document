@@ -107,8 +107,19 @@ Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầ
 	$$d(a,A) := \inf_{b\in A}{|a-b|}$$
 \end{definition}
 \begin{definition}[Quan hệ hai ngôi yếu]
-	Xét $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$, $A$ và $B$ thuộc $\tsbd{K}$, ta định nghĩa quan hệ hai ngôi yếu $\mathcal{R}$ giữa $A$ và $B$ và ký hiệu $A \mathcal{R} B$. Ta có $$\ddclmd(A \mathcal{R} B ) := \ddclmd( a \mathcal{R} b : a \in A , b \in B)$$
-	Khi đó ta nói $A \mathcal{R} B$ với chân lý là $\ddclmd(A \mathcal{R} B)$
+	Xét $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$ và hai số bất định $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ thuộc $\mathbf{U}(\mathbb{K})$. 
+	
+	Quan hệ hai ngôi yếu $A \mathcal{R} B$ là một mệnh đề được lượng giá trên không gian kịch bản $\Omega = d_A \times d_B$ với hàm chân lý mệnh đề nguyên tử:
+	\[
+	v(A \mathcal{R} B, \omega) = \begin{cases} 
+		1 & \text{nếu } f_A(t_1) \mathcal{R} f_B(t_2) \text{ đúng}, \\
+		0 & \text{nếu } f_A(t_1) \mathcal{R} f_B(t_2) \text{ sai},
+	\end{cases} \quad \text{với } \omega = (t_1, t_2) \in \Omega
+	\]
+	Khi đó, giá trị chân lý của quan hệ $A \mathcal{R} B$ được xác định bởi:
+	\[
+	\ddclmd(A \mathcal{R} B) := \frac{\lambda\big(\{(t_1, t_2) \in d_A \times d_B : f_A(t_1) \mathcal{R} f_B(t_2)\}\big)}{\lambda(d_A \times d_B)}
+	\]
 \end{definition}
 \begin{example}
 	Cho $A = \s{1,2}$ là một số bất định, ta có $$\gtcl{A\leq A}{0.75}$$ $$\gtcl{A>A}{0.25}$$
