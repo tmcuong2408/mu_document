@@ -66,3 +66,23 @@ Chẳng hạn \[\sqrt[N_0]{\s{1, 2, 3, 4, 9, 32, 243}} = \s{1,2,3}\]
 \begin{theorem}
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $C \in \tsbd{K}$. Nếu phương trình bất định $f(X) = C$ có nghiệm thì tồn tại  $A,B \in \tsbd{K} $ sao cho $\gtcl{f(A) = C}{\gamma} $ và $B$ là nghiệm của $f(X)=C$  và  $A \subseteq B$.
 \end{theorem}
+\begin{theorem}[Ảnh của dạng chuẩn tắc qua ánh xạ bất định]
+	Cho $X \in \mathcal{X}$ là một phần tử bất định có biểu diễn chuẩn tắc $X \sim (f_X, d_X)$ và $f : \mathcal{X} \to \mathcal{Y}$ là một ánh xạ bất định.
+	
+	Khi đó, ảnh $Y = f(X) \in \mathcal{Y}$ sở hữu biểu diễn chuẩn tắc $Y \sim (f_Y, d_Y)$ thỏa mãn:
+	\begin{enumerate}
+		\item Miền kịch bản $d_Y = d_X$.
+		\item Hàm định giá $f_Y : d_Y \to \mathcal{Y}$ được xác định thông qua phép hợp thành:
+		\[
+		\forall t \in d_Y, \quad f_Y(t) = f\big(f_X(t)\big)
+		\]
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[Đặc trưng nghiệm phương trình bất định]
+	Cho hàm bất định $f : \mathcal{X} \to \mathcal{Y}$ và tập đích/hằng số $C \in \mathcal{Y}$ có biểu diễn chuẩn tắc $C \sim (f_C, d_C)$.
+	
+	Khi đó, một phần tử $X_0 \in \mathcal{X}$ là nghiệm của phương trình $f(X) = C$ khi và chỉ khi giá trị $F = f(X_0) \sim (f_F, d_F)$ thỏa mãn điều kiện khớp cấu trúc kịch bản:
+	\[
+	\forall t \in d_F, \quad \exists t' \in d_C : \quad f_F(t) = f_C(t')
+	\]
+\end{theorem}
