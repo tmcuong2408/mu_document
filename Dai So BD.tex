@@ -67,17 +67,37 @@ Chẳng hạn \[\sqrt[N_0]{\s{1, 2, 3, 4, 9, 32, 243}} = \s{1,2,3}\]
 	Cho $f : \mathcal{X} \to \mathcal{Y}$ là một hàm bất định, $C \in \tsbd{K}$. Nếu phương trình bất định $f(X) = C$ có nghiệm thì tồn tại  $A,B \in \tsbd{K} $ sao cho $\gtcl{f(A) = C}{\gamma} $ và $B$ là nghiệm của $f(X)=C$  và  $A \subseteq B$.
 \end{theorem}
 \begin{theorem}[Ảnh của dạng chuẩn tắc qua ánh xạ bất định]
-	Cho $X \in \mathcal{X}$ là một phần tử bất định có biểu diễn chuẩn tắc $X \sim (f_X, d_X)$ và $f : \mathcal{X} \to \mathcal{Y}$ là một ánh xạ bất định.
+	\label{dl:3.2}
+	Cho $X \in \mathcal{X}$ là một số bất định có dạng chuẩn tắc $X \sim (f_X, d_X)$ và $f: \mathcal{X} \rightarrow \mathcal{Y}$ là một ánh xạ bất định đơn biến. 
 	
-	Khi đó, ảnh $Y = f(X) \in \mathcal{Y}$ sở hữu biểu diễn chuẩn tắc $Y \sim (f_Y, d_Y)$ thỏa mãn:
+	Khi đó, ảnh $Y = f(X) \in \mathcal{Y}$ sở hữu dạng chuẩn tắc $Y \sim (f_Y, d_Y)$ được xác định theo từng không gian số học như sau:
+	
 	\begin{enumerate}
-		\item Miền kịch bản $d_Y = d_X$.
-		\item Hàm định giá $f_Y : d_Y \to \mathcal{Y}$ được xác định thông qua phép hợp thành:
+		\item \textbf{Trên Không gian Đơn điểm $(\circ)_1$:} 
+		Do tính đồng nhất điểm nội bộ được bảo toàn, miền kịch bản của $Y$ giữ nguyên:
 		\[
-		\forall t \in d_Y, \quad f_Y(t) = f\big(f_X(t)\big)
+		d_Y = d_X
+		\]
+		Hàm sinh $f_Y: d_Y \rightarrow \mathcal{Y}$ được xác định qua phép hợp thành:
+		\[
+		\forall t \in d_Y, \quad f_Y(t) = f(f_X(t))
+		\]
+		
+		\item \textbf{Trên Không gian Minkowski $(\circ)_m$:} 
+		Nếu biểu thức của hàm $f(X)$ chứa $k$ lần xuất hiện của biến $X$ ($k \in \mathbb{N}^*$), do mỗi xuất hiện đóng vai trò là một nguồn nhiễu độc lập, miền kịch bản mở rộng thành tích Đề-các $k$-lớp:
+		\[
+		d_Y = d_X^k = \underbrace{d_X \times d_X \times \dots \times d_X}_{k \text{ lần}}
+		\]
+		Hàm sinh $f_Y: d_Y \rightarrow \mathcal{Y}$ được xác định bởi:
+		\[
+		\forall (t_1, t_2, \dots, t_k) \in d_Y, \quad f_Y(t_1, t_2, \dots, t_k) = f\left(f_X(t_1), f_X(t_2), \dots, f_X(t_k)\right)
 		\]
 	\end{enumerate}
 \end{theorem}
+
+\begin{remark}
+	Định lý \ref{dl:3.2} làm rõ ranh giới bản chất giữa hai không gian số học: khái niệm ``hàm một biến'' $f(X)$ trong không gian số học đơn điểm $(\circ)_1$ giữ nguyên số chiều kịch bản $d_Y = d_X$; trong khi ở không gian Minkowski $(\circ)_m$, biểu thức đại số của hàm một biến bị giải cấu trúc dựa trên số lần xuất hiện $k$ của biến $X$, khiến không gian kịch bản mở rộng thành $d_X^k$ tương ứng với cây biểu thức tính toán (AST).
+\end{remark}
 \begin{theorem}[Đặc trưng nghiệm phương trình bất định]
 	Cho hàm bất định $f : \mathcal{X} \to \mathcal{Y}$ và tập đích/hằng số $C \in \mathcal{Y}$ có biểu diễn chuẩn tắc $C \sim (f_C, d_C)$.
 	
