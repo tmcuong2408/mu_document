@@ -1,412 +1,413 @@
-\section{Giới thiệu}
-Trong cuộc sống, ta thường gặp những bài toán mà dữ liệu đầu vào không phải là một giá trị chắc chắn, mà chỉ biết thuộc về một tập hợp kịch bản khả dĩ nào đó. Ta xét hai ví dụ dẫn nhập sau đây:
+\section{Introduction}
+In daily life, we frequently encounter problems where input data is not a deterministic single value, but is only known to belong to some set of possible scenarios. We consider the following two introductory examples:
 
 \begin{example}
-	Một quán cà phê $A$ mỗi ngày đón một lượng khách thuộc tập $K = \set{10, 15, 30}$ (khách). Mức chi tiêu trung bình của mỗi khách thuộc tập $C = \set{10, 20, 50}$ (nghìn đồng). Tập hợp tất cả các mức doanh thu khả dĩ mỗi ngày của quán cà phê $A$ được xác định bởi:
+	A coffee shop $A$ serves a daily customer count belonging to set $K = \set{10, 15, 30}$ (customers). The average spending per customer belongs to set $C = \set{10, 20, 50}$ (thousand VND). The set of all possible daily revenue levels for coffee shop $A$ is determined by:
 	\[
-	D = \set{kc : k \in K, \, c \in C} = \set{100, 150, 200, 300, 500, 600, 750, 1500} \text{ (nghìn đồng)}
+	D = \set{kc : k \in K, \, c \in C} = \set{100, 150, 200, 300, 500, 600, 750, 1500} \text{ (thousand VND)}
 	\]
 \end{example}
 
 \begin{example}
-	Anh $A$ dự định di chuyển từ Hà Nội đến TP. Hồ Chí Minh qua 2 chặng đường:l
+	Mr. $A$ plans to travel from Hanoi to Ho Chi Minh City via 2 legs:
 	\begin{itemize}
-		\item Chặng $A_1$: Quãng đường khả dĩ $S_1 \in \set{200, 240, 300}$ (km), vận tốc di chuyển $V_1 \in \set{40, 50}$ (km/h).
-		\item Chặng $A_2$: Quãng đường khả dĩ $S_2 \in \set{400, 500, 600}$ (km), vận tốc di chuyển $V_2 \in \set{80, 100, 120}$ (km/h).
+		\item Leg $A_1$: Possible distance $S_1 \in \set{200, 240, 300}$ (km), travel speed $V_1 \in \set{40, 50}$ (km/h).
+		\item Leg $A_2$: Possible distance $S_2 \in \set{400, 500, 600}$ (km), travel speed $V_2 \in \set{80, 100, 120}$ (km/h).
 	\end{itemize}
-	Thời gian di chuyển khả dĩ trên từng chặng lần lượt là các tập hợp:
+	The possible travel times on each leg are given respectively by the sets:
 	\[
-	T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} = \set{4; \, 4.8; \, 5; \, 6; \, 7.5} \text{ (giờ)}
+	T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} = \set{4; \, 4.8; \, 5; \, 6; \, 7.5} \text{ (hours)}
 	\]
 	\[
-	T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2} = \set{3.33; \, 4; \, 4.17; \, 5; \, 6; \, 6.25; \, 7.5} \text{ (giờ)}
+	T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2} = \set{3.33; \, 4; \, 4.17; \, 5; \, 6; \, 6.25; \, 7.5} \text{ (hours)}
 	\]
-	Vậy tổng thời gian di chuyển khả dĩ cho toàn bộ hành trình thuộc tập hợp:
+	Thus, the total possible travel time for the whole journey belongs to the set:
 	\[
-	T = \set{t_1 + t_2 : t_1 \in T_1, \, t_2 \in T_2} \text{ (giờ)}
+	T = \set{t_1 + t_2 : t_1 \in T_1, \, t_2 \in T_2} \text{ (hours)}
 	\]
-	Từ đó, ta có thể rút ra các quy luật đặc trưng của tập kết quả $T$ như giá trị nhỏ nhất $\min(T)$, giá trị lớn nhất $\max(T)$, trung bình của $T$, hoặc xác định xem $T$ có thỏa mãn một hàm điều kiện hay tiêu chuẩn $f(T)$ nào đó hay không. Việc nắm bắt toàn bộ dải cấu trúc này chính là nền tảng cốt lõi giúp giải quyết bài toán ra quyết định (decision-making) trong điều kiện dữ liệu bất định.
+	From this, we can derive characteristic laws of the result set $T$, such as minimum value $\min(T)$, maximum value $\max(T)$, mean of $T$, or determine whether $T$ satisfies a certain condition function or criterion $f(T)$. Grasping this complete structural range forms the core foundation for solving decision-making problems under data uncertainty.
 \end{example}
 
-Để tự động hóa và hệ thống hóa việc tính toán trực tiếp trên các tập hợp kịch bản khả dĩ này, chúng ta xây dựng \textbf{Số học bất định} — một công cụ mở rộng số học cổ điển cho các đại lượng mang tính bất định.
-\section{Số bất định}
-\begin{definition}[Số bất định trên trường $\mathbb{K}$]
-	Cho $\mathbb{K}$ là một trường, một số bất định $A$ là một đại lượng mà giá trị của nó thuộc về tập hợp $A \subseteq \mathbb{K}$. Tập tất cả các số bất định trên trường $\mathbb{K}$ được ký hiệu là $\tsbd{K}$. Nếu $A =\s{a}$ thì ta đồng nhất $A$ với phần tử $a$. Nếu $ A =\emptyset $ thì ta nói $A$ không xác định. Số $\emptyset \in \tsbd{K}$ được gọi là số hư vô.
+To automate and systemize direct computations over these sets of possible scenarios, we construct \textbf{Uncertain Arithmetic} — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
+\section{Uncertain Number}
+\begin{definition}[Uncertain Number over Field $\mathbb{K}$]
+	Let $\mathbb{K}$ be a field; an uncertain number $A$ is a quantity whose value belongs to a set $A \subseteq \mathbb{K}$. The set of all uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbd{K}$. If $A =\s{a}$, we identify $A$ with element $a$. If $A =\emptyset$, we say $A$ is undefined. The number $\emptyset \in \tsbd{K}$ is called the null number.
 \end{definition}
-\begin{definition}[Toán tử chuyển]
-	Để giải quyết sự nhập nhằng ký hiệu giữa tập hợp và số bất định trong một số trường hợp, ta định nghĩa hai toán tử chuyển sau:
+\begin{definition}[Transfer Operator]
+	To resolve notation ambiguity between sets and uncertain numbers in certain cases, we define the following two transfer operators:
 	\begin{enumerate}
-		\item Cho $A \in \tsbd{K}$, ta ký hiệu $A_s$ là tập hợp chứa tất cả các giá trị khả dĩ của $A$.
-		\item Cho $A$ là một tập hợp, toán tử biến $A$ thành một số bất định được ký hiệu là $A_u \in \tsbd{K}$.
+		\item Given $A \in \tsbd{K}$, we denote $A_s$ as the set containing all possible values of $A$.
+		\item Given $A$ as a set, the operator transforming $A$ into an uncertain number is denoted by $A_u \in \tsbd{K}$.
 	\end{enumerate}
 \end{definition}
 \begin{remark}
-	Trong phần sau của tập tài liệu ta sẽ chứng minh $f(A_s) \neq f(A)$ với $A$ là số bất định. Đó là lý do tại sao số bất định lại ký hiệu là $\{\circ\}_u$ chứ không phải dùng ký hiệu tập hợp chuẩn.
+	In later sections of this document, we will prove $f(A_s) \neq f(A)$ when $A$ is an uncertain number. This is why uncertain numbers are denoted by $\{\circ\}_u$ rather than standard set notation.
 \end{remark}
 \begin{remark}
-	Trong suốt tập tài liệu này ta quy ước:
+	Throughout this document, we adopt the conventions:
 	\begin{enumerate}[leftmargin=*]
-		\item Các số đơn trị ta sẽ ký hiệu bằng các chữ cái viết thường như $x, y, \dots$.
-		\item Các số bất định ta sẽ ký hiệu bằng các chữ cái viết hoa như $X, Y, \dots$.
-		\item Tập hợp các số bất định ta sẽ ký hiệu bằng các chữ cái viết hoa có định kiểu như $\mathcal{X}, \mathcal{Y}, \dots$.
-		\item Các không gian số học là cách ký hiệu để tránh phải xây dựng nhiều ký hiệu khác nhau cho cùng một phép toán trong mỗi không gian số học. Sau đây là danh sách ký hiệu các không gian số học:
+		\item Single-valued numbers are denoted by lowercase letters such as $x, y, \dots$.
+		\item Uncertain numbers are denoted by uppercase letters such as $X, Y, \dots$.
+		\item Sets of uncertain numbers are denoted by calligraphic uppercase letters such as $\mathcal{X}, \mathcal{Y}, \dots$.
+		\item Arithmetic spaces are notation conventions to avoid constructing multiple distinct symbols for the same operation within each arithmetic space. The following is the list of arithmetic space notations:
 		\begin{enumerate}
-			\item $\kgdd{\circ}$: không gian số học đơn điểm.
-			\item $\kgdt{\circ}$: không gian số học Minkowski.
-			\item $\kgdtmr{\circ}$: không gian số học Minkowski mở rộng.
+			\item $\kgdd{\circ}$: single-point arithmetic space.
+			\item $\kgddmr{\circ}$: extended single-point arithmetic space.
+			\item $\kgdt{\circ}$: Minkowski arithmetic space.
+			\item $\kgdtmr{\circ}$: extended Minkowski arithmetic space.
 		\end{enumerate}
 	\end{enumerate}
 \end{remark}
-\begin{definition}[Số chiều]
-	Số chiều hữu hạn của số bất định hữu hạn phần tử $A \in \tsbd{K}$ là bằng số phần tử của $A$ và ta ký hiệu là $\dimU(A)$. Nếu $A$ có vô hạn phần tử thì ta nói số chiều của $A$ là vô hạn và ta viết $\dimU(A) = \infty$.
+\begin{definition}[Dimension]
+	The finite dimension of a finite-element uncertain number $A \in \tsbd{K}$ equals the number of elements in $A$, denoted by $\dimU(A)$. If $A$ contains infinitely many elements, we say the dimension of $A$ is infinite, written as $\dimU(A) = \infty$.
 \end{definition}
-\begin{definition}[Dạng chuẩn tắc]
-	Cho $A \in \tsbd{K}$. Ta gọi $f_A : d_A \to \mathbb{K}$ là một hàm sinh số bất định $A$ nếu tồn tại tập chỉ số $d_A \subseteq \mathbb{K}$ thỏa mãn: \[d_A = \begin{cases*}
-		\set{1..n} \subseteq \mathbb{N^*} \text{ nếu } \dimU(A)=n \\
-		\mathbb{N^*} \text{ nếu } A_s \text{ là tập vô hạn đếm được  }\\
-		[0,1] \text{ nếu } A_s \text{ là tập vô hạn không đếm được.}
-	\end{cases*}\]  thì ta có $\bd{f_A(d_A)}= A$.
-	Khi đó ta gọi $(f_A,d_A)$ là một dạng chuẩn tắc của $A$ và ký hiệu là  $ A \sim (f_A,d_A) $.
+\begin{definition}[Canonical Form]
+	Let $A \in \tsbd{K}$. We call $f_A : d_A \to \mathbb{K}$ a generating function of uncertain number $A$ if there exists an index set $d_A \subseteq \mathbb{K}$ satisfying: \[d_A = \begin{cases*}
+		\set{1..n} \subseteq \mathbb{N^*} \text{ if } \dimU(A)=n \\
+		\mathbb{N^*} \text{ if } A_s \text{ is a countably infinite set  }\\
+		[0,1] \text{ if } A_s \text{ is an uncountably infinite set.}
+	\end{cases*}\] such that $\bd{f_A(d_A)}= A$.
+	In this case, we call $(f_A,d_A)$ a canonical form of $A$ and denote $A \sim (f_A,d_A)$.
 \end{definition}
-\begin{theorem}[Dạng chuẩn tắc tương đương]
-	Cho $A \in \tsbd{K}$, $(f_A,d_A)$ là một dạng chuẩn tắc của $A$. Khi đó tồn tại $(f'_A,d_A)$ cũng là một dạng chuẩn tắc của $A$.
+\begin{theorem}[Equivalent Canonical Form]
+	Let $A \in \tsbd{K}$, and $(f_A,d_A)$ be a canonical form of $A$. Then there exists $(f'_A,d_A)$ which is also a canonical form of $A$.
 \end{theorem}
-\par{Sau đây, liên quan đến việc giải phương trình bất định ta đi đến định nghĩa này:}
-\begin{definition}[Số bất định cấp $n$]
-	Cho $A \in \tsbd{K}$, $n$ là số nguyên dương, ta ký hiệu $\tsbdcapn{K}{n}$ là tập số bất định cấp $n$ trên trường $\mathbb{K}$ và ta có: 
+\par{Next, related to solving uncertain equations, we arrive at the following definition:}
+\begin{definition}[Uncertain Number of Order $n$]
+	Let $A \in \tsbd{K}$, $n$ be a positive integer, we denote $\tsbdcapn{K}{n}$ as the set of order-$n$ uncertain numbers over field $\mathbb{K}$, given by: 
 	\begin{enumerate}
-		\item Với $n = 2$, tập số bất định cấp $2$ cho bởi biểu thức:
+		\item For $n = 2$, the set of order-2 uncertain numbers is defined by:
 		\[
 		\tsbdcapn{K}{2} := \s{A : A \in \tsbd{K}}
 		\]
-		\item Với mọi $n > 2$, tập số bất định cấp $n$ được định nghĩa lũy tiến:
+		\item For all $n > 2$, the set of order-$n$ uncertain numbers is defined inductively:
 		\[
 		\tsbdcapn{K}{n} := \s{A : (\exists p \in \set{1, \dots, n-1})(A \in \tsbdcapn{K}{p})}
 		\]
-		trong đó quy ước $\tsbdcapn{K}{1} \equiv \tsbd{K}$.
-		\item Với mọi $n \geq 2$ và $\s{B} \in \tsbdcapn{K}{n}$, quy ước đồng nhất phân cấp được xác định bởi:
+		where by convention $\tsbdcapn{K}{1} \equiv \tsbd{K}$.
+		\item For all $n \geq 2$ and $\s{B} \in \tsbdcapn{K}{n}$, hierarchical identification convention is defined by:
 		\[
 		\s{B} \equiv \begin{cases}
-			B & \text{với } B \in \tsbdcapn{K}{n-1} \quad (\text{nếu } n > 2) \\
-			B & \text{với } B \in \tsbd{K} \quad (\text{nếu } n = 2)
+			B & \text{with } B \in \tsbdcapn{K}{n-1} \quad (\text{if } n > 2) \\
+			B & \text{with } B \in \tsbd{K} \quad (\text{if } n = 2)
 		\end{cases}
 		\]
 	\end{enumerate}
 \end{definition}
-\begin{definition}[Bán kính bất định]
-	Cho $A$ là một số bất định, bán kính bất định của $A$ được ký hiệu là $\rad(A)$ và $$\rad(A) = \frac{1}{2} \cdot \sup \set{x_1 - x_2 : x_1, x_2 \in A}$$
+\begin{definition}[Uncertain Radius]
+	Let $A$ be an uncertain number, the uncertain radius of $A$ is denoted by $\rad(A)$ and $$\rad(A) = \frac{1}{2} \cdot \sup \set{x_1 - x_2 : x_1, x_2 \in A}$$
 \end{definition}
 \begin{corollary}
-	Số bất định $A = \s{a}$ với $a \in \mathbb{K}$ có bán kính bất định $\rad(A) = 0$.
+	An uncertain number $A = \s{a}$ with $a \in \mathbb{K}$ has an uncertain radius $\rad(A) = 0$.
 \end{corollary}
-\begin{definition}[Khoảng cách]
-	Cho $\mathbb{K}$ là một trường định chuẩn, $A$ và $B \in \tsbd{K}$. Khoảng cách giữa hai số bất định $A$ và $B$ ký hiệu là $d_H(A,B)$ và ta có
+\begin{definition}[Distance]
+	Let $\mathbb{K}$ be a normed field, $A, B \in \tsbd{K}$. The distance between two uncertain numbers $A$ and $B$ is denoted by $d_H(A,B)$, given by
 	$$
 	d_H(A,B) := \max\left\{\sup_{a \in A}{d(a,B),\sup_{b \in B}{d(b,A)}}\right\}
-	$$ Trong đó
+	$$ Where
 	$$d(a,A) := \inf_{b\in A}{|a-b|}$$
 \end{definition}
-\begin{definition}[Quan hệ hai ngôi yếu]
-	Xét $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$ và hai số bất định $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ thuộc $\mathbf{U}(\mathbb{K})$. 
+\begin{definition}[Weak Binary Relation]
+	Consider $\mathcal{R}$ as a binary relation on field $\mathbb{K}$ and two uncertain numbers $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. 
 	
-	Quan hệ hai ngôi yếu $A \mathcal{R} B$ là một mệnh đề được lượng giá trên không gian kịch bản $\Omega = d_A \times d_B$ với hàm chân lý mệnh đề nguyên tử:
+	The weak binary relation $A \mathcal{R} B$ is a proposition evaluated on scenario space $\Omega = d_A \times d_B$ with atomic truth function:
 	\[
 	v(A \mathcal{R} B, \omega) = \begin{cases} 
-		1 & \text{nếu } f_A(t_1) \mathcal{R} f_B(t_2) \text{ đúng}, \\
-		0 & \text{nếu } f_A(t_1) \mathcal{R} f_B(t_2) \text{ sai},
-	\end{cases} \quad \text{với } \omega = (t_1, t_2) \in \Omega
+		1 & \text{if } f_A(t_1) \mathcal{R} f_B(t_2) \text{ is true}, \\
+		0 & \text{if } f_A(t_1) \mathcal{R} f_B(t_2) \text{ is false},
+	\end{cases} \quad \text{with } \omega = (t_1, t_2) \in \Omega
 	\]
-	Khi đó, giá trị chân lý của quan hệ $A \mathcal{R} B$ được xác định bởi:
+	Then, the truth value of relation $A \mathcal{R} B$ is determined by:
 	\[
 	\ddclmd(A \mathcal{R} B) := \frac{\lambda\big(\{(t_1, t_2) \in d_A \times d_B : f_A(t_1) \mathcal{R} f_B(t_2)\}\big)}{\lambda(d_A \times d_B)}
 	\]
 \end{definition}
 \begin{example}
-	Cho $A = \s{1,2}$ là một số bất định, ta có $$\gtcl{A\leq A}{0.75}$$ $$\gtcl{A>A}{0.25}$$
-	Ta nhận xét: $\ddclmd(A\leq A) + \ddclmd(A>A) = 1$. Mặc dù $A=A$ nhưng về độ lớn thì khác nhau.
+	Given $A = \s{1,2}$ as an uncertain number, we have $$\gtcl{A\leq A}{0.75}$$ $$\gtcl{A>A}{0.25}$$
+	We remark: $\ddclmd(A\leq A) + \ddclmd(A>A) = 1$. Although $A=A$, their sizes differ probabilistically/scenariowise.
 \end{example}
 \begin{example}
-	Cho $A = \s{1,2}$ và $B = \s{3} = 3$ thì $A \leq B$.
+	Given $A = \s{1,2}$ and $B = \s{3} = 3$, then $A \leq B$.
 \end{example}
-\begin{theorem}[Cân bằng]
-	Áp dụng định nghĩa quan hệ hai ngôi yếu với $\mathcal{R}$ bằng $\leq$ ta có định lý sau:
-	với $X \in \tsbd{R}$ mà $\dimU(X) = \infty$ thì: 
+\begin{theorem}[Balance]
+	Applying the definition of weak binary relation with $\mathcal{R}$ as $\leq$, we have the following theorem:
+	for $X \in \tsbd{R}$ where $\dimU(X) = \infty$, then: 
 	$$\ddclmd(X\leq X) = \frac{1}{2}$$
 \end{theorem}
 \begin{proof}
-	Giả sử $\taphop(X)$ có $n$ phần tử phân biệt. Tổng số cặp $(a,b)$ có thể có là $n^2$.	Số cặp mà $a<b$ là $n(n-1)/2$.	Số cặp mà $a=b$ là $n$.	Do đó, số cặp $a\leq b$ là $$\frac{n(n-1)}{2} + n = \frac{n^2+n}{2}$$	
-	Vậy chân lý sẽ là $$\ddclmd(X\leq X ) = \frac{n^2+n}{2n^2} = \frac{1}{2} + \frac{1}{2n}$$
-	Cho $n \rightarrow \infty$ ta được điều phải chứng minh.
+	Suppose $\taphop(X)$ has $n$ distinct elements. Total possible pairs $(a,b)$ is $n^2$. The number of pairs where $a<b$ is $n(n-1)/2$. The number of pairs where $a=b$ is $n$. Therefore, the number of pairs $a\leq b$ is $$\frac{n(n-1)}{2} + n = \frac{n^2+n}{2}$$ 
+	Thus, the truth value is $$\ddclmd(X\leq X ) = \frac{n^2+n}{2n^2} = \frac{1}{2} + \frac{1}{2n}$$
+	Letting $n \rightarrow \infty$ completes the proof.
 \end{proof}
-\begin{definition}[Phép toán số học tập hợp]
-	Cho $*$ là một phép toán tùy ý trên tập hợp, $A$ và $B$ thuộc $\mathbf{U}(\mathbb{K})$, ta định nghĩa:
+\begin{definition}[Set Arithmetic Operations]
+	Let $*$ be an arbitrary set operation, $A, B \in \mathbf{U}(\mathbb{K})$, we define:
 	\[
 	A * B := (A_s * B_s)_u
 	\]
-	Trong đó $A_s * B_s$ ở vế phải đại diện cho phép toán trên tập hợp.
+	Where $A_s * B_s$ on the right hand side represents the set operation.
 \end{definition}
 \begin{example}
-	Bài toán đặt ra là: Anh $A$ có một số táo là số bất định $A=\s{1,2}$, $A$ định chia số táo cho phòng $B$, phòng $B$ có số người là bất định và $B = \s{1,0}$. Sau khi $A$ chia táo thì mỗi người trong phòng $B$ nhận được số táo là \[\frac{A}{B} = \s{1,2}\] Tại sao $\frac{1}{0}$ không xuất hiện trong tập kết quả? Bởi vì nếu $A$ thấy phòng không có người thì $A$ không tiến hành chia táo và cũng không thể chia táo cho mỗi người trong căn phòng $B$ với số lượng táo là $+\infty$. Phép chia này không xảy ra chứ không phải là không có kết quả hợp lệ. Từ đó ta đi đến định nghĩa phép toán hai ngôi trên tập số bất định như sau:
+	Consider the problem: Person $A$ has an uncertain number of apples $A=\s{1,2}$. $A$ intends to share these apples with room $B$, where room $B$ has an uncertain number of people $B = \s{1,0}$. After $A$ divides the apples, each person in room $B$ receives a quantity of apples equal to \[\frac{A}{B} = \s{1,2}\] Why does $\frac{1}{0}$ not appear in the result set? Because if $A$ sees no people in the room, $A$ does not perform division, nor can $A$ divide apples to each person in room $B$ with $+\infty$ apples. This division does not happen rather than yielding no valid outcome. Hence we define binary operations on the set of uncertain numbers as follows:
 \end{example}
-\begin{definition}[Không gian số học đơn điểm]
-	Cho tập bất định $A \in \tsbd{K}$. Ta gọi \textbf{hàm bất định đơn điểm} là một ánh xạ $f$ tác động lên biến $A$, sao cho tại mỗi lượt ánh xạ, biến $A$ chỉ nhận duy nhất một giá trị điểm $x \in A$ đại diện tại tất cả các vị trí xuất hiện của $A$ trong biểu thức $f$.
+\begin{definition}[Single-Point Arithmetic Space]
+	Let $A \in \tsbd{K}$ be an uncertain set. We define a \textbf{single-point uncertain function} as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
 	
-	Tập giá trị của hàm bất định theo điểm tương ứng, ký hiệu là $\kgdd{f}$, được xác định bởi:
+	The image set of the corresponding point-wise uncertain function, denoted $\kgdd{f}$, is determined by:
 	\[
 	\kgdd{f}(A) := \s{f(x) \;:\; x \in A}
 	\]
-	Và gọi các phép toán nằm trong $(\circ)_1$ là các phép toán trên không gian số học số đơn điểm.
+	Operations within $(\circ)_1$ are called operations on the single-point arithmetic space.
 \end{definition}
 \begin{example}
-	Cho $f : \mathcal{X} \to \mathcal{Y}$ được cho bởi:
-	\[f(X) = (X^2+5X+6)_1\] là một hàm bất định đơn điểm.
+	Let $f : \mathcal{X} \to \mathcal{Y}$ be given by:
+	\[f(X) = (X^2+5X+6)_1\] as a single-point uncertain function.
 \end{example}
 \begin{remark}
-	Định nghĩa này đảm bảo tính nhất quán về mặt đại số nhờ hai cơ chế cốt lõi:
+	This definition ensures algebraic consistency via two core mechanisms:
 	\begin{itemize}
-		\item \textbf{Tính đồng nhất điểm nội bộ:} Mọi ký hiệu biến $A$ xuất hiện trong biểu thức $f$ (dù ở các vị trí hay phép toán khác nhau) đều bị ràng buộc nhận chung một giá trị $x \in A$ trong cùng một lượt ánh xạ.
-		\item \textbf{Triệt tiêu hiện tượng phình đại lượng:} Nhờ cơ chế gán điểm đồng nhất, các tính chất đại số cổ điển được bảo toàn trọn vẹn, chẳng hạn như $\kgdd{x - x}(A) = \s{0}$ và $\kgdd{x + x}(A) = 2A$.
+		\item \textbf{Internal Point Identity:} Every symbol of variable $A$ appearing in expression $f$ (regardless of position or operation) is bound to receive the same value $x \in A$ during the same mapping pass.
+		\item \textbf{Elimination of Quantity Expansion:} Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ and $\kgdd{x + x}(A) = 2A$.
 	\end{itemize}
 \end{remark}
 
 \begin{example}
-	Xét hàm một biến $f(A) = A^2 - 3A + 2$ với $A \in \tsbd{\mathbb{R}}$. Tập giá trị của hàm bất định đơn điểm này được xác định bởi:
+	Consider single-variable function $f(A) = A^2 - 3A + 2$ with $A \in \tsbd{\mathbb{R}}$. The image set of this single-point uncertain function is defined by:
 	\[
 	\kgdd{f}(A) = \s{x^2 - 3x + 2 \;:\; x \in A}
 	\]
-	Tại mỗi lượt quét $x \in A$, cả vị trí $A^2$ và $-3A$ đều đồng nhất nhận cùng một giá trị $x$.
+	During each evaluation $x \in A$, both positions $A^2$ and $-3A$ uniformly receive the same value $x$.
 \end{example}
-\begin{definition}[Không gian số học Minkowski]
-	Cho $ \mathbb{K}$ là một trường, với * là một phép toán hai ngôi bất kỳ trên $\mathbb{K}$, ta định nghĩa phép toán hai ngôi số học * trên $\tsbd{K}$:
-	Với $A,B$ thuộc $\tsbd{K}$ thì $$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
-	\noindent Nếu $A * B =\emptyset$ thì ta nói $A * B$ không xác định. Trong trình bày ta viết tắt $(A*B)_m$ là $A*B$ và ta gọi phép toán nằm trong $(\circ)_m$ là phép toán thực hiện trên không gian số học Minkowski.
+\begin{definition}[Minkowski Arithmetic Space]
+	Let $\mathbb{K}$ be a field, with * as any binary operation on $\mathbb{K}$, we define arithmetic binary operation * on $\tsbd{K}$:
+	For $A,B \in \tsbd{K}$, then $$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
+	\noindent If $A * B =\emptyset$, we say $A * B$ is undefined. In writing, we abbreviate $(A*B)_m$ as $A*B$ and refer to operations in $(\circ)_m$ as operations executed on Minkowski arithmetic space.
 \end{definition}
-\begin{definition}[Phép toán lặp]
-	Cho $*$ là một phép toán hai ngôi bất kỳ trên tập số bất định, $A$ là một số bất định, $n$ là số tự nhiên lớn hơn 1. Ta định nghĩa: $$A^{n}_{*} := \begin{cases}
-		A*A                         & n=2   \\
-		\left(A^{n-1}_*\right)  * A & n > 2
+\begin{definition}[Iterated Operations]
+	Let $*$ be any binary operation on the set of uncertain numbers, $A$ be an uncertain number, $n$ be a natural number greater than 1. We define: $$A^{n}_{*} := \begin{cases}
+		A*A & n=2 \\
+		\left(A^{n-1}_*\right) * A & n > 2
 	\end{cases}
 	$$\
 \end{definition}
 \begin{example}
 	\begin{enumerate}
-		\item Nếu * là phép toán cộng trên tập số bất định thì ta có $$A^n_+ = A+A+... \text{(n lần)}$$
-		\item Nếu * là phép toán nhân trên tập số bất định thì ta có $$A^n_* = A.A ....  \text{(n lần)}$$
-		\item Nếu * là phép toán min trên tập số bất định thì ta có
-		$$A^n_{\min} =  \begin{cases}
-			\min(A,A)                          & n=2   \\
+		\item If * is addition on uncertain numbers, we have $$A^n_+ = A+A+... \text{($n$ times)}$$
+		\item If * is multiplication on uncertain numbers, we have $$A^n_* = A.A .... \text{($n$ times)}$$
+		\item If * is min operation on uncertain numbers, we have
+		$$A^n_{\min} = \begin{cases}
+			\min(A,A) & n=2 \\
 			\min\left(A^{n-1}_{\min}, A\right) & n > 2
 		\end{cases} $$
-		Dễ thấy $A^n_{\min} = A, \forall n \geq 2$
+		It is easy to see $A^n_{\min} = A, \forall n \geq 2$
 	\end{enumerate}
 \end{example}
 \begin{example}
-	Cho $2_*$ là một phép toán lặp với $*$ là một phép toán hai ngôi tùy ý trên tập số thực, $A$ là một số bất định, ta có:
+	Let $2_*$ be an iterated operation where $*$ is an arbitrary binary operation on the set of real numbers, $A$ is an uncertain number, we have:
 	\[A^2_* = \bigcup_{a \in A} A * a \]
 \end{example}
-\par{Ta gọi phép toán được nằm trong ký hiệu $\kgdtmr{\circ}$ là các phép toán trên không gian số học số Minkowski mở rộng. Một trong số chúng được định nghĩa như sau:}
+\par{Operations written inside notation $\kgdtmr{\circ}$ are called operations on extended Minkowski arithmetic space. One of them is defined as follows:}
 \begin{definition}
-	Cho $p,q \in \mathbb{N}^*$
-	Ta định nghĩa \[\kgdtmr{\frac{p}{q}A} := \s{X \in \tsbd{K}: X^q_+ = A^p_+} \]
-	Nếu $q = 1$ thì ta đặt:  \[\kgdtmr{pA}:= \kgdtmr{\frac{p}{1} A} \]
+	Let $p,q \in \mathbb{N}^*$.
+	We define \[\kgdtmr{\frac{p}{q}A} := \s{X \in \tsbd{K}: X^q_+ = A^p_+} \]
+	If $q = 1$, we set: \[\kgdtmr{pA}:= \kgdtmr{\frac{p}{1} A} \]
 \end{definition}
 \begin{example}
 	$\kgdtmr{\frac{1}{2} \s{2,3,4}} = \s{\s{1,2}} = \s{1,2}$
 \end{example}
 \begin{definition}
-	Cho $p,q \in \mathbb{N^*}$
-	Ta định nghĩa \[\kgdtmr{A^{\frac{p}{q}}} := \s{X \in \tsbd{K}: X^q_* = A^p_*} \]
-	Nếu $p = 1$  thì ta đặt: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
+	Let $p,q \in \mathbb{N^*}$.
+	We define \[\kgdtmr{A^{\frac{p}{q}}} := \s{X \in \tsbd{K}: X^q_* = A^p_*} \]
+	If $p = 1$, we set: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
 \end{definition}
 \begin{example}
-	Ví dụ này để độc giả tránh nhầm lẫn các không gian số học trong nghiên cứu này, ta nêu các bài toán sau:
+	To help readers avoid confusing arithmetic spaces in this study, we state the following problems:
 	\begin{enumerate}
-		\item Anh $A$ định xây một cái sân hình vuông, chiều dài cạnh thuộc tập $\set{1,2}$. Vì sau khi chọn được 1 cạnh thì cạnh còn lại có chiều dài cũng phải bằng với con số đã chọn đó nên ta có diện tích cái sân là: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
-		\item Anh $B$ định xây một cái sân nhưng $B$ giao hai người quyết định chiều dài các cạnh, mỗi người có sự lựa chọn chiều dài một cạnh thuộc tập $\set{1,2}$, khi đó diện tích sân của anh $B$ là:
+		\item Mr. $A$ plans to build a square courtyard with side length belonging to set $\set{1,2}$. Since after choosing 1 side, the remaining side length must equal that chosen number, the area of the courtyard is: \[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
+		\item Mr. $B$ plans to build a courtyard but assigns two decision-makers for side lengths; each chooses a length from set $\set{1,2}$. Then the area of Mr. $B$'s courtyard is:
 		\[S_2 = \kgdtmr{\s{1,2}^2} =\s{1,2,4}\]
 	\end{enumerate}
-	Vậy tổng diện tích sân nhà anh $A$ và anh $B$ là:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
-	Gọi $X \in \tsbd{K}$ là số bất định chỉ lựa chọn khả dĩ để xây sân của nhà anh $A$ và anh $B$, hàm tổng diện tích sân nhà anh $A$ và anh $B$ sẽ bằng:
-	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] là một hàm bất định.
+	Thus, total courtyard area for Mr. $A$ and Mr. $B$ combined is:\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
+	Let $X \in \tsbd{K}$ be an uncertain number denoting possible choices for building courtyards of Mr. $A$ and $B$, the total area function equals:
+	\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] which is an uncertain function.
 \end{example}
-\begin{theorem}[Dạng chuẩn tắc trên không gian số học Minkowski]
-	Cho $A,B \in \tsbd{K}, *$ là một phép toán hai ngôi bất kỳ thuộc không gian số học Minkowski và $ (f_A,d_A), (f_B,d_B)$ lần lượt là dạng chuẩn tắc của $A$ và $B$. Khi đó dạng chuẩn tắc của $\kgdt{A * B}$ được xác định bởi hàm sinh:
-	\[f_{A*B} : d_A \times d_B \to  \mathbb{K}\]
-	Với \[f_{A*B}(x_1,x_2) = f_A(x_1) * f_B(x_2)\]
-	Do đó: \[\kgdt{A*B} = \s{f_A(x_1)*f_B(x_2) : (x_1,x_2) \in d_A \times d_B}\]
+\begin{theorem}[Canonical Form on Minkowski Arithmetic Space]
+	Let $A,B \in \tsbd{K}$, $*$ be any binary operation in Minkowski arithmetic space, and $(f_A,d_A), (f_B,d_B)$ be canonical forms of $A$ and $B$ respectively. Then the canonical form of $\kgdt{A * B}$ is determined by generating function:
+	\[f_{A*B} : d_A \times d_B \to \mathbb{K}\]
+	With \[f_{A*B}(x_1,x_2) = f_A(x_1) * f_B(x_2)\]
+	Therefore: \[\kgdt{A*B} = \s{f_A(x_1)*f_B(x_2) : (x_1,x_2) \in d_A \times d_B}\]
 \end{theorem}
-\par{\noindent Sau đây ta đi đến ví dụ tính toán với số cực lớn như sau:}
+\par{\noindent Next we present an example computing with large numbers:}
 \begin{example}
-	Xét hai số bất định $A = \{1, 3\}_u$ và $B = \{10, 20\}_u$ trên trường $\mathbb{R}$.
+	Consider two uncertain numbers $A = \{1, 3\}_u$ and $B = \{10, 20\}_u$ over field $\mathbb{R}$.
 	
-	Chọn các tập chỉ số $d_A = d_B = \{1, 2\}$. Bằng phương pháp nội suy Lagrange, ta xây dựng các hàm sinh dạng đa thức $f_A: d_A \to \mathbb{R}$ và $f_B: d_B \to \mathbb{R}$ như sau:
+	Choose index sets $d_A = d_B = \{1, 2\}$. By Lagrange interpolation, we construct polynomial generating functions $f_A: d_A \to \mathbb{R}$ and $f_B: d_B \to \mathbb{R}$ as follows:
 	$$f_A(x_1) = 1 \cdot \frac{x_1 - 2}{1 - 2} + 3 \cdot \frac{x_1 - 1}{2 - 1} = 2x_1 - 1$$
 	$$f_B(x_2) = 10 \cdot \frac{x_2 - 2}{1 - 2} + 20 \cdot \frac{x_2 - 1}{2 - 1} = 10x_2$$
 	
-	Khi đó, $(f_A, d_A)$ và $(f_B, d_B)$ lần lượt là các dạng chuẩn tắc đa thức của $A$ và $B$.
+	Then $(f_A, d_A)$ and $(f_B, d_B)$ are polynomial canonical forms of $A$ and $B$ respectively.
 	
-	Theo Định lý 2.3, hàm sinh của $(A + B)_m$ trên miền $d_A \times d_B$ được xác định bởi đa thức hai biến:
+	By Theorem 2.3, the generating function of $(A + B)_m$ on domain $d_A \times d_B$ is defined by two-variable polynomial:
 	$$f_{A+B}(x_1, x_2) = f_A(x_1) + f_B(x_2) = 2x_1 + 10x_2 - 1$$
 	
-	Tính giá trị của đa thức $f_{A+B}$ trên từng điểm thuộc $d_A \times d_B$:
+	Evaluating polynomial $f_{A+B}$ at each point in $d_A \times d_B$:
 	\begin{align*}
 		f_{A+B}(1, 1) &= 2(1) + 10(1) - 1 = 11, \quad f_{A+B}(1, 2) = 2(1) + 10(2) - 1 = 21 \\
 		f_{A+B}(2, 1) &= 2(2) + 10(1) - 1 = 13, \quad f_{A+B}(2, 2) = 2(2) + 10(2) - 1 = 23
 	\end{align*}
 	
-	Do đó:
+	Therefore:
 	$$ A + B = \{11, 13, 21, 23\}_u$$
-	Từ đó nếu ta đặt $ P = A+B$ thì ta tính được \[\kgdtmr{P^{100}} = \s{\prod_{i=1}^{100}{(2x_i + 10 y_i  - 1)}: (x_i,y_i) \in d_A \times d_B, i \in \{1..100\}}
+	From which if we set $P = A+B$, we compute \[\kgdtmr{P^{100}} = \s{\prod_{i=1}^{100}{(2x_i + 10 y_i - 1)}: (x_i,y_i) \in d_A \times d_B, i \in \{1..100\}}
 	\]
 \end{example}
 \begin{proposition}
-	Cho $A \sim (f_A,d_A), B \sim (f_B,d_B)$ thuộc $\tsbd{K}$, xét $a \in A$ khi đó $a \in B$ khi và chỉ khi \[
+	Let $A \sim (f_A,d_A), B \sim (f_B,d_B)$ in $\tsbd{K}$, consider $a \in A$, then $a \in B$ if and only if \[
 	\exists (x,y) \in d_A \times d_B : a=f_A(x)=f_B(y)
 	\]
 \end{proposition}
 \begin{remark}
-	Mệnh đề này chuyển đổi bản chất của bài toán kiểm tra phần tử $a \in B$ (hoặc quan hệ tập con $A \subseteq B$) từ thao tác tra cứu dữ liệu cồng kềnh thành bài toán tìm nghiệm của phương trình đại số $f_B(y) = f_A(x)$ trên miền chỉ số $d_A \times d_B$. Điều này giúp loại bỏ hoàn toàn sự phụ thuộc vào kích thước dữ liệu khi các tập hợp phình to.
+	This proposition transforms the essence of element checking $a \in B$ (or subset inclusion $A \subseteq B$) from cumbersome data lookups into finding roots of algebraic equation $f_B(y) = f_A(x)$ over index domain $d_A \times d_B$. This completely eliminates dependence on data size when sets expand.
 \end{remark}
-\begin{proposition}[Dạng chuẩn tắc của phép giao]
+\begin{proposition}[Canonical Form of Intersection]
 	\label{prop:dang_chuan_tac_phep_giao}
-	Cho $ A\sim (f_A,d_A), B \sim (f_B,d_B)$ thuộc $\tsbd{K}$. Khi đó \[
+	Let $A\sim (f_A,d_A), B \sim (f_B,d_B)$ in $\tsbd{K}$. Then \[
 		C = A \cap B
 	\]
-	là số bất định với dạng chuẩn tắc $(f_{A\cap B},d_{A\cap B})$ cho bởi:
+	is an uncertain number with canonical form $(f_{A\cap B},d_{A\cap B})$ given by:
 	\begin{align*}
-		d_{A\cap B} &= \set{(x,y) \in d_A \times d_B : f_A(x) = f_B(y)}  \\
+		d_{A\cap B} &= \set{(x,y) \in d_A \times d_B : f_A(x) = f_B(y)} \\
 		f_{A\cap B}(z) &= f_A(x) = f_B(y), z=(x,y) \in d_{A\cap B}
 	\end{align*}
 \end{proposition}
 \begin{example}
-	Xét hai số bất định $A, B \in \mathbf{U}(\mathbb{R})$ có dạng chuẩn tắc cho bởi:
+	Consider two uncertain numbers $A, B \in \mathbf{U}(\mathbb{R})$ with canonical forms given by:
 	\begin{itemize}
-		\item $A \sim (f_A, d_A)$ với $f_A(x) = 2x + 1$ trên $d_A = \{1, 2, 3, 4\} \Rightarrow A = \{3, 5, 7, 9\}_u$.
-		\item $B \sim (f_B, d_B)$ với $f_B(y) = 3y - 1$ trên $d_B = \{1, 2, 3, 4\} \Rightarrow B = \{2, 5, 8, 11\}_u$.
+		\item $A \sim (f_A, d_A)$ with $f_A(x) = 2x + 1$ on $d_A = \{1, 2, 3, 4\} \Rightarrow A = \{3, 5, 7, 9\}_u$.
+		\item $B \sim (f_B, d_B)$ with $f_B(y) = 3y - 1$ on $d_B = \{1, 2, 3, 4\} \Rightarrow B = \{2, 5, 8, 11\}_u$.
 	\end{itemize}
 	
-	Theo Mệnh đề \ref{prop:dang_chuan_tac_phep_giao}, ta tìm miền chỉ số $d_{A \cap B}$ bằng cách giải phương trình đại số trên $d_A \times d_B$:
+	According to Proposition \ref{prop:dang_chuan_tac_phep_giao}, we find index domain $d_{A \cap B}$ by solving algebraic equation on $d_A \times d_B$:
 	\[
 	f_A(x) = f_B(y) \iff 2x + 1 = 3y - 1 \iff 2x - 3y = -2
 	\]
-	Thử các cặp $(x, y) \in \{1, 2, 3, 4\} \times \{1, 2, 3, 4\}$, phương trình chỉ có nghiệm duy nhất $x = 2, y = 2$. Do đó:
+	Testing pairs $(x, y) \in \{1, 2, 3, 4\} \times \{1, 2, 3, 4\}$, the equation has unique solution $x = 2, y = 2$. Therefore:
 	\[
 	d_{A \cap B} = \{(2, 2)\}
 	\]
-	Hàm sinh tương ứng đạt giá trị:
+	The corresponding generating function yields value:
 	\[
 	f_{A \cap B}(2, 2) = f_A(2) = 2(2) + 1 = 5
 	\]
-	Vậy dạng chuẩn tắc $(f_{A \cap B}, d_{A \cap B})$ xác định chính xác $A \cap B = \{5\}_u$.
+	Thus canonical form $(f_{A \cap B}, d_{A \cap B})$ accurately identifies $A \cap B = \{5\}_u$.
 \end{example}
-\begin{proposition}[Dạng chuẩn tắc của phép hợp]
-	Cho $A \sim (f_A, d_A)$ và $B \sim (f_B, d_B)$ thuộc $\mathbf{U}(\mathbb{K})$. Dạng chuẩn tắc $(f_{A \cup B}, d_{A \cup B})$ của số bất định $A \cup B$ được xác định bởi:
+\begin{proposition}[Canonical Form of Union]
+	Let $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. Canonical form $(f_{A \cup B}, d_{A \cup B})$ of uncertain number $A \cup B$ is defined by:
 	\[
 	\begin{cases}
 		d_{A \cup B} = (d_A \times \{0\}) \cup (d_B \times \{1\}) \\[1ex]
 		f_{A \cup B}(z) = \begin{cases} 
-			f_A(x), & \text{nếu } z = (x, 0) \in d_A \times \{0\} \\[1ex]
-			f_B(y), & \text{nếu } z = (y, 1) \in d_B \times \{1\}
+			f_A(x), & \text{if } z = (x, 0) \in d_A \times \{0\} \\[1ex]
+			f_B(y), & \text{if } z = (y, 1) \in d_B \times \{1\}
 		\end{cases}
 	\end{cases}
 	\]
 \end{proposition}
-\begin{theorem}[Không xác định]
-	Cho $*$ là một phép toán hai ngôi bất kỳ trên $\tsbd{K}$, $A \in \tsbd{K}$ . Khi đó ta có \[A * \emptyset = \emptyset * A= \emptyset\]
-	Nghĩa là mọi phép toán hai ngôi số học bất định với số hư vô đều cho ra kết quả là số hư vô (không xác định)
+\begin{theorem}[Undefinedness]
+	Let $*$ be any binary operation on $\tsbd{K}$, $A \in \tsbd{K}$. Then we have \[A * \emptyset = \emptyset * A= \emptyset\]
+	That is, any uncertain arithmetic binary operation involving the null number yields the null number (undefined).
 \end{theorem}
 \begin{example}
-	Với phép toán * là + ta có định nghĩa phép toán cộng trên $\tsbd{K}$.
-	$$A + B = \s{a+b : a \in A , b \in B}, \text{ với } A,B \in \tsbd{K}.$$
+	With operation * as +, we have the definition of addition on $\tsbd{K}$:
+	$$A + B = \s{a+b : a \in A , b \in B}, \text{ with } A,B \in \tsbd{K}.$$
 \end{example}
 \begin{example}
 	$$\frac{\s{1,2,3}}{\s{2,3}} = \s{1,\frac{1}{3},\frac{1}{2},\frac{2}{3},\frac{3}{2}}$$
 	$$\frac{\s{1,2,3}}{\s{1,0}} = \s{1,2,3}$$
-	$$\frac{\s{1,2,0}}{0} \text{ không xác định}$$
-	$$\frac{0}{0} \text{ không xác định}$$
+	$$\frac{\s{1,2,0}}{0} \text{ is undefined}$$
+	$$\frac{0}{0} \text{ is undefined}$$
 \end{example}
-\begin{md}[Tính chất phân phối của phép toán $*$ với phép toán hợp]
-	Cho $*$ là một phép toán hai ngôi trên tập số bất định, $A$ và $B$ là các số bất định, ta có
+\begin{md}[Distributive Property of Operation $*$ with Union Operation]
+	Let $*$ be a binary operation on uncertain numbers, $A$ and $B$ be uncertain numbers, we have
 	\[A*B = \bigcup_{b \in B} {A * b} \]
 \end{md}
 \begin{theorem}
-	Cho $A \in \tsbd{K}$ ta đặt \begin{enumerate}
+	Let $A \in \tsbd{K}$, we set \begin{enumerate}
 		\item $Id_+=\set{X-X: X \in \tsbd{K}}$
 		\item $Id_*=\set{X/X: X \in \tsbd{K}}$
 	\end{enumerate}
-	Từ đó ta có: 
+	From which we have: 
 	\begin{align*}
-		(\forall e_+ \in Id_+)(A + e_+ &= A - e_+)  \\
+		(\forall e_+ \in Id_+)(A + e_+ &= A - e_+) \\
 		(\forall e_* \in Id_*)(A \cdot e_* &= A / e_*)
 	\end{align*}
 \end{theorem}
-\begin{theorem}[Nghịch đảo]
-	Xét $A \in \tsbd{K}, \dimU(A) > 1$ thì:
+\begin{theorem}[Inverse]
+	Consider $A \in \tsbd{K}, \dimU(A) > 1$, then:
 	\begin{enumerate}
-		\item Không tồn tại số bất định B sao cho $A+B = 0$
-		\item Không tồn tại số bất định B sao cho $AB = 1$
+		\item There exists no uncertain number B such that $A+B = 0$
+		\item There exists no uncertain number B such that $AB = 1$
 	\end{enumerate}
 \end{theorem}
 \begin{theorem}
-	Cho $A$ và $B$ là hai số bất định, ta có $$\rad(A+B) \leq \rad(A) +\rad(B)$$
+	Let $A$ and $B$ be two uncertain numbers, we have $$\rad(A+B) \leq \rad(A) +\rad(B)$$
 \end{theorem}
 \begin{theorem}
-	Cho $A$ là một số bất định, $b$ là một hằng số đơn trị. Ta có $$\rad(A+b) = \rad(A)$$
-	Định lý cho phép một vật có vị trí bất định có bảo toàn bán kính bất định qua một phép dời hình.
+	Let $A$ be an uncertain number, $b$ be a single-valued constant. We have $$\rad(A+b) = \rad(A)$$
+	This theorem allows an object with uncertain position to preserve its uncertain radius under rigid translation.
 \end{theorem}
-\begin{theorem}[Sự đồng dạng thực tại]
-	Cho $A$ là một số bất định và $k$ là một hằng số đơn trị, ta có : $\rad(k  A) = |k|  \rad(A)$
+\begin{theorem}[Realistic Similarity]
+	Let $A$ be an uncertain number and $k$ be a single-valued constant, we have: $\rad(k A) = |k| \rad(A)$
 \end{theorem}
 
-\begin{theorem}[Định lý đồng nhất với số học cổ điển]
-	Cho $A = \s{a} , B = \s{b}$  và * là một phép toán hai ngôi trên tập $\mathbb{R}$ và $a*b$ là xác định thì $$A * B = \s{a*b} = a*b$$
+\begin{theorem}[Identity Theorem with Classical Arithmetic]
+	Let $A = \s{a} , B = \s{b}$ and * be a binary operation on $\mathbb{R}$ where $a*b$ is defined, then $$A * B = \s{a*b} = a*b$$
 \end{theorem}
-\begin{theorem}[Giao hoán ]
-	Cho $A,B$ là hai số bất định và * là một phép toán hai ngôi giao hoán trên $\mathbb{R}$ ta có
-	$$A*B  = B*A$$
+\begin{theorem}[Commutativity]
+	Let $A,B$ be two uncertain numbers and * be a commutative binary operation on $\mathbb{R}$, we have
+	$$A*B = B*A$$
 \end{theorem}
-\begin{theorem}[Kết hợp]
-	Cho $A,B,C$ là các số bất định và * là một phép toán hai ngôi kết hợp trên $\mathbb{R}$ thì :
+\begin{theorem}[Associativity]
+	Let $A,B,C$ be uncertain numbers and * be an associative binary operation on $\mathbb{R}$, then:
 	\[A*(B*C) = (A*B)*C\]
 \end{theorem}
-\begin{theorem}[Phân phối]
-	Cho $K,A,B$ là các số bất định, ta có:
+\begin{theorem}[Distributivity]
+	Let $K,A,B$ be uncertain numbers, we have:
 	\[K(A+B)\ = \bigcup_{k \in K} [k(A+B)] = \bigcup_{k \in K} (kA+kB)\]
-	\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right)  \]
+	\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right) \]
 \end{theorem}
-\begin{theorem}[Định lý liên không gian số học]
-Cho $a,c \in \mathbb{K}, X \in \tsbd{K}$. Ta có:
+\begin{theorem}[Inter-Arithmetic Space Theorem]
+Let $a,c \in \mathbb{K}, X \in \tsbd{K}$. We have:
 \begin{enumerate}
 	\item $\kgdd{aX} = \kgdt{aX}$
 \end{enumerate}
 \end{theorem}
-\section{Số bất định có trọng số}
-\begin{definition}[Trọng số]
-	Cho $A$ là một tập hợp, một hàm số $\ts{A}$ từ $A$ vào $[0,1]$ thỏa mãn những tính chất sau thì được gọi là một trọng số của A: 
+\section{Weighted Uncertain Numbers}
+\begin{definition}[Weight]
+	Let $A$ be a set, a function $\ts{A}$ from $A$ to $[0,1]$ satisfying the following properties is called a weight of A: 
 	\begin{enumerate}
 		\item $$\sum_{a \in A}{\ts{A}(a) } = 1$$
-		\item Với mọi $a \in A$ thì $\ts{A}(a) > 0 $
+		\item For all $a \in A$, $\ts{A}(a) > 0 $
 	\end{enumerate}
 \end{definition}
-\begin{definition}[Số bất định có trọng số trên trường  $\mathbb{K}$]
-	Một bộ $(A,\ts{A})$ với $A \in \tsbd{K}$ và $\ts{A}$ là một trọng số của $A$ được gọi là một số bất định có trọng số trên trường $\mathbb{K}$. Tập tất cả các số bất định có trọng số trên trường $\mathbb{K}$ được ký hiệu là $\tsbdts{K}$.
+\begin{definition}[Weighted Uncertain Number over Field $\mathbb{K}$]
+	A pair $(A,\ts{A})$ with $A \in \tsbd{K}$ and $\ts{A}$ being a weight of $A$ is called a weighted uncertain number over field $\mathbb{K}$. The set of all weighted uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbdts{K}$.
 \end{definition}
 \begin{example}
-	Cho $A \in \tsbd{R}$ và $A = \s{a} = a  $ với trọng số $\ts{A}$ tùy ý ta đều có $A = a$ với $\ts{A}(a) =1$. Số $A$ như vậy là số thực.
+	Let $A \in \tsbd{R}$ and $A = \s{a} = a $ with arbitrary weight $\ts{A}$, we always have $A = a$ with $\ts{A}(a) =1$. Such a number $A$ is a real number.
 \end{example}
 \begin{example}
-	Tập $A=\s{2k : k \in \mathbb{N}}$ cùng với trọng số là $\ts{A}(2k) = \frac{1}{2^{k+1}}$ là một số bất định trên trường số thực với trọng số  $\ts{A}$.
+	Set $A=\s{2k : k \in \mathbb{N}}$ together with weight $\ts{A}(2k) = \frac{1}{2^{k+1}}$ is an uncertain number over real field with weight $\ts{A}$.
 \end{example}
-\begin{theorem}[Trọng số của phép toán]
-	Gọi * là một phép toán hai ngôi trên $\tsbd{K}$, ta định nghĩa hàm $$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$ với $c = a  * b \in A * B $, $\ts{A}$ là một trọng số của $A$ và $\ts{B}$ là một trọng số của $B$ thì $\ts{A*B}$ cũng là một trọng số của $A *B $
+\begin{theorem}[Weight of an Operation]
+	Let * be a binary operation on $\tsbd{K}$, we define function $$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$ with $c = a * b \in A * B $, where $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$. Then $\ts{A*B}$ is also a weight of $A *B $.
 \end{theorem}
-\begin{definition}[Quan hệ hai ngôi yếu có trọng số trên trường $\mathbb{K}$]
-	Cho $\mathcal{R}$ là một quan hệ hai ngôi trên trường $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. Ta định nghĩa quan hệ hai ngôi yếu có trọng số trên trường $\mathbb{K}$ như sau:
+\begin{definition}[Weighted Weak Binary Relation over Field $\mathbb{K}$]
+	Let $\mathcal{R}$ be a binary relation on field $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. We define the weighted weak binary relation over field $\mathbb{K}$ as follows:
 	\[\ddclmd(A\mathcal{R}B) := \sum_{(a,b) \in A \times B}{\left[\ts{A}(a)\ts{B}(b)I(a,b)\right]}\]
-	Trong đó I(a,b) cho bởi \[
+	Where I(a,b) is given by \[
 	I(a,b) := \begin{cases}
-		1 \text{ nếu } (a,b) \in \mathcal{R} \\
-		0 \text{ nếu } (a,b) \notin \mathcal{R}
+		1 & \text{if } (a,b) \in \mathcal{R} \\
+		0 & \text{if } (a,b) \notin \mathcal{R}
 	\end{cases}
 	\]
 \end{definition}

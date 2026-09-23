@@ -1,80 +1,80 @@
-\section{Không gian trạng thái và Mệnh đề nguyên tử}
-Cho $(\Omega, \mathcal{F}, \lambda)$ là một không gian độ đo xác định đại diện cho tập hợp các kịch bản hoặc trạng thái khả dĩ của hệ thống.
+\section{State Space and Atomic Propositions}
+Let $(\Omega, \mathcal{F}, \lambda)$ be a defined measure space representing the set of possible scenarios or states of the system.
 
-\begin{definition}[Mệnh đề nguyên tử]
-	Một mệnh đề nguyên tử $P$ trong hệ Logic Mở Rộng được định nghĩa gắn liền với một hàm chân lý kịch bản $v(P, \cdot) : \Omega \to \{0, 1\}$, trong đó:
+\begin{definition}[Atomic Proposition]
+	An atomic proposition $P$ in the Extended Logic system is defined alongside a scenario truth function $v(P, \cdot) : \Omega \to \{0, 1\}$, where:
 	\[
 	v(P, \omega) = \begin{cases} 
-		1 & \text{nếu } P \text{ đúng tại trạng thái } \omega, \\
-		0 & \text{nếu } P \text{ sai tại trạng thái } \omega.
+		1 & \text{if } P \text{ is true at state } \omega, \\
+		0 & \text{if } P \text{ is false at state } \omega.
 	\end{cases}
 	\]
 \end{definition}
 
-\begin{definition}[Toán tử lượng giá chân lý]
-	Toán tử lượng giá chân lý $\ddclmd$ là một ánh xạ từ tập hợp các mệnh đề vào đoạn $[0, 1]$, xác định bởi độ đo của tập các trạng thái làm cho mệnh đề nghiệm đúng:
+\begin{definition}[Truth Valuation Operator]
+	The truth valuation operator $\ddclmd$ is a mapping from the set of propositions to the interval $[0, 1]$, defined by the measure of the set of states that satisfy the proposition:
 	\[
 	\ddclmd(P) := \frac{\lambda(\{\omega \in \Omega : v(P, \omega) = 1\})}{\lambda(\Omega)}
 	\]
 \end{definition}
 
-\section{Đại số mệnh đề phức hợp và Phép nối logic}
-Các phép nối logic cổ điển (Phủ định $\neg$, Hội $\land$, Tuyển $\lor$, Kéo theo $\Rightarrow$) được mở rộng lên không gian trạng thái thông qua đại số Boole trên từng điểm $\omega \in \Omega$.
+\section{Algebra of Compound Propositions and Logical Connectives}
+Classical logical connectives (Negation $\neg$, Conjunction $\land$, Disjunction $\lor$, Implication $\Rightarrow$) are extended to the state space via Boolean algebra pointwise for each $\omega \in \Omega$.
 
-\begin{definition}[Lượng giá mệnh đề phức hợp]
-	Cho $P_1, P_2, \dots, P_n$ là các mệnh đề nguyên tử và $\Phi$ là một mệnh đề phức hợp cấu thành từ các phép nối logic cổ điển. Giá trị chân lý tại trạng thái $\omega \in \Omega$ của $\Phi$ được xác định bởi:
+\begin{definition}[Valuation of Compound Propositions]
+	Let $P_1, P_2, \dots, P_n$ be atomic propositions and $\Phi$ be a compound proposition constructed from classical logical connectives. The truth value at state $\omega \in \Omega$ of $\Phi$ is determined by:
 	\[
 	v(\Phi(P_1, \dots, P_n), \omega) = \Phi\big(v(P_1, \omega), v(P_2, \omega), \dots, v(P_n, \omega)\big) \in \{0, 1\}
 	\]
-	Khi đó, giá trị chân lý toàn cục $\ddclmd(\Phi) \in [0, 1]$ được tính bởi:
+	Then, the global truth value $\ddclmd(\Phi) \in [0, 1]$ is computed by:
 	\[
 	\ddclmd(\Phi) := \frac{\lambda(\{\omega \in \Omega : v(\Phi(P_1, \dots, P_n), \omega) = 1\})}{\lambda(\Omega)}
 	\]
-	và ta ký hiệu mệnh đề gắn kèm chân lý là $(\Phi)_{V(\Phi)}$.
+	and we denote the proposition accompanied by its truth measure as $(\Phi)_{V(\Phi)}$.
 \end{definition}
 
-\begin{theorem}[Bảo toàn hằng đúng Logic cổ điển]
-	Nếu $\Phi$ là một hằng đúng (tautology) của Logic mệnh đề cổ điển, thì $\ddclmd(\Phi) = 1$. Đặc biệt, các quy luật nền tảng luôn được bảo toàn tuyệt đối:
+\begin{theorem}[Preservation of Classical Logical Tautologies]
+	If $\Phi$ is a tautology of Classical Propositional Logic, then $\ddclmd(\Phi) = 1$. In particular, fundamental laws are always absolutely preserved:
 	\begin{enumerate}
-		\item Quy luật mâu thuẫn: $\ddclmd(P \land \neg P) = 0$.
-		\item Quy luật bài trung: $\ddclmd(P \lor \neg P) = 1$.
+		\item Law of non-contradiction: $\ddclmd(P \land \neg P) = 0$.
+		\item Law of excluded middle: $\ddclmd(P \lor \neg P) = 1$.
 	\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-	Vì $\Phi$ là hằng đúng cổ điển, với mọi phối hợp giá trị nhị phân của các mệnh đề nguyên tử, ta luôn có $\Phi\big(v(P_1, \omega), \dots, v(P_n, \omega)\big) = 1$ với mọi $\omega \in \Omega$.
-	Do đó, $\{\omega \in \Omega : v(\Phi, \omega) = 1\} = \Omega$. Suy ra:
+	Since $\Phi$ is a classical tautology, for every combination of binary values of atomic propositions, we always have $\Phi\big(v(P_1, \omega), \dots, v(P_n, \omega)\big) = 1$ for all $\omega \in \Omega$.
+	Therefore, $\{\omega \in \Omega : v(\Phi, \omega) = 1\} = \Omega$. It follows that:
 	\[
 	\ddclmd(\Phi) = \frac{\lambda(\Omega)}{\lambda(\Omega)} = 1
 	\]
 \end{proof}
 
-\section{Quan hệ Kéo theo và Quy tắc Suy luận}
+\section{Implication Relation and Inference Rules}
 
-\begin{definition}[Phép kéo theo và Mức độ suy luận]
-	Cho hai mệnh đề $P$ và $Q$. Phép kéo theo $P \Rightarrow Q$ tại trạng thái $\omega$ được xác định theo logic cổ điển $v(P \Rightarrow Q, \omega) = v(\neg P \lor Q, \omega)$. Giá trị chân lý toàn cục của phép kéo theo là:
+\begin{definition}[Implication and Degree of Inference]
+	Let $P$ and $Q$ be two propositions. The implication $P \Rightarrow Q$ at state $\omega$ is defined according to classical logic as $v(P \Rightarrow Q, \omega) = v(\neg P \lor Q, \omega)$. The global truth value of the implication is:
 	\[
 	\ddclmd(P \Rightarrow Q) = \frac{\lambda(\{\omega \in \Omega : v(P, \omega) \le v(Q, \omega)\})}{\lambda(\Omega)}
 	\]
 \end{definition}
 
-\begin{theorem}[Bổ đề Modus Ponens Mở rộng]
-	Với hai mệnh đề $P$ và $Q$ bất kỳ, ta luôn có bất đẳng thức suy luận:
+\begin{theorem}[Extended Modus Ponens Lemma]
+	For any two propositions $P$ and $Q$, the following inference inequality always holds:
 	\[
 	\ddclmd(Q) \ge \ddclmd(P) + \ddclmd(P \Rightarrow Q) - 1
 	\]
 \end{theorem}
 
-\section{Ví dụ minh họa tính bảo toàn tương quan}
+\section{Illustrative Example of Correlation Preservation}
 \begin{example}
-	Xét không gian trạng thái $\Omega = \{1, 2, 3, 4\}$ với độ đo đếm $\lambda(A) = |A|$. Xét hai mệnh đề nguyên tử $P$ và $Q$ có hàm chân lý kịch bản:
+	Consider state space $\Omega = \{1, 2, 3, 4\}$ with counting measure $\lambda(A) = |A|$. Consider two atomic propositions $P$ and $Q$ having scenario truth functions:
 	\begin{itemize}
-		\item $P$ đúng tại $\Omega_P = \{1, 2\} \implies \ddclmd(P) = 2/4 = 0.5$.
-		\item $Q$ đúng tại $\Omega_Q = \{2, 3\} \implies \ddclmd(Q) = 2/4 = 0.5$.
+		\item $P$ is true at $\Omega_P = \{1, 2\} \implies \ddclmd(P) = 2/4 = 0.5$.
+		\item $Q$ is true at $\Omega_Q = \{2, 3\} \implies \ddclmd(Q) = 2/4 = 0.5$.
 	\end{itemize}
-	Tập trạng thái làm cho mệnh đề phức hợp $P \land Q$ đúng là $\Omega_P \cap \Omega_Q = \{2\}$. Do đó:
+	The set of states that makes the compound proposition $P \land Q$ true is $\Omega_P \cap \Omega_Q = \{2\}$. Therefore:
 	\[
 	\ddclmd(P \land Q) = \frac{|\{2\}|}{4} = 0.25
 	\]
-	\textit{Nhận xét:} Nếu dùng toán tử Fuzzy cổ điển $\min(\ddclmd(P), \ddclmd(Q)) = \min(0.5, 0.5) = 0.5$, kết quả sẽ bị sai lệch do bỏ qua sự lệch kịch bản giữa $P$ và $Q$. Việc lượng giá trực tiếp trên không gian trạng thái $\Omega$ giúp giữ nguyên bản chất tương quan logic.
+	\textit{Remark:} If using the classical Fuzzy operator $\min(\ddclmd(P), \ddclmd(Q)) = \min(0.5, 0.5) = 0.5$, the result would be distorted due to ignoring scenario shifts between $P$ and $Q$. Direct valuation on state space $\Omega$ preserves the essence of logical correlation.
 \end{example}
