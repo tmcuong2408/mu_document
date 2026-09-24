@@ -1,36 +1,41 @@
 \RequirePackage{silence}
 \WarningsOff % Turn off all warnings from all packages
 \ErrorsOff   % (Caution) Use only if you are sure the code has no severe logic errors
+
 \documentclass[a4paper,14pt, twoside]{memoir}
 \usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}    
-%\usepackage{showframe}
 \usepackage{url}
 \usepackage{microtype}
 \usepackage{color}
 \usepackage{amsmath}
 \usepackage{amsthm}         % Provides proof environment
 \usepackage{amssymb}
+\usepackage{mathtools}     % Includes amsmath but optimized and with more features
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{autobreak}
+
 \hypersetup{
-   colorlinks=true,
-   linkcolor=blue,
-   filecolor=magenta,
-   urlcolor=cyan
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=cyan
 }
+
+% Theorem Environments
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{md}{Proposition}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{proposition}{Proposition}[chapter]
 \newtheorem{corollary}{Corollary}[chapter]
 \newtheorem{remark}{Remark}
-\newtheorem*{chungminh}{Proof}
 \newtheorem{example}{Example}[chapter]
+
+% Declare Math Operators
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\taphop}{s}
+\DeclareMathOperator{\setu}{s}
 \DeclareMathOperator{\dimU}{\dim_U}
 \DeclareMathOperator{\w}{w}
 \DeclareMathOperator{\card}{card}
@@ -38,18 +43,7 @@
 \DeclareMathOperator{\pgr}{pgr}
 \DeclareMathOperator{\scale}{scale}
 \DeclareMathOperator{\rad}{rad}
-\title{Extended Logic and Mathematics of Uncertainty
-}
-\author{
-	Tran Manh Cuong\thanks{Email: \href{mailto:tmcuong2408@gmail.com}{tmcuong2408@gmail.com} | Phone: 0353237140} \\[0.5em]
-	\small Alumnus of Faculty of Mathematics and Informatics (K11)
-	\\ Thai Nguyen University of Science \\
-	\small Address: DJ7 Street, Thoi Hoa, Ho Chi Minh City, Vietnam \\
-	\small \textit{Research Field: Mathematics of Uncertainty}
-}
-\date{Last updated: \today}
-\usepackage{mathtools} % Includes amsmath but optimized and with more features
-\usepackage{amssymb}   % Required to call mathbb font
+
 % Custom commands
 \newcommand{\set}[1]{\left\{#1\right\}} % set
 \newcommand{\tbd}[1]{\mathcal{#1}} % uncertain set
@@ -70,42 +64,925 @@
 \newcommand{\kgddmr}[1]{\left(#1\right)_{1'}} % real operator
 \newcommand{\kgdt}[1]{\left(#1\right)_m} % pointwise operator
 \newcommand{\kgdtmr}[1]{\left(#1\right)_{m'}} % pointwise operator
-\begin{document}
-\maketitle
-\begin{abstract}
-	In modern computational science and engineering, handling uncertain data is a core challenge. Traditional tools such as Classical Interval Arithmetic often suffer from the severe "dependency problem" --- where the repetition of algebraic variables generates endless "arithmetic noise" and causes explosive expansion of computational bounds. Similarly, Probabilistic or Fuzzy Set methods demand strict prior information and incur extremely high computational costs when scenario dimensions swell.
-	
-	This work proposes a comprehensive mathematical paradigm entitled \textbf{Extended Logic and Mathematics of Uncertainty} to thoroughly resolve these bottlenecks:
-	\begin{itemize}
-		\item \textbf{Canonical Form \& \textit{Lazy Evaluation} Mechanism:} Representing uncertain numbers via generating functions on index domains. This structure preserves the history of algebraic correlations to eliminate arithmetic noise at its root, while employing a lazy evaluation mechanism to represent and store infinite-element uncertain numbers without consuming RAM, performing actual calculations only upon evaluation requests.
-		
-		\item \textbf{Four Arithmetic Spaces System:}
-		\begin{itemize}
-			\item \textit{Single-point Space $(\circ)_1$ \& Extended Single-point Space $(\circ)_{1'}$:} Preserving algebraic consistency, internal correlation, and expanding the ability to process inverse operations/hierarchical structures.
-			\item \textit{Minkowski Space $(\circ)_m$ \& Extended Minkowski Space $(\circ)_{m'}$:} Modeling interactions, independent noise propagation across uncertain sources, and expanding operators for solving arithmetic equations.
-		\end{itemize}
-		
-		\item \textbf{Uncertain Arithmetic, Algebra \& Calculus:}
-		\begin{itemize}
-			\item \textit{Uncertain Arithmetic \& Algebra:} Constructing binary operations, weak relations, weights, uncertain algebraic equations, and compressing complex intersection/union/element-checking operations into root-finding problems on index domains with $\mathcal{O}(1)$ complexity.
-			\item \textit{Uncertain Calculus:} Fully building the theories of Limits, Continuity, Difference Quotients, Derivatives, and Uncertain Integrals over scenario sets.
-		\end{itemize}
-	\end{itemize}
-	
-	This work opens up a powerful computational framework serving directly for problems in noisy data processing, simulation of uncertain systems, inverse problems in geophysics, and optimal decision-making.
-	
-	\paragraph{Keywords:} Uncertain arithmetic, Uncertain algebra, Canonical form, Lazy evaluation, Single-point space, Minkowski space, Uncertain calculus, Arithmetic noise elimination.
-\end{abstract}
-\newpage
-\tableofcontents
-\chapter{Extended Logic}
-\include{Extended Logic}
-\chapter{Uncertain Arithmetic}
 
-\include{Uncertain Arithmetic.tex}
-\chapter{Uncertain Algebra}
-\par{\noindent From this chapter onwards, we adopt the convention that field $\mathbb{K}$ denotes the field of real or complex numbers, and sets $\mathcal{X}, \mathcal{Y}$ are subsets of $\tsbd{K}$.}
-\include{Uncertain Algebra.tex}
-\chapter{Uncertain Calculus}
-\include{Uncertain Analysis.tex}
+\title{Extended Logic and Mathematics of Uncertainty}
+\author{
+	Tran Manh Cuong\thanks{Email: \href{mailto:tmcuong2408@gmail.com}{tmcuong2408@gmail.com} | Phone: 0353237140} \\[0.5em]
+	\small Alumnus of Faculty of Mathematics and Informatics (K11)
+	\\ Thai Nguyen University of Science \\
+	\small Address: DJ7 Street, Thoi Hoa, Ho Chi Minh City, Vietnam \\
+	\small \textit{Research Field: Mathematics of Uncertainty}
+}
+\date{Last updated: \today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		In modern computational science and engineering, handling uncertain data is a core challenge. Traditional tools such as Classical Interval Arithmetic often suffer from the severe "dependency problem" --- where the repetition of algebraic variables generates endless "arithmetic noise" and causes explosive expansion of computational bounds. Similarly, Probabilistic or Fuzzy Set methods demand strict prior information and incur extremely high computational costs when scenario dimensions swell.
+		
+		This work proposes a comprehensive mathematical paradigm entitled \textbf{Extended Logic and Mathematics of Uncertainty} to thoroughly resolve these bottlenecks:
+		\begin{itemize}
+			\item \textbf{Canonical Form \& \textit{Lazy Evaluation} Mechanism:} Representing uncertain numbers via generating functions on index domains. This structure preserves the history of algebraic correlations to eliminate arithmetic noise at its root, while employing a lazy evaluation mechanism to represent and store infinite-element uncertain numbers without consuming RAM, performing actual calculations only upon evaluation requests.
+			
+			\item \textbf{Four Arithmetic Spaces System:}
+			\begin{itemize}
+				\item \textit{Single-point Space $(\circ)_1$ \& Extended Single-point Space $(\circ)_{1'}$:} Preserving algebraic consistency, internal correlation, and expanding the ability to process inverse operations/hierarchical structures.
+				\item \textit{Minkowski Space $(\circ)_m$ \& Extended Minkowski Space $(\circ)_{m'}$:} Modeling interactions, independent noise propagation across uncertain sources, and expanding operators for solving arithmetic equations.
+			\end{itemize}
+			
+			\item \textbf{Uncertain Arithmetic, Algebra \& Calculus:}
+			\begin{itemize}
+				\item \textit{Uncertain Arithmetic \& Algebra:} Constructing binary operations, weak relations, weights, uncertain algebraic equations, and compressing complex intersection/union/element-checking operations into root-finding problems on index domains with $\mathcal{O}(1)$ complexity.
+				\item \textit{Uncertain Calculus:} Fully building the theories of Limits, Continuity, Difference Quotients, Derivatives, and Uncertain Integrals over scenario sets.
+			\end{itemize}
+		\end{itemize}
+		
+		This work opens up a powerful computational framework serving directly for problems in noisy data processing, simulation of uncertain systems, inverse problems in geophysics, and optimal decision-making.
+		
+		\paragraph{Keywords:} Uncertain arithmetic, Uncertain algebra, Canonical form, Lazy evaluation, Single-point space, Minkowski space, Uncertain calculus, Arithmetic noise elimination.
+	\end{abstract}
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% ==========================================
+	% CHAPTER 1: EXTENDED LOGIC
+	% ==========================================
+	\chapter{Extended Logic}
+	
+	\section{State Space and Atomic Propositions}
+	Let $(\Omega, \mathcal{F}, \lambda)$ be a defined measure space representing the set of possible scenarios or states of the system.
+	
+	\begin{definition}[Atomic Proposition]
+		An atomic proposition $P$ in the Extended Logic system is defined alongside a scenario truth function $v(P, \cdot) : \Omega \to \{0, 1\}$, where:
+		\[
+		v(P, \omega) = \begin{cases} 
+			1 & \text{if } P \text{ is true at state } \omega, \\
+			0 & \text{if } P \text{ is false at state } \omega.
+		\end{cases}
+		\]
+	\end{definition}
+	
+	\begin{definition}[Truth Valuation Operator]
+		The truth valuation operator $\ddclmd$ is a mapping from the set of propositions to the interval $[0, 1]$, defined by the measure of the set of states that satisfy the proposition:
+		\[
+		\ddclmd(P) := \frac{\lambda(\{\omega \in \Omega : v(P, \omega) = 1\})}{\lambda(\Omega)}
+		\]
+	\end{definition}
+	
+	\section{Algebra of Compound Propositions and Logical Connectives}
+	Classical logical connectives (Negation $\neg$, Conjunction $\land$, Disjunction $\lor$, Implication $\Rightarrow$) are extended to the state space via Boolean algebra pointwise for each $\omega \in \Omega$.
+	
+	\begin{definition}[Valuation of Compound Propositions]
+		Let $P_1, P_2, \dots, P_n$ be atomic propositions and $\Phi$ be a compound proposition constructed from classical logical connectives. The truth value at state $\omega \in \Omega$ of $\Phi$ is determined by:
+		\[
+		v(\Phi(P_1, \dots, P_n), \omega) = \Phi\big(v(P_1, \omega), v(P_2, \omega), \dots, v(P_n, \omega)\big) \in \{0, 1\}
+		\]
+		Then, the global truth value $\ddclmd(\Phi) \in [0, 1]$ is computed by:
+		\[
+		\ddclmd(\Phi) := \frac{\lambda(\{\omega \in \Omega : v(\Phi(P_1, \dots, P_n), \omega) = 1\})}{\lambda(\Omega)}
+		\]
+		and we denote the proposition accompanied by its truth measure as $(\Phi)_{V(\Phi)}$.
+	\end{definition}
+	
+	\begin{theorem}[Preservation of Classical Logical Tautologies]
+		If $\Phi$ is a tautology of Classical Propositional Logic, then $\ddclmd(\Phi) = 1$. In particular, fundamental laws are always absolutely preserved:
+		\begin{enumerate}
+			\item Law of non-contradiction: $\ddclmd(P \land \neg P) = 0$.
+			\item Law of excluded middle: $\ddclmd(P \lor \neg P) = 1$.
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		Since $\Phi$ is a classical tautology, for every combination of binary values of atomic propositions, we always have $\Phi\big(v(P_1, \omega), \dots, v(P_n, \omega)\big) = 1$ for all $\omega \in \Omega$.
+		Therefore, $\{\omega \in \Omega : v(\Phi, \omega) = 1\} = \Omega$. It follows that:
+		\[
+		\ddclmd(\Phi) = \frac{\lambda(\Omega)}{\lambda(\Omega)} = 1
+		\]
+	\end{proof}
+	
+	\section{Implication Relation and Inference Rules}
+	
+	\begin{definition}[Implication and Degree of Inference]
+		Let $P$ and $Q$ be two propositions. The implication $P \Rightarrow Q$ at state $\omega$ is defined according to classical logic as $v(P \Rightarrow Q, \omega) = v(\neg P \lor Q, \omega)$. The global truth value of the implication is:
+		\[
+		\ddclmd(P \Rightarrow Q) = \frac{\lambda(\{\omega \in \Omega : v(P, \omega) \le v(Q, \omega)\})}{\lambda(\Omega)}
+		\]
+	\end{definition}
+	
+	\begin{theorem}[Extended Modus Ponens Lemma]
+		For any two propositions $P$ and $Q$, the following inference inequality always holds:
+		\[
+		\ddclmd(Q) \ge \ddclmd(P) + \ddclmd(P \Rightarrow Q) - 1
+		\]
+	\end{theorem}
+	
+	\section{Illustrative Example of Correlation Preservation}
+	\begin{example}
+		Consider state space $\Omega = \{1, 2, 3, 4\}$ with counting measure $\lambda(A) = |A|$. Consider two atomic propositions $P$ and $Q$ having scenario truth functions:
+		\begin{itemize}
+			\item $P$ is true at $\Omega_P = \{1, 2\} \implies \ddclmd(P) = 2/4 = 0.5$.
+			\item $Q$ is true at $\Omega_Q = \{2, 3\} \implies \ddclmd(Q) = 2/4 = 0.5$.
+		\end{itemize}
+		The set of states that makes the compound proposition $P \land Q$ true is $\Omega_P \cap \Omega_Q = \{2\}$. Therefore:
+		\[
+		\ddclmd(P \land Q) = \frac{|\{2\}|}{4} = 0.25
+		\]
+		\textit{Remark:} If using the classical Fuzzy operator $\min(\ddclmd(P), \ddclmd(Q)) = \min(0.5, 0.5) = 0.5$, the result would be distorted due to ignoring scenario shifts between $P$ and $Q$. Direct valuation on state space $\Omega$ preserves the essence of logical correlation.
+	\end{example}
+	
+	% ==========================================
+	% CHAPTER 2: UNCERTAIN ARITHMETIC
+	% ==========================================
+	\chapter{Uncertain Arithmetic}
+	
+	\section{Introduction}
+	In daily life, we frequently encounter problems where input data is not a deterministic single value, but is only known to belong to some set of possible scenarios. We consider the following two introductory examples:
+	
+	\begin{example}
+		A coffee shop $A$ serves a daily customer count belonging to set $K = \set{10, 15, 30}$ (customers). The average spending per customer belongs to set $C = \set{10, 20, 50}$ (thousand VND). The set of all possible daily revenue levels for coffee shop $A$ is determined by:
+		\[
+		D = \set{kc : k \in K, \, c \in C} = \set{100, 150, 200, 300, 500, 600, 750, 1500} \text{ (thousand VND)}
+		\]
+	\end{example}
+	
+	\begin{example}
+		Mr. $A$ plans to travel from Hanoi to Ho Chi Minh City via 2 legs:
+		\begin{itemize}
+			\item Leg $A_1$: Possible distance $S_1 \in \set{200, 240, 300}$ (km), travel speed $V_1 \in \set{40, 50}$ (km/h).
+			\item Leg $A_2$: Possible distance $S_2 \in \set{400, 500, 600}$ (km), travel speed $V_2 \in \set{80, 100, 120}$ (km/h).
+		\end{itemize}
+		The possible travel times on each leg are given respectively by the sets:
+		\[
+		T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} = \set{4; \, 4.8; \, 5; \, 6; \, 7.5} \text{ (hours)}
+		\]
+		\[
+		T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2} = \set{3.33; \, 4; \, 4.17; \, 5; \, 6; \, 6.25; \, 7.5} \text{ (hours)}
+		\]
+		Thus, the total possible travel time for the whole journey belongs to the set:
+		\[
+		T = \set{t_1 + t_2 : t_1 \in T_1, \, t_2 \in T_2} \text{ (hours)}
+		\]
+		From this, we can derive characteristic laws of the result set $T$, such as minimum value $\min(T)$, maximum value $\max(T)$, mean of $T$, or determine whether $T$ satisfies a certain condition function or criterion $f(T)$. Grasping this complete structural range forms the core foundation for solving decision-making problems under data uncertainty.
+	\end{example}
+	
+	To automate and systemize direct computations over these sets of possible scenarios, we construct \textbf{Uncertain Arithmetic} — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
+	
+	\section{Uncertain Number}
+	\begin{definition}[Uncertain Number over Field $\mathbb{K}$]
+		Let $\mathbb{K}$ be a field; an uncertain number $A$ is a quantity whose value belongs to a set $A \subseteq \mathbb{K}$. The set of all uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbd{K}$. If $A =\s{a}$, we identify $A$ with element $a$. If $A =\emptyset$, we say $A$ is undefined. The number $\emptyset \in \tsbd{K}$ is called the null number.
+	\end{definition}
+	
+	\begin{definition}[Transfer Operator]
+		To resolve notation ambiguity between sets and uncertain numbers in certain cases, we define the following two transfer operators:
+		\begin{enumerate}
+			\item Given $A \in \tsbd{K}$, we denote $A_s$ as the set containing all possible values of $A$.
+			\item Given $A$ as a set, the operator transforming $A$ into an uncertain number is denoted by $A_u \in \tsbd{K}$.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{remark}
+		In later sections of this document, we will prove $f(A_s) \neq f(A)$ when $A$ is an uncertain number. This is why uncertain numbers are denoted by $\{\circ\}_u$ rather than standard set notation.
+	\end{remark}
+	
+	\begin{remark}
+		Throughout this document, we adopt the conventions:
+		\begin{enumerate}[leftmargin=*]
+			\item Single-valued numbers are denoted by lowercase letters such as $x, y, \dots$.
+			\item Uncertain numbers are denoted by uppercase letters such as $X, Y, \dots$.
+			\item Sets of uncertain numbers are denoted by calligraphic uppercase letters such as $\mathcal{X}, \mathcal{Y}, \dots$.
+			\item Arithmetic spaces are notation conventions to avoid constructing multiple distinct symbols for the same operation within each arithmetic space. The following is the list of arithmetic space notations:
+			\begin{enumerate}
+				\item $\kgdd{\circ}$: single-point arithmetic space.
+				\item $\kgddmr{\circ}$: extended single-point arithmetic space.
+				\item $\kgdt{\circ}$: Minkowski arithmetic space.
+				\item $\kgdtmr{\circ}$: extended Minkowski arithmetic space.
+			\end{enumerate}
+		\end{enumerate}
+	\end{remark}
+	
+	\begin{definition}[Dimension]
+		The finite dimension of a finite-element uncertain number $A \in \tsbd{K}$ equals the number of elements in $A$, denoted by $\dimU(A)$. If $A$ contains infinitely many elements, we say the dimension of $A$ is infinite, written as $\dimU(A) = \infty$.
+	\end{definition}
+	
+	\begin{definition}[Canonical Form]
+		Let $A \in \tsbd{K}$. We call $f_A : d_A \to \mathbb{K}$ a generating function of uncertain number $A$ if there exists an index set $d_A \subseteq \mathbb{K}$ satisfying:
+		\[d_A = \begin{cases*}
+			\set{1..n} \subseteq \mathbb{N^*} \text{ if } \dimU(A)=n \\
+			\mathbb{N^*} \text{ if } A_s \text{ is a countably infinite set  }\\
+			[0,1] \text{ if } A_s \text{ is an uncountably infinite set.}
+		\end{cases*}\]
+		such that $\bd{f_A(d_A)}= A$. In this case, we call $(f_A,d_A)$ a canonical form of $A$ and denote $A \sim (f_A,d_A)$.
+	\end{definition}
+	
+	\begin{theorem}[Equivalent Canonical Form]
+		Let $A \in \tsbd{K}$, and $(f_A,d_A)$ be a canonical form of $A$. Then there exists $(f'_A,d_A)$ which is also a canonical form of $A$.
+	\end{theorem}
+	
+	\par{Next, related to solving uncertain equations, we arrive at the following definition:}
+	
+	\begin{definition}[Uncertain Number of Order $n$]
+		Let $A \in \tsbd{K}$, $n$ be a positive integer, we denote $\tsbdcapn{K}{n}$ as the set of order-$n$ uncertain numbers over field $\mathbb{K}$, given by: 
+		\begin{enumerate}
+			\item For $n = 2$, the set of order-2 uncertain numbers is defined by:
+			\[
+			\tsbdcapn{K}{2} := \s{A : A \in \tsbd{K}}
+			\]
+			\item For all $n > 2$, the set of order-$n$ uncertain numbers is defined inductively:
+			\[
+			\tsbdcapn{K}{n} := \s{A : (\exists p \in \set{1, \dots, n-1})(A \in \tsbdcapn{K}{p})}
+			\]
+			where by convention $\tsbdcapn{K}{1} \equiv \tsbd{K}$.
+			\item For all $n \geq 2$ and $\s{B} \in \tsbdcapn{K}{n}$, hierarchical identification convention is defined by:
+			\[
+			\s{B} \equiv \begin{cases}
+				B & \text{with } B \in \tsbdcapn{K}{n-1} \quad (\text{if } n > 2) \\
+				B & \text{with } B \in \tsbd{K} \quad (\text{if } n = 2)
+			\end{cases}
+			\]
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Uncertain Radius]
+		Let $A$ be an uncertain number, the uncertain radius of $A$ is denoted by $\rad(A)$ and 
+		$$\rad(A) = \frac{1}{2} \cdot \sup \set{x_1 - x_2 : x_1, x_2 \in A}$$
+	\end{definition}
+	
+	\begin{corollary}
+		An uncertain number $A = \s{a}$ with $a \in \mathbb{K}$ has an uncertain radius $\rad(A) = 0$.
+	\end{corollary}
+	
+	\begin{definition}[Distance]
+		Let $\mathbb{K}$ be a normed field, $A, B \in \tsbd{K}$. The distance between two uncertain numbers $A$ and $B$ is denoted by $d_H(A,B)$, given by
+		$$
+		d_H(A,B) := \max\left\{\sup_{a \in A}{d(a,B),\sup_{b \in B}{d(b,A)}}\right\}
+		$$
+		Where
+		$$d(a,A) := \inf_{b\in A}{|a-b|}$$
+	\end{definition}
+	
+	\begin{definition}[Weak Binary Relation]
+		Consider $\mathcal{R}$ as a binary relation on field $\mathbb{K}$ and two uncertain numbers $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. 
+		
+		The weak binary relation $A \mathcal{R} B$ is a proposition evaluated on scenario space $\Omega = d_A \times d_B$ with atomic truth function:
+		\[
+		v(A \mathcal{R} B, \omega) = \begin{cases} 
+			1 & \text{if } f_A(t_1) \mathcal{R} f_B(t_2) \text{ is true}, \\
+			0 & \text{if } f_A(t_1) \mathcal{R} f_B(t_2) \text{ is false},
+		\end{cases} \quad \text{with } \omega = (t_1, t_2) \in \Omega
+		\]
+		Then, the truth value of relation $A \mathcal{R} B$ is determined by:
+		\[
+		\ddclmd(A \mathcal{R} B) := \frac{\lambda\big(\{(t_1, t_2) \in d_A \times d_B : f_A(t_1) \mathcal{R} f_B(t_2)\}\big)}{\lambda(d_A \times d_B)}
+		\]
+	\end{definition}
+	
+	\begin{example}
+		Given $A = \s{1,2}$ as an uncertain number, we have $$\gtcl{A\leq A}{0.75}$$ $$\gtcl{A>A}{0.25}$$
+		We remark: $\ddclmd(A\leq A) + \ddclmd(A>A) = 1$. Although $A=A$, their sizes differ probabilistically/scenariowise.
+	\end{example}
+	
+	\begin{example}
+		Given $A = \s{1,2}$ and $B = \s{3} = 3$, then $A \leq B$.
+	\end{example}
+	
+	\begin{theorem}[Balance]
+		Applying the definition of weak binary relation with $\mathcal{R}$ as $\leq$, we have the following theorem:
+		for $X \in \tsbd{R}$ where $\dimU(X) = \infty$, then: 
+		$$\ddclmd(X\leq X) = \frac{1}{2}$$
+	\end{theorem}
+	
+	\begin{proof}
+		Suppose $X_s$ has $n$ distinct elements. Total possible pairs $(a,b)$ is $n^2$. The number of pairs where $a<b$ is $n(n-1)/2$. The number of pairs where $a=b$ is $n$. Therefore, the number of pairs $a\leq b$ is 
+		$$\frac{n(n-1)}{2} + n = \frac{n^2+n}{2}$$ 
+		Thus, the truth value is 
+		$$\ddclmd(X\leq X ) = \frac{n^2+n}{2n^2} = \frac{1}{2} + \frac{1}{2n}$$
+		Letting $n \rightarrow \infty$ completes the proof.
+	\end{proof}
+	
+	\begin{definition}[Set Arithmetic Operations]
+		Let $*$ be an arbitrary set operation, $A, B \in \mathbf{U}(\mathbb{K})$, we define:
+		\[
+		A * B := (A_s * B_s)_u
+		\]
+		Where $A_s * B_s$ on the right hand side represents the set operation.
+	\end{definition}
+	
+	\begin{example}
+		Consider the problem: Person $A$ has an uncertain number of apples $A=\s{1,2}$. $A$ intends to share these apples with room $B$, where room $B$ has an uncertain number of people $B = \s{1,0}$. After $A$ divides the apples, each person in room $B$ receives a quantity of apples equal to 
+		\[\frac{A}{B} = \s{1,2}\]
+		Why does $\frac{1}{0}$ not appear in the result set? Because if $A$ sees no people in the room, $A$ does not perform division, nor can $A$ divide apples to each person in room $B$ with $+\infty$ apples. This division does not happen rather than yielding no valid outcome. Hence we define binary operations on the set of uncertain numbers as follows:
+	\end{example}
+	
+	\begin{definition}[Single-Point Arithmetic Space]
+		Let $A \in \tsbd{K}$ be an uncertain set. We define a \textbf{single-point uncertain function} as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
+		
+		The image set of the corresponding point-wise uncertain function, denoted $\kgdd{f}$, is determined by:
+		\[
+		\kgdd{f}(A) := \s{f(x) \;:\; x \in A}
+		\]
+		Operations within $(\circ)_1$ are called operations on the single-point arithmetic space.
+	\end{definition}
+	
+	\begin{example}
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be given by:
+		\[f(X) = (X^2+5X+6)_1\] as a single-point uncertain function.
+	\end{example}
+	
+	\begin{remark}
+		This definition ensures algebraic consistency via two core mechanisms:
+		\begin{itemize}
+			\item \textbf{Internal Point Identity:} Every symbol of variable $A$ appearing in expression $f$ (regardless of position or operation) is bound to receive the same value $x \in A$ during the same mapping pass.
+			\item \textbf{Elimination of Quantity Expansion:} Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ and $\kgdd{x + x}(A) = 2A$.
+		\end{itemize}
+	\end{remark}
+	
+	\begin{example}
+		Consider single-variable function $f(A) = A^2 - 3A + 2$ with $A \in \tsbd{\mathbb{R}}$. The image set of this single-point uncertain function is defined by:
+		\[
+		\kgdd{f}(A) = \s{x^2 - 3x + 2 \;:\; x \in A}
+		\]
+		During each evaluation $x \in A$, both positions $A^2$ and $-3A$ uniformly receive the same value $x$.
+	\end{example}
+	
+	\begin{definition}[Minkowski Arithmetic Space]
+		Let $\mathbb{K}$ be a field, with * as any binary operation on $\mathbb{K}$, we define arithmetic binary operation * on $\tsbd{K}$:
+		For $A,B \in \tsbd{K}$, then 
+		$$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
+		If $A * B =\emptyset$, we say $A * B$ is undefined. In writing, we abbreviate $(A*B)_m$ as $A*B$ and refer to operations in $(\circ)_m$ as operations executed on Minkowski arithmetic space.
+	\end{definition}
+	
+	\begin{definition}[Iterated Operations]
+		Let $*$ be any binary operation on the set of uncertain numbers, $A$ be an uncertain number, $n$ be a natural number greater than 1. We define: 
+		$$A^{n}_{*} := \begin{cases}
+			A*A & n=2 \\
+			\left(A^{n-1}_*\right) * A & n > 2
+		\end{cases}$$
+	\end{definition}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item If * is addition on uncertain numbers, we have 
+			$$A^n_+ = A+A+... \text{ ($n$ times)}$$
+			\item If * is multiplication on uncertain numbers, we have 
+			$$A^n_* = A \cdot A \dots \text{ ($n$ times)}$$
+			\item If * is min operation on uncertain numbers, we have
+			$$A^n_{\min} = \begin{cases}
+				\min(A,A) & n=2 \\
+				\min\left(A^{n-1}_{\min}, A\right) & n > 2
+			\end{cases}$$
+			It is easy to see $A^n_{\min} = A, \forall n \geq 2$.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{example}
+		Let $2_*$ be an iterated operation where $*$ is an arbitrary binary operation on the set of real numbers, $A$ is an uncertain number, we have:
+		\[A^2_* = \bigcup_{a \in A} A * a \]
+	\end{example}
+	
+	Operations written inside notation $\kgdtmr{\circ}$ are called operations on extended Minkowski arithmetic space. One of them is defined as follows:
+	
+	\begin{definition}
+		Let $p,q \in \mathbb{N}^*$.
+		We define \[\kgdtmr{\frac{p}{q}A} := \s{X \in \tsbd{K}: X^q_+ = A^p_+} \]
+		If $q = 1$, we set: \[\kgdtmr{pA}:= \kgdtmr{\frac{p}{1} A} \]
+	\end{definition}
+	
+	\begin{example}
+		$\kgdtmr{\frac{1}{2} \s{2,3,4}} = \s{\s{1,2}} = \s{1,2}$
+	\end{example}
+	
+	\begin{definition}
+		Let $p,q \in \mathbb{N^*}$.
+		We define \[\kgdtmr{A^{\frac{p}{q}}} := \s{X \in \tsbd{K}: X^q_* = A^p_*} \]
+		If $p = 1$, we set: \[\kgdtmr{\sqrt[q]{A}} := \kgdtmr{A^{\frac{1}{q}}}\]
+	\end{definition}
+	
+	\begin{example}
+		To help readers avoid confusing arithmetic spaces in this study, we state the following problems:
+		\begin{enumerate}
+			\item Mr. $A$ plans to build a square courtyard with side length belonging to set $\set{1,2}$. Since after choosing 1 side, the remaining side length must equal that chosen number, the area of the courtyard is: 
+			\[S_1 = \kgdd{\s{1,2}^2} = \s{1,4}\]
+			\item Mr. $B$ plans to build a courtyard but assigns two decision-makers for side lengths; each chooses a length from set $\set{1,2}$. Then the area of Mr. $B$'s courtyard is:
+			\[S_2 = \kgdtmr{\s{1,2}^2} =\s{1,2,4}\]
+		\end{enumerate}
+		Thus, total courtyard area for Mr. $A$ and Mr. $B$ combined is:
+		\[S= S_1 + S_2 = \s{2, 3, 5, 6, 8}\]
+		Let $X \in \tsbd{K}$ be an uncertain number denoting possible choices for building courtyards of Mr. $A$ and $B$, the total area function equals:
+		\[f(X) = \kgdd{X^2} + \kgdtmr{X^2}\] 
+		which is an uncertain function.
+	\end{example}
+	
+	\begin{theorem}[Canonical Form on Minkowski Arithmetic Space]
+		Let $A,B \in \tsbd{K}$, $*$ be any binary operation in Minkowski arithmetic space, and $(f_A,d_A), (f_B,d_B)$ be canonical forms of $A$ and $B$ respectively. Then the canonical form of $\kgdt{A * B}$ is determined by generating function:
+		\[f_{A*B} : d_A \times d_B \to \mathbb{K}\]
+		With \[f_{A*B}(x_1,x_2) = f_A(x_1) * f_B(x_2)\]
+		Therefore: \[\kgdt{A*B} = \s{f_A(x_1)*f_B(x_2) : (x_1,x_2) \in d_A \times d_B}\]
+	\end{theorem}
+	
+	Next we present an example computing with large numbers:
+	
+	\begin{example}
+		Consider two uncertain numbers $A = \{1, 3\}_u$ and $B = \{10, 20\}_u$ over field $\mathbb{R}$.
+		
+		Choose index sets $d_A = d_B = \{1, 2\}$. By Lagrange interpolation, we construct polynomial generating functions $f_A: d_A \to \mathbb{R}$ and $f_B: d_B \to \mathbb{R}$ as follows:
+		$$f_A(x_1) = 1 \cdot \frac{x_1 - 2}{1 - 2} + 3 \cdot \frac{x_1 - 1}{2 - 1} = 2x_1 - 1$$
+		$$f_B(x_2) = 10 \cdot \frac{x_2 - 2}{1 - 2} + 20 \cdot \frac{x_2 - 1}{2 - 1} = 10x_2$$
+		
+		Then $(f_A, d_A)$ and $(f_B, d_B)$ are polynomial canonical forms of $A$ and $B$ respectively.
+		
+		By Theorem 2.3, the generating function of $(A + B)_m$ on domain $d_A \times d_B$ is defined by two-variable polynomial:
+		$$f_{A+B}(x_1, x_2) = f_A(x_1) + f_B(x_2) = 2x_1 + 10x_2 - 1$$
+		
+		Evaluating polynomial $f_{A+B}$ at each point in $d_A \times d_B$:
+		\begin{align*}
+			f_{A+B}(1, 1) &= 2(1) + 10(1) - 1 = 11, \quad f_{A+B}(1, 2) = 2(1) + 10(2) - 1 = 21 \\
+			f_{A+B}(2, 1) &= 2(2) + 10(1) - 1 = 13, \quad f_{A+B}(2, 2) = 2(2) + 10(2) - 1 = 23
+		\end{align*}
+		
+		Therefore:
+		$$ A + B = \{11, 13, 21, 23\}_u$$
+		From which if we set $P = A+B$, we compute 
+		\[\kgdtmr{P^{100}} = \s{\prod_{i=1}^{100}{(2x_i + 10 y_i - 1)}: (x_i,y_i) \in d_A \times d_B, i \in \{1..100\}}\]
+	\end{example}
+	
+	\begin{proposition}
+		Let $A \sim (f_A,d_A), B \sim (f_B,d_B)$ in $\tsbd{K}$, consider $a \in A$, then $a \in B$ if and only if 
+		\[
+		\exists (x,y) \in d_A \times d_B : a=f_A(x)=f_B(y)
+		\]
+	\end{proposition}
+	
+	\begin{remark}
+		This proposition transforms the essence of element checking $a \in B$ (or subset inclusion $A \subseteq B$) from cumbersome data lookups into finding roots of algebraic equation $f_B(y) = f_A(x)$ over index domain $d_A \times d_B$. This completely eliminates dependence on data size when sets expand.
+	\end{remark}
+	
+	\begin{proposition}[Canonical Form of Intersection]
+		\label{prop:dang_chuan_tac_phep_giao}
+		Let $A\sim (f_A,d_A), B \sim (f_B,d_B)$ in $\tsbd{K}$. Then 
+		\[
+		C = A \cap B
+		\]
+		is an uncertain number with canonical form $(f_{A\cap B},d_{A\cap B})$ given by:
+		\begin{align*}
+			d_{A\cap B} &= \set{(x,y) \in d_A \times d_B : f_A(x) = f_B(y)} \\
+			f_{A\cap B}(z) &= f_A(x) = f_B(y), z=(x,y) \in d_{A\cap B}
+		\end{align*}
+	\end{proposition}
+	
+	\begin{example}
+		Consider two uncertain numbers $A, B \in \mathbf{U}(\mathbb{R})$ with canonical forms given by:
+		\begin{itemize}
+			\item $A \sim (f_A, d_A)$ with $f_A(x) = 2x + 1$ on $d_A = \{1, 2, 3, 4\} \Rightarrow A = \{3, 5, 7, 9\}_u$.
+			\item $B \sim (f_B, d_B)$ with $f_B(y) = 3y - 1$ on $d_B = \{1, 2, 3, 4\} \Rightarrow B = \{2, 5, 8, 11\}_u$.
+		\end{itemize}
+		
+		According to Proposition \ref{prop:dang_chuan_tac_phep_giao}, we find index domain $d_{A \cap B}$ by solving algebraic equation on $d_A \times d_B$:
+		\[
+		f_A(x) = f_B(y) \iff 2x + 1 = 3y - 1 \iff 2x - 3y = -2
+		\]
+		Testing pairs $(x, y) \in \{1, 2, 3, 4\} \times \{1, 2, 3, 4\}$, the equation has unique solution $x = 2, y = 2$. Therefore:
+		\[
+		d_{A \cap B} = \{(2, 2)\}
+		\]
+		The corresponding generating function yields value:
+		\[
+		f_{A \cap B}(2, 2) = f_A(2) = 2(2) + 1 = 5
+		\]
+		Thus canonical form $(f_{A \cap B}, d_{A \cap B})$ accurately identifies $A \cap B = \{5\}_u$.
+	\end{example}
+	
+	\begin{proposition}[Canonical Form of Union]
+		Let $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. Canonical form $(f_{A \cup B}, d_{A \cup B})$ of uncertain number $A \cup B$ is defined by:
+		\[
+		\begin{cases}
+			d_{A \cup B} = (d_A \times \{0\}) \cup (d_B \times \{1\}) \\[1ex]
+			f_{A \cup B}(z) = \begin{cases} 
+				f_A(x), & \text{if } z = (x, 0) \in d_A \times \{0\} \\[1ex]
+				f_B(y), & \text{if } z = (y, 1) \in d_B \times \{1\}
+			\end{cases}
+		\end{cases}
+		\]
+	\end{proposition}
+	
+	\begin{theorem}[Undefinedness]
+		Let $*$ be any binary operation on $\tsbd{K}$, $A \in \tsbd{K}$. Then we have 
+		\[A * \emptyset = \emptyset * A= \emptyset\]
+		That is, any uncertain arithmetic binary operation involving the null number yields the null number (undefined).
+	\end{theorem}
+	
+	\begin{example}
+		With operation * as +, we have the definition of addition on $\tsbd{K}$:
+		$$A + B = \s{a+b : a \in A , b \in B}, \text{ with } A,B \in \tsbd{K}.$$
+	\end{example}
+	
+	\begin{example}
+		$$\frac{\s{1,2,3}}{\s{2,3}} = \s{1,\frac{1}{3},\frac{1}{2},\frac{2}{3},\frac{3}{2}}$$
+		$$\frac{\s{1,2,3}}{\s{1,0}} = \s{1,2,3}$$
+		$$\frac{\s{1,2,0}}{0} \text{ is undefined}$$
+		$$\frac{0}{0} \text{ is undefined}$$
+	\end{example}
+	
+	\begin{md}[Distributive Property of Operation $*$ with Union Operation]
+		Let $*$ be a binary operation on uncertain numbers, $A$ and $B$ be uncertain numbers, we have
+		\[A*B = \bigcup_{b \in B} {A * b} \]
+	\end{md}
+	
+	\begin{theorem}
+		Let $A \in \tsbd{K}$, we set 
+		\begin{enumerate}
+			\item $Id_+=\set{X-X: X \in \tsbd{K}}$
+			\item $Id_*=\set{X/X: X \in \tsbd{K}}$
+		\end{enumerate}
+		From which we have: 
+		\begin{align*}
+			(\forall e_+ \in Id_+)(A + e_+ &= A - e_+) \\
+			(\forall e_* \in Id_*)(A \cdot e_* &= A / e_*)
+		\end{align*}
+	\end{theorem}
+	
+	\begin{theorem}[Inverse]
+		Consider $A \in \tsbd{K}, \dimU(A) > 1$, then:
+		\begin{enumerate}
+			\item There exists no uncertain number B such that $A+B = 0$
+			\item There exists no uncertain number B such that $AB = 1$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{theorem}
+		Let $A$ and $B$ be two uncertain numbers, we have 
+		$$\rad(A+B) \leq \rad(A) +\rad(B)$$
+	\end{theorem}
+	
+	\begin{theorem}
+		Let $A$ be an uncertain number, $b$ be a single-valued constant. We have 
+		$$\rad(A+b) = \rad(A)$$
+		This theorem allows an object with uncertain position to preserve its uncertain radius under rigid translation.
+	\end{theorem}
+	
+	\begin{theorem}[Realistic Similarity]
+		Let $A$ be an uncertain number and $k$ be a single-valued constant, we have: $\rad(k A) = |k| \rad(A)$
+	\end{theorem}
+	
+	\begin{theorem}[Identity Theorem with Classical Arithmetic]
+		Let $A = \s{a} , B = \s{b}$ and * be a binary operation on $\mathbb{R}$ where $a*b$ is defined, then 
+		$$A * B = \s{a*b} = a*b$$
+	\end{theorem}
+	
+	\begin{theorem}[Commutativity]
+		Let $A,B$ be two uncertain numbers and * be a commutative binary operation on $\mathbb{R}$, we have
+		$$A*B = B*A$$
+	\end{theorem}
+	
+	\begin{theorem}[Associativity]
+		Let $A,B,C$ be uncertain numbers and * be an associative binary operation on $\mathbb{R}$, then:
+		\[A*(B*C) = (A*B)*C\]
+	\end{theorem}
+	
+	\begin{theorem}[Distributivity]
+		Let $K,A,B$ be uncertain numbers, we have:
+		\[K(A+B)\ = \bigcup_{k \in K} [k(A+B)] = \bigcup_{k \in K} (kA+kB)\]
+		\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right) \]
+	\end{theorem}
+	
+	\begin{theorem}[Inter-Arithmetic Space Theorem]
+		Let $a,c \in \mathbb{K}, X \in \tsbd{K}$. We have:
+		\begin{enumerate}
+			\item $\kgdd{aX} = \kgdt{aX}$
+		\end{enumerate}
+	\end{theorem}
+	
+	\section{Weighted Uncertain Numbers}
+	
+	\begin{definition}[Weight]
+		Let $A$ be a set, a function $\ts{A}$ from $A$ to $[0,1]$ satisfying the following properties is called a weight of A: 
+		\begin{enumerate}
+			\item $$\sum_{a \in A}{\ts{A}(a) } = 1$$
+			\item For all $a \in A$, $\ts{A}(a) > 0 $
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Weighted Uncertain Number over Field $\mathbb{K}$]
+		A pair $(A,\ts{A})$ with $A \in \tsbd{K}$ and $\ts{A}$ being a weight of $A$ is called a weighted uncertain number over field $\mathbb{K}$. The set of all weighted uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbdts{K}$.
+	\end{definition}
+	
+	\begin{example}
+		Let $A \in \tsbd{R}$ and $A = \s{a} = a $ with arbitrary weight $\ts{A}$, we always have $A = a$ with $\ts{A}(a) =1$. Such a number $A$ is a real number.
+	\end{example}
+	
+	\begin{example}
+		Set $A=\s{2k : k \in \mathbb{N}}$ together with weight $\ts{A}(2k) = \frac{1}{2^{k+1}}$ is an uncertain number over real field with weight $\ts{A}$.
+	\end{example}
+	
+	\begin{theorem}[Weight of an Operation]
+		Let * be a binary operation on $\tsbd{K}$, we define function 
+		$$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$ 
+		with $c = a * b \in A * B $, where $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$. Then $\ts{A*B}$ is also a weight of $A *B $.
+	\end{theorem}
+	
+	\begin{definition}[Weighted Weak Binary Relation over Field $\mathbb{K}$]
+		Let $\mathcal{R}$ be a binary relation on field $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. We define the weighted weak binary relation over field $\mathbb{K}$ as follows:
+		\[\ddclmd(A\mathcal{R}B) := \sum_{(a,b) \in A \times B}{\left[\ts{A}(a)\ts{B}(b)I(a,b)\right]}\]
+		Where I(a,b) is given by 
+		\[
+		I(a,b) := \begin{cases}
+			1 & \text{if } (a,b) \in \mathcal{R} \\
+			0 & \text{if } (a,b) \notin \mathcal{R}
+		\end{cases}
+		\]
+	\end{definition}
+	
+	% ==========================================
+	% CHAPTER 3: UNCERTAIN ALGEBRA
+	% ==========================================
+	\chapter{Uncertain Algebra}
+	
+	\par{\noindent From this chapter onwards, we adopt the convention that field $\mathbb{K}$ denotes the field of real or complex numbers, and sets $\mathcal{X}, \mathcal{Y}$ are subsets of $\tsbd{K}$.}
+	
+	\section{Some Concepts}
+	
+	\begin{definition}[Inverse Function]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function on the arithmetic space $\alpha$ with $\alpha \in \set{1,m,m'}$, $X \in \mathcal{X}$. We define the inverse operation of $f$ on the arithmetic space $\alpha$ as:
+		\[
+		(f^{-1}(X))_{\alpha} := \s{A \in \tsbd{K}: (f(A))_\alpha = X}
+		\]
+	\end{definition}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item Given $f(X)=\kgdd{X^2}$, we define: \[\kgdd{\sqrt{X}} = \s{A \in \tsbd{K} : \kgdd{X^2} = X}\]
+			\item Given $f(X)=\kgdd{\sin{X}}$, we define: \[\kgdd{\arcsin{X}} = \s{A \in \tsbd{K} : \kgdd{\sin(A)} = X}\]
+		\end{enumerate}
+	\end{example}
+	
+	\begin{example}
+		Set $N_0 = \s{1,2,5}$ and $f(X)=X^{N_0}$, we define: \[\sqrt[N_0]{X} = \s{A \in \tsbd{K} : A^{N_0} = X}\]
+		For instance \[\sqrt[N_0]{\s{1, 2, 3, 4, 9, 32, 243}} = \s{1,2,3}\]
+	\end{example}
+	
+	\begin{example}
+		Given $f(X)=\kgdtmr{X^2}$, we define: \[\kgdtmr{\sqrt{X}} = \s{A \in \tsbd{K} : \kgdtmr{A^2} = X}\]
+		For instance \[\kgdtmr{\sqrt{\s{1, 2, 4}}} = \s{\s{1,2},\s{-1,-2}}\]
+	\end{example}
+	
+	\begin{definition}[Graph of an Uncertain Function at a Point]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $A \in \mathcal{X}$, we define the graph of the uncertain function $f$ at point $A$ as:
+		\[pgr_f(A):= A \times f(A)\]
+	\end{definition}
+	
+	\begin{definition}[Graph of an Uncertain Function]
+		Let $\mathcal{X} ,\mathcal{Y}$ be subsets of $\tsbd{K}$ where $\mathbb{K}$ is an arbitrary field.
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $A \in \mathcal{X}$, we define the graph of the uncertain function $f$ as:
+		\[\gr{f}:= \set{\pgr_f(X) : X \in \mathcal{X}}\]
+	\end{definition}
+	
+	\begin{example}
+		For $f = X+X$, we have \[\pgr_f{\s{1,2}} = \s{(1,2),(1,3),(1,4),(2,2),(2,3),(2,4)}\]
+	\end{example}
+	
+	\begin{example}
+		Given $$X = \dfrac{1}{10}\s{10..20} $$ and the function $$m(X) = X^{\s{2,3}}+5X $$ we obtain the result that $m(X)$ equals
+		$\{$6, 6.21, 6.331, 6.44, 6.5, 6.69, 6.71, 6.728, 6.831, 6.94, 6.96, 7, 7.19, 7.197, 7.21, 7.228, 7.25, 7.331, 7.44, 7.46, 7.5, 7.56, 7.69, 7.697, 7.71, 7.728, 7.744, 7.75, 7.831, 7.89, 7.94, 7.96, 8, 8.06, 8.19, 8.197, 8.21, 8.228, 8.24, 8.244, 8.25, 8.331, 8.375, 8.39, 8.44, 8.46, 8.5, 8.56, 8.61, 8.69, 8.697, 8.71, 8.728, 8.74, 8.744, 8.75, 8.831, 8.875, 8.89, 8.94, 8.96, 9, 9.06, 9.096, 9.11, 9.19, 9.197, 9.21, 9.228, 9.24, 9.244, 9.25, 9.331, 9.375, 9.39, 9.44, 9.46, 9.5, 9.56, 9.596, 9.61, 9.69, 9.697, 9.71, 9.728, 9.74, 9.744, 9.75, 9.831, 9.875, 9.89, 9.913, 9.94, 9.96, 1E+1, 10.06, 10.096, 10.11, 10.19, 10.197, 10.21, 10.228, 10.24, 10.244, 10.25, 10.331, 10.375, 10.39, 10.413, 10.44, 10.46, 10.5, 10.56, 10.596, 10.61, 10.69, 10.697, 10.71, 10.728, 10.74, 10.744, 10.75, 10.831, 10.832, 10.875, 10.89, 10.913, 10.94, 10.96, 11, 11.06, 11.096, 11.11, 11.19, 11.197, 11.21, 11.228, 11.24, 11.244, 11.25, 11.331, 11.332, 11.375, 11.39, 11.413, 11.44, 11.46, 11.5, 11.56, 11.596, 11.61, 11.69, 11.697, 11.728, 11.74, 11.744, 11.75, 11.832, 11.859, 11.875, 11.89, 11.913, 11.96, 12, 12.06, 12.096, 12.11, 12.197, 12.24, 12.244, 12.25, 12.332, 12.359, 12.375, 12.39, 12.413, 12.5, 12.56, 12.596, 12.61, 12.74, 12.744, 12.832, 12.859, 12.875, 12.89, 12.913, 13, 13.096, 13.11, 13.24, 13.332, 13.359, 13.375, 13.413, 13.5, 13.596, 13.61, 13.832, 13.859, 13.913, 14, 14.096, 14.332, 14.359, 14.413, 14.5, 14.832, 14.859, 14.913, 15, 15.332, 15.359, 15.5, 15.832, 15.859, 16, 16.359, 16.5, 16.859, 17, 17.5, 18$\}_u$
+		\newline \noindent Number of elements: 223, and this set exhibits a structure that we see as similar to the interval $[6,18]$.
+		\newline \noindent If we take $X = \kbd{[1,2]}$, then we have $m(X) = \kbd{[6,18]}$.
+	\end{example}
+	
+	\begin{example}
+		Given $X = \mathbb{N^*} \in \tsbd{R}$, we have:
+		\begin{align*}
+			X^3 \mod 3 &= \s{0,1,2} \\
+			X^3 \mod 4 &= \s{0,1,3} \\
+			X^3 \mod \s{3,4} &= \s{0,1,2,3}
+		\end{align*}
+		These are constant uncertain functions.
+	\end{example}
+	
+	\begin{definition}[Trace]
+		Let $f$ be an uncertain function from $\mathcal{X}$ into $\mathcal{Y}$ mapping $X \mapsto Y = f(X)$.
+		\newline \noindent
+		Considering $y \in Y = f(X)$, we define the trace of $y$ in the expression of $f(X)$, denoted as $\Tr(y \in f(X))$, as the set of all formal expressions whose evaluated result equals $y$, obtained by computing $f(X)$.
+	\end{definition}
+	
+	\begin{definition}[Uncertain Equation]
+		Let $f : \mathcal{X}\to \mathcal{Y}$ be an uncertain function, $C$ be an uncertain constant; an uncertain equation with unknown $X$ is an equation of the form: \[f(X) = C\]
+	\end{definition}
+	
+	\begin{example}
+		Given the uncertain equation \[\kgdd{X^2+5X+6} = 0 \]
+		It is easy to see that $X = \s{-2,-3}$ is a solution to this equation. \\
+		However, $X = \s{-2,-3}$ is not a solution to the equation:
+		\[X^2+5X+6 = 0 \]
+		The equation $X^2+5X+6 = 0$ has solutions $X=-2$ and $X=-3$.
+	\end{example}
+	
+	\begin{definition}[Weak Solution of an Uncertain Equation]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$. 
+		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\] and we write $(f(X_0) = C)_\gamma$, where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$.
+	\end{definition}
+	
+	\begin{theorem}
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$. If the uncertain equation $f(X) = C$ has a solution, then there exist $A,B \in \tsbd{K}$ such that $\gtcl{f(A) = C}{\gamma}$ and $B$ is a solution of $f(X)=C$ with $A \subseteq B$.
+	\end{theorem}
+	
+	\begin{theorem}
+		\label{dl:3.2}
+		Let $X \in \mathcal{X}$ be an uncertain number with canonical form $X \sim (f_X, d_X)$ and $f: \mathcal{X} \rightarrow \mathcal{Y}$ be a single-variable uncertain mapping. 
+		
+		Then, the image $Y = f(X) \in \mathcal{Y}$ possesses a canonical form $Y \sim (f_Y, d_Y)$ determined in each arithmetic space as follows:
+		
+		\begin{enumerate}
+			\item \textbf{On the Single-point Space $(\circ)_1$:} 
+			Since internal point identity is preserved, the scenario domain of $Y$ remains unchanged:
+			\[
+			d_Y = d_X
+			\]
+			The generating function $f_Y: d_Y \rightarrow \mathcal{Y}$ is defined via composition:
+			\[
+			\forall t \in d_Y, \quad f_Y(t) = f(f_X(t))
+			\]
+			
+			\item \textbf{On the Minkowski Space $(\circ)_m$:} 
+			If the expression of the function $f(X)$ contains $k$ occurrences of the variable $X$ ($k \in \mathbb{N}^*$), since each occurrence acts as an independent noise source, the scenario domain expands into a $k$-fold Cartesian product:
+			\[
+			d_Y = d_X^k = \underbrace{d_X \times d_X \times \dots \times d_X}_{k \text{ times}}
+			\]
+			The generating function $f_Y: d_Y \rightarrow \mathcal{Y}$ is defined by:
+			\[
+			\forall (t_1, t_2, \dots, t_k) \in d_Y, \quad f_Y(t_1, t_2, \dots, t_k) = f\left(f_X(t_1), f_X(t_2), \dots, f_X(t_k)\right)
+			\]
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{remark}
+		Theorem \ref{dl:3.2} clarifies the essential boundary between the two arithmetic spaces: the concept of a ``single-variable function'' $f(X)$ in the single-point arithmetic space $(\circ)_1$ preserves the scenario dimension $d_Y = d_X$; whereas in the Minkowski space $(\circ)_m$, the algebraic expression of a single-variable function is deconstructed based on the $k$ occurrences of variable $X$, causing the scenario space to expand into $d_X^k$ corresponding to the Abstract Syntax Tree (AST).
+	\end{remark}
+	
+	\begin{theorem}[Solution Characterization of Uncertain Equations]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \mathcal{Y}$ be a target set/constant with canonical representation $C \sim (f_C, d_C)$.
+		
+		Then, an element $X_0 \in \mathcal{X}$ is a solution of the equation $f(X) = C$ if and only if the value $F = f(X_0) \sim (f_F, d_F)$ satisfies the scenario structure matching condition:
+		\[
+		\forall t \in d_F, \quad \exists t' \in d_C : \quad f_F(t) = f_C(t')
+		\]
+	\end{theorem}
+	
+	% ==========================================
+	% CHAPTER 4: UNCERTAIN CALCULUS
+	% ==========================================
+	\chapter{Uncertain Calculus}
+	
+	\section{Uncertain Functions and Limits}
+	
+	\begin{definition}[Limit of a Sequence]
+		Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of uncertain numbers.
+		We say that the uncertain sequence $(X_n)$ converges to the uncertain number $L$ if:
+		For every real number $\epsilon > 0$, there exists a natural number $n_0$ such that for all $n > n_0$, we always have:
+		$$d_H(X_n, L) < \epsilon$$
+		In this case, we write \[\lim_{n \to \infty} X_n = L\]
+	\end{definition}
+	
+	\begin{definition}[Limit of a Function at a Point]
+		Let $f$ be an uncertain function from $\mathcal{X} \rightarrow \mathcal{Y}$ mapping $X \mapsto f(X)$. The uncertain function $f(X)$ is said to have limit $L$ as $X \rightarrow X_0$, denoted as 
+		$$\lim\limits_{X \rightarrow X_0}f(X) = L$$
+		If $$(\forall \epsilon >0)(\exists \delta >0)(\forall X \in \mathcal{X}) : d_H(X,X_0)<\delta \Rightarrow d_H(f(X),L) < \epsilon$$
+	\end{definition}
+	
+	\begin{definition}[Continuous Uncertain Function]
+		An uncertain function $f : \mathcal{X} \to \mathcal{Y}$ is called continuous at point $X_0 \in \mathcal{X}$ if 
+		$$\lim\limits_{X \rightarrow X_0}f(X) = f(X_0)$$
+	\end{definition}
+	\begin{example}
+		Based on the operations of addition, subtraction, multiplication, division, and exponentiation defined above, we present an example of an uncertain function:
+		$$\hbd{\exp}{X} := \sum_{n=0}^{\infty} \left(\frac{X^n}{n!}\right) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \cdots$$
+		And we compute a specific example $$\hbd{\exp}{\s{0,1}} \subset [e^0,e^1]$$
+		For instance, with $n=8$ and accuracy up to 5 decimal places, we compute $\exp_m\left(\{0,1\}\right)$ approximately equal to
+		$\{$1.00000, 1.00002, 1.00020, 1.00022, 1.00139, 1.00141, 1.00159, 1.00161, 1.00833, 1.00836, 1.00853, 1.00856, 1.00972, 1.00975, 1.00992, 1.00995, 1.04167, 1.04169, 1.04187, 1.04189, 1.04306, 1.04308, 1.04325, 1.04328, 1.05000, 1.05002, 1.05020, 1.05022, 1.05139, 1.05141, 1.05159, 1.05161, 1.16667, 1.16669, 1.16687, 1.16689, 1.16806, 1.16808, 1.16825, 1.16828, 1.17500, 1.17502, 1.17520, 1.17522, 1.17639, 1.17641, 1.17659, 1.17661, 1.20833, 1.20836, 1.20853, 1.20856, 1.20972, 1.20975, 1.20992, 1.20995, 1.21667, 1.21669, 1.21687, 1.21689, 1.21806, 1.21808, 1.21825, 1.21828, 1.50000, 1.50002, 1.50020, 1.50022, 1.50139, 1.50141, 1.50159, 1.50161, 1.50833, 1.50836, 1.50853, 1.50856, 1.50972, 1.50975, 1.50992, 1.50995, 1.54167, 1.54169, 1.54187, 1.54189, 1.54306, 1.54308, 1.54325, 1.54328, 1.55000, 1.55002, 1.55020, 1.55022, 1.55139, 1.55141, 1.55159, 1.55161, 1.66667, 1.66669, 1.66687, 1.66689, 1.66806, 1.66808, 1.66825, 1.66828, 1.67500, 1.67502, 1.67520, 1.67522, 1.67639, 1.67641, 1.67659, 1.67661, 1.70833, 1.70836, 1.70853, 1.70856, 1.70972, 1.70975, 1.70992, 1.70995, 1.71667, 1.71669, 1.71687, 1.71689, 1.71806, 1.71808, 1.71825, 1.71828, 2.00000, 2.00002, 2.00020, 2.00022, 2.00139, 2.00141, 2.00159, 2.00161, 2.00833, 2.00836, 2.00853, 2.00856, 2.00972, 2.00975, 2.00992, 2.00995, 2.04167, 2.04169, 2.04187, 2.04189, 2.04306, 2.04308, 2.04325, 2.04328, 2.05000, 2.05002, 2.05020, 2.05022, 2.05139, 2.05141, 2.05159, 2.05161, 2.16667, 2.16669, 2.16687, 2.16689, 2.16806, 2.16808, 2.16825, 2.16828, 2.17500, 2.17502, 2.17520, 2.17522, 2.17639, 2.17641, 2.17659, 2.17661, 2.20833, 2.20836, 2.20853, 2.20856, 2.20972, 2.20975, 2.20992, 2.20995, 2.21667, 2.21669, 2.21687, 2.21689, 2.21806, 2.21808, 2.21825, 2.21828, 2.50000, 2.50002, 2.50020, 2.50022, 2.50139, 2.50141, 2.50159, 2.50161, 2.50833, 2.50836, 2.50853, 2.50856, 2.50972, 2.50975, 2.50992, 2.50995, 2.54167, 2.54169, 2.54187, 2.54189, 2.54306, 2.54308, 2.54325, 2.54328, 2.55000, 2.55002, 2.55020, 2.55022, 2.55139, 2.55141, 2.55159, 2.55161, 2.66667, 2.66669, 2.66687, 2.66689, 2.66806, 2.66808, 2.66825, 2.66828, 2.67500, 2.67502, 2.67520, 2.67522, 2.67639, 2.67641, 2.67659, 2.67661, 2.70833, 2.70836, 2.70853, 2.70856, 2.70972, 2.70975, 2.70992, 2.70995, 2.71667, 2.71669, 2.71687, 2.71689, 2.71806, 2.71808, 2.71825, 2.71828$\}_u$
+		\newline \noindent Containing $2^8 = 256$ elements.
+	\end{example}
+	
+	\begin{example}
+		Returning to the example $\exp_m\s{0,1} \subseteq [e^0,e]$, it is easily seen that
+		$$\Tr(e \in \exp_m\s{0,1}) = \left\{\sum_{n=0}^{\infty}\frac{1}{n!}\right\}$$
+		Other transcendental numbers lying in the interval $[1,e]$ also possess a unique trace, which is the formal formula of that number.
+	\end{example}
+	
+	\begin{example}
+		$$\hbd{c}{X} = \sum_{k=1}^{\infty} \frac{X}{2^k} \quad$$
+		With $X=\s{a,b}$, we have $\hbd{c}{\s{a,b}} = \kbd{[a,b]}$.
+	\end{example}
+	\section{Derivatives of Uncertain Functions}
+	
+	\begin{definition}[Difference Quotient]
+		Let $f$ be an uncertain function from $\mathcal{X} \rightarrow \mathcal{Y}$ mapping $X \mapsto f(X)$, $h \in \mathbb{K}$.
+		The difference quotient of the uncertain function $f(X)$ at $X_0$ is 
+		\[\Delta_f(X_0)= \frac{f(X_0 + h) - f(X_0)}{h}\]
+	\end{definition}
+	
+	\begin{definition}[Derivative]
+		Let $f$ be an uncertain function from $\mathcal{X} \rightarrow \mathcal{Y}$ mapping $X \mapsto f(X)$.
+		The derivative of the uncertain function $f(X)$ at $X_0$ is an uncertain number: 
+		$$f'(X_0) := \s{\lim_{h\rightarrow 0}{a: a \in \Delta_f(X_0) , \lim_{h\rightarrow 0}a \in \mathbb{K}}}$$
+	\end{definition}
+	
+	\begin{example}
+		For $f(X) = C \in \tsbd{K}$, we have: $$f'(X) = 0$$
+	\end{example}
+	
+	\begin{example}
+		For $f(X) = X^2_\times = XX $, we have $f'(X) = X^2_+ = X+X$. Specifically, for instance, taking $X = \s{1,2}$, we have:
+		$$f'(X) = X^2_+ = X+X = \s{1,2} + \s{1,2} = \s{2,3,4}$$
+	\end{example}
+	
+	\begin{example}
+		For $f(X) = (X^2)_1 = X^2 $, we have $f'(X) = 2X$. Specifically, for instance, taking $X = \{1,2\}$, we have:
+		$$f'(X) = 2X = 2 \s{1,2} = \s{2,4}$$
+	\end{example}
+	
+	\begin{example}
+		For $f(X)= (X^2)_1\cdot (X+X)$, we have 
+		\[f'(X) = \s{2x_1x_3+2x_2x_3+2x_3x_3 : x_1,x_2,x_3 \in X}\]
+		For instance, taking $X=\s{1,2}$, then $f'(X) = \s{6, 8, 10, 16, 20, 24}$.
+	\end{example}
+	
+	\begin{theorem}[Derivative of a Sum]
+		Let $f : \mathcal{X} \to \mathcal{Y}, g : \mathcal{X} \to \mathcal{Y}$ be uncertain functions differentiable at $X_0 \in \tsbd{K}$. We have 
+		\[
+		((f+g)'(X_0))_\alpha = (f'(X_0) + g'(X_0))_\alpha, \quad \forall \alpha \in \set{1,1', m,m'}.
+		\]
+	\end{theorem}
+	
+	\section{Uncertain Integrals}
+	
+	\begin{definition}[Partial Uncertain Integral]
+		Let $A,B \in \tsbd{K}$, $f: \mathcal{X} \to \mathcal{Y}$ be a function possessing an antiderivative, and $F$ be an antiderivative of $f$. The partial uncertain integral from $A$ to $B$ of $f(X)$ with respect to antiderivative $F$ is given by:
+		\[
+		\int_{A}^{B}{f(X)|F} := \s{k = \int_{a}^{b}f(x)dx : a \in F(H_A), b \in F(H_B), k \in \mathbb{K}}
+		\]
+		Where:
+		\begin{align*}
+			H_A &:= \left(\bigcup_{x \in A}{F^{-1}(x)}\right)_u \\
+			H_B &:= \left(\bigcup_{x \in B}{F^{-1}(x)}\right)_u
+		\end{align*}
+	\end{definition}
+	
+	\begin{definition}[Uncertain Integral]
+		Let $A,B \in \tsbd{K}$, $f: \tsbd{K} \to \tsbd{K}$ be a function possessing antiderivatives. Let $\mathcal{F}$ be the set of all antiderivatives of $f$. Then the uncertain integral from $A$ to $B$ of $f$ is given by 
+		\[
+		\int_{A}^{B}{f(X)} := \s{\int_{A}^{B}f(X)|F_i : F_i \in \mathcal{F}}
+		\]
+	\end{definition}
+	
+	\begin{example}
+		Evaluate: 
+		\[I = \int_{\s{1,2}}^{\s{3,4}}{(X+X)|(X^2)_{m'}}\]
+		We have $F(X) = X*X$ as an antiderivative of $f(X)$. We compute:
+		\begin{align*}
+			F^{-1}(\s{1,2}) &= \s{-1,1,\sqrt{2},-\sqrt{2}} \\
+			F^{-1}(\s{3,4}) &= \s{-2,2,\sqrt{3},-\sqrt{3}}
+		\end{align*}
+		Thus we have: 
+		\begin{align*}
+			F(F^{-1}(\s{1,2})) &= \s{-1,1,\sqrt{2},-\sqrt{2}} * \s{-1,1,\sqrt{2},-\sqrt{2}} \\
+			F(F^{-1}(\s{3,4})) &= \s{-2,2,\sqrt{3},-\sqrt{3}} * \s{-2,2,\sqrt{3},-\sqrt{3}}
+		\end{align*}
+		Simplifying yields:
+		\begin{align*}
+			F(F^{-1}(\s{1,2})) &= \s{\pm 1, \pm 2, \pm \sqrt{2}} \\
+			F(F^{-1}(\s{3,4})) &= \s{\pm 4, \pm 2\sqrt{3}, \pm 3}
+		\end{align*}
+		From which we calculate $I$ as equal to:
+		$$
+		\s{k = \int_{a}^{b}{2xdx}: a \in \s{\pm 1, \pm 2, \pm \sqrt{2}}, b \in \s{\pm 4, \pm 2\sqrt{3}, \pm 3}, k \in \mathbb{K}}
+		$$
+		Simplifying yields:
+		\[I = \s{5, 7, 8, 10, 11, 12, 14, 15}\]
+	\end{example}
+	
+	\begin{theorem}
+		Let $A, B \in U(\mathbb{K})$ have canonical forms $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$. Let $g(X)$ be an uncertain function with structural antiderivative $F \in \mathcal{F}$ represented by the $k$-variable generating function $f_F(f_{X_1}, \dots, f_{X_k})$.
+		
+		Consider $k$ differential parameterization paths $f_{X_i}(t_i) = f_A(x_i) + t_i\big(f_B(y_i) - f_A(x_i)\big)$ with $t_i \in [0, 1]$. The total differential form of antiderivative $F$ is:
+		\[
+		d f_F = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} \cdot \big(f_B(y_i) - f_A(x_i)\big) dt_i
+		\]
+		The differential form uncertain integral from $A$ to $B$ of function $g(X)$ corresponding to antiderivative $F$, denoted $\int_A^B g(X)dX \Big| F$, has a canonical form generating function determined by the $k$-fold line integral:
+		\[
+		f_{I_F}(\mathbf{x}, \mathbf{y}) := \int_{[0, 1]^k} d f_F = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
+		\]
+		for all $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$.
+	\end{theorem}
+	
+	\begin{theorem}
+		Let $f,g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at uncertain point $X_0 \in \mathcal{X}$. Suppose representative generating functions of $f(X_0)$ and $g(X_0)$ in canonical form are $f_{f(X_0)(t)}$ and $f_{g(X_0)}(t)$ respectively with $t \in [0,1]^k$.
+		\newline
+		Then the differential form of the sum function:
+		$h(x) = (f+g)(X)$ at $X_0$ is defined by the total linear differential operator:
+		\[df_{f+g}(t) = df_{f(X_0)}(t) + df_{g(X_0)}(t)\]
+		Explicit representation via partial derivatives over parameter hypercube $[0,1]^k:$
+		\[df_{\left(f+g\right)}(t) = \sum_{i=1}^{k}\left[ \left(\frac{\partial f_{f(X_0)}(t)}{\partial t_i} + \frac{\partial f_{g(X_0)}(t)}{\partial t_i}\right) dt_i\right]\]
+	\end{theorem}
+	
 \end{document}
