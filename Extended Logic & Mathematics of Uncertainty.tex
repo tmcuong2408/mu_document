@@ -401,17 +401,49 @@
 	\end{example}
 	
 	\begin{theorem}[Balance]
-		Applying the definition of weak binary relation with $\mathcal{R}$ as $\leq$, we have the following theorem:
-		for $X \in \tsbd{R}$ where $\dimU(X) = \infty$, then: 
-		$$\ddclmd(X\leq X) = \frac{1}{2}$$
+		\label{thm:balance}
+		Let $X \in \tsbd{R}$ be an uncertain number with canonical form $X \sim (f_X, d_X)$. Assume that the index domain $d_X \subseteq \mathbb{R}$ is equipped with a non-atomic, finite measure $\lambda$ (such as the standard Lebesgue measure on $[0, 1]$), and the generating function $f_X: d_X \to \mathbb{R}$ is measurable. 
+		
+		If the level set of diagonals $\mathcal{D} = \{(t_1, t_2) \in d_X \times d_X : f_X(t_1) = f_X(t_2)\}$ has product measure zero, i.e., $(\lambda \times \lambda)(\mathcal{D}) = 0$, then the truth valuation of the weak inequality $X \leq X$ satisfies:
+		\[
+		\ddclmd(X \leq X) = \frac{1}{2}
+		\]
 	\end{theorem}
 	
 	\begin{proof}
-		Suppose $X_s$ has $n$ distinct elements. Total possible pairs $(a,b)$ is $n^2$. The number of pairs where $a<b$ is $n(n-1)/2$. The number of pairs where $a=b$ is $n$. Therefore, the number of pairs $a\leq b$ is 
-		$$\frac{n(n-1)}{2} + n = \frac{n^2+n}{2}$$ 
-		Thus, the truth value is 
-		$$\ddclmd(X\leq X ) = \frac{n^2+n}{2n^2} = \frac{1}{2} + \frac{1}{2n}$$
-		Letting $n \rightarrow \infty$ completes the proof.
+		Consider the product measure space $(\Omega, \mathcal{F}_{\Omega}, \mu)$, where $\Omega = d_X \times d_X$ represents the scenario space of the weak binary relation $X \leq X$, $\mathcal{F}_{\Omega} = \mathcal{F} \otimes \mathcal{F}$, and $\mu = \lambda \times \lambda$ is the product measure.
+		
+		According to the definition of weak binary relation, the truth measure of $X \leq X$ is given by:
+		\[
+		\ddclmd(X \leq X) = \frac{\mu(E_{\leq})}{\mu(\Omega)}
+		\]
+		where $E_{\leq} = \{(t_1, t_2) \in d_X \times d_X : f_X(t_1) \leq f_X(t_2)\}$.
+		
+		We decompose the scenario space $\Omega = d_X \times d_X$ into three mutually disjoint measurable subsets:
+		\begin{align*}
+			E_{<} &= \{(t_1, t_2) \in d_X \times d_X : f_X(t_1) < f_X(t_2)\}, \\
+			E_{>} &= \{(t_1, t_2) \in d_X \times d_X : f_X(t_1) > f_X(t_2)\}, \\
+			\mathcal{D} &= \{(t_1, t_2) \in d_X \times d_X : f_X(t_1) = f_X(t_2)\}.
+		\end{align*}
+		Thus, $\Omega = E_{<} \cup E_{>} \cup \mathcal{D}$ and $\mu(\Omega) = \mu(E_{<}) + \mu(E_{>}) + \mu(\mathcal{D})$.
+		
+		By the swap mapping $S: (t_1, t_2) \mapsto (t_2, t_1)$, which is measure-preserving on the product space $(\Omega, \mu)$, we observe that $S(E_{<}) = E_{>}$. By the measure-preserving property of Fubini's theorem / product measures:
+		\[
+		\mu(E_{<}) = \mu(E_{>})
+		\]
+		By assumption, $(\lambda \times \lambda)(\mathcal{D}) = 0$. Therefore:
+		\[
+		\mu(\Omega) = \mu(E_{<}) + \mu(E_{>}) = 2 \cdot \mu(E_{<}) \implies \frac{\mu(E_{<})}{\mu(\Omega)} = \frac{1}{2}
+		\]
+		Since $E_{\leq} = E_{<} \cup \mathcal{D}$ and $\mu(\mathcal{D}) = 0$, we have:
+		\[
+		\mu(E_{\leq}) = \mu(E_{<}) + \mu(\mathcal{D}) = \mu(E_{<})
+		\]
+		Consequently,
+		\[
+		\ddclmd(X \leq X) = \frac{\mu(E_{\leq})}{\mu(\Omega)} = \frac{\mu(E_{<})}{\mu(\Omega)} = \frac{1}{2}
+		\]
+		This completes the proof.
 	\end{proof}
 	
 	\begin{definition}[Set Arithmetic Operations]
@@ -534,11 +566,69 @@
 	\end{example}
 	
 	\begin{theorem}[Canonical Form on Minkowski Arithmetic Space]
-		Let $A,B \in \tsbd{K}$, $*$ be any binary operation in Minkowski arithmetic space, and $(f_A,d_A), (f_B,d_B)$ be canonical forms of $A$ and $B$ respectively. Then the canonical form of $\kgdt{A * B}$ is determined by generating function:
-		\[f_{A*B} : d_A \times d_B \to \mathbb{K}\]
-		With \[f_{A*B}(x_1,x_2) = f_A(x_1) * f_B(x_2)\]
-		Therefore: \[\kgdt{A*B} = \s{f_A(x_1)*f_B(x_2) : (x_1,x_2) \in d_A \times d_B}\]
+		\label{thm:minkowski_canonical_form}
+		Let $A, B \in \tsbd{K}$ be two uncertain numbers with canonical forms $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$, respectively. Let $*$ be any binary operation on field $\mathbb{K}$ extended to the Minkowski arithmetic space $(\circ)_m$.
+		
+		Then, the resulting uncertain number $C = \kgdt{A * B}$ possesses a canonical form $(f_{A*B}, d_{A*B})$ uniquely determined by:
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Scenario Index Domain:} 
+			\[
+			d_{A*B} = d_A \times d_B
+			\]
+			\item \textbf{Generating Function:} $f_{A*B} : d_A \times d_B \to \mathbb{K}$ defined by
+			\[
+			f_{A*B}(x_1, x_2) = f_A(x_1) * f_B(x_2), \quad \forall (x_1, x_2) \in d_A \times d_B
+			\]
+		\end{enumerate}
+		Consequently, the set-theoretic representation of the resulting uncertain number is:
+		\[
+		\kgdt{A * B} = \bd{f_{A*B}(d_A \times d_B)} = \s{f_A(x_1) * f_B(x_2) \;:\; (x_1, x_2) \in d_A \times d_B}
+		\]
 	\end{theorem}
+	
+	\begin{proof}
+		To establish that $(f_{A*B}, d_A \times d_B)$ is a valid canonical form of $\kgdt{A * B}$, we must verify two key criteria: index domain compatibility and set-image preservation under the generating function.
+		
+		\paragraph{Step 1: Index Domain Compatibility.}
+		According to the definition of canonical form, the scenario index domain of an uncertain number corresponds to the cardinality of its underlying set of scenario values.
+		\begin{itemize}[leftmargin=*]
+			\item \textbf{Finite Case:} If $\dimU(A) = n_1$ and $\dimU(B) = n_2$, then $d_A = \{1, \dots, n_1\}$ and $d_B = \{1, \dots, n_2\}$. The Cartesian product $d_A \times d_B$ contains $n_1 \cdot n_2$ element pairs, isomorphic to $\{1, \dots, n_1 \cdot n_2\}$ under a lexicographical bijection.
+			\item \textbf{Countably Infinite Case:} If $d_A, d_B \subseteq \mathbb{N}^*$, since the Cartesian product of two countable sets is countable, we have $d_A \times d_B \sim \mathbb{N}^*$.
+			\item \textbf{Uncountably Infinite Case:} If $d_A = [0, 1]$ and $d_B = [0, 1]$, the product domain $d_A \times d_B = [0, 1]^2$ exhibits the cardinality of the continuum, which is isomorphic to $[0, 1]$ via standard space-filling bijections.
+		\end{itemize}
+		Thus, $d_{A*B} = d_A \times d_B$ is a well-defined scenario domain representing independent uncertainty interactions.
+		
+		\paragraph{Step 2: Set-Image Preservation.}
+		We show that $f_{A*B}(d_A \times d_B) = (\kgdt{A * B})_s$ by establishing mutual set inclusions:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Forward Inclusion ($\subseteq$):} 
+			Let $y \in f_{A*B}(d_A \times d_B)$. By definition of the generating function, there exists a scenario index pair $(x_1, x_2) \in d_A \times d_B$ such that:
+			\[
+			y = f_{A*B}(x_1, x_2) = f_A(x_1) * f_B(x_2)
+			\]
+			Since $x_1 \in d_A$ and $x_2 \in d_B$, canonical representations imply $a = f_A(x_1) \in A_s$ and $b = f_B(x_2) \in B_s$. By the definition of operations in Minkowski space $(\circ)_m$:
+			\[
+			(\kgdt{A * B})_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
+			\]
+			Therefore, $y = a * b \in (\kgdt{A * B})_s$, which proves $f_{A*B}(d_A \times d_B) \subseteq (\kgdt{A * B})_s$.
+			
+			\item \textbf{Backward Inclusion ($\supseteq$):} 
+			Let $z \in (\kgdt{A * B})_s$. By definition of Minkowski binary operations, there exist elements $a \in A_s$ and $b \in B_s$ such that $z = a * b$.
+			Since $(f_A, d_A)$ and $(f_B, d_B)$ are canonical forms of $A$ and $B$, generating functions $f_A$ and $f_B$ map surjectively from their respective index domains onto $A_s$ and $B_s$. Thus:
+			\begin{itemize}
+				\item $\exists x_1^* \in d_A \text{ such that } f_A(x_1^*) = a$
+				\item $\exists x_2^* \in d_B \text{ such that } f_B(x_2^*) = b$
+			\end{itemize}
+			Evaluating $f_{A*B}$ at $(x_1^*, x_2^*) \in d_A \times d_B$ yields:
+			\[
+			f_{A*B}(x_1^*, x_2^*) = f_A(x_1^*) * f_B(x_2^*) = a * b = z
+			\]
+			Hence $z \in f_{A*B}(d_A \times d_B)$, proving $(\kgdt{A * B})_s \subseteq f_{A*B}(d_A \times d_B)$.
+		\end{enumerate}
+		
+		Combining both inclusions confirms that $f_{A*B}(d_A \times d_B) = (\kgdt{A * B})_s$, which completes the proof.
+	\end{proof}
 	
 	Next we present an example computing with large numbers:
 	
