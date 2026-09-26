@@ -230,7 +230,62 @@
 		\ddclmd(Q) \ge \ddclmd(P) + \ddclmd(P \Rightarrow Q) - 1
 		\]
 	\end{theorem}
-	
+	\begin{proof}
+		Consider the state space $(\Omega, \mathcal{F}, \lambda)$ and let $P, Q$ be two arbitrary propositions. 
+		
+		For each state $\omega \in \Omega$, let $v(P, \omega) \in \{0, 1\}$ and $v(Q, \omega) \in \{0, 1\}$ be the scenario truth values of $P$ and $Q$, respectively. We define the following state subsets of $\Omega$:
+		\begin{align*}
+			\Omega_P &= \{\omega \in \Omega : v(P, \omega) = 1\}, \\
+			\Omega_Q &= \{\omega \in \Omega : v(Q, \omega) = 1\}, \\
+			\Omega_{P \Rightarrow Q} &= \{\omega \in \Omega : v(P \Rightarrow Q, \omega) = 1\}.
+		\end{align*}
+		
+		By the definition of classical material implication on state space, for any $\omega \in \Omega$, $v(P \Rightarrow Q, \omega) = 1$ if and only if $v(P, \omega) \le v(Q, \omega)$. Thus:
+		\[
+		\Omega_{P \Rightarrow Q} = \{\omega \in \Omega : v(P, \omega) \le v(Q, \omega)\}
+		\]
+		
+		We evaluate the truth value at state $\omega$ for each case:
+		\begin{enumerate}[leftmargin=*]
+			\item If $\omega \in \Omega_P$ (so $v(P, \omega) = 1$), then $v(P, \omega) \le v(Q, \omega)$ holds if and only if $v(Q, \omega) = 1$ (so $\omega \in \Omega_Q$). Therefore:
+			\[
+			\Omega_P \cap \Omega_{P \Rightarrow Q} = \Omega_P \cap \Omega_Q
+			\]
+			\item Since $\Omega_P \cap \Omega_Q \subseteq \Omega_Q$, applying the monotonicity property of measure $\lambda$ yields:
+			\[
+			\lambda(\Omega_P \cap \Omega_{P \Rightarrow Q}) = \lambda(\Omega_P \cap \Omega_Q) \le \lambda(\Omega_Q)
+			\]
+		\end{enumerate}
+		
+		On the other hand, for any two measurable subsets $\Omega_P$ and $\Omega_{P \Rightarrow Q}$ of $\Omega$, by the principle of inclusion-exclusion (or Bonferroni's inequality for measures), we have:
+		\[
+		\lambda(\Omega_P \cup \Omega_{P \Rightarrow Q}) = \lambda(\Omega_P) + \lambda(\Omega_{P \Rightarrow Q}) - \lambda(\Omega_P \cap \Omega_{P \Rightarrow Q})
+		\]
+		Since $\Omega_P \cup \Omega_{P \Rightarrow Q} \subseteq \Omega$, its measure is bounded above by $\lambda(\Omega)$:
+		\[
+		\lambda(\Omega_P) + \lambda(\Omega_{P \Rightarrow Q}) - \lambda(\Omega_P \cap \Omega_{P \Rightarrow Q}) \le \lambda(\Omega)
+		\]
+		Rearranging the inequality gives:
+		\[
+		\lambda(\Omega_P \cap \Omega_{P \Rightarrow Q}) \ge \lambda(\Omega_P) + \lambda(\Omega_{P \Rightarrow Q}) - \lambda(\Omega)
+		\]
+		
+		Combining this with $\lambda(\Omega_Q) \ge \lambda(\Omega_P \cap \Omega_{P \Rightarrow Q})$, we obtain:
+		\[
+		\lambda(\Omega_Q) \ge \lambda(\Omega_P) + \lambda(\Omega_{P \Rightarrow Q}) - \lambda(\Omega)
+		\]
+		
+		Dividing both sides of the inequality by the total measure $\lambda(\Omega) > 0$:
+		\[
+		\frac{\lambda(\Omega_Q)}{\lambda(\Omega)} \ge \frac{\lambda(\Omega_P)}{\lambda(\Omega)} + \frac{\lambda(\Omega_{P \Rightarrow Q})}{\lambda(\Omega)} - 1
+		\]
+		
+		By the definition of the global truth valuation operator $\ddclmd$, we conclude:
+		\[
+		\ddclmd(Q) \ge \ddclmd(P) + \ddclmd(P \Rightarrow Q) - 1
+		\]
+		This completes the proof.
+	\end{proof}
 	\section{Illustrative Example of Correlation Preservation}
 	\begin{example}
 		Consider state space $\Omega = \{1, 2, 3, 4\}$ with counting measure $\lambda(A) = |A|$. Consider two atomic propositions $P$ and $Q$ having scenario truth functions:
@@ -256,7 +311,7 @@
 	\begin{example}
 		A coffee shop $A$ serves a daily customer count belonging to set $K = \set{10, 15, 30}$ (customers). The average spending per customer belongs to set $C = \set{10, 20, 50}$ (thousand VND). The set of all possible daily revenue levels for coffee shop $A$ is determined by:
 		\[
-		D = \set{kc : k \in K, \, c \in C} = \set{100, 150, 200, 300, 500, 600, 750, 1500} \text{ (thousand VND)}
+		D = \set{kc : k \in K, \, c \in C}  \text{ (thousand VND)}
 		\]
 	\end{example}
 	
@@ -268,10 +323,10 @@
 		\end{itemize}
 		The possible travel times on each leg are given respectively by the sets:
 		\[
-		T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} = \set{4; \, 4.8; \, 5; \, 6; \, 7.5} \text{ (hours)}
+		T_1 = \set{\frac{s_1}{v_1} : s_1 \in S_1, \, v_1 \in V_1} \text{ (hours)}
 		\]
 		\[
-		T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2} = \set{3.33; \, 4; \, 4.17; \, 5; \, 6; \, 6.25; \, 7.5} \text{ (hours)}
+		T_2 = \set{\frac{s_2}{v_2} : s_2 \in S_2, \, v_2 \in V_2}  \text{ (hours)}
 		\]
 		Thus, the total possible travel time for the whole journey belongs to the set:
 		\[
@@ -329,10 +384,56 @@
 		such that $\bd{f_A(d_A)}= A$. In this case, we call $(f_A,d_A)$ a canonical form of $A$ and denote $A \sim (f_A,d_A)$.
 	\end{definition}
 	
-	\begin{theorem}[Equivalent Canonical Form]
-		Let $A \in \tsbd{K}$, and $(f_A,d_A)$ be a canonical form of $A$. Then there exists $(f'_A,d_A)$ which is also a canonical form of $A$.
-	\end{theorem}
+\begin{theorem}[Equivalence Relation of Canonical Forms]
+	\label{thm:canonical_form_equivalence}
+	Let $\mathbf{CF}(A)$ be the set of all canonical forms of an uncertain number $A \in \tsbd{K}$. Define a binary relation $\sim$ on $\mathbf{CF}(A)$ such that two canonical forms $(f_1, d_1)$ and $(f_2, d_2)$ are equivalent, written as $(f_1, d_1) \sim (f_2, d_2)$, if and only if:
+	\begin{enumerate}[leftmargin=*]
+		\item They share the same index domain: $d_1 = d_2 = d_A$.
+		\item There exists a bijection $\sigma : d_A \to d_A$ on the index domain such that $f_2 = f_1 \circ \sigma$.
+	\end{enumerate}
+	Then, the relation $\sim$ is an equivalence relation on $\mathbf{CF}(A)$.
+\end{theorem}
+
+\begin{proof}
+	To establish that $\sim$ is an equivalence relation on $\mathbf{CF}(A)$, we verify the three defining properties: reflexivity, symmetry, and transitivity.
 	
+	\begin{enumerate}[leftmargin=*]
+		\item \textbf{Reflexivity:} 
+		Let $(f_1, d_A) \in \mathbf{CF}(A)$. Consider the identity mapping $\sigma = \text{id}_{d_A} : d_A \to d_A$ defined by $\sigma(t) = t$ for all $t \in d_A$. Obviously, $\text{id}_{d_A}$ is a bijection on $d_A$, and we have:
+		\[
+		(f_1 \circ \text{id}_{d_A})(t) = f_1(t), \quad \forall t \in d_A \implies f_1 = f_1 \circ \text{id}_{d_A}
+		\]
+		Hence, $(f_1, d_A) \sim (f_1, d_A)$.
+		
+		\item \textbf{Symmetry:} 
+		Let $(f_1, d_A), (f_2, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$. By definition, there exists a bijection $\sigma : d_A \to d_A$ satisfying $f_2 = f_1 \circ \sigma$.
+		
+		Since $\sigma$ is a bijection, its inverse mapping $\sigma^{-1} : d_A \to d_A$ exists and is also a bijection on $d_A$. Composing both sides with $\sigma^{-1}$ yields:
+		\[
+		f_2 \circ \sigma^{-1} = (f_1 \circ \sigma) \circ \sigma^{-1} = f_1 \circ (\sigma \circ \sigma^{-1}) = f_1 \circ \text{id}_{d_A} = f_1
+		\]
+		Thus, $f_1 = f_2 \circ \sigma^{-1}$ with bijection $\sigma^{-1}$, which implies $(f_2, d_A) \sim (f_1, d_A)$.
+		
+		\item \textbf{Transitivity:} 
+		Let $(f_1, d_A), (f_2, d_A), (f_3, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$ and $(f_2, d_A) \sim (f_3, d_A)$. 
+		
+		By definition, there exist bijections $\sigma_1 : d_A \to d_A$ and $\sigma_2 : d_A \to d_A$ such that:
+		\[
+		f_2 = f_1 \circ \sigma_1 \quad \text{and} \quad f_3 = f_2 \circ \sigma_2
+		\]
+		Substituting $f_2$ into the expression for $f_3$:
+		\[
+		f_3 = (f_1 \circ \sigma_1) \circ \sigma_2 = f_1 \circ (\sigma_1 \circ \sigma_2)
+		\]
+		Since the composition of two bijections on $d_A$ is again a bijection on $d_A$, the mapping $\sigma_3 = \sigma_1 \circ \sigma_2 : d_A \to d_A$ is a bijection satisfying $f_3 = f_1 \circ \sigma_3$. Consequently, $(f_1, d_A) \sim (f_3, d_A)$.
+	\end{enumerate}
+	
+	Since $\sim$ is reflexive, symmetric, and transitive, it constitutes a well-defined equivalence relation on $\mathbf{CF}(A)$.
+\end{proof}
+
+\begin{remark}
+	The equivalence relation $\sim$ partitions the space of all generating representations of an uncertain number $A$ into equivalence classes $[\,(f_A, d_A)\,]_\sim$. Each equivalence class corresponds to the unique invariant algebraic identity of $A$ up to scenario reparameterization, ensuring that all physical/algebraic properties of $A$ remain invariant under index permutation.
+\end{remark}
 	Next, related to solving uncertain equations, we arrive at the following definition:
 	
 	\begin{definition}[Uncertain Number of Order $n$]
@@ -709,7 +810,39 @@
 			f_{A\cap B}(z) &= f_A(x) = f_B(y), z=(x,y) \in d_{A\cap B}
 		\end{align*}
 	\end{proposition}
-	
+	\begin{proof}
+		By Proposition 2.1, an element $c \in \mathbb{K}$ belongs to the intersection $A \cap B$ if and only if there exists a scenario pair $(x, y) \in d_A \times d_B$ such that:
+		\[
+		c = f_A(x) = f_B(y)
+		\]
+		We verify that $(f_{A \cap B}, d_{A \cap B})$ satisfies the two requirements of a canonical form for $C = A \cap B$:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Well-definedness of Index Domain and Generating Function:} \\
+			The index domain $d_{A \cap B} = \{(x, y) \in d_A \times d_B : f_A(x) = f_B(y)\}$ collects precisely all scenario pairs $(x, y)$ that produce common values between $A$ and $B$.
+			
+			The generating function $f_{A \cap B} : d_{A \cap B} \to \mathbb{K}$ defined by $f_{A \cap B}(z) = f_A(x) = f_B(y)$ for $z = (x, y) \in d_{A \cap B}$ is unambiguously well-defined because $f_A(x) = f_B(y)$ holds for every element in $d_{A \cap B}$.
+			
+			\item \textbf{Set-Image Preservation:} \\
+			We establish $f_{A \cap B}(d_{A \cap B}) = (A \cap B)_s$ via mutual inclusion:
+			\begin{itemize}[leftmargin=*]
+				\item \textbf{Forward Inclusion ($\subseteq$):} 
+				Let $c \in f_{A \cap B}(d_{A \cap B})$. By definition of $f_{A \cap B}$, there exists $z = (x, y) \in d_{A \cap B}$ such that $c = f_A(x) = f_B(y)$. 
+				Since $x \in d_A$, $c = f_A(x) \in A_s$. Since $y \in d_B$, $c = f_B(y) \in B_s$. 
+				Thus, $c \in A_s \cap B_s = (A \cap B)_s$, proving $f_{A \cap B}(d_{A \cap B}) \subseteq (A \cap B)_s$.
+				
+				\item \textbf{Backward Inclusion ($\supseteq$):} 
+				Let $c \in (A \cap B)_s = A_s \cap B_s$. 
+				Since $c \in A_s$, there exists $x^* \in d_A$ such that $f_A(x^*) = c$. 
+				Since $c \in B_s$, there exists $y^* \in d_B$ such that $f_B(y^*) = c$. 
+				Therefore, $f_A(x^*) = f_B(y^*)$, which implies $z^* = (x^*, y^*) \in d_{A \cap B}$. 
+				Evaluating $f_{A \cap B}$ at $z^*$ yields $f_{A \cap B}(z^*) = f_A(x^*) = c \in f_{A \cap B}(d_{A \cap B})$. 
+				This proves $(A \cap B)_s \subseteq f_{A \cap B}(d_{A \cap B})$.
+			\end{itemize}
+		\end{enumerate}
+		
+		Combining both inclusions confirms $f_{A \cap B}(d_{A \cap B}) = (A \cap B)_s$, which completes the proof.
+	\end{proof}
 	\begin{example}
 		Consider two uncertain numbers $A, B \in \mathbf{U}(\mathbb{R})$ with canonical forms given by:
 		\begin{itemize}[leftmargin=*]
@@ -744,13 +877,71 @@
 		\end{cases}
 		\]
 	\end{proposition}
-	
+	\begin{proof}
+		Let $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. To establish that $(f_{A \cup B}, d_{A \cup B})$ is a valid canonical form of $C = A \cup B$, we must verify that the index domain and the piecewise generating function preserve the set-image $(A \cup B)_s$.
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Well-definedness of Disjoint Index Domain:} \\
+			By defining the index domain as the disjoint union of indexed products:
+			\[
+			d_{A \cup B} = (d_A \times \{0\}) \cup (d_B \times \{1\})
+			\]
+			we guarantee that $(d_A \times \{0\}) \cap (d_B \times \{1\}) = \emptyset$, eliminating any index collision between domains $d_A$ and $d_B$. Thus, the piecewise definition of $f_{A \cup B}$ is unambiguous and well-defined for every $z \in d_{A \cup B}$.
+			
+			\item \textbf{Set-Image Preservation:} \\
+			We show that $f_{A \cup B}(d_{A \cup B}) = (A \cup B)_s$ via mutual inclusion:
+			\begin{itemize}[leftmargin=*]
+				\item \textbf{Forward Inclusion ($\subseteq$):} 
+				Let $c \in f_{A \cup B}(d_{A \cup B})$. Then there exists $z \in d_{A \cup B}$ such that $c = f_{A \cup B}(z)$. 
+				\begin{itemize}
+					\item If $z = (x, 0) \in d_A \times \{0\}$, then $c = f_A(x) \in f_A(d_A) = A_s \subseteq A_s \cup B_s$.
+					\item If $z = (y, 1) \in d_B \times \{1\}$, then $c = f_B(y) \in f_B(d_B) = B_s \subseteq A_s \cup B_s$.
+				\end{itemize}
+				In either case, $c \in A_s \cup B_s = (A \cup B)_s$, proving $f_{A \cup B}(d_{A \cup B}) \subseteq (A \cup B)_s$.
+				
+				\item \textbf{Backward Inclusion ($\supseteq$):} 
+				Let $c \in (A \cup B)_s = A_s \cup B_s$. 
+				\begin{itemize}
+					\item If $c \in A_s$, by surjectivity of $f_A$, there exists $x^* \in d_A$ such that $f_A(x^*) = c$. Choosing $z^* = (x^*, 0) \in d_{A \cup B}$, we have $f_{A \cup B}(z^*) = f_A(x^*) = c$.
+					\item If $c \in B_s$, by surjectivity of $f_B$, there exists $y^* \in d_B$ such that $f_B(y^*) = c$. Choosing $z^* = (y^*, 1) \in d_{A \cup B}$, we have $f_{A \cup B}(z^*) = f_B(y^*) = c$.
+				\end{itemize}
+				Thus, $c \in f_{A \cup B}(d_{A \cup B})$ in both scenarios, proving $(A \cup B)_s \subseteq f_{A \cup B}(d_{A \cup B})$.
+			\end{itemize}
+		\end{enumerate}
+		
+		Combining both inclusions confirms $f_{A \cup B}(d_{A \cup B}) = (A \cup B)_s$, completing the proof.
+	\end{proof}
 	\begin{theorem}[Undefinedness]
 		Let $*$ be any binary operation on $\tsbd{K}$, $A \in \tsbd{K}$. Then we have 
 		\[A * \emptyset = \emptyset * A= \emptyset\]
 		That is, any uncertain arithmetic binary operation involving the null number yields the null number (undefined).
 	\end{theorem}
-	
+	\begin{proof}
+		Let $*$ be an arbitrary binary operation on $\tsbd{K}$ and $A \in \tsbd{K}$. By definition of the null number, $\emptyset$ is the undefined uncertain number whose underlying set of scenario values is the empty set, i.e., $(\emptyset)_s = \emptyset$.
+		
+		We prove $A * \emptyset = \emptyset * A = \emptyset$ across both primary arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By the definition of binary operations in Minkowski space:
+			\[
+			((A * \emptyset)_m)_s = \{a * b \;:\; a \in A_s, \, b \in (\emptyset)_s, \, a * b \in \mathbb{K}\}
+			\]
+			Since $(\emptyset)_s = \emptyset$, there exists no element $b \in (\emptyset)_s$. Consequently, the Cartesian product $A_s \times (\emptyset)_s = \emptyset$, which implies that no valid pairs $(a, b)$ can be formed to evaluate $a * b$. Thus:
+			\[
+			((A * \emptyset)_m)_s = \emptyset \implies (A * \emptyset)_m = \emptyset
+			\]
+			By symmetric argument, $((\emptyset * A)_m)_s = \{b * a \;:\; b \in \emptyset, \, a \in A_s\} = \emptyset \implies (\emptyset * A)_m = \emptyset$.
+			
+			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			Consider an uncertain function $f(X, Y) = \kgdd{X * Y}$. The evaluation pass requires selecting representative points $x \in A_s$ and $y \in (\emptyset)_s$. Since $(\emptyset)_s = \emptyset$, no representative point $y$ can be assigned to the variable $\emptyset$. Hence, the pointwise mapping pass cannot be executed, yielding an empty image set:
+			\[
+			\kgdd{A * \emptyset} = \s{x * y \;:\; x \in A_s, \, y \in \emptyset} = \emptyset
+			\]
+		\end{enumerate}
+		
+		In all cases, any arithmetic binary operation involving the null number $\emptyset$ results in the null number $\emptyset$. This completes the proof.
+	\end{proof}
 	\begin{example}
 		With operation * as +, we have the definition of addition on $\tsbd{K}$:
 		$$A + B = \s{a+b : a \in A , b \in B}, \text{ with } A,B \in \tsbd{K}.$$
@@ -767,7 +958,37 @@
 		Let $*$ be a binary operation on uncertain numbers, $A$ and $B$ be uncertain numbers, we have
 		\[A*B = \bigcup_{b \in B} {A * b} \]
 	\end{md}
-	
+	\begin{proof}
+		Let $*$ be a binary operation on $\tsbd{K}$, and let $A, B \in \tsbd{K}$ be uncertain numbers with scenario value sets $A_s$ and $B_s$, respectively. 
+		
+		We prove the identity $A * B = \bigcup_{b \in B} (A * b)$ by demonstrating mutual inclusion of their underlying scenario value sets across arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By definition of binary operations in Minkowski space, the set of scenario values of $(A * B)_m$ is given by:
+			\[
+			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s\}
+			\]
+			On the other hand, for a fixed element $b \in B_s$, identifying $b$ as a single-valued uncertain number $\{b\}_u$, the term $A * b$ has scenario value set:
+			\[
+			(A * b)_s = \{a * b \;:\; a \in A_s\}
+			\]
+			Taking the set union over all $b \in B_s$:
+			\[
+			\left( \bigcup_{b \in B} (A * b) \right)_s = \bigcup_{b \in B_s} (A * b)_s = \bigcup_{b \in B_s} \{a * b \;:\; a \in A_s\} = \{a * b \;:\; a \in A_s, \, b \in B_s\}
+			\]
+			Thus, $((A * B)_m)_s = \left( \bigcup_{b \in B} (A * b) \right)_s$.
+			
+			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass, variable $B$ takes a representative element $b = f_B(y) \in B_s$ for $y \in d_B$. The resulting image set decomposes along the fiber of elements in $B$:
+			\[
+			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\} = \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A\}
+			\]
+			Substituting $b = f_B(y) \in B_s$, this equals $\bigcup_{b \in B_s} (A * b)_s$.
+			\end{enumerate}
+				
+				In all arithmetic spaces, the set of scenario values matches identically, confirming that $A * B = \bigcup_{b \in B} (A * b)$.
+			\end{proof}
 	\begin{theorem}
 		Let $A \in \tsbd{K}$, we set 
 		\begin{enumerate}[leftmargin=*]
@@ -780,7 +1001,50 @@
 			(\forall e_* \in Id_*)(A \cdot e_* &= A / e_*)
 		\end{align*}
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A \in \tsbd{K}$. By definition, any elements $e_+ \in Id_+$ and $e_* \in Id_*$ are constructed from some uncertain numbers $X, Y \in \tsbd{K}$ as $e_+ = X - X$ and $e_* = Y / Y$, respectively.
+		
+		We prove the two identities separately across the relevant arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Proof of $A + e_+ = A - e_+$ for all $e_+ \in Id_+$:} \\
+			Let $e_+ = X - X \in Id_+$ for some $X \in \tsbd{K}$. The scenario value set of $e_+$ is given by:
+			\[
+			(e_+)_s = \{x_1 - x_2 \;:\; x_1, x_2 \in X_s\}
+			\]
+			Notice that if $v \in (e_+)_s$, then $v = x_1 - x_2$ for some $x_1, x_2 \in X_s$. Reversing the order gives $-v = x_2 - x_1 \in (e_+)_s$. Thus, $(e_+)_s$ is a symmetric set around zero, meaning $(e_+)_s = -(e_+)_s$.
+			
+			Evaluating $A + e_+$ and $A - e_+$ in Minkowski arithmetic space $(\circ)_m$:
+			\begin{align*}
+				(A + e_+)_s &= \{a + v \;:\; a \in A_s, \, v \in (e_+)_s\} \\
+				(A - e_+)_s &= \{a - v \;:\; a \in A_s, \, v \in (e_+)_s\}
+			\end{align*}
+			Since $(e_+)_s = -(e_+)_s$, as $v$ ranges over $(e_+)_s$, $-v$ also ranges over the exact same set $(e_+)_s$. Therefore:
+			\[
+			(A - e_+)_s = \{a - (-u) \;:\; a \in A_s, \, u \in (e_+)_s\} = \{a + u \;:\; a \in A_s, \, u \in (e_+)_s\} = (A + e_+)_s
+			\]
+			Hence, $A + e_+ = A - e_+$ holds.
+			
+			\item \textbf{Proof of $A \cdot e_* = A / e_*$ for all $e_* \in Id_*$:} \\
+			Let $e_* = Y / Y \in Id_*$ for some $Y \in \tsbd{K}$ where $0 \notin Y_s$. The scenario value set of $e_*$ is:
+			\[
+			(e_*)_s = \left\{ \frac{y_1}{y_2} \;:\; y_1, y_2 \in Y_s \right\}
+			\]
+			For any element $w \in (e_*)_s$, $w = \frac{y_1}{y_2}$. Taking its multiplicative inverse yields $\frac{1}{w} = \frac{y_2}{y_1} \in (e_*)_s$. Thus, $(e_*)_s$ is closed under inversion, meaning $(e_*)_s = (e_*)_s^{-1}$.
+			
+			Evaluating $A \cdot e_*$ and $A / e_*$ in Minkowski arithmetic space $(\circ)_m$:
+			\begin{align*}
+				(A \cdot e_*)_s &= \{a \cdot w \;:\; a \in A_s, \, w \in (e_*)_s\} \\
+				(A / e_*)_s &= \left\{ \frac{a}{w} \;:\; a \in A_s, \, w \in (e_*)_s \right\}
+			\end{align*}
+			Since $(e_*)_s = (e_*)_s^{-1}$, replacing $w$ with $\frac{1}{u}$ (where $u \in (e_*)_s$) yields:
+			\[
+			(A / e_*)_s = \left\{ \frac{a}{1/u} \;:\; a \in A_s, \, u \in (e_*)_s \right\} = \{a \cdot u \;:\; a \in A_s, \, u \in (e_*)_s\} = (A \cdot e_*)_s
+			\]
+			Hence, $A \cdot e_* = A / e_*$ holds.
+			\end{enumerate}				
+				In both cases, the structural symmetry of the identity-like sets $Id_+$ under negation and $Id_*$ under inversion ensures the equivalence of the operations. This completes the proof.
+			\end{proof}
 	\begin{theorem}[Inverse]
 		Consider $A \in \tsbd{K}, \dimU(A) > 1$, then:
 		\begin{enumerate}[leftmargin=*]
@@ -788,32 +1052,239 @@
 			\item There exists no uncertain number B such that $AB = 1$
 		\end{enumerate}
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A \in \tsbd{K}$ be an uncertain number with scenario value set $A_s$ and dimension $\dimU(A) > 1$.
+		
+		We prove the non-existence of additive and multiplicative inverses by contradiction:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Proof of Part 1 (Non-existence of Additive Inverse):} \\
+			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $A + B = 0$.
+			
+			By definition of addition in Minkowski arithmetic space $(\circ)_m$:
+			\[
+			(A + B)_s = \{a + b \;:\; a \in A_s, \, b \in B_s\} = \{0\}
+			\]
+			This implies that for every pair $(a, b) \in A_s \times B_s$, we must have $a + b = 0$, or equivalently $b = -a$.
+			
+			Since $\dimU(A) > 1$, there exist at least two distinct elements $a_1, a_2 \in A_s$ with $a_1 \neq a_2$. 
+			For any element $b \in B_s$, we must simultaneously satisfy:
+			\[
+			b = -a_1 \quad \text{and} \quad b = -a_2
+			\]
+			which implies $-a_1 = -a_2 \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
+			
+			\item \textbf{Proof of Part 2 (Non-existence of Multiplicative Inverse):} \\
+			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $AB = 1$.
+			
+			By definition of multiplication in Minkowski arithmetic space $(\circ)_m$:
+			\[
+			(AB)_s = \{a \cdot b \;:\; a \in A_s, \, b \in B_s\} = \{1\}
+			\]
+			This implies that $0 \notin A_s$ (otherwise $0 \cdot b = 0 \neq 1$) and for every pair $(a, b) \in A_s \times B_s$, we must have $a \cdot b = 1$, or equivalently $b = \frac{1}{a}$.
+			
+			Since $\dimU(A) > 1$, there exist at least two distinct non-zero elements $a_1, a_2 \in A_s$ with $a_1 \neq a_2$.
+			For any element $b \in B_s$, we must simultaneously satisfy:
+			\[
+			b = \frac{1}{a_1} \quad \text{and} \quad b = \frac{1}{a_2}
+			\]
+			which implies $\frac{1}{a_1} = \frac{1}{a_2} \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
+		\end{enumerate}
+		
+		In conclusion, any uncertain number $A$ with $\dimU(A) > 1$ lacks both additive and multiplicative inverses in $\tsbd{K}$.
+	\end{proof}
 	\begin{theorem}
 		Let $A$ and $B$ be two uncertain numbers, we have 
 		$$\rad(A+B) \leq \rad(A) +\rad(B)$$
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A, B \in \tsbd{K}$ be two uncertain numbers. By Definition 2.6, the uncertain radius of any uncertain number $X \in \tsbd{K}$ is defined by:
+		\[
+		\rad(X) = \frac{1}{2} \sup \set{x_1 - x_2 \;:\; x_1, x_2 \in X_s}
+		\]
+		
+		By definition of addition in Minkowski arithmetic space $(\circ)_m$, the scenario value set of $A + B$ is:
+		\[
+		(A + B)_s = \set{a + b \;:\; a \in A_s, \, b \in B_s}
+		\]
+		Let $z_1, z_2 \in (A + B)_s$ be any two arbitrary elements. Then there exist $a_1, a_2 \in A_s$ and $b_1, b_2 \in B_s$ such that $z_1 = a_1 + b_1$ and $z_2 = a_2 + b_2$.
+		
+		Evaluating the difference $z_1 - z_2$:
+		\[
+		z_1 - z_2 = (a_1 + b_1) - (a_2 + b_2) = (a_1 - a_2) + (b_1 - b_2)
+		\]
+		
+		Taking the supremum over all possible pairs $(z_1, z_2) \in (A + B)_s \times (A + B)_s$:
+		\begin{align*}
+			\sup_{z_1, z_2 \in (A + B)_s} (z_1 - z_2) &= \sup_{\substack{a_1, a_2 \in A_s \\ b_1, b_2 \in B_s}} \left[ (a_1 - a_2) + (b_1 - b_2) \right] \\
+			&\le \sup_{a_1, a_2 \in A_s} (a_1 - a_2) + \sup_{b_1, b_2 \in B_s} (b_1 - b_2)
+		\end{align*}
+		
+		Multiplying both sides of the inequality by $\frac{1}{2}$:
+		\[
+		\frac{1}{2} \sup_{z_1, z_2 \in (A + B)_s} (z_1 - z_2) \le \frac{1}{2} \sup_{a_1, a_2 \in A_s} (a_1 - a_2) + \frac{1}{2} \sup_{b_1, b_2 \in B_s} (b_1 - b_2)
+		\]
+		
+		Applying the definition of uncertain radius to each term yields:
+		\[
+		\rad(A + B) \le \rad(A) + \rad(B)
+		\]
+		This completes the proof.
+	\end{proof}
 	\begin{theorem}
 		Let $A$ be an uncertain number, $b$ be a single-valued constant. We have 
 		$$\rad(A+b) = \rad(A)$$
 		This theorem allows an object with uncertain position to preserve its uncertain radius under rigid translation.
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A \in \tsbd{K}$ be an uncertain number and $b \in \mathbb{K}$ be a single-valued constant (identified with the single-point uncertain number $\{b\}_u$).
+		
+		By Definition 2.6, the scenario value set of $A + b$ in Minkowski arithmetic space $(\circ)_m$ is given by:
+		\[
+		(A + b)_s = \{a + b \;:\; a \in A_s\}
+		\]
+		
+		Applying the definition of uncertain radius to $A + b$:
+		\[
+		\rad(A + b) = \frac{1}{2} \sup \set{z_1 - z_2 \;:\; z_1, z_2 \in (A + b)_s}
+		\]
+		
+		Since any elements $z_1, z_2 \in (A + b)_s$ can be represented as $z_1 = a_1 + b$ and $z_2 = a_2 + b$ for some $a_1, a_2 \in A_s$, we evaluate their difference:
+		\[
+		z_1 - z_2 = (a_1 + b) - (a_2 + b) = a_1 - a_2
+		\]
+		
+		Notice that the constant term $b$ cancels out completely. Taking the supremum over all pairs $(a_1, a_2) \in A_s \times A_s$:
+		\[
+		\sup_{z_1, z_2 \in (A + b)_s} (z_1 - z_2) = \sup_{a_1, a_2 \in A_s} (a_1 - a_2)
+		\]
+		
+		Multiplying both sides by $\frac{1}{2}$:
+		\[
+		\rad(A + b) = \frac{1}{2} \sup_{a_1, a_2 \in A_s} (a_1 - a_2) = \rad(A)
+		\]
+		
+		Hence, $\rad(A + b) = \rad(A)$, which proves that rigid translation preserves the uncertain radius of an uncertain object.
+	\end{proof}
 	\begin{theorem}[Realistic Similarity]
 		Let $A$ be an uncertain number and $k$ be a single-valued constant, we have: $\rad(k A) = |k| \rad(A)$
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A \in \tsbd{K}$ be an uncertain number with scenario value set $A_s$, and $k \in \mathbb{K}$ be a single-valued constant (identified with $\{k\}_u$).
+		
+		By definition of scalar multiplication in Minkowski arithmetic space $(\circ)_m$, the scenario value set of $k A$ is given by:
+		\[
+		(k A)_s = \{k \cdot a \;:\; a \in A_s\}
+		\]
+		
+		Applying the definition of uncertain radius (Definition 2.6) to $k A$:
+		\[
+		\rad(k A) = \frac{1}{2} \sup \set{z_1 - z_2 \;:\; z_1, z_2 \in (k A)_s}
+		\]
+		
+		Since any elements $z_1, z_2 \in (k A)_s$ can be written as $z_1 = k a_1$ and $z_2 = k a_2$ for some $a_1, a_2 \in A_s$, we evaluate their difference:
+		\[
+		z_1 - z_2 = k a_1 - k a_2 = k(a_1 - a_2)
+		\]
+		
+		We consider two cases based on the sign of $k \in \mathbb{R}$:
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Case 1: $k \ge 0$.} \\
+			Since $k$ is non-negative, taking the supremum over all pairs $a_1, a_2 \in A_s$ preserves the order:
+			\[
+			\sup_{a_1, a_2 \in A_s} [k(a_1 - a_2)] = k \sup_{a_1, a_2 \in A_s} (a_1 - a_2)
+			\]
+			Thus:
+			\[
+			\rad(k A) = \frac{1}{2} \cdot k \sup_{a_1, a_2 \in A_s} (a_1 - a_2) = k \cdot \rad(A) = |k| \rad(A)
+			\]
+			
+			\item \textbf{Case 2: $k < 0$.} \\
+			Rewriting $k = -|k|$, the difference becomes $z_1 - z_2 = -|k|(a_1 - a_2) = |k|(a_2 - a_1)$. \\
+			As $a_1, a_2$ range independently over $A_s$, $a_2 - a_1$ ranges over the exact same set of differences as $a_1 - a_2$. Therefore:
+			\[
+			\sup_{a_1, a_2 \in A_s} [-|k|(a_1 - a_2)] = |k| \sup_{a_2, a_1 \in A_s} (a_2 - a_1) = |k| \sup_{a_1, a_2 \in A_s} (a_1 - a_2)
+			\]
+			Thus:
+			\[
+			\rad(k A) = \frac{1}{2} \cdot |k| \sup_{a_1, a_2 \in A_s} (a_1 - a_2) = |k| \rad(A)
+			\]
+		\end{enumerate}
+		
+		Combining both cases confirms that $\rad(k A) = |k| \rad(A)$ for any single-valued constant $k$. This completes the proof.
+	\end{proof}
 	\begin{theorem}[Identity Theorem with Classical Arithmetic]
 		Let $A = \s{a} , B = \s{b}$ and * be a binary operation on $\mathbb{R}$ where $a*b$ is defined, then 
 		$$A * B = \s{a*b} = a*b$$
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A = \s{a}$ and $B = \s{b}$ be two single-valued (deterministic) uncertain numbers, where $a, b \in \mathbb{R}$. Their underlying sets of scenario values are singleton sets:
+		\[
+		A_s = \{a\} \quad \text{and} \quad B_s = \{b\}
+		\]
+		
+		We prove the identity across both Minkowski and Single-point arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By definition of binary operations in Minkowski space:
+			\[
+			(A * B)_s = \{x * y \;:\; x \in A_s, \, y \in B_s, \, x * y \in \mathbb{R}\}
+			\]
+			Since $A_s = \{a\}$ and $B_s = \{b\}$, the Cartesian product $A_s \times B_s = \{(a, b)\}$ contains exactly one pair. Assuming $a * b$ is well-defined in classical arithmetic:
+			\[
+			(A * B)_s = \{a * b\}
+			\]
+			Transforming back to an uncertain number using the transfer operator yields:
+			\[
+			A * B = (\{a * b\})_u = \s{a * b} \equiv a * b
+			\]
+			
+			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$, where $d_A = d_B = \{1\}$ and $f_A(1) = a, f_B(1) = b$. 
+			Evaluating the pointwise operation on singleton index domains:
+			\[
+			[\kgdd{A * B}]_s = \{f_A(1) * f_B(1)\} = \{a * b\} \implies \kgdd{A * B} = \s{a * b} \equiv a * b
+			\]
+		\end{enumerate}
+		
+		Thus, when restricted to single-valued operands, uncertain arithmetic reduces identically to classical arithmetic. This completes the proof.
+	\end{proof}
 	\begin{theorem}[Commutativity]
 		Let $A,B$ be two uncertain numbers and * be a commutative binary operation on $\mathbb{R}$, we have
 		$$A*B = B*A$$
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A, B \in \tsbd{K}$ be two uncertain numbers with scenario value sets $A_s$ and $B_s$, respectively. Let $*$ be a commutative binary operation on $\mathbb{R}$ (i.e., $a * b = b * a$ for all $a, b \in \mathbb{R}$).
+		
+		We prove the identity $A * B = B * A$ across both primary arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By the definition of binary operations in Minkowski space:
+			\[
+			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{R}\}
+			\]
+			Since $*$ is commutative in $\mathbb{R}$, we have $a * b = b * a$ for every pair $(a, b) \in A_s \times B_s$. Thus:
+			\[
+			((A * B)_m)_s = \{b * a \;:\; b \in B_s, \, a \in A_s, \, b * a \in \mathbb{R}\} = ((B * A)_m)_s
+			\]
+			Applying the transfer operator yields $(A * B)_m = (B * A)_m$.
+			
+			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$, respectively. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass at index pair $(x, y) \in d_A \times d_B$:
+			\[
+			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\}
+			\]
+			By commutativity of $*$ on individual values, $f_A(x) * f_B(y) = f_B(y) * f_A(x)$. Reordering the elements yields:
+			\[
+			[\kgdd{A * B}]_s = \{f_B(y) * f_A(x) \;:\; y \in d_B, \, x \in d_A\} = [\kgdd{B * A}]_s
+			\]
+			Hence, $\kgdd{A * B} = \kgdd{B * A}$.
+		\end{enumerate}
+		
+		In all arithmetic spaces, the sets of scenario values match identically, confirming that $A * B = B * A$.
+	\end{proof}
 	\begin{theorem}[Associativity]
 		Let $A,B,C$ be uncertain numbers and * be an associative binary operation on $\mathbb{R}$, then:
 		\[A*(B*C) = (A*B)*C\]
