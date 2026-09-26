@@ -662,7 +662,37 @@
 		\exists (x,y) \in d_A \times d_B : a=f_A(x)=f_B(y)
 		\]
 	\end{proposition}
-	
+	\begin{proof}
+		By the definition of the canonical form of uncertain numbers, for $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$, the corresponding sets of scenario values are represented via surjective generating functions:
+		\[
+		A_s = f_A(d_A) = \{f_A(x) : x \in d_A\} \quad \text{and} \quad B_s = f_B(d_B) = \{f_B(y) : y \in d_B\}
+		\]
+		
+		We prove both directions of the logical equivalence:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Forward Direction ($\Rightarrow$):} 
+			Assume $a \in A$ (meaning $a \in A_s$) and $a \in B$ (meaning $a \in B_s$).
+			\begin{itemize}
+				\item Since $a \in A_s = f_A(d_A)$, there exists at least one index $x \in d_A$ such that $a = f_A(x)$.
+				\item Since $a \in B_s = f_B(d_B)$, there exists at least one index $y \in d_B$ such that $a = f_B(y)$.
+			\end{itemize}
+			Combining these two facts, for the scenario pair $(x, y) \in d_A \times d_B$, we obtain:
+			\[
+			a = f_A(x) = f_B(y)
+			\]
+			
+			\item \textbf{Backward Direction ($\Leftarrow$):} 
+			Assume there exists a pair $(x, y) \in d_A \times d_B$ such that $a = f_A(x) = f_B(y)$.
+			\begin{itemize}
+				\item Since $x \in d_A$, we have $f_A(x) \in f_A(d_A) = A_s \implies a \in A$.
+				\item Since $y \in d_B$, we have $f_B(y) \in f_B(d_B) = B_s \implies a \in B$.
+			\end{itemize}
+			Thus, $a \in A$ and $a \in B$.
+		\end{enumerate}
+		
+		This completes the proof.
+	\end{proof}
 	\begin{remark}
 		This proposition transforms the essence of element checking $a \in B$ (or subset inclusion $A \subseteq B$) from cumbersome data lookups into finding roots of algebraic equation $f_B(y) = f_A(x)$ over index domain $d_A \times d_B$. This completely eliminates dependence on data size when sets expand.
 	\end{remark}
