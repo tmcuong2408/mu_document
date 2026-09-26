@@ -84,20 +84,20 @@
 	\begin{abstract}
 		In modern computational science and engineering, handling uncertain data is a core challenge. Traditional tools such as Classical Interval Arithmetic often suffer from the severe "dependency problem" --- where the repetition of algebraic variables generates endless "arithmetic noise" and causes explosive expansion of computational bounds. Similarly, Probabilistic or Fuzzy Set methods demand strict prior information and incur extremely high computational costs when scenario dimensions swell.
 		
-		This work proposes a comprehensive mathematical paradigm entitled \textbf{Extended Logic and Mathematics of Uncertainty} to thoroughly resolve these bottlenecks:
+		This work proposes a comprehensive mathematical paradigm entitled Extended Logic and Mathematics of Uncertainty to thoroughly resolve these bottlenecks:
 		\begin{itemize}[leftmargin=*]
-			\item \textbf{Canonical Form \& \textit{Lazy Evaluation} Mechanism:} Representing uncertain numbers via generating functions on index domains. This structure preserves the history of algebraic correlations to eliminate arithmetic noise at its root, while employing a lazy evaluation mechanism to represent and store infinite-element uncertain numbers without consuming RAM, performing actual calculations only upon evaluation requests.
+			\item Canonical Form \& Lazy Evaluation Mechanism: Representing uncertain numbers via generating functions on index domains. This structure preserves the history of algebraic correlations to eliminate arithmetic noise at its root, while employing a lazy evaluation mechanism to represent and store infinite-element uncertain numbers without consuming RAM, performing actual calculations only upon evaluation requests.
 			
-			\item \textbf{Four Arithmetic Spaces System:}
+			\item Four Arithmetic Spaces System:
 			\begin{itemize}[leftmargin=*]
-				\item \textit{Single-point Space $(\circ)_1$ \& Extended Single-point Space $(\circ)_{1'}$:} Preserving algebraic consistency, internal correlation, and expanding the ability to process inverse operations/hierarchical structures.
-				\item \textit{Minkowski Space $(\circ)_m$ \& Extended Minkowski Space $(\circ)_{m'}$:} Modeling interactions, independent noise propagation across uncertain sources, and expanding operators for solving arithmetic equations.
+				\item Single-point Space $(\circ)_1$ \& Extended Single-point Space $(\circ)_{1'}$: Preserving algebraic consistency, internal correlation, and expanding the ability to process inverse operations/hierarchical structures.
+				\item Minkowski Space $(\circ)_m$ \& Extended Minkowski Space $(\circ)_{m'}$: Modeling interactions, independent noise propagation across uncertain sources, and expanding operators for solving arithmetic equations.
 			\end{itemize}
 			
-			\item \textbf{Uncertain Arithmetic, Algebra \& Calculus:}
+			\item Uncertain Arithmetic, Algebra \& Calculus:
 			\begin{itemize}[leftmargin=*]
-				\item \textit{Uncertain Arithmetic \& Algebra:} Constructing binary operations, weak relations, weights, uncertain algebraic equations, and compressing complex intersection/union/element-checking operations into root-finding problems on index domains with $\mathcal{O}(1)$ complexity.
-				\item \textit{Uncertain Calculus:} Fully building the theories of Limits, Continuity, Difference Quotients, Derivatives, and Uncertain Integrals over scenario sets.
+				\item Uncertain Arithmetic \& Algebra: Constructing binary operations, weak relations, weights, uncertain algebraic equations, and compressing complex intersection/union/element-checking operations into root-finding problems on index domains with $\mathcal{O}(1)$ complexity.
+				\item Uncertain Calculus: Fully building the theories of Limits, Continuity, Difference Quotients, Derivatives, and Uncertain Integrals over scenario sets.
 			\end{itemize}
 		\end{itemize}
 		
@@ -122,16 +122,16 @@
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabular}{p{3.5cm} p{11cm}}
 			\toprule
-			\textbf{Symbol} & \textbf{Description / Meaning} \\
+			Symbol & Description / Meaning \\
 			\midrule
-			\multicolumn{2}{l}{\textbf{Extended Logic}} \\
+			\multicolumn{2}{l}{Extended Logic} \\
 			$(\Omega, \mathcal{F}, \lambda)$ & Measure space representing scenario/state space and measure function \\
 			$v(P, \omega)$ & Scenario truth function of proposition $P$ at state $\omega \in \Omega$ \\
 			$\ddclmd(P)$ & Global truth valuation operator of proposition $P$ on $[0, 1]$ \\
 			$(P)_{V(P)}$ & Proposition $P$ accompanied by its truth measure \\
 			$P \Rightarrow Q$ & Logical implication relation on scenario space \\
 			\midrule
-			\multicolumn{2}{l}{\textbf{Uncertain Sets \& Numbers}} \\
+			\multicolumn{2}{l}{Uncertain Sets \& Numbers} \\
 			$\mathbf{U}(\mathbb{K})$ & Space of all uncertain numbers over field $\mathbb{K}$ \\
 			$\mathbf{U}^n(\mathbb{K})$ & Space of order-$n$ uncertain numbers over field $\mathbb{K}$ \\
 			$\mathbf{U}_{\w}(\mathbb{K})$ & Space of weighted uncertain numbers over field $\mathbb{K}$ \\
@@ -143,7 +143,7 @@
 			$d_H(A, B)$ & Hausdorff distance between two uncertain numbers $A$ and $B$ \\
 			$(f_A, d_A)$ & Canonical form of $A$ with generating function $f_A$ on index domain $d_A$ \\
 			\midrule
-			\multicolumn{2}{l}{\textbf{Arithmetic Spaces \& Operations}} \\
+			\multicolumn{2}{l}{Arithmetic Spaces \& Operations} \\
 			$(\circ)_1$ & Single-point arithmetic space operator (preserves point identity) \\
 			$(\circ)_{1'}$ & Extended single-point arithmetic space operator \\
 			$(\circ)_m$ & Minkowski arithmetic space operator (independent scenario interaction) \\
@@ -335,7 +335,7 @@
 		From this, we can derive characteristic laws of the result set $T$, such as minimum value $\min(T)$, maximum value $\max(T)$, mean of $T$, or determine whether $T$ satisfies a certain condition function or criterion $f(T)$. Grasping this complete structural range forms the core foundation for solving decision-making problems under data uncertainty.
 	\end{example}
 	
-	To automate and systemize direct computations over these sets of possible scenarios, we construct \textbf{Uncertain Arithmetic} — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
+	To automate and systemize direct computations over these sets of possible scenarios, we construct Extended Logic and Mathematics of Uncertainty[cite: 1] — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
 	
 	\section{Uncertain Number}
 	\begin{definition}[Uncertain Number over Field $\mathbb{K}$]
@@ -384,56 +384,56 @@
 		such that $\bd{f_A(d_A)}= A$. In this case, we call $(f_A,d_A)$ a canonical form of $A$ and denote $A \sim (f_A,d_A)$.
 	\end{definition}
 	
-\begin{theorem}[Equivalence Relation of Canonical Forms]
-	\label{thm:canonical_form_equivalence}
-	Let $\mathbf{CF}(A)$ be the set of all canonical forms of an uncertain number $A \in \tsbd{K}$. Define a binary relation $\sim$ on $\mathbf{CF}(A)$ such that two canonical forms $(f_1, d_1)$ and $(f_2, d_2)$ are equivalent, written as $(f_1, d_1) \sim (f_2, d_2)$, if and only if:
-	\begin{enumerate}[leftmargin=*]
-		\item They share the same index domain: $d_1 = d_2 = d_A$.
-		\item There exists a bijection $\sigma : d_A \to d_A$ on the index domain such that $f_2 = f_1 \circ \sigma$.
-	\end{enumerate}
-	Then, the relation $\sim$ is an equivalence relation on $\mathbf{CF}(A)$.
-\end{theorem}
-
-\begin{proof}
-	To establish that $\sim$ is an equivalence relation on $\mathbf{CF}(A)$, we verify the three defining properties: reflexivity, symmetry, and transitivity.
+	\begin{theorem}[Equivalence Relation of Canonical Forms]
+		\label{thm:canonical_form_equivalence}
+		Let $\mathbf{CF}(A)$ be the set of all canonical forms of an uncertain number $A \in \tsbd{K}$. Define a binary relation $\sim$ on $\mathbf{CF}(A)$ such that two canonical forms $(f_1, d_1)$ and $(f_2, d_2)$ are equivalent, written as $(f_1, d_1) \sim (f_2, d_2)$, if and only if:
+		\begin{enumerate}[leftmargin=*]
+			\item They share the same index domain: $d_1 = d_2 = d_A$.
+			\item There exists a bijection $\sigma : d_A \to d_A$ on the index domain such that $f_2 = f_1 \circ \sigma$.
+		\end{enumerate}
+		Then, the relation $\sim$ is an equivalence relation on $\mathbf{CF}(A)$.
+	\end{theorem}
 	
-	\begin{enumerate}[leftmargin=*]
-		\item \textbf{Reflexivity:} 
-		Let $(f_1, d_A) \in \mathbf{CF}(A)$. Consider the identity mapping $\sigma = \text{id}_{d_A} : d_A \to d_A$ defined by $\sigma(t) = t$ for all $t \in d_A$. Obviously, $\text{id}_{d_A}$ is a bijection on $d_A$, and we have:
-		\[
-		(f_1 \circ \text{id}_{d_A})(t) = f_1(t), \quad \forall t \in d_A \implies f_1 = f_1 \circ \text{id}_{d_A}
-		\]
-		Hence, $(f_1, d_A) \sim (f_1, d_A)$.
+	\begin{proof}
+		To establish that $\sim$ is an equivalence relation on $\mathbf{CF}(A)$, we verify the three defining properties: reflexivity, symmetry, and transitivity.
 		
-		\item \textbf{Symmetry:} 
-		Let $(f_1, d_A), (f_2, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$. By definition, there exists a bijection $\sigma : d_A \to d_A$ satisfying $f_2 = f_1 \circ \sigma$.
+		\begin{enumerate}[leftmargin=*]
+			\item Reflexivity: 
+			Let $(f_1, d_A) \in \mathbf{CF}(A)$. Consider the identity mapping $\sigma = \text{id}_{d_A} : d_A \to d_A$ defined by $\sigma(t) = t$ for all $t \in d_A$. Obviously, $\text{id}_{d_A}$ is a bijection on $d_A$, and we have:
+			\[
+			(f_1 \circ \text{id}_{d_A})(t) = f_1(t), \quad \forall t \in d_A \implies f_1 = f_1 \circ \text{id}_{d_A}
+			\]
+			Hence, $(f_1, d_A) \sim (f_1, d_A)$.
+			
+			\item Symmetry: 
+			Let $(f_1, d_A), (f_2, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$. By definition, there exists a bijection $\sigma : d_A \to d_A$ satisfying $f_2 = f_1 \circ \sigma$.
+			
+			Since $\sigma$ is a bijection, its inverse mapping $\sigma^{-1} : d_A \to d_A$ exists and is also a bijection on $d_A$. Composing both sides with $\sigma^{-1}$ yields:
+			\[
+			f_2 \circ \sigma^{-1} = (f_1 \circ \sigma) \circ \sigma^{-1} = f_1 \circ (\sigma \circ \sigma^{-1}) = f_1 \circ \text{id}_{d_A} = f_1
+			\]
+			Thus, $f_1 = f_2 \circ \sigma^{-1}$ with bijection $\sigma^{-1}$, which implies $(f_2, d_A) \sim (f_1, d_A)$.
+			
+			\item Transitivity: 
+			Let $(f_1, d_A), (f_2, d_A), (f_3, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$ and $(f_2, d_A) \sim (f_3, d_A)$. 
+			
+			By definition, there exist bijections $\sigma_1 : d_A \to d_A$ and $\sigma_2 : d_A \to d_A$ such that:
+			\[
+			f_2 = f_1 \circ \sigma_1 \quad \text{and} \quad f_3 = f_2 \circ \sigma_2
+			\]
+			Substituting $f_2$ into the expression for $f_3$:
+			\[
+			f_3 = (f_1 \circ \sigma_1) \circ \sigma_2 = f_1 \circ (\sigma_1 \circ \sigma_2)
+			\]
+			Since the composition of two bijections on $d_A$ is again a bijection on $d_A$, the mapping $\sigma_3 = \sigma_1 \circ \sigma_2 : d_A \to d_A$ is a bijection satisfying $f_3 = f_1 \circ \sigma_3$. Consequently, $(f_1, d_A) \sim (f_3, d_A)$.
+		\end{enumerate}
 		
-		Since $\sigma$ is a bijection, its inverse mapping $\sigma^{-1} : d_A \to d_A$ exists and is also a bijection on $d_A$. Composing both sides with $\sigma^{-1}$ yields:
-		\[
-		f_2 \circ \sigma^{-1} = (f_1 \circ \sigma) \circ \sigma^{-1} = f_1 \circ (\sigma \circ \sigma^{-1}) = f_1 \circ \text{id}_{d_A} = f_1
-		\]
-		Thus, $f_1 = f_2 \circ \sigma^{-1}$ with bijection $\sigma^{-1}$, which implies $(f_2, d_A) \sim (f_1, d_A)$.
-		
-		\item \textbf{Transitivity:} 
-		Let $(f_1, d_A), (f_2, d_A), (f_3, d_A) \in \mathbf{CF}(A)$ such that $(f_1, d_A) \sim (f_2, d_A)$ and $(f_2, d_A) \sim (f_3, d_A)$. 
-		
-		By definition, there exist bijections $\sigma_1 : d_A \to d_A$ and $\sigma_2 : d_A \to d_A$ such that:
-		\[
-		f_2 = f_1 \circ \sigma_1 \quad \text{and} \quad f_3 = f_2 \circ \sigma_2
-		\]
-		Substituting $f_2$ into the expression for $f_3$:
-		\[
-		f_3 = (f_1 \circ \sigma_1) \circ \sigma_2 = f_1 \circ (\sigma_1 \circ \sigma_2)
-		\]
-		Since the composition of two bijections on $d_A$ is again a bijection on $d_A$, the mapping $\sigma_3 = \sigma_1 \circ \sigma_2 : d_A \to d_A$ is a bijection satisfying $f_3 = f_1 \circ \sigma_3$. Consequently, $(f_1, d_A) \sim (f_3, d_A)$.
-	\end{enumerate}
+		Since $\sim$ is reflexive, symmetric, and transitive, it constitutes a well-defined equivalence relation on $\mathbf{CF}(A)$.
+	\end{proof}
 	
-	Since $\sim$ is reflexive, symmetric, and transitive, it constitutes a well-defined equivalence relation on $\mathbf{CF}(A)$.
-\end{proof}
-
-\begin{remark}
-	The equivalence relation $\sim$ partitions the space of all generating representations of an uncertain number $A$ into equivalence classes $[\,(f_A, d_A)\,]_\sim$. Each equivalence class corresponds to the unique invariant algebraic identity of $A$ up to scenario reparameterization, ensuring that all physical/algebraic properties of $A$ remain invariant under index permutation.
-\end{remark}
+	\begin{remark}
+		The equivalence relation $\sim$ partitions the space of all generating representations of an uncertain number $A$ into equivalence classes $[\,(f_A, d_A)\,]_\sim$. Each equivalence class corresponds to the unique invariant algebraic identity of $A$ up to scenario reparameterization, ensuring that all physical/algebraic properties of $A$ remain invariant under index permutation.
+	\end{remark}
 	Next, related to solving uncertain equations, we arrive at the following definition:
 	
 	\begin{definition}[Uncertain Number of Order $n$]
@@ -562,7 +562,7 @@
 	\end{example}
 	
 	\begin{definition}[Single-Point Arithmetic Space]
-		Let $A \in \tsbd{K}$ be an uncertain set. We define a \textbf{single-point uncertain function} as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
+		Let $A \in \tsbd{K}$ be an uncertain set. We define a single-point uncertain function as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
 		
 		The image set of the corresponding point-wise uncertain function, denoted $\kgdd{f}$, is determined by:
 		\[
@@ -579,8 +579,8 @@
 	\begin{remark}
 		This definition ensures algebraic consistency via two core mechanisms:
 		\begin{itemize}[leftmargin=*]
-			\item \textbf{Internal Point Identity:} Every symbol of variable $A$ appearing in expression $f$ (regardless of position or operation) is bound to receive the same value $x \in A$ during the same mapping pass.
-			\item \textbf{Elimination of Quantity Expansion:} Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ and $\kgdd{x + x}(A) = 2A$.
+			\item Internal Point Identity: Every symbol of variable $A$ appearing in expression $f$ (regardless of position or operation) is bound to receive the same value $x \in A$ during the same mapping pass.
+			\item Elimination of Quantity Expansion: Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ and $\kgdd{x + x}(A) = 2A$.
 		\end{itemize}
 	\end{remark}
 	
@@ -672,11 +672,11 @@
 		
 		Then, the resulting uncertain number $C = \kgdt{A * B}$ possesses a canonical form $(f_{A*B}, d_{A*B})$ uniquely determined by:
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Scenario Index Domain:} 
+			\item Scenario Index Domain: 
 			\[
 			d_{A*B} = d_A \times d_B
 			\]
-			\item \textbf{Generating Function:} $f_{A*B} : d_A \times d_B \to \mathbb{K}$ defined by
+			\item Generating Function: $f_{A*B} : d_A \times d_B \to \mathbb{K}$ defined by
 			\[
 			f_{A*B}(x_1, x_2) = f_A(x_1) * f_B(x_2), \quad \forall (x_1, x_2) \in d_A \times d_B
 			\]
@@ -693,9 +693,9 @@
 		\paragraph{Step 1: Index Domain Compatibility.}
 		According to the definition of canonical form, the scenario index domain of an uncertain number corresponds to the cardinality of its underlying set of scenario values.
 		\begin{itemize}[leftmargin=*]
-			\item \textbf{Finite Case:} If $\dimU(A) = n_1$ and $\dimU(B) = n_2$, then $d_A = \{1, \dots, n_1\}$ and $d_B = \{1, \dots, n_2\}$. The Cartesian product $d_A \times d_B$ contains $n_1 \cdot n_2$ element pairs, isomorphic to $\{1, \dots, n_1 \cdot n_2\}$ under a lexicographical bijection.
-			\item \textbf{Countably Infinite Case:} If $d_A, d_B \subseteq \mathbb{N}^*$, since the Cartesian product of two countable sets is countable, we have $d_A \times d_B \sim \mathbb{N}^*$.
-			\item \textbf{Uncountably Infinite Case:} If $d_A = [0, 1]$ and $d_B = [0, 1]$, the product domain $d_A \times d_B = [0, 1]^2$ exhibits the cardinality of the continuum, which is isomorphic to $[0, 1]$ via standard space-filling bijections.
+			\item Finite Case: If $\dimU(A) = n_1$ and $\dimU(B) = n_2$, then $d_A = \{1, \dots, n_1\}$ and $d_B = \{1, \dots, n_2\}$. The Cartesian product $d_A \times d_B$ contains $n_1 \cdot n_2$ element pairs, isomorphic to $\{1, \dots, n_1 \cdot n_2\}$ under a lexicographical bijection.
+			\item Countably Infinite Case: If $d_A, d_B \subseteq \mathbb{N}^*$, since the Cartesian product of two countable sets is countable, we have $d_A \times d_B \sim \mathbb{N}^*$.
+			\item Uncountably Infinite Case: If $d_A = [0, 1]$ and $d_B = [0, 1]$, the product domain $d_A \times d_B = [0, 1]^2$ exhibits the cardinality of the continuum, which is isomorphic to $[0, 1]$ via standard space-filling bijections.
 		\end{itemize}
 		Thus, $d_{A*B} = d_A \times d_B$ is a well-defined scenario domain representing independent uncertainty interactions.
 		
@@ -703,7 +703,7 @@
 		We show that $f_{A*B}(d_A \times d_B) = (\kgdt{A * B})_s$ by establishing mutual set inclusions:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Forward Inclusion ($\subseteq$):} 
+			\item Forward Inclusion ($\subseteq$): 
 			Let $y \in f_{A*B}(d_A \times d_B)$. By definition of the generating function, there exists a scenario index pair $(x_1, x_2) \in d_A \times d_B$ such that:
 			\[
 			y = f_{A*B}(x_1, x_2) = f_A(x_1) * f_B(x_2)
@@ -714,7 +714,7 @@
 			\]
 			Therefore, $y = a * b \in (\kgdt{A * B})_s$, which proves $f_{A*B}(d_A \times d_B) \subseteq (\kgdt{A * B})_s$.
 			
-			\item \textbf{Backward Inclusion ($\supseteq$):} 
+			\item Backward Inclusion ($\supseteq$): 
 			Let $z \in (\kgdt{A * B})_s$. By definition of Minkowski binary operations, there exist elements $a \in A_s$ and $b \in B_s$ such that $z = a * b$.
 			Since $(f_A, d_A)$ and $(f_B, d_B)$ are canonical forms of $A$ and $B$, generating functions $f_A$ and $f_B$ map surjectively from their respective index domains onto $A_s$ and $B_s$. Thus:
 			\begin{itemize}
@@ -772,7 +772,7 @@
 		We prove both directions of the logical equivalence:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Forward Direction ($\Rightarrow$):} 
+			\item Forward Direction ($\Rightarrow$): 
 			Assume $a \in A$ (meaning $a \in A_s$) and $a \in B$ (meaning $a \in B_s$).
 			\begin{itemize}
 				\item Since $a \in A_s = f_A(d_A)$, there exists at least one index $x \in d_A$ such that $a = f_A(x)$.
@@ -783,7 +783,7 @@
 			a = f_A(x) = f_B(y)
 			\]
 			
-			\item \textbf{Backward Direction ($\Leftarrow$):} 
+			\item Backward Direction ($\Leftarrow$): 
 			Assume there exists a pair $(x, y) \in d_A \times d_B$ such that $a = f_A(x) = f_B(y)$.
 			\begin{itemize}
 				\item Since $x \in d_A$, we have $f_A(x) \in f_A(d_A) = A_s \implies a \in A$.
@@ -818,20 +818,20 @@
 		We verify that $(f_{A \cap B}, d_{A \cap B})$ satisfies the two requirements of a canonical form for $C = A \cap B$:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Well-definedness of Index Domain and Generating Function:} \\
+			\item Well-definedness of Index Domain and Generating Function: \\
 			The index domain $d_{A \cap B} = \{(x, y) \in d_A \times d_B : f_A(x) = f_B(y)\}$ collects precisely all scenario pairs $(x, y)$ that produce common values between $A$ and $B$.
 			
 			The generating function $f_{A \cap B} : d_{A \cap B} \to \mathbb{K}$ defined by $f_{A \cap B}(z) = f_A(x) = f_B(y)$ for $z = (x, y) \in d_{A \cap B}$ is unambiguously well-defined because $f_A(x) = f_B(y)$ holds for every element in $d_{A \cap B}$.
 			
-			\item \textbf{Set-Image Preservation:} \\
+			\item Set-Image Preservation: \\
 			We establish $f_{A \cap B}(d_{A \cap B}) = (A \cap B)_s$ via mutual inclusion:
 			\begin{itemize}[leftmargin=*]
-				\item \textbf{Forward Inclusion ($\subseteq$):} 
+				\item Forward Inclusion ($\subseteq$): 
 				Let $c \in f_{A \cap B}(d_{A \cap B})$. By definition of $f_{A \cap B}$, there exists $z = (x, y) \in d_{A \cap B}$ such that $c = f_A(x) = f_B(y)$. 
 				Since $x \in d_A$, $c = f_A(x) \in A_s$. Since $y \in d_B$, $c = f_B(y) \in B_s$. 
 				Thus, $c \in A_s \cap B_s = (A \cap B)_s$, proving $f_{A \cap B}(d_{A \cap B}) \subseteq (A \cap B)_s$.
 				
-				\item \textbf{Backward Inclusion ($\supseteq$):} 
+				\item Backward Inclusion ($\supseteq$): 
 				Let $c \in (A \cap B)_s = A_s \cap B_s$. 
 				Since $c \in A_s$, there exists $x^* \in d_A$ such that $f_A(x^*) = c$. 
 				Since $c \in B_s$, there exists $y^* \in d_B$ such that $f_B(y^*) = c$. 
@@ -881,17 +881,17 @@
 		Let $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. To establish that $(f_{A \cup B}, d_{A \cup B})$ is a valid canonical form of $C = A \cup B$, we must verify that the index domain and the piecewise generating function preserve the set-image $(A \cup B)_s$.
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Well-definedness of Disjoint Index Domain:} \\
+			\item Well-definedness of Disjoint Index Domain: \\
 			By defining the index domain as the disjoint union of indexed products:
 			\[
 			d_{A \cup B} = (d_A \times \{0\}) \cup (d_B \times \{1\})
 			\]
 			we guarantee that $(d_A \times \{0\}) \cap (d_B \times \{1\}) = \emptyset$, eliminating any index collision between domains $d_A$ and $d_B$. Thus, the piecewise definition of $f_{A \cup B}$ is unambiguous and well-defined for every $z \in d_{A \cup B}$.
 			
-			\item \textbf{Set-Image Preservation:} \\
+			\item Set-Image Preservation: \\
 			We show that $f_{A \cup B}(d_{A \cup B}) = (A \cup B)_s$ via mutual inclusion:
 			\begin{itemize}[leftmargin=*]
-				\item \textbf{Forward Inclusion ($\subseteq$):} 
+				\item Forward Inclusion ($\subseteq$): 
 				Let $c \in f_{A \cup B}(d_{A \cup B})$. Then there exists $z \in d_{A \cup B}$ such that $c = f_{A \cup B}(z)$. 
 				\begin{itemize}
 					\item If $z = (x, 0) \in d_A \times \{0\}$, then $c = f_A(x) \in f_A(d_A) = A_s \subseteq A_s \cup B_s$.
@@ -899,7 +899,7 @@
 				\end{itemize}
 				In either case, $c \in A_s \cup B_s = (A \cup B)_s$, proving $f_{A \cup B}(d_{A \cup B}) \subseteq (A \cup B)_s$.
 				
-				\item \textbf{Backward Inclusion ($\supseteq$):} 
+				\item Backward Inclusion ($\supseteq$): 
 				Let $c \in (A \cup B)_s = A_s \cup B_s$. 
 				\begin{itemize}
 					\item If $c \in A_s$, by surjectivity of $f_A$, there exists $x^* \in d_A$ such that $f_A(x^*) = c$. Choosing $z^* = (x^*, 0) \in d_{A \cup B}$, we have $f_{A \cup B}(z^*) = f_A(x^*) = c$.
@@ -922,7 +922,7 @@
 		We prove $A * \emptyset = \emptyset * A = \emptyset$ across both primary arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By the definition of binary operations in Minkowski space:
 			\[
 			((A * \emptyset)_m)_s = \{a * b \;:\; a \in A_s, \, b \in (\emptyset)_s, \, a * b \in \mathbb{K}\}
@@ -933,7 +933,7 @@
 			\]
 			By symmetric argument, $((\emptyset * A)_m)_s = \{b * a \;:\; b \in \emptyset, \, a \in A_s\} = \emptyset \implies (\emptyset * A)_m = \emptyset$.
 			
-			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Consider an uncertain function $f(X, Y) = \kgdd{X * Y}$. The evaluation pass requires selecting representative points $x \in A_s$ and $y \in (\emptyset)_s$. Since $(\emptyset)_s = \emptyset$, no representative point $y$ can be assigned to the variable $\emptyset$. Hence, the pointwise mapping pass cannot be executed, yielding an empty image set:
 			\[
 			\kgdd{A * \emptyset} = \s{x * y \;:\; x \in A_s, \, y \in \emptyset} = \emptyset
@@ -964,7 +964,7 @@
 		We prove the identity $A * B = \bigcup_{b \in B} (A * b)$ by demonstrating mutual inclusion of their underlying scenario value sets across arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By definition of binary operations in Minkowski space, the set of scenario values of $(A * B)_m$ is given by:
 			\[
 			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s\}
@@ -979,16 +979,16 @@
 			\]
 			Thus, $((A * B)_m)_s = \left( \bigcup_{b \in B} (A * b) \right)_s$.
 			
-			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass, variable $B$ takes a representative element $b = f_B(y) \in B_s$ for $y \in d_B$. The resulting image set decomposes along the fiber of elements in $B$:
 			\[
 			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\} = \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A\}
 			\]
 			Substituting $b = f_B(y) \in B_s$, this equals $\bigcup_{b \in B_s} (A * b)_s$.
-			\end{enumerate}
-				
-				In all arithmetic spaces, the set of scenario values matches identically, confirming that $A * B = \bigcup_{b \in B} (A * b)$.
-			\end{proof}
+		\end{enumerate}
+		
+		In all arithmetic spaces, the set of scenario values matches identically, confirming that $A * B = \bigcup_{b \in B} (A * b)$.
+	\end{proof}
 	\begin{theorem}
 		Let $A \in \tsbd{K}$, we set 
 		\begin{enumerate}[leftmargin=*]
@@ -1007,7 +1007,7 @@
 		We prove the two identities separately across the relevant arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Proof of $A + e_+ = A - e_+$ for all $e_+ \in Id_+$:} \\
+			\item Proof of $A + e_+ = A - e_+$ for all $e_+ \in Id_+$: \\
 			Let $e_+ = X - X \in Id_+$ for some $X \in \tsbd{K}$. The scenario value set of $e_+$ is given by:
 			\[
 			(e_+)_s = \{x_1 - x_2 \;:\; x_1, x_2 \in X_s\}
@@ -1025,7 +1025,7 @@
 			\]
 			Hence, $A + e_+ = A - e_+$ holds.
 			
-			\item \textbf{Proof of $A \cdot e_* = A / e_*$ for all $e_* \in Id_*$:} \\
+			\item Proof of $A \cdot e_* = A / e_*$ for all $e_* \in Id_*$: \\
 			Let $e_* = Y / Y \in Id_*$ for some $Y \in \tsbd{K}$ where $0 \notin Y_s$. The scenario value set of $e_*$ is:
 			\[
 			(e_*)_s = \left\{ \frac{y_1}{y_2} \;:\; y_1, y_2 \in Y_s \right\}
@@ -1042,9 +1042,9 @@
 			(A / e_*)_s = \left\{ \frac{a}{1/u} \;:\; a \in A_s, \, u \in (e_*)_s \right\} = \{a \cdot u \;:\; a \in A_s, \, u \in (e_*)_s\} = (A \cdot e_*)_s
 			\]
 			Hence, $A \cdot e_* = A / e_*$ holds.
-			\end{enumerate}				
-				In both cases, the structural symmetry of the identity-like sets $Id_+$ under negation and $Id_*$ under inversion ensures the equivalence of the operations. This completes the proof.
-			\end{proof}
+		\end{enumerate}				
+		In both cases, the structural symmetry of the identity-like sets $Id_+$ under negation and $Id_*$ under inversion ensures the equivalence of the operations. This completes the proof.
+	\end{proof}
 	\begin{theorem}[Inverse]
 		Consider $A \in \tsbd{K}, \dimU(A) > 1$, then:
 		\begin{enumerate}[leftmargin=*]
@@ -1058,7 +1058,7 @@
 		We prove the non-existence of additive and multiplicative inverses by contradiction:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Proof of Part 1 (Non-existence of Additive Inverse):} \\
+			\item Proof of Part 1 (Non-existence of Additive Inverse): \\
 			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $A + B = 0$.
 			
 			By definition of addition in Minkowski arithmetic space $(\circ)_m$:
@@ -1074,7 +1074,7 @@
 			\]
 			which implies $-a_1 = -a_2 \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
 			
-			\item \textbf{Proof of Part 2 (Non-existence of Multiplicative Inverse):} \\
+			\item Proof of Part 2 (Non-existence of Multiplicative Inverse): \\
 			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $AB = 1$.
 			
 			By definition of multiplication in Minkowski arithmetic space $(\circ)_m$:
@@ -1189,7 +1189,7 @@
 		
 		We consider two cases based on the sign of $k \in \mathbb{R}$:
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Case 1: $k \ge 0$.} \\
+			\item Case 1: $k \ge 0$. \\
 			Since $k$ is non-negative, taking the supremum over all pairs $a_1, a_2 \in A_s$ preserves the order:
 			\[
 			\sup_{a_1, a_2 \in A_s} [k(a_1 - a_2)] = k \sup_{a_1, a_2 \in A_s} (a_1 - a_2)
@@ -1199,7 +1199,7 @@
 			\rad(k A) = \frac{1}{2} \cdot k \sup_{a_1, a_2 \in A_s} (a_1 - a_2) = k \cdot \rad(A) = |k| \rad(A)
 			\]
 			
-			\item \textbf{Case 2: $k < 0$.} \\
+			\item Case 2: $k < 0$. \\
 			Rewriting $k = -|k|$, the difference becomes $z_1 - z_2 = -|k|(a_1 - a_2) = |k|(a_2 - a_1)$. \\
 			As $a_1, a_2$ range independently over $A_s$, $a_2 - a_1$ ranges over the exact same set of differences as $a_1 - a_2$. Therefore:
 			\[
@@ -1226,7 +1226,7 @@
 		We prove the identity across both Minkowski and Single-point arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By definition of binary operations in Minkowski space:
 			\[
 			(A * B)_s = \{x * y \;:\; x \in A_s, \, y \in B_s, \, x * y \in \mathbb{R}\}
@@ -1240,7 +1240,7 @@
 			A * B = (\{a * b\})_u = \s{a * b} \equiv a * b
 			\]
 			
-			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$, where $d_A = d_B = \{1\}$ and $f_A(1) = a, f_B(1) = b$. 
 			Evaluating the pointwise operation on singleton index domains:
 			\[
@@ -1260,7 +1260,7 @@
 		We prove the identity $A * B = B * A$ across both primary arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By the definition of binary operations in Minkowski space:
 			\[
 			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{R}\}
@@ -1271,7 +1271,7 @@
 			\]
 			Applying the transfer operator yields $(A * B)_m = (B * A)_m$.
 			
-			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$, respectively. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass at index pair $(x, y) \in d_A \times d_B$:
 			\[
 			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\}
@@ -1295,7 +1295,7 @@
 		We prove the identity $A * (B * C) = (A * B) * C$ across both primary arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By the definition of binary operations in Minkowski space, evaluating $A * (B * C)$ yields scenario value set:
 			\begin{align*}
 				((A * (B * C))_m)_s &= \{a * u \;:\; a \in A_s, \, u \in ((B * C)_m)_s\} \\
@@ -1312,7 +1312,7 @@
 			\]
 			Applying the transfer operator yields $(A * (B * C))_m = ((A * B) * C)_m$.
 			
-			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A), (f_B, d_B)$, and $(f_C, d_C)$ be canonical forms of $A, B$, and $C$, respectively. Under the single-point evaluation operator $\kgdd{\circ}$, at index tuple $(x, y, z) \in d_A \times d_B \times d_C$:
 			\[
 			[\kgdd{A * (B * C)}]_s = \{f_A(x) * (f_B(y) * f_C(z)) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\}
@@ -1341,7 +1341,7 @@
 		We prove both distributive identities separately across the relevant arithmetic spaces:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Proof of $K(A + B) = \bigcup_{k \in K} [k(A + B)] = \bigcup_{k \in K} (kA + kB)$:} \\
+			\item Proof of $K(A + B) = \bigcup_{k \in K} [k(A + B)] = \bigcup_{k \in K} (kA + kB)$: \\
 			By definition of arithmetic operations in Minkowski space $(\circ)_m$, evaluating $K(A + B)$ yields the set of scenario values:
 			\[
 			(K(A + B))_s = \{k \cdot u \;:\; k \in K_s, \, u \in (A + B)_s\} = \{k(a + b) \;:\; k \in K_s, \, a \in A_s, \, b \in B_s\}
@@ -1357,7 +1357,7 @@
 			K(A + B) = \bigcup_{k \in K} [k(A + B)] = \bigcup_{k \in K} (kA + kB)
 			\]
 			
-			\item \textbf{Proof of $(AB)^K = \bigcup_{k \in K} \left[(AB)^k\right] = \bigcup_{k \in K} \left(A^k B^k\right)$:} \\
+			\item Proof of $(AB)^K = \bigcup_{k \in K} \left[(AB)^k\right] = \bigcup_{k \in K} \left(A^k B^k\right)$: \\
 			By definition of exponentiation and multiplication in Minkowski space $(\circ)_m$, evaluating $(AB)^K$ yields the set of scenario values:
 			\[
 			((AB)^K)_s = \{v^k \;:\; v \in (AB)_s, \, k \in K_s\} = \{(a \cdot b)^k \;:\; a \in A_s, \, b \in B_s, \, k \in K_s\}
@@ -1416,7 +1416,7 @@
 		By Definition 2.11, to prove that $\ts{A*B}$ is a valid weight of the resulting uncertain number $C = A * B$, we must verify two defining conditions: positivity for all elements in $C$ and total summation equality to $1$.
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Condition 1: Positivity ($\ts{A*B}(c) > 0$ for all $c \in A * B$).} \\
+			\item Condition 1: Positivity ($\ts{A*B}(c) > 0$ for all $c \in A * B$). \\
 			For any element $c \in A * B$, by definition of Minkowski binary operations, there exists at least one pair $(a, b) \in A \times B$ such that $a * b = c$. 
 			
 			Since $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$, by Definition 2.11 we have $\ts{A}(a) > 0$ for all $a \in A$ and $\ts{B}(b) > 0$ for all $b \in B$. Consequently, for any pair $(a, b)$ satisfying $a * b = c$, the product of their weights is strictly positive:
@@ -1428,7 +1428,7 @@
 			\ts{A*B}(c) > 0, \quad \forall c \in A * B
 			\]
 			
-			\item \textbf{Condition 2: Normalization / Summation to 1 ($\sum_{c \in A*B} \ts{A*B}(c) = 1$).} \\
+			\item Condition 2: Normalization / Summation to 1 ($\sum_{c \in A*B} \ts{A*B}(c) = 1$). \\
 			Summing the weight function $\ts{A*B}(c)$ over all elements $c \in A * B$:
 			\[
 			\sum_{c \in A*B} \ts{A*B}(c) = \sum_{c \in A*B} \left( \sum_{a*b=c} \ts{A}(a)\ts{B}(b) \right)
@@ -1547,7 +1547,7 @@
 	
 	\begin{example}
 		Given the uncertain equation \[\kgdd{X^2+5X+6} = 0 \]
-		It is easy to see that $X = \s{-2,-3}$ is a solution to this equation. 
+		It is easy to see that $X = \s{-2,-3}$ is a solution to this equation[cite: 1]. 
 		
 		However, $X = \s{-2,-3}$ is not a solution to the equation:
 		\[X^2+5X+6 = 0 \]
@@ -1555,16 +1555,16 @@
 	\end{example}
 	
 	\begin{definition}[Weak Solution of an Uncertain Equation]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$. 
-		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\] and we write $(f(X_0) = C)_\gamma$, where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$.
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$[cite: 1]. 
+		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$[cite: 1]. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\][cite: 1] and we write $(f(X_0) = C)_\gamma$[cite: 1], where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$[cite: 1].
 	\end{definition}
 	
 	\begin{theorem}[Extension of Weak Solutions to Exact Solutions]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \tsbd{K}$. Suppose $f$ satisfies the monotonicity property under set inclusion (i.e., $X_1 \subseteq X_2 \implies f(X_1) \subseteq f(X_2)$). If $A \in \tsbd{K}$ is a weak solution of $f(X) = C$ with weak truth degree $(f(A) = C)_\gamma$ where $\gamma \in (0, 1)$, then there exists an exact solution $B \in \tsbd{K}$ of the equation $f(X) = C$ such that $A \subseteq B$.
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \tsbd{K}$[cite: 1]. Suppose $f$ satisfies the monotonicity property under set inclusion (i.e., $X_1 \subseteq X_2 \implies f(X_1) \subseteq f(X_2)$). If $A \in \tsbd{K}$ is a weak solution of $f(X) = C$ with weak truth degree $(f(A) = C)_\gamma$ where $\gamma \in (0, 1)$[cite: 1], then there exists an exact solution $B \in \tsbd{K}$ of the equation $f(X) = C$ such that $A \subseteq B$.
 	\end{theorem}
 	
 	\begin{proof}
-		Let $A \in \tsbd{K}$ be a weak solution of $f(X) = C$ with weak truth degree $\gamma = \frac{\card(f(A))}{\card(C)} \in (0, 1)$. By definition of a weak solution, $f(A)$ is defined and satisfies $f(A) \subsetneq C$.
+		Let $A \in \tsbd{K}$ be a weak solution of $f(X) = C$ with weak truth degree $\gamma = \frac{\card(f(A))}{\card(C)} \in (0, 1)$[cite: 1]. By definition of a weak solution, $f(A)$ is defined and satisfies $f(A) \subsetneq C$[cite: 1].
 		
 		To construct an exact solution $B \supseteq A$, consider the target complement set $C \setminus f(A) \neq \emptyset$. 
 		
@@ -1598,7 +1598,7 @@
 		Then, the image $Y = f(X) \in \mathcal{Y}$ possesses a canonical form $Y \sim (f_Y, d_Y)$ determined in each arithmetic space as follows:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{On the Single-point Space $(\circ)_1$:} 
+			\item On the Single-point Space $(\circ)_1$: 
 			Since internal point identity is preserved, the scenario domain of $Y$ remains unchanged:
 			\[
 			d_Y = d_X
@@ -1608,7 +1608,7 @@
 			\forall t \in d_Y, \quad f_Y(t) = f(f_X(t))
 			\]
 			
-			\item \textbf{On the Minkowski Space $(\circ)_m$:} 
+			\item On the Minkowski Space $(\circ)_m$: 
 			If the expression of the function $f(X)$ contains $k$ occurrences of the variable $X$ ($k \in \mathbb{N}^*$), since each occurrence acts as an independent noise source, the scenario domain expands into a $k$-fold Cartesian product:
 			\[
 			d_Y = d_X^k = \underbrace{d_X \times d_X \times \dots \times d_X}_{k \text{ times}}
@@ -1625,7 +1625,7 @@
 		We prove the canonical form $Y \sim (f_Y, d_Y)$ for the image $Y = f(X)$ in each arithmetic space separately:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{In Single-point Arithmetic Space $(\circ)_1$:} \\
+			\item In Single-point Arithmetic Space $(\circ)_1$: \\
 			By Definition 2.8, the single-point evaluation operator binds every occurrence of variable $X$ in the mapping $f$ to a single representative scenario value $x \in X_s$ during each evaluation pass. 
 			
 			Since $X \sim (f_X, d_X)$, every element $x \in X_s$ is generated by an index $t \in d_X$ via $x = f_X(t)$. Thus, internal point identity preserves the scenario domain without dimension expansion:
@@ -1638,7 +1638,7 @@
 			\]
 			Therefore, $Y \sim (f_Y, d_X)$ is the canonical form of $Y = \kgdd{f}(X)$ in $(\circ)_1$.
 			
-			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By Definition 2.9, operations in Minkowski space model independent interactions among uncertain quantities. If the expression of $f(X)$ contains $k$ occurrences of variable $X$ ($k \in \mathbb{N}^*$), each occurrence acts as an independent noise source receiving an independent scenario value $x_i \in X_s$ for $i \in \{1, \dots, k\}$.
 			
 			Since each $x_i \in X_s$ is generated by an independent index $t_i \in d_X$ via $x_i = f_X(t_i)$, the overall scenario domain expands into the $k$-fold Cartesian product:
@@ -1669,11 +1669,11 @@
 		
 		Then, an element $X_0 \in \mathcal{X}$ is an exact solution of the equation $f(X) = C$ if and only if its image $F = f(X_0) \sim (f_F, d_F)$ satisfies the two-way scenario matching conditions:
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Image Inclusion ($f(X_0) \subseteq C$):} 
+			\item Image Inclusion ($f(X_0) \subseteq C$): 
 			\[
 			\forall t \in d_F, \quad \exists t' \in d_C \quad \text{such that} \quad f_F(t) = f_C(t')
 			\]
-			\item \textbf{Target Coverage ($C \subseteq f(X_0)$):} 
+			\item Target Coverage ($C \subseteq f(X_0)$): 
 			\[
 			\forall t' \in d_C, \quad \exists t \in d_F \quad \text{such that} \quad f_C(t') = f_F(t)
 			\]
@@ -1686,7 +1686,7 @@
 		We prove both directions of the logical equivalence:
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Forward Direction ($\Rightarrow$):} \\
+			\item Forward Direction ($\Rightarrow$): \\
 			Suppose $X_0$ is an exact solution of $f(X) = C$, so $F_s = C_s$.
 			\begin{itemize}[leftmargin=*]
 				\item For any $t \in d_F$, the generated value $y = f_F(t) \in F_s$. Since $F_s = C_s$, we have $y \in C_s = f_C(d_C)$. By surjectivity of $f_C$ onto $C_s$, there exists $t' \in d_C$ such that $f_F(t) = f_C(t')$.
@@ -1694,7 +1694,7 @@
 			\end{itemize}
 			Thus, both matching conditions (1) and (2) hold.
 			
-			\item \textbf{Backward Direction ($\Leftarrow$):} \\
+			\item Backward Direction ($\Leftarrow$): \\
 			Suppose both matching conditions (1) and (2) hold.
 			\begin{itemize}[leftmargin=*]
 				\item Condition (1) implies that for every $y \in F_s = f_F(d_F)$, there exists $t' \in d_C$ such that $y = f_C(t') \in C_s$. Thus $F_s \subseteq C_s$.
@@ -1898,7 +1898,7 @@
 		Fix an arbitrary index vector pair $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$, where $\mathbf{x} = (x_1, \dots, x_k) \in d_A^k$ and $\mathbf{y} = (y_1, \dots, y_k) \in d_B^k$.
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Parametric Path and Total Differential Formulation:} \\
+			\item Parametric Path and Total Differential Formulation: \\
 			For each component $i \in \{1, \dots, k\}$, define the linear parameterization path $\gamma_i : [0, 1] \to \mathbb{K}$ connecting $f_A(x_i)$ to $f_B(y_i)$:
 			\[
 			f_{X_i}(t_i) = (1 - t_i) f_A(x_i) + t_i f_B(y_i) = f_A(x_i) + t_i \Delta f_i, \quad t_i \in [0, 1]
@@ -1910,32 +1910,32 @@
 			d f_F = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} d f_{X_i} = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} \big(f_B(y_i) - f_A(x_i)\big) dt_i
 			\]
 			
-			\item \textbf{Evaluation of the $k$-fold Line Integral:} \\
+			\item Evaluation of the $k$-fold Line Integral: \\
 			The generating function value $f_{I_F}(\mathbf{x}, \mathbf{y})$ is defined as the definite integral of the total differential form $df_F$ over the parameter space $[0, 1]^k$:
 			\[
 			f_{I_F}(\mathbf{x}, \mathbf{y}) = \int_{[0, 1]^k} d f_F
 			\]
 			Since $df_F$ is an exact total differential of the continuously differentiable $k$-variable function $f_F$, by the Fundamental Theorem of Calculus for line integrals in multiple variables (or gradient theorem), the integral depends solely on the boundary values of the path $\boldsymbol{\gamma}$ at $\mathbf{t} = \mathbf{1} = (1, \dots, 1)$ and $\mathbf{t} = \mathbf{0} = (0, \dots, 0)$:
 			\begin{align*}
-			\boldsymbol{\gamma}(\mathbf{1}) &= \big(f_{X_1}(1), \dots, f_{X_k}(1)\big) = \big(f_B(y_1), \dots, f_B(y_k)\big) \\
-			\boldsymbol{\gamma}(\mathbf{0}) &= \big(f_{X_1}(0), \dots, f_{X_k}(0)\big) = \big(f_A(x_1), \dots, f_A(x_k)\big)
-		\end{align*}
-		Evaluating the exact differential integral yields:
-		\begin{align*}
-			\int_{[0, 1]^k} d f_F &= \int_{\boldsymbol{\gamma}(\mathbf{0})}^{\boldsymbol{\gamma}(\mathbf{1})} d f_F \\
-			&= f_F\big(\boldsymbol{\gamma}(\mathbf{1})\big) - f_F\big(\boldsymbol{\gamma}(\mathbf{0})\big) \\
-			&= f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
-		\end{align*}
+				\boldsymbol{\gamma}(\mathbf{1}) &= \big(f_{X_1}(1), \dots, f_{X_k}(1)\big) = \big(f_B(y_1), \dots, f_B(y_k)\big) \\
+				\boldsymbol{\gamma}(\mathbf{0}) &= \big(f_{X_1}(0), \dots, f_{X_k}(0)\big) = \big(f_A(x_1), \dots, f_A(x_k)\big)
+			\end{align*}
+			Evaluating the exact differential integral yields:
+			\begin{align*}
+				\int_{[0, 1]^k} d f_F &= \int_{\boldsymbol{\gamma}(\mathbf{0})}^{\boldsymbol{\gamma}(\mathbf{1})} d f_F \\
+				&= f_F\big(\boldsymbol{\gamma}(\mathbf{1})\big) - f_F\big(\boldsymbol{\gamma}(\mathbf{0})\big) \\
+				&= f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
+			\end{align*}
+			
+			\item Canonical Representation of the Integral: \\
+			Since $f_A(d_A) = A_s$ and $f_B(d_B) = B_s$, as $(\mathbf{x}, \mathbf{y})$ ranges over $d_A^k \times d_B^k$, the generating function $f_{I_F}$ maps $d_{I_F}$ onto the complete set of Minkowski evaluation values:
+			\[
+			f_{I_F}(d_A^k \times d_B^k) = \left\{ f_F(b_1, \dots, b_k) - f_F(a_1, \dots, a_k) \;:\; a_i \in A_s, \, b_i \in B_s, \, \forall i=1,\dots,k \right\}
+			\]
+			which corresponds exactly to the scenario value set of $\int_A^B g(X)dX \Big| F$ in Minkowski space $(\circ)_m$.
+		\end{enumerate}
 		
-		\item \textbf{Canonical Representation of the Integral:} \\
-		Since $f_A(d_A) = A_s$ and $f_B(d_B) = B_s$, as $(\mathbf{x}, \mathbf{y})$ ranges over $d_A^k \times d_B^k$, the generating function $f_{I_F}$ maps $d_{I_F}$ onto the complete set of Minkowski evaluation values:
-		\[
-		f_{I_F}(d_A^k \times d_B^k) = \left\{ f_F(b_1, \dots, b_k) - f_F(a_1, \dots, a_k) \;:\; a_i \in A_s, \, b_i \in B_s, \, \forall i=1,\dots,k \right\}
-		\]
-		which corresponds exactly to the scenario value set of $\int_A^B g(X)dX \Big| F$ in Minkowski space $(\circ)_m$.
-	\end{enumerate}
-	
-	Thus, $f_{I_F}(\mathbf{x}, \mathbf{y}) = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)$ is the valid canonical generating function over $d_A^k \times d_B^k$. This completes the proof.
+		Thus, $f_{I_F}(\mathbf{x}, \mathbf{y}) = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)$ is the valid canonical generating function over $d_A^k \times d_B^k$. This completes the proof.
 	\end{proof}
 	\begin{theorem}
 		Let $f,g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at uncertain point $X_0 \in \mathcal{X}$. Suppose representative generating functions of $f(X_0)$ and $g(X_0)$ in canonical form are $f_{f(X_0)(t)}$ and $f_{g(X_0)}(t)$ respectively with $t \in [0,1]^k$.
@@ -1950,13 +1950,13 @@
 		Let $f, g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at an uncertain point $X_0 \in \mathcal{X}$. Let canonical representations of $f(X_0)$ and $g(X_0)$ over the parameter hypercube $[0, 1]^k$ be given by generating functions $f_{f(X_0)}(t)$ and $f_{g(X_0)}(t)$, respectively, where $t = (t_1, \dots, t_k) \in [0, 1]^k$.
 		
 		\begin{enumerate}[leftmargin=*]
-			\item \textbf{Canonical Representation of the Sum Function:} \\
+			\item Canonical Representation of the Sum Function: \\
 			By the definition of the sum function $h(X) = (f + g)(X)$, for every parameter point $t \in [0, 1]^k$, the canonical generating function of $h(X_0) = (f+g)(X_0)$ is defined pointwise by:
 			\[
 			f_{(f+g)(X_0)}(t) = f_{f(X_0)}(t) + f_{g(X_0)}(t)
 			\]
 			
-			\item \textbf{Total Linear Differential Operator:} \\
+			\item Total Linear Differential Operator: \\
 			Since $f(X_0)$ and $g(X_0)$ are differentiable at $X_0$, their generating functions $f_{f(X_0)}$ and $f_{g(X_0)}$ are continuously differentiable with respect to the parameter vector $t \in [0, 1]^k$. 
 			
 			Applying the total differential operator $d$ to $f_{(f+g)(X_0)}(t)$, by linearity of differentiation:
@@ -1964,7 +1964,7 @@
 			d f_{(f+g)(X_0)}(t) = d \left[ f_{f(X_0)}(t) + f_{g(X_0)}(t) \right] = d f_{f(X_0)}(t) + d f_{g(X_0)}(t)
 			\]
 			
-			\item \textbf{Explicit Representation via Partial Derivatives:} \\
+			\item Explicit Representation via Partial Derivatives: \\
 			By definition of the total differential for a multivariate function over the hypercube $[0, 1]^k$:
 			\begin{align*}
 				d f_{f(X_0)}(t) &= \sum_{i=1}^{k} \frac{\partial f_{f(X_0)}(t)}{\partial t_i} dt_i \\
@@ -1975,7 +1975,7 @@
 				d f_{(f+g)(X_0)}(t) &= \sum_{i=1}^{k} \frac{\partial f_{f(X_0)}(t)}{\partial t_i} dt_i + \sum_{i=1}^{k} \frac{\partial f_{g(X_0)}(t)}{\partial t_i} dt_i \\
 				&= \sum_{i=1}^{k} \left[ \left( \frac{\partial f_{f(X_0)}(t)}{\partial t_i} + \frac{\partial f_{g(X_0)}(t)}{\partial t_i} \right) dt_i \right]
 			\end{align*}
-			\end{enumerate}				
-				This completes the proof.
-			\end{proof}
+		\end{enumerate}				
+		This completes the proof.
+	\end{proof}
 \end{document}
