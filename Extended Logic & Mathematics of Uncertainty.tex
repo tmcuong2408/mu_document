@@ -1289,13 +1289,93 @@
 		Let $A,B,C$ be uncertain numbers and * be an associative binary operation on $\mathbb{R}$, then:
 		\[A*(B*C) = (A*B)*C\]
 	\end{theorem}
-	
+	\begin{proof}
+		Let $A, B, C \in \tsbd{K}$ be three uncertain numbers with scenario value sets $A_s, B_s$, and $C_s$, respectively. Let $*$ be an associative binary operation on $\mathbb{R}$ (i.e., $a * (b * c) = (a * b) * c$ for all $a, b, c \in \mathbb{R}$).
+		
+		We prove the identity $A * (B * C) = (A * B) * C$ across both primary arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By the definition of binary operations in Minkowski space, evaluating $A * (B * C)$ yields scenario value set:
+			\begin{align*}
+				((A * (B * C))_m)_s &= \{a * u \;:\; a \in A_s, \, u \in ((B * C)_m)_s\} \\
+				&= \{a * (b * c) \;:\; a \in A_s, \, b \in B_s, \, c \in C_s\}
+			\end{align*}
+			Similarly, evaluating $(A * B) * C$ yields:
+			\begin{align*}
+				(( (A * B) * C)_m)_s &= \{v * c \;:\; v \in ((A * B)_m)_s, \, c \in C_s\} \\
+				&= \{(a * b) * c \;:\; a \in A_s, \, b \in B_s, \, c \in C_s\}
+			\end{align*}
+			Since $*$ is associative in $\mathbb{R}$, $a * (b * c) = (a * b) * c$ holds for every tuple $(a, b, c) \in A_s \times B_s \times C_s$. Thus:
+			\[
+			((A * (B * C))_m)_s = (( (A * B) * C)_m)_s
+			\]
+			Applying the transfer operator yields $(A * (B * C))_m = ((A * B) * C)_m$.
+			
+			\item \textbf{In Single-Point Arithmetic Space $(\circ)_1$:} \\
+			Let $(f_A, d_A), (f_B, d_B)$, and $(f_C, d_C)$ be canonical forms of $A, B$, and $C$, respectively. Under the single-point evaluation operator $\kgdd{\circ}$, at index tuple $(x, y, z) \in d_A \times d_B \times d_C$:
+			\[
+			[\kgdd{A * (B * C)}]_s = \{f_A(x) * (f_B(y) * f_C(z)) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\}
+			\]
+			By associativity of $*$ on individual real values:
+			\[
+			f_A(x) * (f_B(y) * f_C(z)) = (f_A(x) * f_B(y)) * f_C(z)
+			\]
+			Therefore:
+			\[
+			[\kgdd{A * (B * C)}]_s = \{(f_A(x) * f_B(y)) * f_C(z) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\} = [\kgdd{(A * B) * C}]_s
+			\]
+			Hence, $\kgdd{A * (B * C)} = \kgdd{(A * B) * C}$.
+		\end{enumerate}
+		
+		In all arithmetic spaces, the sets of scenario values match identically, confirming $A * (B * C) = (A * B) * C$.
+	\end{proof}
 	\begin{theorem}[Distributivity]
 		Let $K,A,B$ be uncertain numbers, we have:
 		\[K(A+B)\ = \bigcup_{k \in K} [k(A+B)] = \bigcup_{k \in K} (kA+kB)\]
 		\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right) \]
 	\end{theorem}
-	
+	\begin{proof}
+		Let $K, A, B \in \tsbd{K}$ be uncertain numbers with scenario value sets $K_s, A_s$, and $B_s$, respectively. 
+		
+		We prove both distributive identities separately across the relevant arithmetic spaces:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Proof of $K(A + B) = \bigcup_{k \in K} [k(A + B)] = \bigcup_{k \in K} (kA + kB)$:} \\
+			By definition of arithmetic operations in Minkowski space $(\circ)_m$, evaluating $K(A + B)$ yields the set of scenario values:
+			\[
+			(K(A + B))_s = \{k \cdot u \;:\; k \in K_s, \, u \in (A + B)_s\} = \{k(a + b) \;:\; k \in K_s, \, a \in A_s, \, b \in B_s\}
+			\]
+			Applying the distributive law of real numbers $k(a + b) = ka + kb$ for each element tuple $(k, a, b) \in K_s \times A_s \times B_s$:
+			\begin{align*}
+				(K(A + B))_s &= \{ka + kb \;:\; k \in K_s, \, a \in A_s, \, b \in B_s\} \\
+				&= \bigcup_{k \in K_s} \{ka + kb \;:\; a \in A_s, \, b \in B_s\} \\
+				&= \bigcup_{k \in K_s} (k A + k B)_s
+			\end{align*}
+			Transforming back via the transfer operator gives:
+			\[
+			K(A + B) = \bigcup_{k \in K} [k(A + B)] = \bigcup_{k \in K} (kA + kB)
+			\]
+			
+			\item \textbf{Proof of $(AB)^K = \bigcup_{k \in K} \left[(AB)^k\right] = \bigcup_{k \in K} \left(A^k B^k\right)$:} \\
+			By definition of exponentiation and multiplication in Minkowski space $(\circ)_m$, evaluating $(AB)^K$ yields the set of scenario values:
+			\[
+			((AB)^K)_s = \{v^k \;:\; v \in (AB)_s, \, k \in K_s\} = \{(a \cdot b)^k \;:\; a \in A_s, \, b \in B_s, \, k \in K_s\}
+			\]
+			Applying the power law of real numbers $(a \cdot b)^k = a^k \cdot b^k$ (for $a, b > 0$):
+			\begin{align*}
+				((AB)^K)_s &= \{a^k \cdot b^k \;:\; a \in A_s, \, b \in B_s, \, k \in K_s\} \\
+				&= \bigcup_{k \in K_s} \{a^k \cdot b^k \;:\; a \in A_s, \, b \in B_s\} \\
+				&= \bigcup_{k \in K_s} (A^k B^k)_s
+			\end{align*}
+			Transforming back via the transfer operator gives:
+			\[
+			(AB)^K = \bigcup_{k \in K} \left[(AB)^k\right] = \bigcup_{k \in K} \left(A^k B^k\right)
+			\]
+		\end{enumerate}
+		
+		In all cases, the underlying set-theoretic images match identically, confirming both distributive properties.
+	\end{proof}
 	\begin{theorem}[Inter-Arithmetic Space Theorem]
 		Let $a,c \in \mathbb{K}, X \in \tsbd{K}$. We have:
 		\begin{enumerate}[leftmargin=*]
@@ -1330,7 +1410,45 @@
 		$$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$ 
 		with $c = a * b \in A * B $, where $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$. Then $\ts{A*B}$ is also a weight of $A *B $.
 	\end{theorem}
-	
+	\begin{proof}
+		Let $(A, \ts{A})$ and $(B, \ts{B})$ be two weighted uncertain numbers in $\tsbdts{K}$, and let $*$ be a binary operation on $\tsbd{K}$. 
+		
+		By Definition 2.11, to prove that $\ts{A*B}$ is a valid weight of the resulting uncertain number $C = A * B$, we must verify two defining conditions: positivity for all elements in $C$ and total summation equality to $1$.
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Condition 1: Positivity ($\ts{A*B}(c) > 0$ for all $c \in A * B$).} \\
+			For any element $c \in A * B$, by definition of Minkowski binary operations, there exists at least one pair $(a, b) \in A \times B$ such that $a * b = c$. 
+			
+			Since $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$, by Definition 2.11 we have $\ts{A}(a) > 0$ for all $a \in A$ and $\ts{B}(b) > 0$ for all $b \in B$. Consequently, for any pair $(a, b)$ satisfying $a * b = c$, the product of their weights is strictly positive:
+			\[
+			\ts{A}(a) \ts{B}(b) > 0
+			\]
+			Since the formula $\ts{A*B}(c) = \sum_{a*b=c} \ts{A}(a)\ts{B}(b)$ is a sum of strictly positive terms over a non-empty set of pairs, it follows that:
+			\[
+			\ts{A*B}(c) > 0, \quad \forall c \in A * B
+			\]
+			
+			\item \textbf{Condition 2: Normalization / Summation to 1 ($\sum_{c \in A*B} \ts{A*B}(c) = 1$).} \\
+			Summing the weight function $\ts{A*B}(c)$ over all elements $c \in A * B$:
+			\[
+			\sum_{c \in A*B} \ts{A*B}(c) = \sum_{c \in A*B} \left( \sum_{a*b=c} \ts{A}(a)\ts{B}(b) \right)
+			\]
+			Since every pair $(a, b) \in A \times B$ maps to a unique element $c = a * b \in A * B$, partitioning the Cartesian product $A \times B$ according to the level sets of $a * b = c$ covers the entire set $A \times B$ without overlap or omission. Thus, we can rewrite the double summation as a single summation over $A \times B$:
+			\[
+			\sum_{c \in A*B} \left( \sum_{a*b=c} \ts{A}(a)\ts{B}(b) \right) = \sum_{(a, b) \in A \times B} \ts{A}(a)\ts{B}(b)
+			\]
+			By Fubini-Tonelli theorem for discrete product spaces, the joint summation factors into independent marginal summations:
+			\[
+			\sum_{(a, b) \in A \times B} \ts{A}(a)\ts{B}(b) = \left( \sum_{a \in A} \ts{A}(a) \right) \cdot \left( \sum_{b \in B} \ts{B}(b) \right)
+			\]
+			Since $\ts{A}$ and $\ts{B}$ are valid weights, $\sum_{a \in A} \ts{A}(a) = 1$ and $\sum_{b \in B} \ts{B}(b) = 1$. Therefore:
+			\[
+			\sum_{c \in A*B} \ts{A*B}(c) = 1 \cdot 1 = 1
+			\]
+		\end{enumerate}
+		
+		Both conditions are satisfied, confirming that $\ts{A*B}$ is indeed a well-defined weight on the uncertain number $A * B$.
+	\end{proof}
 	\begin{definition}[Weighted Weak Binary Relation over Field $\mathbb{K}$]
 		Let $\mathcal{R}$ be a binary relation on field $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. We define the weighted weak binary relation over field $\mathbb{K}$ as follows:
 		\[\ddclmd(A\mathcal{R}B) := \sum_{(a,b) \in A \times B}{\left[\ts{A}(a)\ts{B}(b)I(a,b)\right]}\]
@@ -1441,9 +1559,35 @@
 		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\] and we write $(f(X_0) = C)_\gamma$, where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$.
 	\end{definition}
 	
-	\begin{theorem}
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$. If the uncertain equation $f(X) = C$ has a solution, then there exist $A,B \in \tsbd{K}$ such that $\gtcl{f(A) = C}{\gamma}$ and $B$ is a solution of $f(X)=C$ with $A \subseteq B$.
+	\begin{theorem}[Extension of Weak Solutions to Exact Solutions]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \tsbd{K}$. Suppose $f$ satisfies the monotonicity property under set inclusion (i.e., $X_1 \subseteq X_2 \implies f(X_1) \subseteq f(X_2)$). If $A \in \tsbd{K}$ is a weak solution of $f(X) = C$ with weak truth degree $(f(A) = C)_\gamma$ where $\gamma \in (0, 1)$, then there exists an exact solution $B \in \tsbd{K}$ of the equation $f(X) = C$ such that $A \subseteq B$.
 	\end{theorem}
+	
+	\begin{proof}
+		Let $A \in \tsbd{K}$ be a weak solution of $f(X) = C$ with weak truth degree $\gamma = \frac{\card(f(A))}{\card(C)} \in (0, 1)$. By definition of a weak solution, $f(A)$ is defined and satisfies $f(A) \subsetneq C$.
+		
+		To construct an exact solution $B \supseteq A$, consider the target complement set $C \setminus f(A) \neq \emptyset$. 
+		
+		For each element $c \in C \setminus f(A)$, since $c \in C \subseteq \mathcal{Y} = \text{Im}(f)$, there exists at least one element $x_c \in \mathcal{X}$ such that $c \in f(\{x_c\}_u)$. Construct the set $X_{\text{add}}$ by collecting one such preimage element $x_c$ for every $c \in C \setminus f(A)$:
+		\[
+		X_{\text{add}} = \s{x_c : c \in C \setminus f(A)}
+		\]
+		
+		Define the expanded uncertain number $B \in \tsbd{K}$ as the set union of $A$ and $X_{\text{add}}$:
+		\[
+		B = A \cup X_{\text{add}}
+		\]
+		Clearly, $A \subseteq B$. By monotonicity of the uncertain function $f$ under set union:
+		\[
+		f(B) = f(A \cup X_{\text{add}}) = f(A) \cup f(X_{\text{add}})
+		\]
+		
+		By construction of $X_{\text{add}}$, the image $f(X_{\text{add}})$ covers all remaining target values in $C \setminus f(A)$. Thus:
+		\[
+		f(B) = f(A) \cup (C \setminus f(A)) = C
+		\]
+		Since $f(B) = C$, the uncertain number $B$ is an exact solution of $f(X) = C$ containing $A$. This completes the proof.
+	\end{proof}
 	
 	\section{Canonical Representation of Mappings and Equations}
 	
@@ -1475,19 +1619,92 @@
 			\]
 		\end{enumerate}
 	\end{theorem}
-	
+	\begin{proof}
+		Let $X \in \mathcal{X}$ be an uncertain number with canonical form $X \sim (f_X, d_X)$, where $d_X \subseteq \mathbb{K}$ is the scenario index domain and $f_X: d_X \to \mathbb{K}$ is a surjective generating function satisfying $f_X(d_X) = X_s$. 
+		
+		We prove the canonical form $Y \sim (f_Y, d_Y)$ for the image $Y = f(X)$ in each arithmetic space separately:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{In Single-point Arithmetic Space $(\circ)_1$:} \\
+			By Definition 2.8, the single-point evaluation operator binds every occurrence of variable $X$ in the mapping $f$ to a single representative scenario value $x \in X_s$ during each evaluation pass. 
+			
+			Since $X \sim (f_X, d_X)$, every element $x \in X_s$ is generated by an index $t \in d_X$ via $x = f_X(t)$. Thus, internal point identity preserves the scenario domain without dimension expansion:
+			\[
+			d_Y = d_X
+			\]
+			The composite generating function $f_Y : d_Y \to \mathbb{K}$ defined by $f_Y(t) = f(f_X(t))$ for all $t \in d_Y$ maps $d_Y$ onto the scenario value set:
+			\[
+			f_Y(d_Y) = \{f(f_X(t)) \;:\; t \in d_X\} = \{f(x) \;:\; x \in X_s\} = \kgdd{f}(X)_s = Y_s
+			\]
+			Therefore, $Y \sim (f_Y, d_X)$ is the canonical form of $Y = \kgdd{f}(X)$ in $(\circ)_1$.
+			
+			\item \textbf{In Minkowski Arithmetic Space $(\circ)_m$:} \\
+			By Definition 2.9, operations in Minkowski space model independent interactions among uncertain quantities. If the expression of $f(X)$ contains $k$ occurrences of variable $X$ ($k \in \mathbb{N}^*$), each occurrence acts as an independent noise source receiving an independent scenario value $x_i \in X_s$ for $i \in \{1, \dots, k\}$.
+			
+			Since each $x_i \in X_s$ is generated by an independent index $t_i \in d_X$ via $x_i = f_X(t_i)$, the overall scenario domain expands into the $k$-fold Cartesian product:
+			\[
+			d_Y = d_X^k = \underbrace{d_X \times d_X \times \dots \times d_X}_{k \text{ times}}
+			\]
+			The multi-variable generating function $f_Y : d_X^k \to \mathbb{K}$ defined by:
+			\[
+			f_Y(t_1, t_2, \dots, t_k) = f\left(f_X(t_1), f_X(t_2), \dots, f_X(t_k)\right), \quad \forall (t_1, \dots, t_k) \in d_X^k
+			\]
+			evaluates all independent combinations of scenario values across the Abstract Syntax Tree (AST) of $f(X)$. The image set under $f_Y$ satisfies:
+			\begin{align*}
+				f_Y(d_X^k) &= \{f\left(f_X(t_1), \dots, f_X(t_k)\right) \;:\; (t_1, \dots, t_k) \in d_X^k\} \\
+				&= \{f(x_1, \dots, x_k) \;:\; x_1, \dots, x_k \in X_s\} = \kgdt{f}(X)_s = Y_s
+			\end{align*}
+			Therefore, $Y \sim (f_Y, d_X^k)$ is the canonical form of $Y = \kgdt{f}(X)$ in $(\circ)_m$.
+		\end{enumerate}
+		
+		Both cases are verified, completing the proof.
+	\end{proof}
 	\begin{remark}
 		Theorem \ref{dl:3.2} clarifies the essential boundary between the two arithmetic spaces: the concept of a ``single-variable function'' $f(X)$ in the single-point arithmetic space $(\circ)_1$ preserves the scenario dimension $d_Y = d_X$; whereas in the Minkowski space $(\circ)_m$, the algebraic expression of a single-variable function is deconstructed based on the $k$ occurrences of variable $X$, causing the scenario space to expand into $d_X^k$ corresponding to the Abstract Syntax Tree (AST).
 	\end{remark}
 	
 	\begin{theorem}[Solution Characterization of Uncertain Equations]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \mathcal{Y}$ be a target set/constant with canonical representation $C \sim (f_C, d_C)$.
+		\label{thm:solution_characterization}
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \mathcal{Y}$ be a target uncertain constant with canonical representation $C \sim (f_C, d_C)$.
 		
-		Then, an element $X_0 \in \mathcal{X}$ is a solution of the equation $f(X) = C$ if and only if the value $F = f(X_0) \sim (f_F, d_F)$ satisfies the scenario structure matching condition:
-		\[
-		\forall t \in d_F, \quad \exists t' \in d_C : \quad f_F(t) = f_C(t')
-		\]
+		Then, an element $X_0 \in \mathcal{X}$ is an exact solution of the equation $f(X) = C$ if and only if its image $F = f(X_0) \sim (f_F, d_F)$ satisfies the two-way scenario matching conditions:
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Image Inclusion ($f(X_0) \subseteq C$):} 
+			\[
+			\forall t \in d_F, \quad \exists t' \in d_C \quad \text{such that} \quad f_F(t) = f_C(t')
+			\]
+			\item \textbf{Target Coverage ($C \subseteq f(X_0)$):} 
+			\[
+			\forall t' \in d_C, \quad \exists t \in d_F \quad \text{such that} \quad f_C(t') = f_F(t)
+			\]
+		\end{enumerate}
 	\end{theorem}
+	
+	\begin{proof}
+		By definition, $X_0 \in \mathcal{X}$ is an exact solution of the uncertain equation $f(X) = C$ if and only if $f(X_0)$ and $C$ share identical sets of scenario values, i.e., $F_s = C_s$.
+		
+		We prove both directions of the logical equivalence:
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Forward Direction ($\Rightarrow$):} \\
+			Suppose $X_0$ is an exact solution of $f(X) = C$, so $F_s = C_s$.
+			\begin{itemize}[leftmargin=*]
+				\item For any $t \in d_F$, the generated value $y = f_F(t) \in F_s$. Since $F_s = C_s$, we have $y \in C_s = f_C(d_C)$. By surjectivity of $f_C$ onto $C_s$, there exists $t' \in d_C$ such that $f_F(t) = f_C(t')$.
+				\item Conversely, for any $t' \in d_C$, the generated value $c = f_C(t') \in C_s$. Since $C_s = F_s$, we have $c \in F_s = f_F(d_F)$. By surjectivity of $f_F$ onto $F_s$, there exists $t \in d_F$ such that $f_C(t') = f_F(t)$.
+			\end{itemize}
+			Thus, both matching conditions (1) and (2) hold.
+			
+			\item \textbf{Backward Direction ($\Leftarrow$):} \\
+			Suppose both matching conditions (1) and (2) hold.
+			\begin{itemize}[leftmargin=*]
+				\item Condition (1) implies that for every $y \in F_s = f_F(d_F)$, there exists $t' \in d_C$ such that $y = f_C(t') \in C_s$. Thus $F_s \subseteq C_s$.
+				\item Condition (2) implies that for every $c \in C_s = f_C(d_C)$, there exists $t \in d_F$ such that $c = f_F(t) \in F_s$. Thus $C_s \subseteq F_s$.
+			\end{itemize}
+			Combining both inclusions yields $F_s = C_s$, which means $f(X_0) = C$. Hence, $X_0$ is an exact solution of $f(X) = C$.
+		\end{enumerate}
+		
+		This completes the proof.
+	\end{proof}
 	
 	% ==========================================
 	% CHAPTER 4: UNCERTAIN CALCULUS
@@ -1534,6 +1751,42 @@
 	\begin{example}
 		$$\hbd{c}{X} = \sum_{k=1}^{\infty} \frac{X}{2^k} \quad$$
 		With $X=\s{a,b}$, we have $\hbd{c}{\s{a,b}} = \kbd{[a,b]}$.
+		
+		\begin{proof}
+			Let $X = \{a, b\}_u \in \tsbd{R}$ with $a < b$. By definition of Minkowski arithmetic space $(\circ)_m$, each term $\frac{X}{2^k}$ in the infinite series represents an independent noise source receiving a scenario value $x_k \in \{a, b\}$ for every $k \in \mathbb{N}^*$. 
+			
+			Thus, the scenario value set of $\hbd{c}{X}$ is defined by:
+			\[
+			(\hbd{c}{X})_s = \left\{ \sum_{k=1}^{\infty} \frac{x_k}{2^k} \;:\; x_k \in \{a, b\}, \; \forall k \in \mathbb{N}^* \right\}
+			\]
+			
+			To prove $(\hbd{c}{X})_s = [a, b]$, we perform a change of variables. For each $k \in \mathbb{N}^*$, express $x_k \in \{a, b\}$ in terms of a binary choice variable $b_k \in \{0, 1\}$:
+			\[
+			x_k = a + (b - a)b_k, \quad \text{where } b_k = \begin{cases} 0 & \text{if } x_k = a \\ 1 & \text{if } x_k = b \end{cases}
+			\]
+			
+			Substituting $x_k$ into the infinite sum:
+			\begin{align*}
+				\sum_{k=1}^{\infty} \frac{x_k}{2^k} &= \sum_{k=1}^{\infty} \frac{a + (b - a)b_k}{2^k} \\
+				&= a \sum_{k=1}^{\infty} \frac{1}{2^k} + (b - a) \sum_{k=1}^{\infty} \frac{b_k}{2^k}
+			\end{align*}
+			
+			Since $\sum_{k=1}^{\infty} \frac{1}{2^k} = 1$, the expression simplifies to:
+			\[
+			\sum_{k=1}^{\infty} \frac{x_k}{2^k} = a + (b - a) \sum_{k=1}^{\infty} \frac{b_k}{2^k}
+			\]
+			
+			Notice that as $(b_1, b_2, b_3, \dots)$ ranges over all possible sequence combinations in $\{0, 1\}^{\mathbb{N}^*}$, the term $\sum_{k=1}^{\infty} \frac{b_k}{2^k}$ represents the standard base-2 (binary) fractional expansion of real numbers in the unit interval $[0, 1]$:
+			\[
+			\left\{ \sum_{k=1}^{\infty} \frac{b_k}{2^k} \;:\; b_k \in \{0, 1\}, \, \forall k \in \mathbb{N}^* \right\} = [0, 1]
+			\]
+			
+			Therefore, the set of all possible scenario values of $\hbd{c}{X}$ becomes:
+			\[
+			(\hbd{c}{X})_s = \{a + (b - a)t \;:\; t \in [0, 1]\} = [a, b]
+			\]
+			Converting back via the transfer operator yields $\hbd{c}{\{a, b\}_u} = [a, b]_u \equiv [a, b]$. This completes the proof.
+		\end{proof}
 	\end{example}
 	
 	\section{Derivatives of Uncertain Functions}
@@ -1637,7 +1890,53 @@
 		\]
 		for all $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$.
 	\end{theorem}
+	\begin{proof}
+		Let $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$. Under Minkowski arithmetic space $(\circ)_m$, the interaction between $A$ and $B$ via a $k$-variable structural antiderivative $F$ operates on the $2k$-fold Cartesian product index domain:
+		\[
+		d_{I_F} = d_A^k \times d_B^k = \underbrace{(d_A \times \dots \times d_A)}_{k \text{ times}} \times \underbrace{(d_B \times \dots \times d_B)}_{k \text{ times}}
+		\]
+		Fix an arbitrary index vector pair $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$, where $\mathbf{x} = (x_1, \dots, x_k) \in d_A^k$ and $\mathbf{y} = (y_1, \dots, y_k) \in d_B^k$.
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Parametric Path and Total Differential Formulation:} \\
+			For each component $i \in \{1, \dots, k\}$, define the linear parameterization path $\gamma_i : [0, 1] \to \mathbb{K}$ connecting $f_A(x_i)$ to $f_B(y_i)$:
+			\[
+			f_{X_i}(t_i) = (1 - t_i) f_A(x_i) + t_i f_B(y_i) = f_A(x_i) + t_i \Delta f_i, \quad t_i \in [0, 1]
+			\]
+			where $\Delta f_i = f_B(y_i) - f_A(x_i)$. The differential along each path is $d f_{X_i} = \Delta f_i \, dt_i$.
+			
+			By the multivariate chain rule, the total differential form $df_F$ along the hypercube path $\boldsymbol{\gamma}(\mathbf{t}) = (\gamma_1(t_1), \dots, \gamma_k(t_k))$ on $\mathbf{t} = (t_1, \dots, t_k) \in [0, 1]^k$ is:
+			\[
+			d f_F = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} d f_{X_i} = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} \big(f_B(y_i) - f_A(x_i)\big) dt_i
+			\]
+			
+			\item \textbf{Evaluation of the $k$-fold Line Integral:} \\
+			The generating function value $f_{I_F}(\mathbf{x}, \mathbf{y})$ is defined as the definite integral of the total differential form $df_F$ over the parameter space $[0, 1]^k$:
+			\[
+			f_{I_F}(\mathbf{x}, \mathbf{y}) = \int_{[0, 1]^k} d f_F
+			\]
+			Since $df_F$ is an exact total differential of the continuously differentiable $k$-variable function $f_F$, by the Fundamental Theorem of Calculus for line integrals in multiple variables (or gradient theorem), the integral depends solely on the boundary values of the path $\boldsymbol{\gamma}$ at $\mathbf{t} = \mathbf{1} = (1, \dots, 1)$ and $\mathbf{t} = \mathbf{0} = (0, \dots, 0)$:
+			\begin{align*}
+			\boldsymbol{\gamma}(\mathbf{1}) &= \big(f_{X_1}(1), \dots, f_{X_k}(1)\big) = \big(f_B(y_1), \dots, f_B(y_k)\big) \\
+			\boldsymbol{\gamma}(\mathbf{0}) &= \big(f_{X_1}(0), \dots, f_{X_k}(0)\big) = \big(f_A(x_1), \dots, f_A(x_k)\big)
+		\end{align*}
+		Evaluating the exact differential integral yields:
+		\begin{align*}
+			\int_{[0, 1]^k} d f_F &= \int_{\boldsymbol{\gamma}(\mathbf{0})}^{\boldsymbol{\gamma}(\mathbf{1})} d f_F \\
+			&= f_F\big(\boldsymbol{\gamma}(\mathbf{1})\big) - f_F\big(\boldsymbol{\gamma}(\mathbf{0})\big) \\
+			&= f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
+		\end{align*}
+		
+		\item \textbf{Canonical Representation of the Integral:} \\
+		Since $f_A(d_A) = A_s$ and $f_B(d_B) = B_s$, as $(\mathbf{x}, \mathbf{y})$ ranges over $d_A^k \times d_B^k$, the generating function $f_{I_F}$ maps $d_{I_F}$ onto the complete set of Minkowski evaluation values:
+		\[
+		f_{I_F}(d_A^k \times d_B^k) = \left\{ f_F(b_1, \dots, b_k) - f_F(a_1, \dots, a_k) \;:\; a_i \in A_s, \, b_i \in B_s, \, \forall i=1,\dots,k \right\}
+		\]
+		which corresponds exactly to the scenario value set of $\int_A^B g(X)dX \Big| F$ in Minkowski space $(\circ)_m$.
+	\end{enumerate}
 	
+	Thus, $f_{I_F}(\mathbf{x}, \mathbf{y}) = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)$ is the valid canonical generating function over $d_A^k \times d_B^k$. This completes the proof.
+	\end{proof}
 	\begin{theorem}
 		Let $f,g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at uncertain point $X_0 \in \mathcal{X}$. Suppose representative generating functions of $f(X_0)$ and $g(X_0)$ in canonical form are $f_{f(X_0)(t)}$ and $f_{g(X_0)}(t)$ respectively with $t \in [0,1]^k$.
 		
@@ -1647,5 +1946,36 @@
 		Explicit representation via partial derivatives over parameter hypercube $[0,1]^k:$
 		\[df_{\left(f+g\right)}(t) = \sum_{i=1}^{k}\left[ \left(\frac{\partial f_{f(X_0)}(t)}{\partial t_i} + \frac{\partial f_{g(X_0)}(t)}{\partial t_i}\right) dt_i\right]\]
 	\end{theorem}
-	
+	\begin{proof}
+		Let $f, g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at an uncertain point $X_0 \in \mathcal{X}$. Let canonical representations of $f(X_0)$ and $g(X_0)$ over the parameter hypercube $[0, 1]^k$ be given by generating functions $f_{f(X_0)}(t)$ and $f_{g(X_0)}(t)$, respectively, where $t = (t_1, \dots, t_k) \in [0, 1]^k$.
+		
+		\begin{enumerate}[leftmargin=*]
+			\item \textbf{Canonical Representation of the Sum Function:} \\
+			By the definition of the sum function $h(X) = (f + g)(X)$, for every parameter point $t \in [0, 1]^k$, the canonical generating function of $h(X_0) = (f+g)(X_0)$ is defined pointwise by:
+			\[
+			f_{(f+g)(X_0)}(t) = f_{f(X_0)}(t) + f_{g(X_0)}(t)
+			\]
+			
+			\item \textbf{Total Linear Differential Operator:} \\
+			Since $f(X_0)$ and $g(X_0)$ are differentiable at $X_0$, their generating functions $f_{f(X_0)}$ and $f_{g(X_0)}$ are continuously differentiable with respect to the parameter vector $t \in [0, 1]^k$. 
+			
+			Applying the total differential operator $d$ to $f_{(f+g)(X_0)}(t)$, by linearity of differentiation:
+			\[
+			d f_{(f+g)(X_0)}(t) = d \left[ f_{f(X_0)}(t) + f_{g(X_0)}(t) \right] = d f_{f(X_0)}(t) + d f_{g(X_0)}(t)
+			\]
+			
+			\item \textbf{Explicit Representation via Partial Derivatives:} \\
+			By definition of the total differential for a multivariate function over the hypercube $[0, 1]^k$:
+			\begin{align*}
+				d f_{f(X_0)}(t) &= \sum_{i=1}^{k} \frac{\partial f_{f(X_0)}(t)}{\partial t_i} dt_i \\
+				d f_{g(X_0)}(t) &= \sum_{i=1}^{k} \frac{\partial f_{g(X_0)}(t)}{\partial t_i} dt_i
+			\end{align*}
+			Substituting these total differentials into the linear sum yields:
+			\begin{align*}
+				d f_{(f+g)(X_0)}(t) &= \sum_{i=1}^{k} \frac{\partial f_{f(X_0)}(t)}{\partial t_i} dt_i + \sum_{i=1}^{k} \frac{\partial f_{g(X_0)}(t)}{\partial t_i} dt_i \\
+				&= \sum_{i=1}^{k} \left[ \left( \frac{\partial f_{f(X_0)}(t)}{\partial t_i} + \frac{\partial f_{g(X_0)}(t)}{\partial t_i} \right) dt_i \right]
+			\end{align*}
+			\end{enumerate}				
+				This completes the proof.
+			\end{proof}
 \end{document}
