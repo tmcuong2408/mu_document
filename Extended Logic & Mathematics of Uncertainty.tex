@@ -335,7 +335,7 @@
 		From this, we can derive characteristic laws of the result set $T$, such as minimum value $\min(T)$, maximum value $\max(T)$, mean of $T$, or determine whether $T$ satisfies a certain condition function or criterion $f(T)$. Grasping this complete structural range forms the core foundation for solving decision-making problems under data uncertainty.
 	\end{example}
 	
-	To automate and systemize direct computations over these sets of possible scenarios, we construct Extended Logic and Mathematics of Uncertainty[cite: 1] — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
+	To automate and systemize direct computations over these sets of possible scenarios, we construct Extended Logic and Mathematics of Uncertainty — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
 	
 	\section{Uncertain Number}
 	\begin{definition}[Uncertain Number over Field $\mathbb{K}$]
@@ -1547,7 +1547,7 @@
 	
 	\begin{example}
 		Given the uncertain equation \[\kgdd{X^2+5X+6} = 0 \]
-		It is easy to see that $X = \s{-2,-3}$ is a solution to this equation[cite: 1]. 
+		It is easy to see that $X = \s{-2,-3}$ is a solution to this equation. 
 		
 		However, $X = \s{-2,-3}$ is not a solution to the equation:
 		\[X^2+5X+6 = 0 \]
@@ -1555,16 +1555,16 @@
 	\end{example}
 	
 	\begin{definition}[Weak Solution of an Uncertain Equation]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$[cite: 1]. 
-		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$[cite: 1]. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\][cite: 1] and we write $(f(X_0) = C)_\gamma$[cite: 1], where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$[cite: 1].
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $C \in \tsbd{K}$. 
+		A solution $X_0 \in \tsbd{K}$ is called a weak solution of the uncertain equation $f(X) = C$ if $f(X_0)$ is defined and $f(X_0) \subsetneq C$. If $f(X_0)$ and $C$ are finite-element uncertain numbers, we set: \[\gamma = \frac{\card(f(X_0))}{\card(C)} \in (0,1),\] and we write $(f(X_0) = C)_\gamma$, where the equality relation here is a weak equality relation. For example, if $\gamma = 0.5$, we write $\gtcl{f(X_0) = C}{0.5}$.
 	\end{definition}
 	
 	\begin{theorem}[Extension of Weak Solutions to Exact Solutions]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \tsbd{K}$[cite: 1]. Suppose $f$ satisfies the monotonicity property under set inclusion (i.e., $X_1 \subseteq X_2 \implies f(X_1) \subseteq f(X_2)$). If $A \in \tsbd{K}$ is a weak solution of $f(X) = C$ with weak truth degree $(f(A) = C)_\gamma$ where $\gamma \in (0, 1)$[cite: 1], then there exists an exact solution $B \in \tsbd{K}$ of the equation $f(X) = C$ such that $A \subseteq B$.
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $C \in \tsbd{K}$. Suppose $f$ satisfies the monotonicity property under set inclusion (i.e., $X_1 \subseteq X_2 \implies f(X_1) \subseteq f(X_2)$). If $A \in \tsbd{K}$ is a weak solution of $f(X) = C$ with weak truth degree $(f(A) = C)_\gamma$ where $\gamma \in (0, 1)$, then there exists an exact solution $B \in \tsbd{K}$ of the equation $f(X) = C$ such that $A \subseteq B$.
 	\end{theorem}
 	
 	\begin{proof}
-		Let $A \in \tsbd{K}$ be a weak solution of $f(X) = C$ with weak truth degree $\gamma = \frac{\card(f(A))}{\card(C)} \in (0, 1)$[cite: 1]. By definition of a weak solution, $f(A)$ is defined and satisfies $f(A) \subsetneq C$[cite: 1].
+		Let $A \in \tsbd{K}$ be a weak solution of $f(X) = C$ with weak truth degree $\gamma = \frac{\card(f(A))}{\card(C)} \in (0, 1)$. By definition of a weak solution, $f(A)$ is defined and satisfies $f(A) \subsetneq C$.
 		
 		To construct an exact solution $B \supseteq A$, consider the target complement set $C \setminus f(A) \neq \emptyset$. 
 		
