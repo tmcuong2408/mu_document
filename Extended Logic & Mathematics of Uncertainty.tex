@@ -1519,8 +1519,14 @@
 	\section{Graphs and Structure of Uncertain Functions}
 	
 	\begin{definition}[Graph of an Uncertain Function at a Point]
-		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function, $A \in \mathcal{X}$, we define the graph of the uncertain function $f$ at point $A$ as:
-		\[\pgr_f(A):= A \times f(A)\]
+		Let $f : \mathcal{X} \to \mathcal{Y}$ be an uncertain function and $A \in \mathcal{X}$. The graph of the uncertain function $f$ at point $A$ in an arithmetic space $\alpha \in \{1, 1', m, m'\}$ is defined by:
+		\[
+		\pgr_{f, \alpha}(A) := \begin{cases}
+			\s{(x, f(x)) : x \in A}, & \text{if } \alpha = 1 \text{ or } 1', \\[1ex]
+			A \times f(A), & \text{if } \alpha = m \text{ or } m'.
+		\end{cases}
+		\]
+		By default, when the subscript $\alpha$ is omitted, $\pgr_f(A)$ denotes the graph in Minkowski arithmetic space $(\circ)_m$, i.e., $\pgr_f(A) := \pgr_{f, m}(A) = A \times f(A)$.
 	\end{definition}
 	
 	\begin{definition}[Graph of an Uncertain Function]
