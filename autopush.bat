@@ -28,7 +28,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo Dang sao chep cac tep PDF sang /home/cuong...
 :: Chi copy cac file *.pdf (bao gom ca trong cac thu muc con neu co)
-robocopy "." "Z:\" "*.pdf" /S /E /Z /R:1 /W:1 /FFT /NJH /NJS
+xcopy "*.pdf" "Z:\" /S /E /C /I /Y /Q /B
 echo Dang ngat ket noi SMB...
 net use %DRIVE_LETTER% /delete /yes >nul 2>&1
 
