@@ -15,7 +15,7 @@ set "SMB_PASS=@thienhadenhatbang123"
 set "DRIVE_LETTER=Z:"
 
 :: Duong dan thu muc /home/cuong tren máy chủ SMB
-set "REMOTE_PATH=\\%SMB_SERVER%"
+set "REMOTE_PATH=\\%SMB_SERVER%\RootServer\home\cuong"
 
 echo Dang ket noi toi /home/cuong qua SMB...
 net use %DRIVE_LETTER% "%REMOTE_PATH%" /user:%SMB_USER% "%SMB_PASS%" >nul 2>&1
