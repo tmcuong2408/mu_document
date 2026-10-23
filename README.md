@@ -1,4 +1,5 @@
-# mu_document
+# Extended Logic And Mathematics Of Uncertainty
+
 Extended Logic And Mathematics Of Uncertainty
 
 Trần, M. C. (2026). Extended logic and mathematics of uncertainty. <br/>
