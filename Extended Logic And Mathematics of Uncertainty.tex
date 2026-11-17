@@ -122,38 +122,38 @@
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabular}{p{3.5cm} p{11cm}}
 			\toprule
-			Symbol                               & Description / Meaning                                                      \\
+			Symbol                               & Description / Meaning                                                                   \\
 			\midrule
-			\multicolumn{2}{l}{Extended Logic}                                                                                \\
-			$(\Omega, \mathcal{F}, \lambda)$     & Measure space representing scenario/state space and measure function       \\
-			$v(P, \omega)$                       & Scenario truth function of proposition $P$ at state $\omega \in \Omega$    \\
-			$\ddclmd(P)$                         & Global truth valuation operator of proposition $P$ on $[0, 1]$             \\
-			$(P)_{V(P)}$                         & Proposition $P$ accompanied by its truth measure                           \\
-			$P \Rightarrow Q$                    & Logical implication relation on scenario space                             \\
+			\multicolumn{2}{l}{Extended Logic}                                                                                             \\
+			$(\Omega, \mathcal{F}, \lambda)$     & Measure space representing scenario/state space and measure function                    \\
+			$v(P, \omega)$                       & Scenario truth function of proposition $P$ at state $\omega \in \Omega$                 \\
+			$\ddclmd(P)$                         & Global truth valuation operator of proposition $P$ on $[0, 1]$                          \\
+			$(P)_{V(P)}$                         & Proposition $P$ accompanied by its truth measure                                        \\
+			$P \Rightarrow Q$                    & Logical implication relation on scenario space                                          \\
 			\midrule
-			\multicolumn{2}{l}{Uncertain Sets \& Numbers}                                                                     \\
-			$\mathbf{U}(\mathbb{K})$             & Space of all uncertain numbers over field $\mathbb{K}$                     \\
-			$\mathbf{U}^n(\mathbb{K})$           & Space of order-$n$ uncertain numbers over field $\mathbb{K}$               \\
-			$\mathbf{U}_{\w}(\mathbb{K})$        & Space of weighted uncertain numbers over field $\mathbb{K}$                \\
-			$\{A\}_\mathrm{u}$ or $A_\mathrm{u}$ & Uncertain number constructed from set $A$                                  \\
-			$A_s$                                & Scenario value set corresponding to uncertain number $A$                   \\
-			$\emptyset$                          & Null (undefined) uncertain number                                          \\
-			$\dimU(A)$                           & Uncertainty dimension (cardinality of scenario set) of $A$                 \\
-			$\rad(A)$                            & Uncertainty radius of uncertain number $A$                                 \\
-			$d_H(A, B)$                          & Hausdorff distance between two uncertain numbers $A$ and $B$               \\
-			$(f_A, d_A)$                         & Canonical form of $A$ with generating function $f_A$ on index domain $d_A$ \\
-			$A[\mathcal{R}]B$                    & Weak binary relation between uncertain numbers $A$ and $B$                 \\
+			\multicolumn{2}{l}{Uncertain Sets \& Numbers}                                                                                  \\
+			$\mathbf{U}(\mathbb{K})$             & Space of all uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$            \\
+			$\mathbf{U}^n(\mathbb{K})$           & Space of order-$n$ uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$      \\
+			$\mathbf{U}_{\w}(\mathbb{K})$        & Space of weighted uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$       \\
+			$\{A\}_\mathrm{u}$ or $A_\mathrm{u}$ & Uncertain number constructed from set $A$                                               \\
+			$A_s$                                & Scenario value set corresponding to uncertain number $A$                                \\
+			$\emptyset$                          & Null (undefined) uncertain number                                                       \\
+			$\dimU(A)$                           & Uncertainty dimension (cardinality of scenario set) of $A$                              \\
+			$\rad(A)$                            & Uncertainty radius of uncertain number $A$                                              \\
+			$d_H(A, B)$                          & Hausdorff distance between two uncertain numbers $A$ and $B$                            \\
+			$(f_A, d_A)$                         & Canonical form of $A$ with generating function $f_A$ on index domain $d_A$              \\
+			$A[\mathcal{R}]B$                    & Weak binary relation between uncertain numbers $A$ and $B$                              \\
 			\midrule
-			\multicolumn{2}{l}{Arithmetic Spaces \& Operations}                                                               \\
-			$(\circ)_1$                          & Single-point arithmetic space operator (preserves point identity)          \\
-			$(\circ)_{1'}$                       & Extended single-point arithmetic space operator                            \\
-			$(\circ)_m$                          & Minkowski arithmetic space operator (independent scenario interaction)     \\
-			$(\circ)_{m'}$                       & Extended Minkowski arithmetic space operator                               \\
-			$A^n_*$                              & $n$-th iterated binary operation $*$ on uncertain number $A$               \\
-			$\Tr(y \in f(X))$                    & Trace of element $y$ generated in expression $f(X)$                        \\
-			$\pgr_f(A)$                          & Point-wise graph of uncertain function $f$ at point $A$                    \\
-			$\text{gr}(f)$                       & Complete graph of uncertain function $f$ over domain $\mathcal{X}$         \\
-			$\int_{A}^{B} f(X) dX$               & Uncertain integral of function $f(X)$ over scenario bounds $A$ to $B$      \\
+			\multicolumn{2}{l}{Arithmetic Spaces \& Operations}                                                                            \\
+			$(\circ)_1$                          & Single-point arithmetic space operator (preserves point identity)                       \\
+			$(\circ)_{1'}$                       & Extended single-point arithmetic space operator                                         \\
+			$(\circ)_m$                          & Minkowski arithmetic space operator (independent scenario interaction)                  \\
+			$(\circ)_{m'}$                       & Extended Minkowski arithmetic space operator                                            \\
+			$A^n_*$                              & $n$-th iterated binary operation $*$ on uncertain number $A$                            \\
+			$\Tr(y \in f(X))$                    & Trace of element $y$ generated in expression $f(X)$                                     \\
+			$\pgr_f(A)$                          & Point-wise graph of uncertain function $f$ at point $A$                                 \\
+			$\text{gr}(f)$                       & Complete graph of uncertain function $f$ over domain $\mathcal{X}$                      \\
+			$\int_{A}^{B} f(X) dX$               & Uncertain integral of function $f(X)$ over scenario bounds $A$ to $B$                   \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
@@ -339,15 +339,15 @@
 	To automate and systemize direct computations over these sets of possible scenarios, we construct Extended Logic and Mathematics of Uncertainty — an extension tool of classical arithmetic for quantities exhibiting uncertainty.
 	
 	\section{Uncertain Number}
-	\begin{definition}[Uncertain Number over Field $\mathbb{K}$]
-		Let $\mathbb{K}$ be a field; an uncertain number $A$ is a quantity whose value belongs to a set $A \subseteq \mathbb{K}$. The set of all uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbd{K}$. If $A =\s{a}$, we identify $A$ with element $a$. If $A =\emptyset$, we say $A$ is undefined. The number $\emptyset \in \tsbd{K}$ is called the null number.
+	\begin{definition}[Uncertain Number over a Domain $\mathbb{K}$]
+		Let $\mathbb{F}$ be a field and $\mathbb{K} \subseteq \mathbb{F}$ be a non-empty subset (domain) of $\mathbb{F}$. An uncertain number $A$ over $\mathbb{K}$ is a quantity whose value belongs to a set $A \subseteq \mathbb{K}$. The set of all uncertain numbers over $\mathbb{K}$ is denoted by $\tsbd{K}$. If $A =\s{a}$, we identify $A$ with element $a \in \mathbb{K}$. If $A =\emptyset$, we say $A$ is undefined. The number $\emptyset \in \tsbd{K}$ is called the null number.
 	\end{definition}
 	
 	\begin{definition}[Transfer Operator]
 		To resolve notation ambiguity between sets and uncertain numbers in certain cases, we define the following two transfer operators:
 		\begin{enumerate}[leftmargin=*]
 			\item Given $A \in \tsbd{K}$, we denote $A_s$ as the set containing all possible values of $A$.
-			\item Given $A$ as a set, the operator transforming $A$ into an uncertain number is denoted by $A_u \in \tsbd{K}$.
+			\item Given $A \subseteq \mathbb{K}$ as a set, the operator transforming $A$ into an uncertain number is denoted by $A_u \in \tsbd{K}$.
 		\end{enumerate}
 	\end{definition}
 	
@@ -376,7 +376,7 @@
 	\end{definition}
 	
 	\begin{definition}[Canonical Form]
-		Let $A \in \tsbd{K}$. We call $f_A : d_A \to \mathbb{K}$ a generating function of uncertain number $A$ if there exists an index set $d_A \subseteq \mathbb{K}$ satisfying:
+		Let $A \in \tsbd{K}$ where $\mathbb{K} \subseteq \mathbb{F}$. We call $f_A : d_A \to \mathbb{K}$ a generating function of uncertain number $A$ if there exists an index set $d_A \subseteq \mathbb{R}$ satisfying:
 		\[d_A = \begin{cases*}
 			\set{1..n} \subseteq \mathbb{N^*} \text{ if } \dimU(A)=n           \\
 			\mathbb{N^*} \text{ if } A_s \text{ is a countably infinite set  } \\
@@ -438,7 +438,7 @@
 	Next, related to solving uncertain equations, we arrive at the following definition:
 	
 	\begin{definition}[Uncertain Number of Order $n$]
-		Let $A \in \tsbd{K}$, $n$ be a positive integer, we denote $\tsbdcapn{K}{n}$ as the set of order-$n$ uncertain numbers over field $\mathbb{K}$, given by:
+		Let $A \in \tsbd{K}$ where $\mathbb{K} \subseteq \mathbb{F}$ is a subset of field $\mathbb{F}$, and let $n$ be a positive integer. We denote $\tsbdcapn{K}{n}$ as the set of order-$n$ uncertain numbers over domain $\mathbb{K}$, given by:
 		\begin{enumerate}[leftmargin=*]
 			\item For $n = 2$, the set of order-2 uncertain numbers is defined by:
 			\[
@@ -460,7 +460,7 @@
 	\end{definition}
 	
 	\begin{definition}[Uncertain Radius]
-		Let $A$ be an uncertain number, the uncertain radius of $A$ is denoted by $\rad(A)$ and
+		Let $\mathbb{K} \subseteq \mathbb{R}$ and $A \in \tsbd{K}$ be an uncertain number. The uncertain radius of $A$ is denoted by $\rad(A)$ and
 		$$\rad(A) = \frac{1}{2} \cdot \sup \set{x_1 - x_2 : x_1, x_2 \in A}$$
 	\end{definition}
 	
@@ -469,7 +469,7 @@
 	\end{corollary}
 	
 	\begin{definition}[Distance]
-		Let $\mathbb{K}$ be a normed field, $A, B \in \tsbd{K}$. The distance between two uncertain numbers $A$ and $B$ is denoted by $d_H(A,B)$, given by
+		Let $\mathbb{F}$ be a normed field, $\mathbb{K} \subseteq \mathbb{F}$, and $A, B \in \tsbd{K}$. The distance between two uncertain numbers $A$ and $B$ is denoted by $d_H(A,B)$, given by
 		$$
 		d_H(A,B) := \max\left\{\sup_{a \in A}{d(a,B),\sup_{b \in B}{d(b,A)}}\right\}
 		$$
@@ -478,7 +478,7 @@
 	\end{definition}
 	
 	\begin{definition}[Weak Binary Relation]
-		Consider $\mathcal{R}$ as a binary relation on field $\mathbb{K}$ and two uncertain numbers $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$.
+		Consider $\mathcal{R}$ as a binary relation on $\mathbb{K} \subseteq \mathbb{F}$ and two uncertain numbers $A \sim (f_A, d_A)$, $B \sim (f_B, d_B)$ in $\mathbf{U}(\mathbb{K})$.
 		
 		The weak binary relation $A [\mathcal{R}] B$ is a proposition evaluated on scenario space $\Omega = d_A \times d_B$ with atomic truth function:
 		\[
@@ -563,11 +563,11 @@
 	\end{example}
 	
 	\begin{definition}[Single-Point Arithmetic Space]
-		Let $A \in \tsbd{K}$ be an uncertain set. We define a single-point uncertain function as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be a subset of a field $\mathbb{F}$, and let $A \in \tsbd{K}$ be an uncertain number. We define a single-point uncertain function as a mapping $f$ acting on variable $A$, such that during each evaluation pass, variable $A$ receives a unique representative point value $x \in A$ at all occurrences of $A$ in expression $f$.
 		
 		The image set of the corresponding point-wise uncertain function, denoted $\kgdd{f}$, is determined by:
 		\[
-		\kgdd{f}(A) := \s{f(x) \;:\; x \in A}
+		\kgdd{f}(A) := \s{f(x) \;:\; x \in A, \, f(x) \in \mathbb{K}}
 		\]
 		Operations within $(\circ)_1$ are called operations on the single-point arithmetic space.
 	\end{definition}
@@ -581,7 +581,7 @@
 		This definition ensures algebraic consistency via two core mechanisms:
 		\begin{itemize}[leftmargin=*]
 			\item Internal Point Identity: Every symbol of variable $A$ appearing in expression $f$ (regardless of position or operation) is bound to receive the same value $x \in A$ during the same mapping pass.
-			\item Elimination of Quantity Expansion: Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ and $\kgdd{x + x}(A) = 2A$.
+			\item Elimination of Quantity Expansion: Thanks to unified point assignment, classical algebraic properties are fully preserved, such as $\kgdd{x - x}(A) = \s{0}$ (when $0 \in \mathbb{K}$) and $\kgdd{x + x}(A) = 2A$ (when $2A \subseteq \mathbb{K}$).
 		\end{itemize}
 	\end{remark}
 	
@@ -594,16 +594,15 @@
 	\end{example}
 	
 	\begin{definition}[Minkowski Arithmetic Space]
-		Let $\mathbb{K}$ be a field, with * as any binary operation on $\mathbb{K}$, we define arithmetic binary operation * on $\tsbd{K}$:
-		For $A,B \in \tsbd{K}$, then
+		Let $\mathbb{F}$ be a field, $\mathbb{K} \subseteq \mathbb{F}$ be a subset of $\mathbb{F}$, and $*$ be any binary operation induced from $\mathbb{F}$. We define the arithmetic binary operation $*$ on $\tsbd{K}$ for $A,B \in \tsbd{K}$ by:
 		$$(A * B)_m = \s{a*b : a \in A , b\in B , a*b \in \mathbb{K}}$$
-		If $A * B =\emptyset$, we say $A * B$ is undefined. In writing, we abbreviate $(A*B)_m$ as $A*B$ and refer to operations in $(\circ)_m$ as operations executed on Minkowski arithmetic space.
+		If $(A * B)_m =\emptyset$, we say $A * B$ is undefined. In writing, we abbreviate $(A*B)_m$ as $A*B$ and refer to operations in $(\circ)_m$ as operations executed on Minkowski arithmetic space.
 	\end{definition}
 	
 	\begin{definition}[Extended Minkowski Arithmetic Space]
-		Let $\mathbb{K}$ be a field. The Extended Minkowski Arithmetic Space $(\circ)_{m'}$ is an extension of the Minkowski arithmetic space $(\circ)_m$ defined to incorporate inverse operations, fractional coefficient scaling, and solve operator equations over uncertain quantities.
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be a subset of a field $\mathbb{F}$. The Extended Minkowski Arithmetic Space $(\circ)_{m'}$ is an extension of the Minkowski arithmetic space $(\circ)_m$ defined to incorporate inverse operations, fractional coefficient scaling, and solve operator equations over uncertain quantities.
 		
-		For any $A, B \in \tsbd{K}$ and binary operation $*$, operations in $(\circ)_{m'}$ admit extended algebraic solutions such that higher-order uncertain structures, equations, and roots (such as $X^q_* = A^p_*$) are fully closed and well-defined.
+		For any $A, B \in \tsbd{K}$ and binary operation $*$, operations in $(\circ)_{m'}$ admit extended algebraic solutions such that higher-order uncertain structures, equations, and roots (such as $X^q_* = A^p_*$) are well-defined within $\tsbd{K}$.
 	\end{definition}
 	
 	Here are some examples:
@@ -668,7 +667,7 @@
 	
 	\begin{theorem}[Canonical Form on Minkowski Arithmetic Space]
 		\label{thm:minkowski_canonical_form}
-		Let $A, B \in \tsbd{K}$ be two uncertain numbers with canonical forms $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$, respectively. Let $*$ be any binary operation on field $\mathbb{K}$ extended to the Minkowski arithmetic space $(\circ)_m$.
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be a subset of a field $\mathbb{F}$, and let $A, B \in \tsbd{K}$ be two uncertain numbers with canonical forms $A \sim (f_A, d_A)$ and $B \sim (f_B, d_B)$, respectively. Let $*$ be any binary operation induced from $\mathbb{F}$ that is closed on $A_s \times B_s$ into $\mathbb{K}$ (i.e., $a*b \in \mathbb{K}$ for all $a \in A_s, b \in B_s$) and extended to the Minkowski arithmetic space $(\circ)_m$.
 		
 		Then, the resulting uncertain number $C = \kgdt{A * B}$ possesses a canonical form $(f_{A*B}, d_{A*B})$ uniquely determined by:
 		\begin{enumerate}[leftmargin=*]
@@ -715,7 +714,7 @@
 			Therefore, $y = a * b \in (\kgdt{A * B})_s$, which proves $f_{A*B}(d_A \times d_B) \subseteq (\kgdt{A * B})_s$.
 			
 			\item Backward Inclusion ($\supseteq$):
-			Let $z \in (\kgdt{A * B})_s$. By definition of Minkowski binary operations, there exist elements $a \in A_s$ and $b \in B_s$ such that $z = a * b$.
+			Let $z \in (\kgdt{A * B})_s$. By definition of Minkowski binary operations, there exist elements $a \in A_s$ and $b \in B_s$ such that $z = a * b \in \mathbb{K}$.
 			Since $(f_A, d_A)$ and $(f_B, d_B)$ are canonical forms of $A$ and $B$, generating functions $f_A$ and $f_B$ map surjectively from their respective index domains onto $A_s$ and $B_s$. Thus:
 			\begin{itemize}
 				\item $\exists x_1^* \in d_A \text{ such that } f_A(x_1^*) = a$
@@ -734,7 +733,7 @@
 	Next we present an example computing with large numbers:
 	
 	\begin{example}
-		Consider two uncertain numbers $A = \{1, 3\}_u$ and $B = \{10, 20\}_u$ over field $\mathbb{R}$.
+		Consider two uncertain numbers $A = \{1, 3\}_u$ and $B = \{10, 20\}_u$ over $\mathbb{R}$.
 		
 		Choose index sets $d_A = d_B = \{1, 2\}$. By Lagrange interpolation, we construct polynomial generating functions $f_A: d_A \to \mathbb{R}$ and $f_B: d_B \to \mathbb{R}$ as follows:
 		$$f_A(x_1) = 1 \cdot \frac{x_1 - 2}{1 - 2} + 3 \cdot \frac{x_1 - 1}{2 - 1} = 2x_1 - 1$$
@@ -931,12 +930,12 @@
 			\[
 			((A * \emptyset)_m)_s = \emptyset \implies (A * \emptyset)_m = \emptyset
 			\]
-			By symmetric argument, $((\emptyset * A)_m)_s = \{b * a \;:\; b \in \emptyset, \, a \in A_s\} = \emptyset \implies (\emptyset * A)_m = \emptyset$.
+			By symmetric argument, $((\emptyset * A)_m)_s = \{b * a \;:\; b \in \emptyset, \, a \in A_s, \, b * a \in \mathbb{K}\} = \emptyset \implies (\emptyset * A)_m = \emptyset$.
 			
 			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Consider an uncertain function $f(X, Y) = \kgdd{X * Y}$. The evaluation pass requires selecting representative points $x \in A_s$ and $y \in (\emptyset)_s$. Since $(\emptyset)_s = \emptyset$, no representative point $y$ can be assigned to the variable $\emptyset$. Hence, the pointwise mapping pass cannot be executed, yielding an empty image set:
 			\[
-			\kgdd{A * \emptyset} = \s{x * y \;:\; x \in A_s, \, y \in \emptyset} = \emptyset
+			\kgdd{A * \emptyset} = \s{x * y \;:\; x \in A_s, \, y \in \emptyset, \, x * y \in \mathbb{K}} = \emptyset
 			\]
 		\end{enumerate}
 		
@@ -944,7 +943,7 @@
 	\end{proof}
 	\begin{example}
 		With operation * as +, we have the definition of addition on $\tsbd{K}$:
-		$$A + B = \s{a+b : a \in A , b \in B}, \text{ with } A,B \in \tsbd{K}.$$
+		$$A + B = \s{a+b : a \in A , b \in B, a+b \in \mathbb{K}}, \text{ with } A,B \in \tsbd{K}.$$
 	\end{example}
 	
 	\begin{example}
@@ -967,22 +966,22 @@
 			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By definition of binary operations in Minkowski space, the set of scenario values of $(A * B)_m$ is given by:
 			\[
-			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s\}
+			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
 			\]
 			On the other hand, for a fixed element $b \in B_s$, identifying $b$ as a single-valued uncertain number $\{b\}_u$, the term $A * b$ has scenario value set:
 			\[
-			(A * b)_s = \{a * b \;:\; a \in A_s\}
+			(A * b)_s = \{a * b \;:\; a \in A_s, \, a * b \in \mathbb{K}\}
 			\]
 			Taking the set union over all $b \in B_s$:
 			\[
-			\left( \bigcup_{b \in B} (A * b) \right)_s = \bigcup_{b \in B_s} (A * b)_s = \bigcup_{b \in B_s} \{a * b \;:\; a \in A_s\} = \{a * b \;:\; a \in A_s, \, b \in B_s\}
+			\left( \bigcup_{b \in B} (A * b) \right)_s = \bigcup_{b \in B_s} (A * b)_s = \bigcup_{b \in B_s} \{a * b \;:\; a \in A_s, \, a * b \in \mathbb{K}\} = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
 			\]
 			Thus, $((A * B)_m)_s = \left( \bigcup_{b \in B} (A * b) \right)_s$.
 			
 			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass, variable $B$ takes a representative element $b = f_B(y) \in B_s$ for $y \in d_B$. The resulting image set decomposes along the fiber of elements in $B$:
 			\[
-			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\} = \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A\}
+			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B, \, f_A(x) * f_B(y) \in \mathbb{K}\} = \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A, \, f_A(x) * f_B(y) \in \mathbb{K}\}
 			\]
 			Substituting $b = f_B(y) \in B_s$, this equals $\bigcup_{b \in B_s} (A * b)_s$.
 		\end{enumerate}
@@ -990,7 +989,7 @@
 		In all arithmetic spaces, the set of scenario values matches identically, confirming that $A * B = \bigcup_{b \in B} (A * b)$.
 	\end{proof}
 	\begin{theorem}
-		Let $A \in \tsbd{K}$, we set
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be closed under addition and subtraction (resp., multiplication and division) for the additive (resp., multiplicative) identity below, and let $A \in \tsbd{K}$. We set
 		\begin{enumerate}[leftmargin=*]
 			\item $Id_+=\set{X-X: X \in \tsbd{K}}$
 			\item $Id_*=\set{X/X: X \in \tsbd{K}}$
@@ -1046,10 +1045,10 @@
 		In both cases, the structural symmetry of the identity-like sets $Id_+$ under negation and $Id_*$ under inversion ensures the equivalence of the operations. This completes the proof.
 	\end{proof}
 	\begin{theorem}[Inverse]
-		Consider $A \in \tsbd{K}, \dimU(A) > 1$, then:
+		Consider $\mathbb{K} \subseteq \mathbb{F}$ and $A \in \tsbd{K}$ with $\dimU(A) > 1$, then:
 		\begin{enumerate}[leftmargin=*]
-			\item There exists no uncertain number B such that $A+B = 0$
-			\item There exists no uncertain number B such that $AB = 1$
+			\item If $0 \in \mathbb{K}$, there exists no uncertain number $B \in \tsbd{K}$ such that $A+B = 0$.
+			\item If $1 \in \mathbb{K}$, there exists no uncertain number $B \in \tsbd{K}$ such that $AB = 1$.
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
@@ -1059,42 +1058,40 @@
 		
 		\begin{enumerate}[leftmargin=*]
 			\item Proof of Part 1 (Non-existence of Additive Inverse): \\
-			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $A + B = 0$.
+			Suppose $0 \in \mathbb{K}$ and there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $A + B = 0$.
 			
 			By definition of addition in Minkowski arithmetic space $(\circ)_m$:
 			\[
-			(A + B)_s = \{a + b \;:\; a \in A_s, \, b \in B_s\} = \{0\}
+			(A + B)_s = \{a + b \;:\; a \in A_s, \, b \in B_s, \, a + b \in \mathbb{K}\} = \{0\}
 			\]
-			This implies that for every pair $(a, b) \in A_s \times B_s$, we must have $a + b = 0$, or equivalently $b = -a$.
+			Note that $(A + B)_s = \{0\}$ implies $B_s \neq \emptyset$ and for every pair $(a, b) \in A_s \times B_s$ with $a + b \in \mathbb{K}$, we have $a + b = 0$, or equivalently $b = -a$. Moreover, if $B_s$ is non-empty, for any $b \in B_s$ there must exist at least one $a \in A_s$ with $a + b = 0$, and for every $a \in A_s$ we have $a + (-a) = 0 \in \mathbb{K}$.
 			
 			Since $\dimU(A) > 1$, there exist at least two distinct elements $a_1, a_2 \in A_s$ with $a_1 \neq a_2$.
-			For any element $b \in B_s$, we must simultaneously satisfy:
-			\[
-			b = -a_1 \quad \text{and} \quad b = -a_2
-			\]
-			which implies $-a_1 = -a_2 \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
+			Choosing any element $b \in B_s$, we would have $a_1 + b \neq a_2 + b$. Since $0$ is the unique element of $(A + B)_s$, at most one of $a_1 + b$ or $a_2 + b$ can equal $0$; however, if $b = -a_1$, then $a_1 + b = 0$, whereas if $b \neq -a_1$ and $b \neq -a_2$, neither produces $0$. More directly, since $(A + B)_s = \{0\}$, every $a \in A_s$ must have an additive inverse in $B_s$, so $-a_1, -a_2 \in B_s$, which forces $a_1 + (-a_2) = a_1 - a_2 \neq 0$ (if $a_1 - a_2 \in \mathbb{K}$), or more generally: if $b \in B_s$, then $b = -a$ for some $a \in A_s$. Without loss of generality let $b = -a_1 \in B_s$; since $a_2 \neq a_1$, we have $a_2 + b = a_2 - a_1 \neq 0$. Yet if $a_2 - a_1 \in \mathbb{K}$, then $a_2 + b \in (A + B)_s \setminus \{0\}$, a contradiction; and if $a_2 - a_1 \notin \mathbb{K}$, then $a_2$ cannot pair with $b$ to yield $0$.
+			
+			Specifically, under standard closure of addition on $A_s + B_s$, every pair $(a, b) \in A_s \times B_s$ satisfies $a + b = 0 \implies b = -a$, forcing $-a_1 = b = -a_2 \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
 			
 			\item Proof of Part 2 (Non-existence of Multiplicative Inverse): \\
-			Suppose there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $AB = 1$.
+			Suppose $1 \in \mathbb{K}$ and there exists an uncertain number $B \in \tsbd{K}$ with scenario value set $B_s$ such that $AB = 1$.
 			
 			By definition of multiplication in Minkowski arithmetic space $(\circ)_m$:
 			\[
-			(AB)_s = \{a \cdot b \;:\; a \in A_s, \, b \in B_s\} = \{1\}
+			(AB)_s = \{a \cdot b \;:\; a \in A_s, \, b \in B_s, \, a \cdot b \in \mathbb{K}\} = \{1\}
 			\]
-			This implies that $0 \notin A_s$ (otherwise $0 \cdot b = 0 \neq 1$) and for every pair $(a, b) \in A_s \times B_s$, we must have $a \cdot b = 1$, or equivalently $b = \frac{1}{a}$.
+			This implies $0 \notin A_s$ (otherwise $0 \cdot b = 0 \neq 1$) and for every pair $(a, b) \in A_s \times B_s$ with $a \cdot b \in \mathbb{K}$, we must have $a \cdot b = 1$, or equivalently $b = \frac{1}{a}$ in $\mathbb{F}$.
 			
 			Since $\dimU(A) > 1$, there exist at least two distinct non-zero elements $a_1, a_2 \in A_s$ with $a_1 \neq a_2$.
-			For any element $b \in B_s$, we must simultaneously satisfy:
+			For any element $b \in B_s$, satisfying $a \cdot b = 1$ across $A_s$ requires:
 			\[
 			b = \frac{1}{a_1} \quad \text{and} \quad b = \frac{1}{a_2}
 			\]
 			which implies $\frac{1}{a_1} = \frac{1}{a_2} \iff a_1 = a_2$, contradicting $a_1 \neq a_2$. Thus, no such uncertain number $B$ exists.
 		\end{enumerate}
 		
-		In conclusion, any uncertain number $A$ with $\dimU(A) > 1$ lacks both additive and multiplicative inverses in $\tsbd{K}$.
+		In conclusion, any uncertain number $A \in \tsbd{K}$ with $\dimU(A) > 1$ lacks both additive and multiplicative inverses in $\tsbd{K}$.
 	\end{proof}
 	\begin{theorem}
-		Let $A$ and $B$ be two uncertain numbers, we have
+		Let $\mathbb{K} \subseteq \mathbb{R}$ and $A, B \in \tsbd{K}$ be two uncertain numbers such that $A + B$ is defined, we have
 		$$\rad(A+B) \leq \rad(A) +\rad(B)$$
 	\end{theorem}
 	\begin{proof}
@@ -1105,7 +1102,7 @@
 		
 		By definition of addition in Minkowski arithmetic space $(\circ)_m$, the scenario value set of $A + B$ is:
 		\[
-		(A + B)_s = \set{a + b \;:\; a \in A_s, \, b \in B_s}
+		(A + B)_s = \set{a + b \;:\; a \in A_s, \, b \in B_s, \, a + b \in \mathbb{K}}
 		\]
 		Let $z_1, z_2 \in (A + B)_s$ be any two arbitrary elements. Then there exist $a_1, a_2 \in A_s$ and $b_1, b_2 \in B_s$ such that $z_1 = a_1 + b_1$ and $z_2 = a_2 + b_2$.
 		
@@ -1116,7 +1113,7 @@
 		
 		Taking the supremum over all possible pairs $(z_1, z_2) \in (A + B)_s \times (A + B)_s$:
 		\begin{align*}
-			\sup_{z_1, z_2 \in (A + B)_s} (z_1 - z_2) & = \sup_{\substack{a_1, a_2 \in A_s                                            \\ b_1, b_2 \in B_s}} \left[ (a_1 - a_2) + (b_1 - b_2) \right] \\
+			\sup_{z_1, z_2 \in (A + B)_s} (z_1 - z_2) & \le \sup_{\substack{a_1, a_2 \in A_s                                            \\ b_1, b_2 \in B_s}} \left[ (a_1 - a_2) + (b_1 - b_2) \right] \\
 			& \le \sup_{a_1, a_2 \in A_s} (a_1 - a_2) + \sup_{b_1, b_2 \in B_s} (b_1 - b_2)
 		\end{align*}
 		
@@ -1132,7 +1129,7 @@
 		This completes the proof.
 	\end{proof}
 	\begin{theorem}
-		Let $A$ be an uncertain number, $b$ be a single-valued constant. We have
+		Let $\mathbb{K} \subseteq \mathbb{R}$, $A \in \tsbd{K}$ be an uncertain number, and $b \in \mathbb{K}$ be a single-valued constant such that $a + b \in \mathbb{K}$ for all $a \in A_s$. We have
 		$$\rad(A+b) = \rad(A)$$
 		This theorem allows an object with uncertain position to preserve its uncertain radius under rigid translation.
 	\end{theorem}
@@ -1167,7 +1164,7 @@
 		Hence, $\rad(A + b) = \rad(A)$, which proves that rigid translation preserves the uncertain radius of an uncertain object.
 	\end{proof}
 	\begin{theorem}[Realistic Similarity]
-		Let $A$ be an uncertain number and $k$ be a single-valued constant, we have: $\rad(k A) = |k| \rad(A)$
+		Let $\mathbb{K} \subseteq \mathbb{R}$, $A \in \tsbd{K}$ be an uncertain number, and $k \in \mathbb{K}$ be a single-valued constant such that $k \cdot a \in \mathbb{K}$ for all $a \in A_s$. We have: $\rad(k A) = |k| \rad(A)$
 	\end{theorem}
 	\begin{proof}
 		Let $A \in \tsbd{K}$ be an uncertain number with scenario value set $A_s$, and $k \in \mathbb{K}$ be a single-valued constant (identified with $\{k\}_u$).
@@ -1214,11 +1211,11 @@
 		Combining both cases confirms that $\rad(k A) = |k| \rad(A)$ for any single-valued constant $k$. This completes the proof.
 	\end{proof}
 	\begin{theorem}[Identity Theorem with Classical Arithmetic]
-		Let $A = \s{a} , B = \s{b}$ and * be a binary operation on $\mathbb{R}$ where $a*b$ is defined, then
+		Let $\mathbb{K} \subseteq \mathbb{F}$, $A = \s{a} , B = \s{b} \in \tsbd{K}$ and $*$ be a binary operation induced from $\mathbb{F}$ where $a*b \in \mathbb{K}$ is defined, then
 		$$A * B = \s{a*b} = a*b$$
 	\end{theorem}
 	\begin{proof}
-		Let $A = \s{a}$ and $B = \s{b}$ be two single-valued (deterministic) uncertain numbers, where $a, b \in \mathbb{R}$. Their underlying sets of scenario values are singleton sets:
+		Let $A = \s{a}$ and $B = \s{b}$ be two single-valued (deterministic) uncertain numbers, where $a, b \in \mathbb{K}$. Their underlying sets of scenario values are singleton sets:
 		\[
 		A_s = \{a\} \quad \text{and} \quad B_s = \{b\}
 		\]
@@ -1229,9 +1226,9 @@
 			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By definition of binary operations in Minkowski space:
 			\[
-			(A * B)_s = \{x * y \;:\; x \in A_s, \, y \in B_s, \, x * y \in \mathbb{R}\}
+			(A * B)_s = \{x * y \;:\; x \in A_s, \, y \in B_s, \, x * y \in \mathbb{K}\}
 			\]
-			Since $A_s = \{a\}$ and $B_s = \{b\}$, the Cartesian product $A_s \times B_s = \{(a, b)\}$ contains exactly one pair. Assuming $a * b$ is well-defined in classical arithmetic:
+			Since $A_s = \{a\}$ and $B_s = \{b\}$, the Cartesian product $A_s \times B_s = \{(a, b)\}$ contains exactly one pair. Assuming $a * b \in \mathbb{K}$ is well-defined in classical arithmetic:
 			\[
 			(A * B)_s = \{a * b\}
 			\]
@@ -1251,11 +1248,11 @@
 		Thus, when restricted to single-valued operands, uncertain arithmetic reduces identically to classical arithmetic. This completes the proof.
 	\end{proof}
 	\begin{theorem}[Commutativity]
-		Let $A,B$ be two uncertain numbers and * be a commutative binary operation on $\mathbb{R}$, we have
+		Let $\mathbb{K} \subseteq \mathbb{F}$, $A,B \in \tsbd{K}$ be two uncertain numbers and $*$ be a commutative binary operation induced from $\mathbb{F}$, we have
 		$$A*B = B*A$$
 	\end{theorem}
 	\begin{proof}
-		Let $A, B \in \tsbd{K}$ be two uncertain numbers with scenario value sets $A_s$ and $B_s$, respectively. Let $*$ be a commutative binary operation on $\mathbb{R}$ (i.e., $a * b = b * a$ for all $a, b \in \mathbb{R}$).
+		Let $A, B \in \tsbd{K}$ be two uncertain numbers with scenario value sets $A_s$ and $B_s$, respectively. Let $*$ be a commutative binary operation induced from $\mathbb{F}$ (i.e., $a * b = b * a$ for all $a, b \in \mathbb{K}$).
 		
 		We prove the identity $A * B = B * A$ across both primary arithmetic spaces:
 		
@@ -1263,22 +1260,22 @@
 			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By the definition of binary operations in Minkowski space:
 			\[
-			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{R}\}
+			((A * B)_m)_s = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
 			\]
-			Since $*$ is commutative in $\mathbb{R}$, we have $a * b = b * a$ for every pair $(a, b) \in A_s \times B_s$. Thus:
+			Since $*$ is commutative in $\mathbb{F}$, we have $a * b = b * a$ for every pair $(a, b) \in A_s \times B_s$. Thus:
 			\[
-			((A * B)_m)_s = \{b * a \;:\; b \in B_s, \, a \in A_s, \, b * a \in \mathbb{R}\} = ((B * A)_m)_s
+			((A * B)_m)_s = \{b * a \;:\; b \in B_s, \, a \in A_s, \, b * a \in \mathbb{K}\} = ((B * A)_m)_s
 			\]
 			Applying the transfer operator yields $(A * B)_m = (B * A)_m$.
 			
 			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$, respectively. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass at index pair $(x, y) \in d_A \times d_B$:
 			\[
-			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B\}
+			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B, \, f_A(x) * f_B(y) \in \mathbb{K}\}
 			\]
 			By commutativity of $*$ on individual values, $f_A(x) * f_B(y) = f_B(y) * f_A(x)$. Reordering the elements yields:
 			\[
-			[\kgdd{A * B}]_s = \{f_B(y) * f_A(x) \;:\; y \in d_B, \, x \in d_A\} = [\kgdd{B * A}]_s
+			[\kgdd{A * B}]_s = \{f_B(y) * f_A(x) \;:\; y \in d_B, \, x \in d_A, \, f_B(y) * f_A(x) \in \mathbb{K}\} = [\kgdd{B * A}]_s
 			\]
 			Hence, $\kgdd{A * B} = \kgdd{B * A}$.
 		\end{enumerate}
@@ -1286,11 +1283,11 @@
 		In all arithmetic spaces, the sets of scenario values match identically, confirming that $A * B = B * A$.
 	\end{proof}
 	\begin{theorem}[Associativity]
-		Let $A,B,C$ be uncertain numbers and * be an associative binary operation on $\mathbb{R}$, then:
+		Let $\mathbb{K} \subseteq \mathbb{F}$, $A,B,C \in \tsbd{K}$ be uncertain numbers and $*$ be an associative binary operation induced from $\mathbb{F}$ that is closed on $A_s, B_s, C_s$ into $\mathbb{K}$, then:
 		\[A*(B*C) = (A*B)*C\]
 	\end{theorem}
 	\begin{proof}
-		Let $A, B, C \in \tsbd{K}$ be three uncertain numbers with scenario value sets $A_s, B_s$, and $C_s$, respectively. Let $*$ be an associative binary operation on $\mathbb{R}$ (i.e., $a * (b * c) = (a * b) * c$ for all $a, b, c \in \mathbb{R}$).
+		Let $A, B, C \in \tsbd{K}$ be three uncertain numbers with scenario value sets $A_s, B_s$, and $C_s$, respectively. Let $*$ be an associative binary operation induced from $\mathbb{F}$ (i.e., $a * (b * c) = (a * b) * c$ for all $a, b, c \in \mathbb{F}$) whose intermediate and final products lie in $\mathbb{K}$.
 		
 		We prove the identity $A * (B * C) = (A * B) * C$ across both primary arithmetic spaces:
 		
@@ -1298,15 +1295,15 @@
 			\item In Minkowski Arithmetic Space $(\circ)_m$: \\
 			By the definition of binary operations in Minkowski space, evaluating $A * (B * C)$ yields scenario value set:
 			\begin{align*}
-				((A * (B * C))_m)_s & = \{a * u \;:\; a \in A_s, \, u \in ((B * C)_m)_s\}            \\
+				((A * (B * C))_m)_s & = \{a * u \;:\; a \in A_s, \, u \in ((B * C)_m)_s, \, a * u \in \mathbb{K}\}            \\
 				& = \{a * (b * c) \;:\; a \in A_s, \, b \in B_s, \, c \in C_s\}
 			\end{align*}
 			Similarly, evaluating $(A * B) * C$ yields:
 			\begin{align*}
-				(( (A * B) * C)_m)_s & = \{v * c \;:\; v \in ((A * B)_m)_s, \, c \in C_s\}            \\
+				(( (A * B) * C)_m)_s & = \{v * c \;:\; v \in ((A * B)_m)_s, \, c \in C_s, \, v * c \in \mathbb{K}\}            \\
 				& = \{(a * b) * c \;:\; a \in A_s, \, b \in B_s, \, c \in C_s\}
 			\end{align*}
-			Since $*$ is associative in $\mathbb{R}$, $a * (b * c) = (a * b) * c$ holds for every tuple $(a, b, c) \in A_s \times B_s \times C_s$. Thus:
+			Since $*$ is associative in $\mathbb{F}$, $a * (b * c) = (a * b) * c$ holds for every tuple $(a, b, c) \in A_s \times B_s \times C_s$. Thus:
 			\[
 			((A * (B * C))_m)_s = (( (A * B) * C)_m)_s
 			\]
@@ -1317,7 +1314,7 @@
 			\[
 			[\kgdd{A * (B * C)}]_s = \{f_A(x) * (f_B(y) * f_C(z)) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\}
 			\]
-			By associativity of $*$ on individual real values:
+			By associativity of $*$ on individual values in $\mathbb{F}$:
 			\[
 			f_A(x) * (f_B(y) * f_C(z)) = (f_A(x) * f_B(y)) * f_C(z)
 			\]
@@ -1331,7 +1328,7 @@
 		In all arithmetic spaces, the sets of scenario values match identically, confirming $A * (B * C) = (A * B) * C$.
 	\end{proof}
 	\begin{theorem}[Distributivity]
-		Let $K,A,B$ be uncertain numbers, we have:
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be closed under the respective operations below, and let $K,A,B \in \tsbd{K}$ be uncertain numbers, we have:
 		\[K(A+B)\ = \bigcup_{k \in K} [k(A+B)] = \bigcup_{k \in K} (kA+kB)\]
 		\[(AB)^K\ = \bigcup_{k \in K} \left[(AB)^k \right] = \bigcup_{k \in K} \left(A^kB^k\right) \]
 	\end{theorem}
@@ -1346,7 +1343,7 @@
 			\[
 			(K(A + B))_s = \{k \cdot u \;:\; k \in K_s, \, u \in (A + B)_s\} = \{k(a + b) \;:\; k \in K_s, \, a \in A_s, \, b \in B_s\}
 			\]
-			Applying the distributive law of real numbers $k(a + b) = ka + kb$ for each element tuple $(k, a, b) \in K_s \times A_s \times B_s$:
+			Applying the distributive law of the ambient field $\mathbb{F}$, $k(a + b) = ka + kb$, for each element tuple $(k, a, b) \in K_s \times A_s \times B_s$:
 			\begin{align*}
 				(K(A + B))_s & = \{ka + kb \;:\; k \in K_s, \, a \in A_s, \, b \in B_s\}       \\
 				& = \bigcup_{k \in K_s} \{ka + kb \;:\; a \in A_s, \, b \in B_s\} \\
@@ -1362,7 +1359,7 @@
 			\[
 			((AB)^K)_s = \{v^k \;:\; v \in (AB)_s, \, k \in K_s\} = \{(a \cdot b)^k \;:\; a \in A_s, \, b \in B_s, \, k \in K_s\}
 			\]
-			Applying the power law of real numbers $(a \cdot b)^k = a^k \cdot b^k$ (for $a, b > 0$):
+			Applying the power law $(a \cdot b)^k = a^k \cdot b^k$ (for $a, b > 0$ when $k$ is non-integer):
 			\begin{align*}
 				((AB)^K)_s & = \{a^k \cdot b^k \;:\; a \in A_s, \, b \in B_s, \, k \in K_s\}       \\
 				& = \bigcup_{k \in K_s} \{a^k \cdot b^k \;:\; a \in A_s, \, b \in B_s\} \\
@@ -1377,7 +1374,7 @@
 		In all cases, the underlying set-theoretic images match identically, confirming both distributive properties.
 	\end{proof}
 	\begin{theorem}[Inter-Arithmetic Space Theorem]
-		Let $a,c \in \mathbb{K}, X \in \tsbd{K}$. We have:
+		Let $\mathbb{K} \subseteq \mathbb{F}$, $a,c \in \mathbb{K}, X \in \tsbd{K}$. We have:
 		\begin{enumerate}[leftmargin=*]
 			\item $\kgdd{aX} = \kgdt{aX}$
 		\end{enumerate}
@@ -1393,8 +1390,8 @@
 		\end{enumerate}
 	\end{definition}
 	
-	\begin{definition}[Weighted Uncertain Number over Field $\mathbb{K}$]
-		A pair $(A,\ts{A})$ with $A \in \tsbd{K}$ and $\ts{A}$ being a weight of $A$ is called a weighted uncertain number over field $\mathbb{K}$. The set of all weighted uncertain numbers over field $\mathbb{K}$ is denoted by $\tsbdts{K}$.
+	\begin{definition}[Weighted Uncertain Number over a Domain $\mathbb{K}$]
+		Let $\mathbb{K} \subseteq \mathbb{F}$ be a subset of a field $\mathbb{F}$. A pair $(A,\ts{A})$ with $A \in \tsbd{K}$ and $\ts{A}$ being a weight of $A$ is called a weighted uncertain number over domain $\mathbb{K}$. The set of all weighted uncertain numbers over $\mathbb{K}$ is denoted by $\tsbdts{K}$.
 	\end{definition}
 	
 	\begin{example}
@@ -1402,11 +1399,11 @@
 	\end{example}
 	
 	\begin{example}
-		Set $A=\s{2k : k \in \mathbb{N}}$ together with weight $\ts{A}(2k) = \frac{1}{2^{k+1}}$ is an uncertain number over real field with weight $\ts{A}$.
+		Set $A=\s{2k : k \in \mathbb{N}}$ together with weight $\ts{A}(2k) = \frac{1}{2^{k+1}}$ is an uncertain number over $\mathbb{R}$ with weight $\ts{A}$.
 	\end{example}
 	
 	\begin{theorem}[Weight of an Operation]
-		Let * be a binary operation on $\tsbd{K}$, we define function
+		Let $\mathbb{K} \subseteq \mathbb{F}$ and $*$ be a binary operation on $\tsbd{K}$ that is closed on $A \times B$ into $\mathbb{K}$ (i.e., $a*b \in \mathbb{K}$ for all $a \in A, b \in B$). We define function
 		$$\ts{A*B}(c) := \sum_{a*b=c}{\ts{A}(a)\ts{B}(b)}$$
 		with $c = a * b \in A * B $, where $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$. Then $\ts{A*B}$ is also a weight of $A *B $.
 	\end{theorem}
@@ -1417,7 +1414,7 @@
 		
 		\begin{enumerate}[leftmargin=*]
 			\item Condition 1: Positivity ($\ts{A*B}(c) > 0$ for all $c \in A * B$). \\
-			For any element $c \in A * B$, by definition of Minkowski binary operations, there exists at least one pair $(a, b) \in A \times B$ such that $a * b = c$.
+			For any element $c \in A * B$, by definition of Minkowski binary operations, there exists at least one pair $(a, b) \in A \times B$ such that $a * b = c \in \mathbb{K}$.
 			
 			Since $\ts{A}$ is a weight of $A$ and $\ts{B}$ is a weight of $B$, by Definition 2.11 we have $\ts{A}(a) > 0$ for all $a \in A$ and $\ts{B}(b) > 0$ for all $b \in B$. Consequently, for any pair $(a, b)$ satisfying $a * b = c$, the product of their weights is strictly positive:
 			\[
@@ -1449,10 +1446,10 @@
 		
 		Both conditions are satisfied, confirming that $\ts{A*B}$ is indeed a well-defined weight on the uncertain number $A * B$.
 	\end{proof}
-	\begin{definition}[Weighted Weak Binary Relation over Field $\mathbb{K}$]
-		Let $\mathcal{R}$ be a binary relation on field $\mathbb{K}$. $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. We define the weighted weak binary relation over field $\mathbb{K}$ as follows:
+	\begin{definition}[Weighted Weak Binary Relation over Domain $\mathbb{K}$]
+		Let $\mathcal{R}$ be a binary relation on domain $\mathbb{K} \subseteq \mathbb{F}$, and let $(A,\ts{A}),(B,\ts{B}) \in \tsbdts{K}$. We define the weighted weak binary relation over $\mathbb{K}$ as follows:
 		\[\ddclmd(A[\mathcal{R}]B) := \sum_{(a,b) \in A \times B}{\left[\ts{A}(a)\ts{B}(b)I(a,b)\right]}\]
-		Where I(a,b) is given by
+		Where $I(a,b)$ is given by
 		\[
 		I(a,b) := \begin{cases}
 			1 & \text{if } (a,b) \in \mathcal{R}    \\
@@ -1466,7 +1463,7 @@
 	% ==========================================
 	\chapter{Uncertain Algebra}
 	
-	From this chapter onwards, we adopt the convention that field $\mathbb{K}$ denotes the field of real or complex numbers, and sets $\mathcal{X}, \mathcal{Y}$ are subsets of $\tsbd{K}$.
+	From this chapter onwards, we adopt the convention that $\mathbb{K}$ denotes the field of real or complex numbers ($\mathbb{R}$ or $\mathbb{C}$), and sets $\mathcal{X}, \mathcal{Y}$ are subsets of $\tsbd{K}$.
 	
 	\section{Fundamental Mapping Concepts}
 	\begin{definition}[Uncertain Function]
@@ -1625,7 +1622,7 @@
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
-		Let $X \in \mathcal{X}$ be an uncertain number with canonical form $X \sim (f_X, d_X)$, where $d_X \subseteq \mathbb{K}$ is the scenario index domain and $f_X: d_X \to \mathbb{K}$ is a surjective generating function satisfying $f_X(d_X) = X_s$.
+		Let $X \in \mathcal{X}$ be an uncertain number with canonical form $X \sim (f_X, d_X)$, where $d_X \subseteq \mathbb{R}$ is the scenario index domain and $f_X: d_X \to \mathbb{K}$ is a surjective generating function satisfying $f_X(d_X) = X_s$.
 		
 		We prove the canonical form $Y \sim (f_Y, d_Y)$ for the image $Y = f(X)$ in each arithmetic space separately:
 		
