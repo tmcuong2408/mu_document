@@ -2,22 +2,34 @@
 \WarningsOff % Turn off all warnings from all packages
 \ErrorsOff   % (Caution) Use only if you are sure the code has no severe logic errors
 
-\documentclass[a4paper,12pt, twoside]{memoir}
-%\usepackage{mathptmx} chữ đậm
-\usepackage[utf8x]{inputenc}
+\documentclass[a4paper,12pt,twoside]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[english]{babel}    
+
+% Căn lề chuẩn cho khổ giấy A4 in hai mặt
+\usepackage[
+a4paper,
+top=2.5cm,
+bottom=2.5cm,
+inner=3.0cm,
+outer=2.2cm,
+headheight=15pt
+]{geometry}
+
 \usepackage{url}
-\usepackage{microtype}
-\usepackage{color}
+\usepackage[final,babel]{microtype}
+\usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amsthm}         % Provides proof environment
 \usepackage{amssymb}
-\usepackage{mathtools}     % Includes amsmath but optimized and with more features
-\usepackage{hyperref}
+\usepackage{mathtools}      % Includes amsmath but optimized and with more features
 \usepackage{enumitem}
 \usepackage{autobreak}
 \usepackage{array}          % Bổ sung hỗ trợ định dạng bảng ký hiệu
+\usepackage{tabularx}       % Tự động co giãn độ rộng cột bảng theo trang
 \usepackage{booktabs}       % Kẻ bảng đẹp mắt
+\usepackage{hyperref}
 
 \hypersetup{
 	colorlinks=true,
@@ -25,6 +37,9 @@
 	filecolor=magenta,
 	urlcolor=cyan
 }
+
+% Hỗ trợ ngắt dòng linh hoạt khi có nhiều công thức toán nội dòng
+\setlength{\emergencystretch}{3em}
 
 % Theorem Environments
 \newtheorem{definition}{Definition}[chapter]
@@ -67,6 +82,7 @@
 \newcommand{\kgddmr}[1]{\left(#1\right)_{1'}} % real operator
 \newcommand{\kgdt}[1]{\left(#1\right)_m} % pointwise operator
 \newcommand{\kgdtmr}[1]{\left(#1\right)_{m'}} % pointwise operator
+
 \title{Extended Logic and Mathematics of Uncertainty}
 \author{
 	Tran Manh Cuong\thanks{Email: \href{mailto:tmcuong2408@gmail.com}{tmcuong2408@gmail.com} | Phone: 0353237140} \\[0.5em]
@@ -120,18 +136,18 @@
 	\begin{table}[h!]
 		\centering
 		\renewcommand{\arraystretch}{1.3}
-		\begin{tabular}{p{3.5cm} p{11cm}}
+		\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{3.6cm} X @{}}
 			\toprule
-			Symbol                               & Description / Meaning                                                                   \\
+			\textbf{Symbol}                      & \textbf{Description / Meaning}                                                          \\
 			\midrule
-			\multicolumn{2}{l}{Extended Logic}                                                                                             \\
+			\multicolumn{2}{@{}l}{\textit{Extended Logic}}                                                                         \\
 			$(\Omega, \mathcal{F}, \lambda)$     & Measure space representing scenario/state space and measure function                    \\
 			$v(P, \omega)$                       & Scenario truth function of proposition $P$ at state $\omega \in \Omega$                 \\
 			$\ddclmd(P)$                         & Global truth valuation operator of proposition $P$ on $[0, 1]$                          \\
 			$(P)_{V(P)}$                         & Proposition $P$ accompanied by its truth measure                                        \\
 			$P \Rightarrow Q$                    & Logical implication relation on scenario space                                          \\
 			\midrule
-			\multicolumn{2}{l}{Uncertain Sets \& Numbers}                                                                                  \\
+			\multicolumn{2}{@{}l}{\textit{Uncertain Sets \& Numbers}}                                                              \\
 			$\mathbf{U}(\mathbb{K})$             & Space of all uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$            \\
 			$\mathbf{U}^n(\mathbb{K})$           & Space of order-$n$ uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$      \\
 			$\mathbf{U}_{\w}(\mathbb{K})$        & Space of weighted uncertain numbers over domain $\mathbb{K} \subseteq \mathbb{F}$       \\
@@ -144,7 +160,7 @@
 			$(f_A, d_A)$                         & Canonical form of $A$ with generating function $f_A$ on index domain $d_A$              \\
 			$A[\mathcal{R}]B$                    & Weak binary relation between uncertain numbers $A$ and $B$                              \\
 			\midrule
-			\multicolumn{2}{l}{Arithmetic Spaces \& Operations}                                                                            \\
+			\multicolumn{2}{@{}l}{\textit{Arithmetic Spaces \& Operations}}                                                        \\
 			$(\circ)_1$                          & Single-point arithmetic space operator (preserves point identity)                       \\
 			$(\circ)_{1'}$                       & Extended single-point arithmetic space operator                                         \\
 			$(\circ)_m$                          & Minkowski arithmetic space operator (independent scenario interaction)                  \\
@@ -155,7 +171,7 @@
 			$\text{gr}(f)$                       & Complete graph of uncertain function $f$ over domain $\mathcal{X}$                      \\
 			$\int_{A}^{B} f(X) dX$               & Uncertain integral of function $f(X)$ over scenario bounds $A$ to $B$                   \\
 			\bottomrule
-		\end{tabular}
+		\end{tabularx}
 	\end{table}
 	
 	\newpage
@@ -805,7 +821,7 @@
 		is an uncertain number with canonical form $(f_{A\cap B},d_{A\cap B})$ given by:
 		\begin{align*}
 			d_{A\cap B}    & = \set{(x,y) \in d_A \times d_B : f_A(x) = f_B(y)} \\
-			f_{A\cap B}(z) & = f_A(x) = f_B(y), z=(x,y) \in d_{A\cap B}
+			f_{A\cap B}(z) & = f_A(x) = f_B(y), \quad z=(x,y) \in d_{A\cap B}
 		\end{align*}
 	\end{proposition}
 	\begin{proof}
@@ -973,16 +989,18 @@
 			(A * b)_s = \{a * b \;:\; a \in A_s, \, a * b \in \mathbb{K}\}
 			\]
 			Taking the set union over all $b \in B_s$:
-			\[
-			\left( \bigcup_{b \in B} (A * b) \right)_s = \bigcup_{b \in B_s} (A * b)_s = \bigcup_{b \in B_s} \{a * b \;:\; a \in A_s, \, a * b \in \mathbb{K}\} = \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
-			\]
+			\begin{align*}
+				\left( \bigcup_{b \in B} (A * b) \right)_s &= \bigcup_{b \in B_s} (A * b)_s = \bigcup_{b \in B_s} \{a * b \;:\; a \in A_s, \, a * b \in \mathbb{K}\} \\
+				&= \{a * b \;:\; a \in A_s, \, b \in B_s, \, a * b \in \mathbb{K}\}
+			\end{align*}
 			Thus, $((A * B)_m)_s = \left( \bigcup_{b \in B} (A * b) \right)_s$.
 			
 			\item In Single-Point Arithmetic Space $(\circ)_1$: \\
 			Let $(f_A, d_A)$ and $(f_B, d_B)$ be canonical forms of $A$ and $B$. Under the single-point evaluation operator $\kgdd{\circ}$, during each evaluation pass, variable $B$ takes a representative element $b = f_B(y) \in B_s$ for $y \in d_B$. The resulting image set decomposes along the fiber of elements in $B$:
-			\[
-			[\kgdd{A * B}]_s = \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B, \, f_A(x) * f_B(y) \in \mathbb{K}\} = \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A, \, f_A(x) * f_B(y) \in \mathbb{K}\}
-			\]
+			\begin{align*}
+				[\kgdd{A * B}]_s &= \{f_A(x) * f_B(y) \;:\; x \in d_A, \, y \in d_B, \, f_A(x) * f_B(y) \in \mathbb{K}\} \\
+				&= \bigcup_{y \in d_B} \{f_A(x) * f_B(y) \;:\; x \in d_A, \, f_A(x) * f_B(y) \in \mathbb{K}\}
+			\end{align*}
 			Substituting $b = f_B(y) \in B_s$, this equals $\bigcup_{b \in B_s} (A * b)_s$.
 		\end{enumerate}
 		
@@ -1319,9 +1337,10 @@
 			f_A(x) * (f_B(y) * f_C(z)) = (f_A(x) * f_B(y)) * f_C(z)
 			\]
 			Therefore:
-			\[
-			[\kgdd{A * (B * C)}]_s = \{(f_A(x) * f_B(y)) * f_C(z) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\} = [\kgdd{(A * B) * C}]_s
-			\]
+			\begin{align*}
+				[\kgdd{A * (B * C)}]_s &= \{(f_A(x) * f_B(y)) * f_C(z) \;:\; x \in d_A, \, y \in d_B, \, z \in d_C\} \\
+				&= [\kgdd{(A * B) * C}]_s
+			\end{align*}
 			Hence, $\kgdd{A * (B * C)} = \kgdd{(A * B) * C}$.
 		\end{enumerate}
 		
@@ -1471,9 +1490,13 @@
 	\end{definition}
 	
 	\begin{example}
-		Given $X = \dfrac{1}{10}\s{10..20}$ and the function $m(X) = X^{\s{2,3}}+5X$, we obtain the result that $m(X)$ equals
-		$\{$6, 6.21, 6.331, 6.44, 6.5, 6.69, 6.71, 6.728, 6.831, 6.94, 6.96, 7, 7.19, 7.197, 7.21, 7.228, 7.25, 7.331, 7.44, 7.46, 7.5, 7.56, 7.69, 7.697, 7.71, 7.728, 7.744, 7.75, 7.831, 7.89, 7.94, 7.96, 8, 8.06, 8.19, 8.197, 8.21, 8.228, 8.24, 8.244, 8.25, 8.331, 8.375, 8.39, 8.44, 8.46, 8.5, 8.56, 8.61, 8.69, 8.697, 8.71, 8.728, 8.74, 8.744, 8.75, 8.831, 8.875, 8.89, 8.94, 8.96, 9, 9.06, 9.096, 9.11, 9.19, 9.197, 9.21, 9.228, 9.24, 9.244, 9.25, 9.331, 9.375, 9.39, 9.44, 9.46, 9.5, 9.56, 9.596, 9.61, 9.69, 9.697, 9.71, 9.728, 9.74, 9.744, 9.75, 9.831, 9.875, 9.89, 9.913, 9.94, 9.96, 1E+1, 10.06, 10.096, 10.11, 10.19, 10.197, 10.21, 10.228, 10.24, 10.244, 10.25, 10.331, 10.375, 10.39, 10.413, 10.44, 10.46, 10.5, 10.56, 10.596, 10.61, 10.69, 10.697, 10.71, 10.728, 10.74, 10.744, 10.75, 10.831, 10.832, 10.875, 10.89, 10.913, 10.94, 10.96, 11, 11.06, 11.096, 11.11, 11.19, 11.197, 11.21, 11.228, 11.24, 11.244, 11.25, 11.331, 11.332, 11.375, 11.39, 11.413, 11.44, 11.46, 11.5, 11.56, 11.596, 11.61, 11.69, 11.697, 11.728, 11.74, 11.744, 11.75, 11.832, 11.859, 11.875, 11.89, 11.913, 11.96, 12, 12.06, 12.096, 12.11, 12.197, 12.24, 12.244, 12.25, 12.332, 12.359, 12.375, 12.39, 12.413, 12.5, 12.56, 12.596, 12.61, 12.74, 12.744, 12.832, 12.859, 12.875, 12.89, 12.913, 13, 13.096, 13.11, 13.24, 13.332, 13.359, 13.375, 13.413, 13.5, 13.596, 13.61, 13.832, 13.859, 13.913, 14, 14.096, 14.332, 14.359, 14.413, 14.5, 14.832, 14.859, 14.913, 15, 15.332, 15.359, 15.5, 15.832, 15.859, 16, 16.359, 16.5, 16.859, 17, 17.5, 18$\}_u$.
+		Given $X = \dfrac{1}{10}\s{10..20}$ and the function $m(X) = X^{\s{2,3}}+5X$, we obtain the result that $m(X)$ equals:
 		
+		\noindent\begingroup\sloppy
+		$\{$6,\allowbreak{} 6.21,\allowbreak{} 6.331,\allowbreak{} 6.44,\allowbreak{} 6.5,\allowbreak{} 6.69,\allowbreak{} 6.71,\allowbreak{} 6.728,\allowbreak{} 6.831,\allowbreak{} 6.94,\allowbreak{} 6.96,\allowbreak{} 7,\allowbreak{} 7.19,\allowbreak{} 7.197,\allowbreak{} 7.21,\allowbreak{} 7.228,\allowbreak{} 7.25,\allowbreak{} 7.331,\allowbreak{} 7.44,\allowbreak{} 7.46,\allowbreak{} 7.5,\allowbreak{} 7.56,\allowbreak{} 7.69,\allowbreak{} 7.697,\allowbreak{} 7.71,\allowbreak{} 7.728,\allowbreak{} 7.744,\allowbreak{} 7.75,\allowbreak{} 7.831,\allowbreak{} 7.89,\allowbreak{} 7.94,\allowbreak{} 7.96,\allowbreak{} 8,\allowbreak{} 8.06,\allowbreak{} 8.19,\allowbreak{} 8.197,\allowbreak{} 8.21,\allowbreak{} 8.228,\allowbreak{} 8.24,\allowbreak{} 8.244,\allowbreak{} 8.25,\allowbreak{} 8.331,\allowbreak{} 8.375,\allowbreak{} 8.39,\allowbreak{} 8.44,\allowbreak{} 8.46,\allowbreak{} 8.5,\allowbreak{} 8.56,\allowbreak{} 8.61,\allowbreak{} 8.69,\allowbreak{} 8.697,\allowbreak{} 8.71,\allowbreak{} 8.728,\allowbreak{} 8.74,\allowbreak{} 8.744,\allowbreak{} 8.75,\allowbreak{} 8.831,\allowbreak{} 8.875,\allowbreak{} 8.89,\allowbreak{} 8.94,\allowbreak{} 8.96,\allowbreak{} 9,\allowbreak{} 9.06,\allowbreak{} 9.096,\allowbreak{} 9.11,\allowbreak{} 9.19,\allowbreak{} 9.197,\allowbreak{} 9.21,\allowbreak{} 9.228,\allowbreak{} 9.24,\allowbreak{} 9.244,\allowbreak{} 9.25,\allowbreak{} 9.331,\allowbreak{} 9.375,\allowbreak{} 9.39,\allowbreak{} 9.44,\allowbreak{} 9.46,\allowbreak{} 9.5,\allowbreak{} 9.56,\allowbreak{} 9.596,\allowbreak{} 9.61,\allowbreak{} 9.69,\allowbreak{} 9.697,\allowbreak{} 9.71,\allowbreak{} 9.728,\allowbreak{} 9.74,\allowbreak{} 9.744,\allowbreak{} 9.75,\allowbreak{} 9.831,\allowbreak{} 9.875,\allowbreak{} 9.89,\allowbreak{} 9.913,\allowbreak{} 9.94,\allowbreak{} 9.96,\allowbreak{} 10,\allowbreak{} 10.06,\allowbreak{} 10.096,\allowbreak{} 10.11,\allowbreak{} 10.19,\allowbreak{} 10.197,\allowbreak{} 10.21,\allowbreak{} 10.228,\allowbreak{} 10.24,\allowbreak{} 10.244,\allowbreak{} 10.25,\allowbreak{} 10.331,\allowbreak{} 10.375,\allowbreak{} 10.39,\allowbreak{} 10.413,\allowbreak{} 10.44,\allowbreak{} 10.46,\allowbreak{} 10.5,\allowbreak{} 10.56,\allowbreak{} 10.596,\allowbreak{} 10.61,\allowbreak{} 10.69,\allowbreak{} 10.697,\allowbreak{} 10.71,\allowbreak{} 10.728,\allowbreak{} 10.74,\allowbreak{} 10.744,\allowbreak{} 10.75,\allowbreak{} 10.831,\allowbreak{} 10.832,\allowbreak{} 10.875,\allowbreak{} 10.89,\allowbreak{} 10.913,\allowbreak{} 10.94,\allowbreak{} 10.96,\allowbreak{} 11,\allowbreak{} 11.06,\allowbreak{} 11.096,\allowbreak{} 11.11,\allowbreak{} 11.19,\allowbreak{} 11.197,\allowbreak{} 11.21,\allowbreak{} 11.228,\allowbreak{} 11.24,\allowbreak{} 11.244,\allowbreak{} 11.25,\allowbreak{} 11.331,\allowbreak{} 11.332,\allowbreak{} 11.375,\allowbreak{} 11.39,\allowbreak{} 11.413,\allowbreak{} 11.44,\allowbreak{} 11.46,\allowbreak{} 11.5,\allowbreak{} 11.56,\allowbreak{} 11.596,\allowbreak{} 11.61,\allowbreak{} 11.69,\allowbreak{} 11.697,\allowbreak{} 11.728,\allowbreak{} 11.74,\allowbreak{} 11.744,\allowbreak{} 11.75,\allowbreak{} 11.832,\allowbreak{} 11.859,\allowbreak{} 11.875,\allowbreak{} 11.89,\allowbreak{} 11.913,\allowbreak{} 11.96,\allowbreak{} 12,\allowbreak{} 12.06,\allowbreak{} 12.096,\allowbreak{} 12.11,\allowbreak{} 12.197,\allowbreak{} 12.24,\allowbreak{} 12.244,\allowbreak{} 12.25,\allowbreak{} 12.332,\allowbreak{} 12.359,\allowbreak{} 12.375,\allowbreak{} 12.39,\allowbreak{} 12.413,\allowbreak{} 12.5,\allowbreak{} 12.56,\allowbreak{} 12.596,\allowbreak{} 12.61,\allowbreak{} 12.74,\allowbreak{} 12.744,\allowbreak{} 12.832,\allowbreak{} 12.859,\allowbreak{} 12.875,\allowbreak{} 12.89,\allowbreak{} 12.913,\allowbreak{} 13,\allowbreak{} 13.096,\allowbreak{} 13.11,\allowbreak{} 13.24,\allowbreak{} 13.332,\allowbreak{} 13.359,\allowbreak{} 13.375,\allowbreak{} 13.413,\allowbreak{} 13.5,\allowbreak{} 13.596,\allowbreak{} 13.61,\allowbreak{} 13.832,\allowbreak{} 13.859,\allowbreak{} 13.913,\allowbreak{} 14,\allowbreak{} 14.096,\allowbreak{} 14.332,\allowbreak{} 14.359,\allowbreak{} 14.413,\allowbreak{} 14.5,\allowbreak{} 14.832,\allowbreak{} 14.859,\allowbreak{} 14.913,\allowbreak{} 15,\allowbreak{} 15.332,\allowbreak{} 15.359,\allowbreak{} 15.5,\allowbreak{} 15.832,\allowbreak{} 15.859,\allowbreak{} 16,\allowbreak{} 16.359,\allowbreak{} 16.5,\allowbreak{} 16.859,\allowbreak{} 17,\allowbreak{} 17.5,\allowbreak{} 18$\}_u$.
+		\endgroup
+		
+		\medskip
 		Number of elements: 223, and this set exhibits a structure that we see as similar to the interval $[6,18]$.
 		
 		If we take $X = \kbd{[1,2]}$, then we have $m(X) = \kbd{[6,18]}$.
@@ -1616,9 +1639,10 @@
 			d_Y = d_X^k = \underbrace{d_X \times d_X \times \dots \times d_X}_{k \text{ times}}
 			\]
 			The generating function $f_Y: d_Y \rightarrow \mathcal{Y}$ is defined by:
-			\[
-			\forall (t_1, t_2, \dots, t_k) \in d_Y, \quad f_Y(t_1, t_2, \dots, t_k) = f\left(f_X(t_1), f_X(t_2), \dots, f_X(t_k)\right)
-			\]
+			\begin{align*}
+				&\forall (t_1, t_2, \dots, t_k) \in d_Y, \\
+				&\quad f_Y(t_1, t_2, \dots, t_k) = f\left(f_X(t_1), f_X(t_2), \dots, f_X(t_k)\right)
+			\end{align*}
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
@@ -1738,9 +1762,13 @@
 		Based on the operations of addition, subtraction, multiplication, division, and exponentiation defined above, we present an example of an uncertain function:
 		$$\hbd{\exp}{X} := \sum_{n=0}^{\infty} \left(\frac{X^n}{n!}\right) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \cdots$$
 		And we compute a specific example $$\hbd{\exp}{\s{0,1}} \subset [e^0,e^1]$$
-		For instance, with $n=8$ and accuracy up to 5 decimal places, we compute $\exp_m\left(\{0,1\}\right)$ approximately equal to
-		$\{$1.00000, 1.00002, 1.00020, 1.00022, 1.00139, 1.00141, 1.00159, 1.00161, 1.00833, 1.00836, 1.00853, 1.00856, 1.00972, 1.00975, 1.00992, 1.00995, 1.04167, 1.04169, 1.04187, 1.04189, 1.04306, 1.04308, 1.04325, 1.04328, 1.05000, 1.05002, 1.05020, 1.05022, 1.05139, 1.05141, 1.05159, 1.05161, 1.16667, 1.16669, 1.16687, 1.16689, 1.16806, 1.16808, 1.16825, 1.16828, 1.17500, 1.17502, 1.17520, 1.17522, 1.17639, 1.17641, 1.17659, 1.17661, 1.20833, 1.20836, 1.20853, 1.20856, 1.20972, 1.20975, 1.20992, 1.20995, 1.21667, 1.21669, 1.21687, 1.21689, 1.21806, 1.21808, 1.21825, 1.21828, 1.50000, 1.50002, 1.50020, 1.50022, 1.50139, 1.50141, 1.50159, 1.50161, 1.50833, 1.50836, 1.50853, 1.50856, 1.50972, 1.50975, 1.50992, 1.50995, 1.54167, 1.54169, 1.54187, 1.54189, 1.54306, 1.54308, 1.54325, 1.54328, 1.55000, 1.55002, 1.55020, 1.55022, 1.55139, 1.55141, 1.55159, 1.55161, 1.66667, 1.66669, 1.66687, 1.66689, 1.66806, 1.66808, 1.66825, 1.66828, 1.67500, 1.67502, 1.67520, 1.67522, 1.67639, 1.67641, 1.67659, 1.67661, 1.70833, 1.70836, 1.70853, 1.70856, 1.70972, 1.70975, 1.70992, 1.70995, 1.71667, 1.71669, 1.71687, 1.71689, 1.71806, 1.71808, 1.71825, 1.71828, 2.00000, 2.00002, 2.00020, 2.00022, 2.00139, 2.00141, 2.00159, 2.00161, 2.00833, 2.00836, 2.00853, 2.00856, 2.00972, 2.00975, 2.00992, 2.00995, 2.04167, 2.04169, 2.04187, 2.04189, 2.04306, 2.04308, 2.04325, 2.04328, 2.05000, 2.05002, 2.05020, 2.05022, 2.05139, 2.05141, 2.05159, 2.05161, 2.16667, 2.16669, 2.16687, 2.16689, 2.16806, 2.16808, 2.16825, 2.16828, 2.17500, 2.17502, 2.17520, 2.17522, 2.17639, 2.17641, 2.17659, 2.17661, 2.20833, 2.20836, 2.20853, 2.20856, 2.20972, 2.20975, 2.20992, 2.20995, 2.21667, 2.21669, 2.21687, 2.21689, 2.21806, 2.21808, 2.21825, 2.21828, 2.50000, 2.50002, 2.50020, 2.50022, 2.50139, 2.50141, 2.50159, 2.50161, 2.50833, 2.50836, 2.50853, 2.50856, 2.50972, 2.50975, 2.50992, 2.50995, 2.54167, 2.54169, 2.54187, 2.54189, 2.54306, 2.54308, 2.54325, 2.54328, 2.55000, 2.55002, 2.55020, 2.55022, 2.55139, 2.55141, 2.55159, 2.55161, 2.66667, 2.66669, 2.66806, 2.66808, 2.66825, 2.66828, 2.67500, 2.67502, 2.67520, 2.67522, 2.67639, 2.67641, 2.67659, 2.67661, 2.70833, 2.70836, 2.70853, 2.70856, 2.70972, 2.70975, 2.70992, 2.70995, 2.71667, 2.71669, 2.71687, 2.71689, 2.71806, 2.71808, 2.71825, 2.71828$\}_u$.
+		For instance, with $n=8$ and accuracy up to 5 decimal places, we compute $\exp_m\left(\{0,1\}\right)$ approximately equal to:
 		
+		\noindent\begingroup\sloppy
+		$\{$1.00000,\allowbreak{} 1.00002,\allowbreak{} 1.00020,\allowbreak{} 1.00022,\allowbreak{} 1.00139,\allowbreak{} 1.00141,\allowbreak{} 1.00159,\allowbreak{} 1.00161,\allowbreak{} 1.00833,\allowbreak{} 1.00836,\allowbreak{} 1.00853,\allowbreak{} 1.00856,\allowbreak{} 1.00972,\allowbreak{} 1.00975,\allowbreak{} 1.00992,\allowbreak{} 1.00995,\allowbreak{} 1.04167,\allowbreak{} 1.04169,\allowbreak{} 1.04187,\allowbreak{} 1.04189,\allowbreak{} 1.04306,\allowbreak{} 1.04308,\allowbreak{} 1.04325,\allowbreak{} 1.04328,\allowbreak{} 1.05000,\allowbreak{} 1.05002,\allowbreak{} 1.05020,\allowbreak{} 1.05022,\allowbreak{} 1.05139,\allowbreak{} 1.05141,\allowbreak{} 1.05159,\allowbreak{} 1.05161,\allowbreak{} 1.16667,\allowbreak{} 1.16669,\allowbreak{} 1.16687,\allowbreak{} 1.16689,\allowbreak{} 1.16806,\allowbreak{} 1.16808,\allowbreak{} 1.16825,\allowbreak{} 1.16828,\allowbreak{} 1.17500,\allowbreak{} 1.17502,\allowbreak{} 1.17520,\allowbreak{} 1.17522,\allowbreak{} 1.17639,\allowbreak{} 1.17641,\allowbreak{} 1.17659,\allowbreak{} 1.17661,\allowbreak{} 1.20833,\allowbreak{} 1.20836,\allowbreak{} 1.20853,\allowbreak{} 1.20856,\allowbreak{} 1.20972,\allowbreak{} 1.20975,\allowbreak{} 1.20992,\allowbreak{} 1.20995,\allowbreak{} 1.21667,\allowbreak{} 1.21669,\allowbreak{} 1.21687,\allowbreak{} 1.21689,\allowbreak{} 1.21806,\allowbreak{} 1.21808,\allowbreak{} 1.21825,\allowbreak{} 1.21828,\allowbreak{} 1.50000,\allowbreak{} 1.50002,\allowbreak{} 1.50020,\allowbreak{} 1.50022,\allowbreak{} 1.50139,\allowbreak{} 1.50141,\allowbreak{} 1.50159,\allowbreak{} 1.50161,\allowbreak{} 1.50833,\allowbreak{} 1.50836,\allowbreak{} 1.50853,\allowbreak{} 1.50856,\allowbreak{} 1.50972,\allowbreak{} 1.50975,\allowbreak{} 1.50992,\allowbreak{} 1.50995,\allowbreak{} 1.54167,\allowbreak{} 1.54169,\allowbreak{} 1.54187,\allowbreak{} 1.54189,\allowbreak{} 1.54306,\allowbreak{} 1.54308,\allowbreak{} 1.54325,\allowbreak{} 1.54328,\allowbreak{} 1.55000,\allowbreak{} 1.55002,\allowbreak{} 1.55020,\allowbreak{} 1.55022,\allowbreak{} 1.55139,\allowbreak{} 1.55141,\allowbreak{} 1.55159,\allowbreak{} 1.55161,\allowbreak{} 1.66667,\allowbreak{} 1.66669,\allowbreak{} 1.66687,\allowbreak{} 1.66689,\allowbreak{} 1.66806,\allowbreak{} 1.66808,\allowbreak{} 1.66825,\allowbreak{} 1.66828,\allowbreak{} 1.67500,\allowbreak{} 1.67502,\allowbreak{} 1.67520,\allowbreak{} 1.67522,\allowbreak{} 1.67639,\allowbreak{} 1.67641,\allowbreak{} 1.67659,\allowbreak{} 1.67661,\allowbreak{} 1.70833,\allowbreak{} 1.70836,\allowbreak{} 1.70853,\allowbreak{} 1.70856,\allowbreak{} 1.70972,\allowbreak{} 1.70975,\allowbreak{} 1.70992,\allowbreak{} 1.70995,\allowbreak{} 1.71667,\allowbreak{} 1.71669,\allowbreak{} 1.71687,\allowbreak{} 1.71689,\allowbreak{} 1.71806,\allowbreak{} 1.71808,\allowbreak{} 1.71825,\allowbreak{} 1.71828,\allowbreak{} 2.00000,\allowbreak{} 2.00002,\allowbreak{} 2.00020,\allowbreak{} 2.00022,\allowbreak{} 2.00139,\allowbreak{} 2.00141,\allowbreak{} 2.00159,\allowbreak{} 2.00161,\allowbreak{} 2.00833,\allowbreak{} 2.00836,\allowbreak{} 2.00853,\allowbreak{} 2.00856,\allowbreak{} 2.00972,\allowbreak{} 2.00975,\allowbreak{} 2.00992,\allowbreak{} 2.00995,\allowbreak{} 2.04167,\allowbreak{} 2.04169,\allowbreak{} 2.04187,\allowbreak{} 2.04189,\allowbreak{} 2.04306,\allowbreak{} 2.04308,\allowbreak{} 2.04325,\allowbreak{} 2.04328,\allowbreak{} 2.05000,\allowbreak{} 2.05002,\allowbreak{} 2.05020,\allowbreak{} 2.05022,\allowbreak{} 2.05139,\allowbreak{} 2.05141,\allowbreak{} 2.05159,\allowbreak{} 2.05161,\allowbreak{} 2.16667,\allowbreak{} 2.16669,\allowbreak{} 2.16687,\allowbreak{} 2.16689,\allowbreak{} 2.16806,\allowbreak{} 2.16808,\allowbreak{} 2.16825,\allowbreak{} 2.16828,\allowbreak{} 2.17500,\allowbreak{} 2.17502,\allowbreak{} 2.17520,\allowbreak{} 2.17522,\allowbreak{} 2.17639,\allowbreak{} 2.17641,\allowbreak{} 2.17659,\allowbreak{} 2.17661,\allowbreak{} 2.20833,\allowbreak{} 2.20836,\allowbreak{} 2.20853,\allowbreak{} 2.20856,\allowbreak{} 2.20972,\allowbreak{} 2.20975,\allowbreak{} 2.20992,\allowbreak{} 2.20995,\allowbreak{} 2.21667,\allowbreak{} 2.21669,\allowbreak{} 2.21687,\allowbreak{} 2.21689,\allowbreak{} 2.21806,\allowbreak{} 2.21808,\allowbreak{} 2.21825,\allowbreak{} 2.21828,\allowbreak{} 2.50000,\allowbreak{} 2.50002,\allowbreak{} 2.50020,\allowbreak{} 2.50022,\allowbreak{} 2.50139,\allowbreak{} 2.50141,\allowbreak{} 2.50159,\allowbreak{} 2.50161,\allowbreak{} 2.50833,\allowbreak{} 2.50836,\allowbreak{} 2.50853,\allowbreak{} 2.50856,\allowbreak{} 2.50972,\allowbreak{} 2.50975,\allowbreak{} 2.50992,\allowbreak{} 2.50995,\allowbreak{} 2.54167,\allowbreak{} 2.54169,\allowbreak{} 2.54187,\allowbreak{} 2.54189,\allowbreak{} 2.54306,\allowbreak{} 2.54308,\allowbreak{} 2.54325,\allowbreak{} 2.54328,\allowbreak{} 2.55000,\allowbreak{} 2.55002,\allowbreak{} 2.55020,\allowbreak{} 2.55022,\allowbreak{} 2.55139,\allowbreak{} 2.55141,\allowbreak{} 2.55159,\allowbreak{} 2.55161,\allowbreak{} 2.66667,\allowbreak{} 2.66669,\allowbreak{} 2.66806,\allowbreak{} 2.66808,\allowbreak{} 2.66825,\allowbreak{} 2.66828,\allowbreak{} 2.67500,\allowbreak{} 2.67502,\allowbreak{} 2.67520,\allowbreak{} 2.67522,\allowbreak{} 2.67639,\allowbreak{} 2.67641,\allowbreak{} 2.67659,\allowbreak{} 2.67661,\allowbreak{} 2.70833,\allowbreak{} 2.70836,\allowbreak{} 2.70853,\allowbreak{} 2.70856,\allowbreak{} 2.70972,\allowbreak{} 2.70975,\allowbreak{} 2.70992,\allowbreak{} 2.70995,\allowbreak{} 2.71667,\allowbreak{} 2.71669,\allowbreak{} 2.71687,\allowbreak{} 2.71689,\allowbreak{} 2.71806,\allowbreak{} 2.71808,\allowbreak{} 2.71825,\allowbreak{} 2.71828$\}_u$.
+		\endgroup
+		
+		\medskip
 		Containing $2^8 = 256$ elements.
 	\end{example}
 	
@@ -1872,9 +1900,9 @@
 			F(F^{-1}(\s{3,4})) & = \s{\pm 4, \pm 2\sqrt{3}, \pm 3}
 		\end{align*}
 		From which we calculate $I$ as equal to:
-		$$
+		\[
 		\s{k = \int_{a}^{b}{2xdx}: a \in \s{\pm 1, \pm 2, \pm \sqrt{2}}, b \in \s{\pm 4, \pm 2\sqrt{3}, \pm 3}, k \in \mathbb{K}}
-		$$
+		\]
 		Simplifying yields:
 		\[I = \s{5, 7, 8, 10, 11, 12, 14, 15}\]
 	\end{example}
@@ -1887,9 +1915,10 @@
 		d f_F = \sum_{i=1}^{k} \frac{\partial f_F}{\partial f_{X_i}} \cdot \big(f_B(y_i) - f_A(x_i)\big) dt_i
 		\]
 		The differential form uncertain integral from $A$ to $B$ of function $g(X)$ corresponding to antiderivative $F$, denoted $\int_A^B g(X)dX \Big| F$, has a canonical form generating function determined by the $k$-fold line integral:
-		\[
-		f_{I_F}(\mathbf{x}, \mathbf{y}) := \int_{[0, 1]^k} d f_F = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
-		\]
+		\begin{align*}
+			f_{I_F}(\mathbf{x}, \mathbf{y}) &:= \int_{[0, 1]^k} d f_F \\
+			&= f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)
+		\end{align*}
 		for all $(\mathbf{x}, \mathbf{y}) \in d_A^k \times d_B^k$.
 	\end{theorem}
 	\begin{proof}
@@ -1931,16 +1960,17 @@
 			
 			\item Canonical Representation of the Integral: \\
 			Since $f_A(d_A) = A_s$ and $f_B(d_B) = B_s$, as $(\mathbf{x}, \mathbf{y})$ ranges over $d_A^k \times d_B^k$, the generating function $f_{I_F}$ maps $d_{I_F}$ onto the complete set of Minkowski evaluation values:
-			\[
-			f_{I_F}(d_A^k \times d_B^k) = \left\{ f_F(b_1, \dots, b_k) - f_F(a_1, \dots, a_k) \;:\; a_i \in A_s, \, b_i \in B_s, \, \forall i=1,\dots,k \right\}
-			\]
+			\begin{align*}
+				f_{I_F}(d_A^k \times d_B^k) = \Big\{ &f_F(b_1, \dots, b_k) - f_F(a_1, \dots, a_k) \;:\; \\
+				&a_i \in A_s, \, b_i \in B_s, \, \forall i=1,\dots,k \Big\}
+			\end{align*}
 			which corresponds exactly to the scenario value set of $\int_A^B g(X)dX \Big| F$ in Minkowski space $(\circ)_m$.
 		\end{enumerate}
 		
 		Thus, $f_{I_F}(\mathbf{x}, \mathbf{y}) = f_F\big(f_B(y_1), \dots, f_B(y_k)\big) - f_F\big(f_A(x_1), \dots, f_A(x_k)\big)$ is the valid canonical generating function over $d_A^k \times d_B^k$. This completes the proof.
 	\end{proof}
 	\begin{theorem}
-		Let $f,g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at uncertain point $X_0 \in \mathcal{X}$. Suppose representative generating functions of $f(X_0)$ and $g(X_0)$ in canonical form are $f_{f(X_0)(t)}$ and $f_{g(X_0)}(t)$ respectively with $t \in [0,1]^k$.
+		Let $f,g : \mathcal{X} \to \mathcal{Y}$ be two uncertain functions differentiable at uncertain point $X_0 \in \mathcal{X}$. Suppose representative generating functions of $f(X_0)$ and $g(X_0)$ in canonical form are $f_{f(X_0)}(t)$ and $f_{g(X_0)}(t)$ respectively with $t \in [0,1]^k$.
 		
 		Then the differential form of the sum function:
 		$h(x) = (f+g)(X)$ at $X_0$ is defined by the total linear differential operator:
